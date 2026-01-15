@@ -1,0 +1,165 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Kaelum – Devlog · Semana 1"
+  description="Semana 1 del devlog de Kaelum: dirección del juego, pilares y alcance inicial."
+>
+  <section class="hero">
+    <p class="kicker">Devlog</p>
+    <h1>Semana 1 · Dirección, pilares y alcance</h1>
+    <p class="lead">
+      Esta semana no va de “inventar mil cosas”, va de dejar claro el rumbo. Definir qué es Kaelum,
+      qué NO va a ser, y cómo evitar el clásico error de querer un juego enorme y acabar entregando una demo rota.
+    </p>
+
+    <div class="actions">
+      <a class="btn" href="/kaelum">Resumen del proyecto</a>
+      <a class="btn" href="/docs/folleto">Folleto (A4)</a>
+      <a class="btn" href="/docs/gdd">GDD (PDF)</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <section class="card full">
+      <h2>Decisión principal</h2>
+      <p class="muted">
+        Kaelum será un <strong>shooter en primera persona</strong> donde el núcleo es el arma y el movimiento.
+        Las habilidades existen, pero como <strong>extra táctico</strong>, no como “el juego entero”.
+        Si disparar y moverte no es divertido, da igual lo bonito que sea el lore.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Qué quiero que sienta el jugador</h2>
+      <ul class="list">
+        <li><strong>Fluidez:</strong> moverte se siente bien incluso sin pelear.</li>
+        <li><strong>Calidad de gunplay:</strong> feedback claro, lectura limpia.</li>
+        <li><strong>Curiosidad:</strong> el mundo invita a desviarte y descubrir cosas.</li>
+        <li><strong>Épico sin postureo:</strong> Kael no necesita “ser famoso” para imponer.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Qué NO va a ser (para no morir de scope)</h2>
+      <ul class="list">
+        <li>Un RPG gigante con árboles infinitos y 70 sistemas.</li>
+        <li>Un “Fallout” con 200 misiones y 100 horas de historia.</li>
+        <li>Parkour exagerado que haga imposible apuntar y balancear.</li>
+        <li>Cosméticos desde el minuto 1 (primero jugable, luego ya veremos).</li>
+      </ul>
+      <p class="small" style="margin-top:10px">
+        La regla: <strong>pocas cosas, pero bien hechas</strong>.
+      </p>
+    </section>
+
+    <section class="card full">
+      <h2>Pilares (filtro para decidir features)</h2>
+      <div class="grid" style="margin-top:10px">
+        <div class="card" style="grid-column: span 6;">
+          <h3>1) Armas primero</h3>
+          <p class="muted">El arma manda. Las habilidades apoyan (utilidad/daño/especial).</p>
+        </div>
+        <div class="card" style="grid-column: span 6;">
+          <h3>2) Movimiento fluido</h3>
+          <p class="muted">Ágil, controlado y disfrutable. Sin “parkour imposible”.</p>
+        </div>
+        <div class="card" style="grid-column: span 6;">
+          <h3>3) Curiosidad premiada</h3>
+          <p class="muted">Detalles, textos, rutas y microeventos que recompensan explorar.</p>
+        </div>
+        <div class="card" style="grid-column: span 6;">
+          <h3>4) Alcance realista</h3>
+          <p class="muted">Primero algo jugable y estable. Luego se embellece.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card full">
+      <h2>Estructura del juego (single vs multi)</h2>
+      <p class="muted">
+        Para que el proyecto sea coherente y balanceable, se separa claramente:
+      </p>
+
+      <div class="grid" style="margin-top:10px">
+        <div class="card" style="grid-column: span 6;">
+          <h3>Historia (Singleplayer)</h3>
+          <ul class="list">
+            <li>Kael como protagonista total.</li>
+            <li>Progresión ligera: habilidades/equipo sin líos.</li>
+            <li>Narrativa contextual (sin cinemáticas eternas).</li>
+            <li>Mundo semiabierto con exploración.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="grid-column: span 6;">
+          <h3>Multijugador (Competitivo)</h3>
+          <ul class="list">
+            <li>Partidas cortas (5–15 min) y modos por rondas.</li>
+            <li>Roster separado (Kael no es jugable por balance).</li>
+            <li>El foco es diversión + skill + objetivos claros.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card full">
+      <h2>Alcance inicial (lo que sí se promete)</h2>
+      <p class="muted">
+        Esto es lo que hace que el proyecto tenga posibilidades reales de cerrarse:
+      </p>
+      <ul class="list">
+        <li><strong>2 modos:</strong> Team Deathmatch + Buscar y destruir (rondas).</li>
+        <li><strong>2 mapas:</strong> uno “chill” para TDM y otro orientado a rondas.</li>
+        <li><strong>Roster inicial:</strong> objetivo 6 personajes (se empieza por 2–3 en prototipo).</li>
+        <li><strong>Habilidades limitadas:</strong> claras, balanceables (sin árboles gigantes).</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Riesgos detectados</h2>
+      <ul class="list">
+        <li><strong>Scope creep:</strong> querer añadir demasiado “porque mola”.</li>
+        <li><strong>Balance:</strong> demasiadas habilidades = infierno.</li>
+        <li><strong>Arte temprano:</strong> priorizar bonito antes que jugable.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Cómo los evitamos</h2>
+      <ul class="list">
+        <li>Un filtro: si no mejora pilares, no entra.</li>
+        <li>Pocas habilidades por personaje (2–3).</li>
+        <li>Primero prototipo estable, luego estética.</li>
+      </ul>
+    </section>
+
+    <section class="card full">
+      <h2>Resultado de la semana</h2>
+      <ul class="list">
+        <li>Dirección definida: <strong>FPS + armas primero</strong>.</li>
+        <li>Pilares cerrados como criterio de diseño.</li>
+        <li>Alcance inicial aterrizado (2 modos, 2 mapas, roster controlado).</li>
+        <li>Separación single/multi con motivo real (diseño y balance).</li>
+      </ul>
+
+      <h2 style="margin-top:14px">Checklist (entregable)</h2>
+      <ul class="list">
+        <li>El juego tiene rumbo y objetivo claros.</li>
+        <li>Se ha evitado un RPG infinito (scope realista).</li>
+        <li>Se ha definido qué se hace primero (core jugable).</li>
+      </ul>
+
+      <h2 style="margin-top:14px">Siguiente semana</h2>
+      <p class="lead" style="margin-top:0">
+        Semana 2: mundo + tono + Kael. Definir identidad sin convertir esto en un libro.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href="/devlog/semana-2">Ir a Semana 2</a>
+        <a class="btn" href="/devlog">Volver al índice</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

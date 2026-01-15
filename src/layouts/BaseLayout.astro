@@ -1,0 +1,48 @@
+---
+const {
+  title = "Kaelum",
+  description = "Portfolio & devlog del proyecto Kaelum.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+
+    <link rel="stylesheet" href="/styles/global.css" />
+  </head>
+
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="/">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <span class="brand-name">Kaelum</span>
+        </a>
+
+        <nav class="nav">
+          <a class={Astro.url.pathname === "/" ? "pill active" : "pill"} href="/">Inicio</a>
+          <a class={Astro.url.pathname.startsWith("/kaelum") ? "pill active" : "pill"} href="/kaelum">Proyecto</a>
+          <a class={Astro.url.pathname.startsWith("/devlog") ? "pill active" : "pill"} href="/devlog">Devlog</a>
+          <a class={Astro.url.pathname.startsWith("/docs") ? "pill active" : "pill"} href="/docs">Docs</a>
+          <a class={Astro.url.pathname.startsWith("/sobre-mi") ? "pill active" : "pill"} href="/sobre-mi">Sobre mí</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>© {new Date().getFullYear()} · Kaelum</span>
+        <span class="muted">Implementación general (pendiente de cambios)</span>
+      </div>
+    </footer>
+  </body>
+</html>

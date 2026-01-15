@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Kaelum – Devlog" description="Entradas semanales del desarrollo de Kaelum.">
+  <section class="hero">
+    <p class="kicker">Devlog</p>
+    <h1>Progreso semanal</h1>
+    <p class="lead">
+      Entradas cortas y directas: qué se decidió, por qué, y qué viene después.
+      El resumen oficial del proyecto está en <a href="/kaelum" style="color:var(--text);font-weight:900;">/kaelum</a>.
+    </p>
+  </section>
+
+  <div class="grid">
+    <article class="card">
+      <h3>Semana 1 · Concepto y enfoque</h3>
+      <p class="muted">Definición del rumbo: armas primero, habilidades como extra, y alcance realista.</p>
+      <div class="actions">
+        <a class="btn primary" href="/devlog/semana-1">Leer</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <h3>Semana 2 · Mundo y Kael</h3>
+      <p class="muted">Tono, ambientación y cómo encajar narrativa contextual sin frenar el gameplay.</p>
+      <div class="actions">
+        <a class="btn primary" href="/devlog/semana-2">Leer</a>
+      </div>
+    </article>
+  </div>
+</BaseLayout>
