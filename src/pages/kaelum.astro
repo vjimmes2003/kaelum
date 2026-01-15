@@ -21,9 +21,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
 
     <div class="actions">
-      <a class="btn primary" href="/docs/folleto">Ver folleto (A4)</a>
-      <a class="btn" href="/docs/gdd">Ver GDD (PDF)</a>
-      <a class="btn" href="/devlog">Ir al devlog</a>
+      <a class="btn primary" href={`${import.meta.env.BASE_URL}docs/folleto/`}>Ver folleto (A4)</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}docs/gdd/`}>Ver GDD (PDF)</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}devlog/`}>Ir al devlog</a>
     </div>
   </section>
 

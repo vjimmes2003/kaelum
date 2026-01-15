@@ -19,9 +19,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </div>
 
     <div class="actions">
-      <a class="btn primary" href="/kaelum">Ver proyecto</a>
-      <a class="btn" href="/devlog">Ver devlog</a>
-      <a class="btn" href="/docs">Ver docs</a>
+      <a class="btn primary" href={`${import.meta.env.BASE_URL}kaelum/`}>Ver proyecto</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}devlog/`}>Ver devlog</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}docs/`}>Ver docs</a>
     </div>
   </section>
 
@@ -53,8 +53,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="card full">
       <h3>Últimas entradas del devlog</h3>
       <div class="actions">
-        <a class="btn" href="/devlog/semana-1">Semana 1 · Concepto y enfoque</a>
-        <a class="btn" href="/devlog/semana-2">Semana 2 · Mundo y Kael</a>
+        <a class="btn" href={`${import.meta.env.BASE_URL}devlog/semana-1/`}>Semana 1 · Concepto y enfoque</a>
+        <a class="btn" href={`${import.meta.env.BASE_URL}devlog/semana-2/`}>Semana 2 · Mundo y Kael</a>
       </div>
       <p class="small" style="margin-top:10px">
-        El resumen oficial del pr
+        El resumen oficial del proyecto está disponible en el devlog.

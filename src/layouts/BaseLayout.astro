@@ -3,6 +3,10 @@ const {
   title = "Kaelum",
   description = "Portfolio & devlog del proyecto Kaelum.",
 } = Astro.props;
+const base = import.meta.env.BASE_URL;                 // "/kaelum/" en prod, "/" en local
+const path = Astro.url.pathname;                       // "/kaelum/devlog/..." en prod
+const rel = path.startsWith(base) ? path.slice(base.length - 1) : path; // "/devlog/..." o "/"
+const is = (p: string) => rel === p || rel.startsWith(p + "/");
 ---
 
 <!doctype html>
@@ -13,24 +17,24 @@ const {
     <meta name="description" content={description} />
     <title>{title}</title>
 
-    <link rel="stylesheet" href={`${import.meta.env.BASE_URL}global.css`} />
+    <link rel="stylesheet" href={`${import.meta.env.BASE_URL}/styles/global.css`} />
     <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
   </head>
 
   <body>
     <header class="topbar">
       <div class="topbar-inner">
-        <a class="brand" href="/">
+        <a class="brand" href="">
           <span class="brand-dot" aria-hidden="true"></span>
           <span class="brand-name">Kaelum</span>
         </a>
 
         <nav class="nav">
-          <a class={Astro.url.pathname === "/" ? "pill active" : "pill"} href="/">Inicio</a>
-          <a class={Astro.url.pathname.startsWith("/kaelum") ? "pill active" : "pill"} href="/kaelum">Proyecto</a>
-          <a class={Astro.url.pathname.startsWith("/devlog") ? "pill active" : "pill"} href="/devlog">Devlog</a>
-          <a class={Astro.url.pathname.startsWith("/docs") ? "pill active" : "pill"} href="/docs">Docs</a>
-          <a class={Astro.url.pathname.startsWith("/sobre-mi") ? "pill active" : "pill"} href="/sobre-mi">Sobre mí</a>
+          <a class={rel === "/" ? "pill active" : "pill"} href={base}>Inicio</a>
+          <a class={is("/kaelum") ? "pill active" : "pill"} href={`${base}kaelum/`}>Proyecto</a>
+          <a class={is("/devlog") ? "pill active" : "pill"} href={`${base}devlog/`}>Devlog</a>
+          <a class={is("/docs") ? "pill active" : "pill"} href={`${base}docs/`}>Docs</a>
+          <a class={is("/sobre-mi") ? "pill active" : "pill"} href={`${base}sobre-mi/`}>Sobre mí</a>
         </nav>
       </div>
     </header>

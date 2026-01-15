@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-const pdfUrl = "/docs/GDD_KAELUM.pdf";
+const base = import.meta.env.BASE_URL; // "/" en local, "/kaelum/" en GitHub Pages
+const pdfUrl = `${base}docs/GDD_KAELUM.pdf`;
 ---
 
 <BaseLayout title="Kaelum – GDD (PDF)" description="GDD completo de Kaelum en visor embebido.">
@@ -14,7 +15,7 @@ const pdfUrl = "/docs/GDD_KAELUM.pdf";
     <div class="actions">
       <a class="btn primary" href={pdfUrl} target="_blank" rel="noreferrer">Abrir en pestaña nueva</a>
       <a class="btn" href={pdfUrl} download>Descargar PDF</a>
-      <a class="btn" href="/docs">Volver a Docs</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}docs/`}>Volver a Docs</a>
     </div>
   </section>
 

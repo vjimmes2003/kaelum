@@ -16,8 +16,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <h3>GDD completo (PDF)</h3>
       <p class="muted">Documento detallado del juego. Ideal para revisión completa.</p>
       <div class="actions">
-        <a class="btn primary" href="/docs/gdd">Abrir visor</a>
-        <a class="btn" href="/docs/GDD_KAELUM.pdf" target="_blank" rel="noreferrer">Abrir PDF</a>
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}docs/gdd/`}>Abrir visor</a>
+        <a class="btn" href={`${import.meta.env.BASE_URL}docs/GDD_KAELUM.pdf`} target="_blank" rel="noreferrer">Abrir PDF</a>
       </div>
     </article>
 
@@ -25,8 +25,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <h3>Folleto imprimible (One-Pager)</h3>
       <p class="muted">Resumen estilo brochure, pensado para presentar en 1 minuto y poder imprimir en A4.</p>
       <div class="actions">
-        <a class="btn primary" href="/docs/folleto">Ver folleto</a>
-        <a class="btn" href="/docs/folleto#imprimir">Imprimir</a>
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}docs/folleto/`}>Ver folleto</a>
+        <a class="btn" href={`${import.meta.env.BASE_URL}docs/folleto#imprimir`}>Imprimir</a>
       </div>
     </article>
   </div>
