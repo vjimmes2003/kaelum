@@ -2,13 +2,16 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Kaelum – Sobre mí" description="Quién soy y qué hago como desarrollador.">
+<BaseLayout
+  title="Sobre mí"
+  description="Quién soy y cómo enfoco el desarrollo de proyectos y videojuegos."
+>
   <section class="hero">
     <p class="kicker">Sobre mí</p>
     <h1>Portfolio vivo</h1>
     <p class="lead">
-      Me interesa que se vea el proceso real: decisiones, problemas y cómo se aterriza una idea hasta convertirla en algo jugable.
-      Kaelum es el proyecto principal ahora mismo.
+      Me interesa que se vea el proceso real: decisiones, problemas y cómo se aterriza una idea
+      hasta convertirla en algo jugable. Kaelum es el proyecto principal en el que aplico este enfoque.
     </p>
 
     <div class="meta">
@@ -17,39 +20,41 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <span class="tag">Prototipado</span>
       <span class="tag">Documentación</span>
     </div>
+
+    <div class="actions">
+      <a class="btn primary" href={`${import.meta.env.BASE_URL}kaelum/`}>Ver Kaelum</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}docs/`}>Ver documentación</a>
+    </div>
   </section>
 
   <div class="grid">
     <div class="card">
       <h3>Lo que hago</h3>
       <ul class="list">
-        <li>Diseño de mecánicas con scope realista</li>
+        <li>Diseño de mecánicas con alcance realista</li>
         <li>Prototipos jugables (primero divertido, luego bonito)</li>
         <li>Devlog y documentación clara</li>
-        <li>Iteración a partir de feedback</li>
+        <li>Iteración constante a partir de feedback</li>
       </ul>
     </div>
 
     <div class="card">
       <h3>Herramientas</h3>
       <ul class="list">
-        <li>Unity (principal)</li>
-        <li>Git/GitHub (control de versiones)</li>
-        <li>Docs/Notion para documentación</li>
-        <li>Blender/Aseprite (según necesidad)</li>
+        <li>Unity</li>
+        <li>Git y GitHub</li>
+        <li>Documentación estructurada</li>
+        <li>Blender / Aseprite (según necesidad)</li>
       </ul>
-      <p class="small" style="margin-top:10px">
-        Ajusta esta lista a tu stack real y queda perfecto.
-      </p>
     </div>
 
     <div class="card full">
-      <h3>Links</h3>
-      <p class="muted">Añade tus links reales cuando quieras.</p>
+      <h3>Enlaces</h3>
+      <p class="muted">Perfiles y proyectos externos.</p>
       <div class="actions">
-        <a class="btn" href="#" onclick="return false;">GitHub</a>
-        <a class="btn" href="#" onclick="return false;">itch.io</a>
-        <a class="btn" href="#" onclick="return false;">LinkedIn</a>
+        <a class="btn" href="#" aria-disabled="true">GitHub</a>
+        <a class="btn" href="#" aria-disabled="true">itch.io</a>
+        <a class="btn" href="#" aria-disabled="true">LinkedIn</a>
       </div>
     </div>
   </div>

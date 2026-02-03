@@ -1,65 +1,79 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+// Pon tu SVG aquí: /public/images/NyxtaleStudios.svg
+const logoUrl = `${base}images/NyxtaleStudios.svg`;
 ---
 
 <BaseLayout
   title="Kaelum — Folleto (A4)"
-  description="Folleto imprimible estilo brochure (A4) en una sola página."
+  description="Folleto imprimible (A4) en una sola página: resumen comprimido y presentable."
 >
   <section class="hero">
     <p class="kicker">Documento</p>
-    <h1>Folleto (One-Pager)</h1>
+    <h1>Folleto (A4)</h1>
     <p class="lead">
-      Resumen rápido del proyecto. En web se ve bonito; al imprimir entra en 1 A4 (sin saltos raros).
+      Handout rápido del proyecto. En web se ve bien; al imprimir entra en 1 A4 sin saltos.
     </p>
 
-    <div class="actions noprint">
+    <div class="actions noprint" id="imprimir">
       <a class="btn primary" href="#" onclick="window.print(); return false;">Imprimir (A4)</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}docs/`}>Volver a Docs</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}kaelum/`}>Ver proyecto</a>
+      <a class="btn" href={`${base}docs/`}>Volver a Docs</a>
+      <a class="btn" href={`${base}kaelum/`}>Ver proyecto</a>
     </div>
   </section>
 
   <section class="flyer" aria-label="Folleto Kaelum imprimible A4">
-    <header class="flyer-head">
-      <div class="flyer-titleblock">
-        <h2 class="flyer-title">KAELUM</h2>
-        <p class="flyer-tagline">
-          Shooter en primera persona: <strong>armas primero</strong>, habilidades como extra, historia (Kael) + multi competitivo.
-        </p>
-        <p class="flyer-pitch">
-          Un shooter ágil donde moverte y disparar ya es divertido. La historia vive en el mundo (sin chapa) y
-          la curiosidad se premia con detalles, rutas y descubrimientos.
-        </p>
+    <!-- BRANDING TOP (centrado) -->
+    <header class="flyer-brand">
+      <div class="brand-stack">
+        <img
+          class="brand-logo"
+          src={logoUrl}
+          alt="Nyxtale Studios"
+          loading="eager"
+          onerror="this.style.display='none'"
+        />
 
-        <div class="meta">
-          <span class="tag">PC</span>
-          <span class="tag">FPS</span>
-          <span class="tag">Habilidades</span>
-          <span class="tag">Devlog</span>
+        <div class="brand-text">
+          <div class="brand-studio">Nyxtale Studios</div>
+          <div class="brand-project">KAELUM</div>
         </div>
       </div>
 
-      <div class="flyer-side">
-        <div class="flyer-mini">
-          <div class="flyer-mini-title">Estado</div>
-          <div class="flyer-mini-text">Implementación general (pendiente de cambios)</div>
-        </div>
+      <p class="brand-tagline">
+        Shooter FPS: <strong>armas primero</strong>, habilidades como extra. Historia (Kael) + multi competitivo.
+      </p>
 
-        <div class="flyer-mini">
-          <div class="flyer-mini-title">Entrega</div>
-          <div class="flyer-mini-text">Formato imprimible · 1 página A4</div>
-        </div>
+      <p class="brand-pitch">
+        Gunplay claro y movimiento fluido. La historia se descubre jugando: detalles, rutas y hallazgos,
+        sin pararte con chapa.
+      </p>
+
+      <div class="meta">
+        <span class="tag">PC</span>
+        <span class="tag">FPS</span>
+        <span class="tag">A4</span>
+        <span class="tag">Prototipo</span>
       </div>
     </header>
 
-    <!-- En web es grid libre; en print se convierte en matriz -->
+    <!-- 6 bloques: 2 columnas x 3 filas -->
     <div class="flyer-grid">
       <section class="block" data-area="obj">
         <h3>Objetivo</h3>
         <p>
-          Vivir un shooter con identidad: mundo moderno-medieval reconocible, protagonista con carácter y
-          un gameplay que prioriza sensación, claridad y control.
+          Un FPS con identidad: mundo reconocible, protagonista con carácter y una sensación de disparo
+          que enganche desde el primer minuto.
+        </p>
+      </section>
+
+      <section class="block" data-area="loop">
+        <h3>Core loop</h3>
+        <p><strong>Explorar → Conflicto → Combatir → Recompensa → Mejorar</strong></p>
+        <p class="small muted">
+          Historia: progreso ligero · Multi: rondas/objetivos + skill del jugador.
         </p>
       </section>
 
@@ -68,8 +82,17 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         <ul>
           <li>Movimiento fluido y controlado</li>
           <li>Gunplay claro y satisfactorio</li>
-          <li>Curiosidad premiada (lore/rutas/hallazgos)</li>
+          <li>Curiosidad premiada (rutas/hallazgos)</li>
           <li>Momentos épicos sin abusar de cinemáticas</li>
+        </ul>
+      </section>
+
+      <section class="block" data-area="modos">
+        <h3>Modos</h3>
+        <ul>
+          <li><strong>Historia:</strong> Kael como eje (narrativa ambiental)</li>
+          <li><strong>Multi:</strong> roster separado (balance)</li>
+          <li><strong>Partidas:</strong> rápidas (5–15 min) y por rondas</li>
         </ul>
       </section>
 
@@ -83,40 +106,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </ul>
       </section>
 
-      <section class="block" data-area="mundo">
-        <h3>Mundo y tono</h3>
-        <p>
-          Utopía moderna con mentalidad medieval: ciudades “de ahora” con cultura/arquitectura de otra era.
-          La historia se descubre explorando, leyendo y escuchando conversaciones opcionales.
-        </p>
-      </section>
-
-      <section class="block" data-area="loop">
-        <h3>Core loop</h3>
-        <p><strong>Explorar → Conflicto → Combatir → Recompensa → Mejorar → Repetir</strong></p>
-        <p class="small muted">
-          Historia: progreso ligero + narrativa ambiental · Multi: rondas/objetivos + habilidad del jugador.
-        </p>
-      </section>
-
-      <section class="block" data-area="modos">
-        <h3>Modos</h3>
-        <ul>
-          <li><strong>Historia:</strong> Kael como eje narrativo</li>
-          <li><strong>Multi:</strong> roster separado (Kael no jugable por balance)</li>
-          <li><strong>Partidas:</strong> rápidas (5–15 min) y por rondas</li>
-        </ul>
-      </section>
-
-      <section class="block" data-area="habilidades">
-        <h3>Habilidades</h3>
-        <ul>
-          <li>2–3 por personaje (claras y balanceables)</li>
-          <li>Apoyan al arma, no la sustituyen</li>
-          <li>Lectura limpia en combate</li>
-        </ul>
-      </section>
-
       <section class="block" data-area="scope">
         <h3>Alcance inicial</h3>
         <ul>
@@ -127,28 +116,31 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
         </ul>
       </section>
 
-      <section class="block" data-area="aud">
-        <h3>Audiencia</h3>
-        <p class="small muted">
-          Casual (rápidas) + competitivo ligero (rondas). Referencias: Valorant, Call of Duty, Overwatch (habilidades como extra).
-        </p>
-      </section>
-
-      <section class="block" data-area="meta">
-        <h3>Meta personal</h3>
-        <p class="small muted">
-          Documentar el proceso real (idea → decisiones → iteración → prototipo) para demostrar criterio y ejecución.
-        </p>
+      <!-- Solo web -->
+      <section class="block noprint links-block" data-area="links">
+        <h3>Enlaces</h3>
+        <p class="small muted">Para el detalle completo:</p>
+        <ul>
+          <li><a href={`${base}kaelum/`}>Resumen del proyecto</a></li>
+          <li><a href={`${base}docs/gdd/`}>GDD (PDF)</a></li>
+          <li><a href={`${base}devlog/`}>Devlog</a></li>
+        </ul>
       </section>
     </div>
 
     <footer class="flyer-foot">
-      <span>Kaelum · One-Pager (A4)</span>
+      <span>Nyxtale Studios</span>
       <span class="muted">© 2026</span>
     </footer>
   </section>
 
   <style>
+    /* Mantener color en print (y web) */
+    :global(html){
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
     /* --- WEB --- */
     .flyer{
       margin-top: 14px;
@@ -159,47 +151,64 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       overflow: hidden;
     }
 
-    .flyer-head{
-      display:flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 18px;
+    .flyer-brand{
+      padding: 22px 18px;
       border-bottom: 1px solid var(--border);
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      flex-wrap: wrap;
+      text-align: center;
     }
 
-    .flyer-titleblock{ max-width: 78ch; }
-    .flyer-title{ margin:0; font-size:28px; letter-spacing:.6px; }
-    .flyer-tagline{ margin: 8px 0 8px; color: var(--muted); font-weight: 900; }
-    .flyer-pitch{ margin:0; color: var(--muted); }
-
-    .flyer-side{
+    /* AQUÍ lo que pedías: flex column, centrado */
+    .brand-stack{
       display:flex;
-      gap:10px;
       flex-direction: column;
-      min-width: 220px;
-      flex: 1;
-      justify-content: flex-start;
-      align-items: stretch;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
     }
 
-    .flyer-mini{
-      border: 1px solid var(--border);
-      background: rgba(0,0,0,.18);
-      border-radius: var(--radius);
-      padding: 12px;
-      box-shadow: 0 16px 40px rgba(0,0,0,.18);
+    /* SVG más grande */
+    .brand-logo{
+      display: none;
+      width: auto;
+      height: 300px;
+      object-fit: contain;
     }
-    .flyer-mini-title{
+
+    .brand-text{
+      display:flex;
+      flex-direction: column;
+      align-items:center;
+      line-height: 1.05;
+    }
+
+    .brand-studio{
       font-weight: 900;
-      font-size: .9rem;
       color: var(--muted2);
-      letter-spacing: .06em;
+      letter-spacing: .10em;
       text-transform: uppercase;
-      margin-bottom: 6px;
+      font-size: .78rem;
     }
-    .flyer-mini-text{ color: var(--muted); font-weight: 800; }
+
+    .brand-project{
+      font-weight: 1000;
+      letter-spacing: .18em;
+      font-size: 34px;
+      margin-top: 4px;
+    }
+
+    .brand-tagline{
+      margin: 14px 0 10px;
+      color: var(--muted);
+      font-weight: 900;
+    }
+
+    .brand-pitch{
+      margin:0;
+      color: var(--muted);
+      max-width: 78ch;
+      margin-inline:auto;
+    }
 
     .flyer-grid{
       padding: 14px;
@@ -220,6 +229,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     .block h3{ margin:0 0 8px; }
     .block p{ margin:0; color: var(--muted); }
     .block ul{ margin: 8px 0 0; padding-left: 18px; color: var(--muted); }
+    .block .small{ margin-top: 6px; }
+
+    .links-block{ grid-column: span 12; }
 
     .flyer-foot{
       display:flex;
@@ -234,86 +246,71 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
     @media (max-width: 860px){
       .block{ grid-column: span 12; }
-      .flyer-side{ min-width: auto; }
     }
 
-    /* --- PRINT: MATRIZ CONTROLADA --- */
+    /* --- PRINT --- */
     @media print {
       @page { size: A4; margin: 10mm; }
 
-      /* Fuera cosas web */
-      .topbar, .footer, .noprint { display: none !important; }
-      body { background: white !important; color:#111 !important; }
-      body::before, body::after { display:none !important; }
-      .wrap{ width:auto; margin:0; }
-      .hero{ display:none !important; }
+      /* CLAVE: layout está fuera, hay que usar :global */
+      :global(.topbar),
+      :global(.footer),
+      :global(.noprint){
+        display: none !important;
+      }
 
-      /* Flyer limpio + pequeño airbag */
+      :global(body)::before,
+      :global(body)::after{
+        display:none !important;
+      }
+
+      :global(main.wrap){
+        margin: 0 !important;
+        width: auto !important;
+      }
+
+      /* ocultar hero al imprimir */
+      :global(.hero){
+        display:none !important;
+      }
+      .brand-logo{
+        display:block;
+      }
       .flyer{
-        transform: scale(0.97);
+        transform: scale(0.975);
         transform-origin: top center;
-        border: 1px solid #bbb !important;
-        background: white !important;
         box-shadow: none !important;
       }
 
-      .flyer-head{
-        background: white !important;
-        border-bottom: 1px solid #bbb !important;
-        padding: 7mm !important;
-        gap: 6mm !important;
-      }
-
-      .flyer-title{ font-size: 20px !important; }
-      .flyer-tagline{ font-size: 10.5px !important; margin: 3px 0 5px !important; color:#222 !important; }
-      .flyer-pitch{ font-size: 10.5px !important; color:#222 !important; }
-
-      .tag{
-        background: transparent !important;
-        border: 1px solid #aaa !important;
-        color: #111 !important;
-        padding: 3px 7px !important;
-        font-size: 10px !important;
-      }
-
-      .flyer-mini{
+      .block{
         box-shadow:none !important;
-        border:1px solid #ccc !important;
-        background:white !important;
-        padding:6px !important;
+        break-inside: avoid;
+        page-break-inside: avoid;
       }
-      .flyer-mini-title{ font-size:9px !important; margin-bottom:4px !important; color:#333 !important; }
-      .flyer-mini-text{ font-size:10px !important; color:#111 !important; }
 
-      /* AQUÍ LA MAGIA: grid fijo estilo “folleto” */
+      /* 2 columnas x 3 filas fijas */
       .flyer-grid{
         padding: 6mm !important;
         gap: 5mm !important;
         display: grid !important;
         grid-template-columns: 1fr 1fr !important;
-        /* 4 filas “bajitas” para que no se vaya de alto */
-        grid-template-rows: auto auto auto auto !important;
+        grid-template-rows: auto auto auto !important;
         align-items: start !important;
       }
 
-      .block{
-        box-shadow:none !important;
-        background:white !important;
-        border:1px solid #ddd !important;
-        padding: 7px !important;
-        break-inside: avoid;
-        page-break-inside: avoid;
+      .block{ padding: 7px !important; }
+
+      .block h3{
+        font-size: 11px !important;
+        margin:0 0 6px !important;
       }
 
-      .block h3{ font-size: 11px !important; margin:0 0 6px !important; color:#111 !important; }
-      .block p, .block li{
+      .block p,
+      .block li{
         font-size: 10.3px !important;
         line-height: 1.18 !important;
-        color:#111 !important;
       }
-      .block ul{ margin-top: 6px !important; }
 
-      /* Colocación por áreas para controlar el “alto” */
       .block[data-area="obj"]{ grid-column: 1; grid-row: 1; }
       .block[data-area="loop"]{ grid-column: 2; grid-row: 1; }
 
@@ -321,22 +318,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       .block[data-area="modos"]{ grid-column: 2; grid-row: 2; }
 
       .block[data-area="pilares"]{ grid-column: 1; grid-row: 3; }
-      .block[data-area="habilidades"]{ grid-column: 2; grid-row: 3; }
-
-      .block[data-area="mundo"]{ grid-column: 1; grid-row: 4; }
-      .block[data-area="scope"]{ grid-column: 2; grid-row: 4; }
-
-      /* Estos dos suelen empujar a página 2: los hacemos más compactos */
-      .block[data-area="aud"]{ grid-column: 1; grid-row: 5; display:none !important; }
-      .block[data-area="meta"]{ grid-column: 2; grid-row: 5; display:none !important; }
-
-      .flyer-foot{
-        border-top:1px solid #bbb !important;
-        background:white !important;
-        color:#333 !important;
-        padding: 5px 10px !important;
-        font-size: 10px !important;
-      }
+      .block[data-area="scope"]{ grid-column: 2; grid-row: 3; }
     }
   </style>
 </BaseLayout>

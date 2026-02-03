@@ -1,60 +1,84 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
 ---
 
-<BaseLayout title="Kaelum – Inicio" description="Portfolio y devlog del proyecto Kaelum (implementación general pendiente de cambios).">
+<BaseLayout title="Kaelum — Inicio">
   <section class="hero">
-    <p class="kicker">Portfolio · Devlog</p>
+    <p class="kicker">Portfolio · Documentación</p>
     <h1>Kaelum</h1>
+
     <p class="lead">
-      Este sitio documenta el proceso de Kaelum: de idea a prototipo jugable. No busco una “landing perfecta”,
-      sino enseñar decisiones, iteraciones y progreso real.
+      Proyecto personal de videojuego FPS con habilidades. Aquí no enseño solo el resultado:
+      enseño la visión (moodboard), el análisis (DAFO/CAME) y la documentación que justifican cada decisión.
     </p>
 
     <div class="meta">
       <span class="tag">Shooter</span>
-      <span class="tag">Habilidades (extra)</span>
+      <span class="tag">Habilidades</span>
       <span class="tag">Historia contextual</span>
       <span class="tag">PC</span>
     </div>
 
     <div class="actions">
-      <a class="btn primary" href={`${import.meta.env.BASE_URL}kaelum/`}>Ver proyecto</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}devlog/`}>Ver devlog</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}docs/`}>Ver docs</a>
+      <a class="btn primary" href={`${base}vision/`}>Ver visión</a>
+      <a class="btn" href={`${base}analisis/`}>Ver análisis</a>
+      <a class="btn" href={`${base}docs/`}>Ver docs</a>
+      <a class="btn" href={`${base}devlog/`}>Ver devlog</a>
     </div>
   </section>
 
-  <div class="grid">
-    <div class="card">
-      <h3>Estado actual</h3>
+  <section class="grid" aria-label="Mapa del proyecto">
+    <article class="card">
+      <h2>🎨 Visión del proyecto</h2>
       <p class="muted">
-        Semana 2 completada. El foco está en dejar el alcance bien cerrado y preparar la fase de prototipo.
+        Moodboard y dirección visual. La presentación principal: tono, intención, estilo y promesa del juego.
       </p>
-      <ul class="list">
-        <li>Dirección del juego definida</li>
-        <li>Documentación (GDD + folleto) lista para presentar</li>
-        <li>Devlog semanal (semana 1 y 2)</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Próximo paso</h3>
-      <p class="muted">
-        Semana 3: prototipo del core (movimiento + arma base + feedback) y primer test de “sensación”.
-      </p>
-      <ul class="list">
-        <li>Movimiento fluido y controlado</li>
-        <li>Arma base y recoil simple</li>
-        <li>UI mínima (vida, munición)</li>
-      </ul>
-    </div>
-
-    <div class="card full">
-      <h3>Últimas entradas del devlog</h3>
+      <p class="small">Recomendado si entras por primera vez.</p>
       <div class="actions">
-        <a class="btn" href={`${import.meta.env.BASE_URL}devlog/semana-1/`}>Semana 1 · Concepto y enfoque</a>
-        <a class="btn" href={`${import.meta.env.BASE_URL}devlog/semana-2/`}>Semana 2 · Mundo y Kael</a>
+        <a class="btn primary" href={`${base}vision/`}>Abrir visión</a>
       </div>
-      <p class="small" style="margin-top:10px">
-        El resumen oficial del proyecto está disponible en el devlog.
+    </article>
+
+    <article class="card">
+      <h2>📊 Análisis y decisiones</h2>
+      <p class="muted">
+        DAFO + CAME. Riesgos, fortalezas y acciones concretas para mantener el proyecto realista y defendible.
+      </p>
+      <p class="small">Ideal para evaluación y coherencia.</p>
+      <div class="actions">
+        <a class="btn" href={`${base}analisis/`}>Abrir análisis</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>📄 Documentación técnica</h2>
+      <p class="muted">
+        GDD completo + folleto imprimible (A4). Documentación formal de entrega (sin ser la portada).
+      </p>
+      <p class="small">Para revisar el detalle completo.</p>
+      <div class="actions">
+        <a class="btn" href={`${base}docs/`}>Abrir docs</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>🛠 Proceso de desarrollo</h2>
+      <p class="muted">
+        Devlog semanal con decisiones, iteraciones y progreso real. El “cómo” del proyecto.
+      </p>
+      <p class="small">Para ver evolución y metodología.</p>
+      <div class="actions">
+        <a class="btn" href={`${base}devlog/`}>Abrir devlog</a>
+      </div>
+    </article>
+
+    <article class="card full">
+      <h2>Estado actual</h2>
+      <p class="muted">
+        Kaelum está en fase de prototipo: visión y análisis cerrados, documentación lista para presentar.
+        El desarrollo ahora se centra en validar sensaciones de gameplay y núcleo jugable.
+      </p>
+    </article>
+  </section>
+</BaseLayout>

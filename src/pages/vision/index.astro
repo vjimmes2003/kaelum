@@ -1,0 +1,72 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Kaelum — Visión"
+  description="Visión del proyecto Kaelum: moodboard principal y presentación visual del enfoque."
+>
+  <section class="hero">
+    <p class="kicker">Visión</p>
+    <h1>Moodboard</h1>
+    <p class="lead">
+      Esta es la <strong>presentación principal</strong> del proyecto: tono, intención, promesa y dirección visual.
+      Si quieres entender Kaelum en 30 segundos, es aquí.
+    </p>
+
+    <div class="meta">
+      <span class="tag">Presentación</span>
+      <span class="tag">Tono</span>
+      <span class="tag">Arte</span>
+      <span class="tag">Universo</span>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}vision/moodboard/`}>Ver moodboard</a>
+      <a class="btn" href={`${base}analisis/`}>Ver análisis</a>
+      <a class="btn" href={`${base}docs/`}>Ver docs</a>
+      <a class="btn" href={`${base}devlog/`}>Ver devlog</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card">
+      <h2>🎨 Moodboard (principal)</h2>
+      <p class="muted">
+        One-pager visual con el mensaje central, tono, experiencia de juego y personalidad del proyecto.
+      </p>
+      <p class="small">Recomendado si entras por primera vez.</p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}vision/moodboard/`}>Abrir moodboard</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>🧩 Futuro de esta sección</h2>
+      <p class="muted">
+        Esta carpeta está pensada para crecer con material visual sin ensuciar la parte técnica.
+      </p>
+      <ul class="list">
+        <li>Ambientación de escenarios / referencias</li>
+        <li>Dirección de arte (paletas, UI, lectura visual)</li>
+        <li>Diseño de personajes / identidad de Kael</li>
+        <li>Capturas del prototipo y evolución visual</li>
+      </ul>
+      <p class="small" style="margin-top:10px">
+        O sea: <strong>la “cara” del proyecto</strong>.
+      </p>
+    </article>
+
+    <article class="card full">
+      <h2>Ruta recomendada</h2>
+      <p class="muted">
+        1) Visión (moodboard) → 2) Análisis (DAFO/CAME) → 3) Docs (GDD/Folleto) → 4) Devlog (proceso).
+      </p>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href={`${base}analisis/`}>Siguiente: Análisis</a>
+        <a class="btn" href={`${base}kaelum/`}>Volver a Proyecto</a>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

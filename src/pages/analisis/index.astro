@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Kaelum — Análisis"
+  description="Análisis del proyecto Kaelum: DAFO y CAME. Riesgos, fortalezas, oportunidades y acciones."
+>
+  <section class="hero">
+    <p class="kicker">Análisis</p>
+    <h1>DAFO + CAME</h1>
+    <p class="lead">
+      Aquí está la parte “seria” del proyecto: <strong>por qué Kaelum tiene sentido</strong>, qué riesgos reales tiene,
+      qué oportunidades aprovecha, y <strong>qué acciones concretas</strong> se toman para no morir por scope.
+    </p>
+
+    <div class="meta">
+      <span class="tag">DAFO</span>
+      <span class="tag">CAME</span>
+      <span class="tag">Decisiones</span>
+      <span class="tag">Scope control</span>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}analisis/dafo/`}>Ver DAFO</a>
+      <a class="btn" href={`${base}analisis/came/`}>Ver CAME</a>
+      <a class="btn" href={`${base}vision/`}>Ir a Visión</a>
+      <a class="btn" href={`${base}docs/`}>Ir a Docs</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card">
+      <h2>📌 DAFO</h2>
+      <p class="muted">
+        Foto clara del proyecto: <strong>Fortalezas</strong>, <strong>Debilidades</strong>,
+        <strong>Oportunidades</strong> y <strong>Amenazas</strong>.
+      </p>
+      <p class="small">Ideal para evaluación y coherencia.</p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}analisis/dafo/`}>Abrir DAFO</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>🧭 CAME</h2>
+      <p class="muted">
+        Traducción del DAFO a acción: <strong>Corregir</strong>, <strong>Afrontar</strong>,
+        <strong>Mantener</strong> y <strong>Explotar</strong>.
+      </p>
+      <p class="small">Esto es lo que evita que se quede en “un análisis bonito”.</p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}analisis/came/`}>Abrir CAME</a>
+      </div>
+    </article>
+
+    <article class="card full">
+      <h2>Cómo leer esta sección</h2>
+      <p class="muted">
+        Si vienes por primera vez: empieza por <strong>Visión</strong> (moodboard) y luego pásate por aquí.
+        Si vienes a evaluar: aquí tienes la justificación y el plan de acción en 2 clics.
+      </p>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href={`${base}vision/`}>Abrir Visión</a>
+        <a class="btn" href={`${base}kaelum/`}>Volver a Proyecto</a>
+      </div>
+    </article>
+  </div>
+</BaseLayout>

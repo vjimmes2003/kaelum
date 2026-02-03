@@ -1,0 +1,144 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+const imgUrl = `${base}images/vision/came.png`;
+---
+
+<BaseLayout
+  title="Kaelum — Análisis CAME"
+  description="Análisis CAME del proyecto Kaelum: qué corregimos, mantenemos, afrontamos y explotamos."
+>
+  <section class="hero">
+    <p class="kicker">Análisis</p>
+    <h1>CAME</h1>
+    <p class="lead">
+      El CAME convierte el diagnóstico en decisiones: qué se ajusta, qué se mantiene, qué se afronta y qué se explota.
+    </p>
+
+    <div class="actions">
+      <a class="btn" href={`${base}analisis/`}>Volver al índice</a>
+      <a class="btn" href={`${base}analisis/dafo/`}>Ver DAFO</a>
+      <button class="btn primary" id="toggleView" type="button">Ver texto</button>
+    </div>
+  </section>
+
+  {/* IMAGEN */}
+  <section id="imageView" class="grid">
+    <div class="card full">
+      <img
+        src={imgUrl}
+        alt="Análisis CAME de Kaelum"
+        style="width:100%; border-radius: var(--radius); display:block;"
+        loading="eager"
+      />
+
+      <div class="actions" style="margin-top:12px">
+        <a class="btn" href={imgUrl} download>Descargar imagen</a>
+        <a class="btn" href={`${base}analisis/`}>Volver al índice</a>
+      </div>
+    </div>
+  </section>
+
+  {/* TEXTO */}
+  <section id="textView" class="grid hidden">
+    <section class="card">
+      <h2>Corregir</h2>
+      <p class="muted">Ajustes para evitar errores de scope y producción.</p>
+      <ul class="list">
+        <li><strong>Reducir alcance inicial:</strong> menos personajes/sistemas, más solidez.</li>
+        <li><strong>Arte funcional primero:</strong> claridad jugable antes que espectacular.</li>
+        <li><strong>Priorizar sistemas base:</strong> movimiento, disparo y feedback antes de contenido.</li>
+        <li><strong>Escalonar producción artística:</strong> subir calidad cuando el core aguante.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Mantener</h2>
+      <p class="muted">Lo que define la identidad y no se negocia.</p>
+      <ul class="list">
+        <li><strong>Gunplay + movimiento</strong> como núcleo absoluto.</li>
+        <li><strong>Identidad del universo y de Kael:</strong> tono, coherencia y carácter.</li>
+        <li><strong>Diseño honesto:</strong> si fallas, lo sabes; si ganas, te lo curras.</li>
+        <li><strong>Monetización justa:</strong> sin pay to win ni sistemas abusivos.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Afrontar</h2>
+      <p class="muted">Riesgos inevitables y cómo se encaran.</p>
+      <ul class="list">
+        <li><strong>No competir por realismo extremo:</strong> legibilidad antes que simulación.</li>
+        <li><strong>Equilibrio accesible/profundo</strong> sin volverse caótico.</li>
+        <li><strong>Escuchar a testers y comunidad</strong> desde pronto.</li>
+        <li><strong>Iteración constante:</strong> fallar rápido, corregir rápido.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Explotar</h2>
+      <p class="muted">Oportunidades claras para diferenciar Kaelum.</p>
+      <ul class="list">
+        <li><strong>Posicionarse como shooter “honesto”.</strong></li>
+        <li><strong>Disfrutable en solo y en grupo.</strong></li>
+        <li><strong>Personajes con peso emocional:</strong> conexión real.</li>
+        <li><strong>Historia + shooter</strong> como combo diferenciador (sin chapa).</li>
+      </ul>
+    </section>
+
+    <section class="card full">
+      <h2>Conclusión</h2>
+      <p class="lead">
+        Menos promesas, más coherencia: sólido primero, bonito después. Kaelum no quiere ser el más grande,
+        quiere ser el más honesto y disfrutable.
+      </p>
+
+      <div class="actions" style="margin-top:12px">
+        <a class="btn" href={`${base}analisis/`}>Volver al índice</a>
+        <button class="btn primary" id="toggleView2" type="button">Ver imagen</button>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      // @ts-check
+      /** @type {HTMLButtonElement|null} */
+      const toggleBtn = document.getElementById("toggleView");
+      /** @type {HTMLButtonElement|null} */
+      const toggleBtn2 = document.getElementById("toggleView2");
+      /** @type {HTMLElement|null} */
+      const imageView = document.getElementById("imageView");
+      /** @type {HTMLElement|null} */
+      const textView = document.getElementById("textView");
+
+      if (!toggleBtn || !imageView || !textView) return;
+
+      let showingImage = true;
+
+      const render = () => {
+        imageView.classList.toggle("hidden", !showingImage);
+        textView.classList.toggle("hidden", showingImage);
+        toggleBtn.textContent = showingImage ? "Ver texto" : "Ver imagen";
+        if (toggleBtn2) toggleBtn2.textContent = showingImage ? "Ver imagen" : "Ver imagen";
+      };
+
+      toggleBtn.addEventListener("click", () => {
+        showingImage = !showingImage;
+        render();
+      });
+
+      if (toggleBtn2) {
+        toggleBtn2.addEventListener("click", () => {
+          showingImage = true;
+          render();
+        });
+      }
+
+      render();
+    });
+  </script>
+
+  <style>
+    .hidden { display: none !important; }
+  </style>
+</BaseLayout>

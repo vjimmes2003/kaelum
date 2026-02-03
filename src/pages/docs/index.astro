@@ -2,19 +2,27 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Kaelum – Docs" description="Documentación del proyecto: GDD completo y folleto imprimible.">
+<BaseLayout title="Kaelum – Docs" description="Documentación del proyecto: GDD completo (técnico) y folleto imprimible (A4).">
   <section class="hero">
     <p class="kicker">Documentación</p>
     <h1>Docs</h1>
     <p class="lead">
-      Todo lo importante del proyecto en formatos fáciles de presentar: GDD completo (PDF) y folleto imprimible (A4).
+      Aquí está la documentación <strong>técnica</strong> y el material <strong>imprimible</strong>.
+      La presentación visual principal (moodboard / visión) se añadirá como página separada.
     </p>
+
+    <div class="actions">
+      <a class="btn" href={`${import.meta.env.BASE_URL}kaelum/`}>Volver al proyecto</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}devlog/`}>Ver devlog</a>
+    </div>
   </section>
 
   <div class="grid">
     <article class="card">
       <h3>GDD completo (PDF)</h3>
-      <p class="muted">Documento detallado del juego. Ideal para revisión completa.</p>
+      <p class="muted">
+        Documento detallado del juego. Útil para revisión completa y criterios de diseño.
+      </p>
       <div class="actions">
         <a class="btn primary" href={`${import.meta.env.BASE_URL}docs/gdd/`}>Abrir visor</a>
         <a class="btn" href={`${import.meta.env.BASE_URL}docs/GDD_KAELUM.pdf`} target="_blank" rel="noreferrer">Abrir PDF</a>
@@ -22,12 +30,21 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </article>
 
     <article class="card">
-      <h3>Folleto imprimible (One-Pager)</h3>
-      <p class="muted">Resumen estilo brochure, pensado para presentar en 1 minuto y poder imprimir en A4.</p>
+      <h3>Folleto imprimible (A4)</h3>
+      <p class="muted">
+        Resumen tipo brochure, pensado para presentarlo rápido y poder imprimirlo en una sola página.
+      </p>
       <div class="actions">
         <a class="btn primary" href={`${import.meta.env.BASE_URL}docs/folleto/`}>Ver folleto</a>
         <a class="btn" href={`${import.meta.env.BASE_URL}docs/folleto#imprimir`}>Imprimir</a>
       </div>
+    </article>
+
+    <article class="card full">
+      <h3>Recomendación de lectura</h3>
+      <p class="muted">
+        Si vienes a evaluar el proyecto: empieza por el folleto (rápido) y después usa el GDD como respaldo técnico.
+      </p>
     </article>
   </div>
 </BaseLayout>

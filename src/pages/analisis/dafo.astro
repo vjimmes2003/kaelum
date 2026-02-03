@@ -1,0 +1,139 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+const imgUrl = `${base}images/vision/dafo.png`;
+---
+
+<BaseLayout
+  title="Kaelum — Análisis DAFO"
+  description="Análisis DAFO del proyecto Kaelum: fortalezas, debilidades, oportunidades y amenazas."
+>
+  <section class="hero">
+    <p class="kicker">Análisis</p>
+    <h1>DAFO</h1>
+    <p class="lead">
+      Evaluación estratégica honesta: lo que suma, lo que limita, lo que puede pasar y lo que se puede aprovechar.
+    </p>
+
+    <div class="actions">
+      <a class="btn" href={`${base}analisis/`}>Volver al índice</a>
+      <a class="btn" href={`${base}analisis/came/`}>Ver CAME</a>
+      <button class="btn primary" id="toggleView" type="button">Ver texto</button>
+    </div>
+  </section>
+
+  {/* IMAGEN */}
+  <section id="imageView" class="grid">
+    <div class="card full">
+      <img
+        src={imgUrl}
+        alt="Análisis DAFO de Kaelum"
+        style="width:100%; border-radius: var(--radius); display:block;"
+        loading="eager"
+      />
+
+      <div class="actions" style="margin-top:12px">
+        <a class="btn" href={imgUrl} download>Descargar imagen</a>
+        <a class="btn" href={`${base}analisis/`}>Volver al índice</a>
+      </div>
+    </div>
+  </section>
+
+  {/* TEXTO */}
+  <section id="textView" class="grid hidden">
+    <section class="card">
+      <h2>Fortalezas</h2>
+      <ul class="list">
+        <li>Experiencia como jugador para detectar buenas/malas mecánicas.</li>
+        <li>Capacidad para diseñar sistemas comprensibles y explicables.</li>
+        <li>Enfoque en código limpio y trabajo colaborativo.</li>
+        <li>Identidad del proyecto definida desde temprano (Kael + universo).</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Debilidades</h2>
+      <ul class="list">
+        <li>Experiencia limitada en proyectos de esta escala.</li>
+        <li>Desarrollo narrativo exigente si se descontrola.</li>
+        <li>Carga alta en arte/animación si se intenta “demasiado pronto”.</li>
+        <li>Riesgo de bloqueos técnicos durante el desarrollo.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Oportunidades</h2>
+      <ul class="list">
+        <li>Interés creciente por shooters accesibles pero profundos.</li>
+        <li>Jugadores cansados de inconsistencias y sistemas injustos.</li>
+        <li>Historia + shooter como diferenciador sin romper ritmo.</li>
+        <li>Potencial de comunidad y crecimiento del multijugador.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Amenazas</h2>
+      <ul class="list">
+        <li>Mercado saturado.</li>
+        <li>Competencia con lanzamientos grandes.</li>
+        <li>Proyectos similares con más recursos.</li>
+        <li>Dificultad para destacar sin propuesta clara.</li>
+      </ul>
+    </section>
+
+    <section class="card full">
+      <h2>Notas</h2>
+      <p class="muted">
+        El DAFO no es “un trabajo de clase bonito”: es el mapa de riesgos para tomar decisiones con cabeza.
+        El siguiente paso lógico es el CAME (acciones concretas).
+      </p>
+
+      <div class="actions" style="margin-top:12px">
+        <a class="btn" href={`${base}analisis/`}>Volver al índice</a>
+        <button class="btn primary" id="toggleView2" type="button">Ver imagen</button>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      // @ts-check
+      /** @type {HTMLButtonElement|null} */
+      const toggleBtn = document.getElementById("toggleView");
+      /** @type {HTMLButtonElement|null} */
+      const toggleBtn2 = document.getElementById("toggleView2");
+      /** @type {HTMLElement|null} */
+      const imageView = document.getElementById("imageView");
+      /** @type {HTMLElement|null} */
+      const textView = document.getElementById("textView");
+
+      if (!toggleBtn || !imageView || !textView) return;
+
+      let showingImage = true;
+
+      const render = () => {
+        imageView.classList.toggle("hidden", !showingImage);
+        textView.classList.toggle("hidden", showingImage);
+        toggleBtn.textContent = showingImage ? "Ver texto" : "Ver imagen";
+      };
+
+      toggleBtn.addEventListener("click", () => {
+        showingImage = !showingImage;
+        render();
+      });
+
+      if (toggleBtn2) {
+        toggleBtn2.addEventListener("click", () => {
+          showingImage = true;
+          render();
+        });
+      }
+
+      render();
+    });
+  </script>
+
+  <style>
+    .hidden { display: none !important; }
+  </style>
+</BaseLayout>

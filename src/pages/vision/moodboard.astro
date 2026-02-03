@@ -1,0 +1,61 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const imgUrl = `${base}images/vision/moodboard.jpg`;
+---
+
+<BaseLayout
+  title="Kaelum — Moodboard"
+  description="Tono, arte, universo y promesa de Kaelum."
+>
+  <section class="hero">
+    <p class="kicker">Visión</p>
+    <h1>Moodboard</h1>
+    <p class="lead">
+      Cada disparo cuenta. Cada decisión pesa.
+      Kaelum no busca ser complaciente: busca ser honesto.
+    </p>
+
+    <div class="actions noprint">
+      <a class="btn" href={`${base}vision/`}>Volver a Visión</a>
+      <a class="btn primary" href={imgUrl} download>Descargar imagen</a>
+    </div>
+  </section>
+
+  <section class="card full">
+    <img
+      src={imgUrl}
+      alt="Moodboard de Kaelum"
+      style="width:100%; border-radius: var(--radius);"
+      loading="eager"
+    />
+  </section>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Qué es Kaelum</h3>
+      <p class="muted">
+        Shooter en primera persona donde juegas tú, no el sistema.
+        Combate claro, decisiones reales y aprendizaje constante.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Por qué es diferente</h3>
+      <p class="muted">
+        Sin progreso artificial.
+        Sin héroes invencibles.
+        Si fallas, lo sabes. Si ganas, te lo has ganado.
+      </p>
+    </div>
+
+    <div class="card full">
+      <h3>Tono, arte y universo</h3>
+      <p class="muted">
+        El arte no satura: acompaña.
+        El mundo se descubre jugando, no mirando cinemáticas.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

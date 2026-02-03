@@ -8,7 +8,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <h1>Progreso semanal</h1>
     <p class="lead">
       Entradas cortas y directas: qué se decidió, por qué, y qué viene después.
-      El resumen oficial del proyecto está en <a href={`${import.meta.env.BASE_URL}kaelum/`} style="color:var(--text);font-weight:900;">/kaelum</a>.
+      El resumen oficial del proyecto está en <a href={`${import.meta.env.BASE_URL}kaelum/`}><strong>/kaelum</strong></a>.
     </p>
   </section>
 
@@ -26,6 +26,22 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <p class="muted">Tono, ambientación y cómo encajar narrativa contextual sin frenar el gameplay.</p>
       <div class="actions">
         <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-2/`}>Leer</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <h3>Semana 3 · Prototipo del core</h3>
+      <p class="muted">Movimiento + arma base + primeras pruebas reales para validar sensaciones.</p>
+      <div class="actions">
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-3/`}>Leer</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <h3>Semana 4 · Feedback y greybox</h3>
+      <p class="muted">Pulido de impacto, claridad y primer mapa de pruebas para medir flow.</p>
+      <div class="actions">
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-4/`}>Leer</a>
       </div>
     </article>
   </div>
