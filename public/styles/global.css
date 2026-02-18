@@ -27,6 +27,8 @@ body{
   background: var(--bg);
   background-attachment: fixed;
   overflow-x: hidden;
+  display:flex;
+  flex-direction: column;
 }
 
 /* Fondo animado sin cortes */
@@ -79,6 +81,8 @@ body::after{
 .wrap{
   width: min(1100px, calc(100% - 28px));
   margin: 22px auto 54px;
+  flex:1;
+  min-width: 75vw;
 }
 
 .topbar{
@@ -190,6 +194,8 @@ h3{ margin: 0 0 8px; font-size: 1.05rem; }
   gap: 10px;
   flex-wrap: wrap;
   margin-top: 14px;
+  justify-content: center;
+  flex-direction: row;
 }
 
 .btn{

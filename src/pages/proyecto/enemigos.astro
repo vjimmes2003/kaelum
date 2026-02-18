@@ -1,0 +1,442 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Kaelum — Enemigos"
+  description="Enemigos del proyecto Kaelum: familias, roles de combate, lectura visual y jefes por castillo."
+>
+  <section class="hero">
+    <header class="header">
+      <p class="kicker">GDD · Combate</p>
+      <h1>Enemigos</h1>
+      <p class="lead">
+        En Kaelum, un enemigo no existe “porque sí”.
+        Existe para obligarte a <strong>tomar una decisión</strong>: moverte, priorizar, leer el entorno o pagar el precio.
+        La variedad no viene de skins; viene de <strong>roles</strong> claros.
+      </p>
+
+      <div class="actions">
+        <a class="btn" href={base + "proyecto/"}>Volver a Proyecto</a>
+        <a class="btn" href={base + "proyecto/historia/"}>Ver Historia</a>
+        <a class="btn" href={base + "proyecto/mundo/"}>Ver Mundo</a>
+        <a class="btn" href={base + "proyecto/personajes/"}>Ver Personajes</a>
+        <a class="btn" href={base + "proyecto/cinematicas/"}>Ver Cinemáticas</a>
+        <a class="btn primary" href={base + "proyecto/progreso/"}>Ver Progreso</a>
+      </div>
+    </header>
+  </section>
+
+  <section class="gdd-section">
+    <!-- =============================== -->
+    <!-- PRINCIPIO / FILOSOFÍA -->
+    <!-- =============================== -->
+    <article class="card full">
+      <div class="label">// PRINCIPIO</div>
+      <h2>Regla base</h2>
+      <p class="muted">
+        Cada enemigo es una <strong>pregunta de gameplay</strong>.
+        Si no fuerza al jugador a decidir (posición, ritmo, prioridades, recursos), se elimina o se fusiona.
+      </p>
+
+      <div class="grid2" style="margin-top:12px">
+        <div class="subcard">
+          <h3>Lectura primero</h3>
+          <ul class="list">
+            <li><strong>Silhueta clara</strong> (qué es y qué hace se entiende rápido).</li>
+            <li><strong>Señales</strong> (sonido/animación antes del ataque potente).</li>
+            <li><strong>Respuesta</strong> (si lo entiendes, puedes contrarrestarlo).</li>
+          </ul>
+        </div>
+        <div class="subcard">
+          <h3>Variedad con sentido</h3>
+          <ul class="list">
+            <li><strong>Roles</strong> (presión, cobertura, control, ruptura, support).</li>
+            <li><strong>Combinaciones</strong> (dos roles juntos cambian el combate).</li>
+            <li><strong>Escalada</strong> (más adelante: mismo rol, más castigo y más lectura).</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- =============================== -->
+    <!-- FAMILIAS -->
+    <!-- =============================== -->
+    <article class="card full">
+      <div class="label">// FAMILIAS</div>
+      <h2>Dos orígenes. Un mismo problema.</h2>
+      <p class="muted">
+        Los enemigos se dividen en dos grandes familias:
+        <strong>anomalías</strong> (la enfermedad del mundo) y <strong>la Orden</strong> (la estructura que lo controla).
+        Así el combate no es solo “matar cosas”, sino chocar con el sistema.
+      </p>
+
+      <div class="grid2" style="margin-top:12px">
+        <div class="subcard">
+          <h3>Anomalías (La Fisura)</h3>
+          <p class="muted">
+            No son “monstruos random”. Son comportamientos rotos: distorsión, hambre, repetición.
+            Cuando aparecen, el entorno deja de ser neutral.
+          </p>
+          <ul class="list">
+            <li><strong>Fantasía:</strong> supervivencia y lectura de amenaza.</li>
+            <li><strong>Clave jugable:</strong> patrones agresivos + castigo por rutina.</li>
+            <li><strong>Señal visual:</strong> bruma violeta / deformación / pulsos.</li>
+          </ul>
+        </div>
+
+        <div class="subcard">
+          <h3>La Orden (Humanos armados)</h3>
+          <p class="muted">
+            Son disciplina, protocolos y control. No te atacan “por odio”: te atacan por doctrina.
+            Sus unidades están pensadas para funcionar en grupo.
+          </p>
+          <ul class="list">
+            <li><strong>Fantasía:</strong> persecución, cerco, superioridad táctica.</li>
+            <li><strong>Clave jugable:</strong> cobertura, flanqueo, presión sostenida.</li>
+            <li><strong>Señal visual:</strong> símbolos, armaduras, formación.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- =============================== -->
+    <!-- GALERÍA DE ENEMIGOS (IMÁGENES) -->
+    <!-- =============================== -->
+    <article class="card full">
+      <div class="label">// VISUAL</div>
+      <h2>Galería (PNGs transparentes)</h2>
+      <p class="muted">
+        Aquí van las imágenes de cada enemigo (ideal: fondo transparente, silueta clara).
+        Puedes meterlas en <code>public/img/enemigos/</code> y cambiar los <code>src</code>.
+      </p>
+
+      <div class="gallery">
+        <figure class="shot">
+          <div class="imgbox">
+            <img src={base + "img/enemigos/placeholder_presion.png"} alt="Enemigo — Presión (placeholder)" loading="lazy" />
+          </div>
+          <figcaption>
+            <strong>Presión</strong>
+            <span>te obliga a moverte</span>
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="imgbox">
+            <img src={base + "img/enemigos/placeholder_cobertura.png"} alt="Enemigo — Cobertura (placeholder)" loading="lazy" />
+          </div>
+          <figcaption>
+            <strong>Cobertura</strong>
+            <span>te castiga al asomar</span>
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="imgbox">
+            <img src={base + "img/enemigos/placeholder_trampa.png"} alt="Enemigo — Trampa (placeholder)" loading="lazy" />
+          </div>
+          <figcaption>
+            <strong>Trampa</strong>
+            <span>te engaña y te parte el ritmo</span>
+          </figcaption>
+        </figure>
+
+        <figure class="shot">
+          <div class="imgbox">
+            <img src={base + "img/enemigos/placeholder_support.png"} alt="Enemigo — Support (placeholder)" loading="lazy" />
+          </div>
+          <figcaption>
+            <strong>Support</strong>
+            <span>si lo ignoras, lo pagas</span>
+          </figcaption>
+        </figure>
+      </div>
+    </article>
+
+    <!-- =============================== -->
+    <!-- ROLES (TARJETAS LISTAS) -->
+    <!-- =============================== -->
+    <article class="card full">
+      <div class="label">// ROLES DE COMBATE</div>
+      <h2>Roles principales</h2>
+      <p class="muted">
+        Estos roles son la “caja de herramientas”.
+        Con 6 roles bien definidos, puedes componer encuentros con identidad sin inflar el catálogo.
+      </p>
+
+      <div class="grid3" style="margin-top:12px">
+        <article class="enemy card">
+          <div class="tag">ROL_01</div>
+          <h3>Presión</h3>
+          <p class="muted">Te empuja fuera de tu zona cómoda. Castiga quedarte quieto.</p>
+          <ul class="list">
+            <li><strong>Traducción:</strong> persecución, salto corto, ráfaga agresiva.</li>
+            <li><strong>Counter:</strong> control de espacio + precisión + reposición.</li>
+            <li><strong>Uso:</strong> abrir combate o romper coberturas.</li>
+          </ul>
+        </article>
+
+        <article class="enemy card">
+          <div class="tag">ROL_02</div>
+          <h3>Cobertura</h3>
+          <p class="muted">Te gana si no respetas línea de visión y timing.</p>
+          <ul class="list">
+            <li><strong>Traducción:</strong> ráfagas, castigo por asomar, “picos” de daño.</li>
+            <li><strong>Counter:</strong> flanqueo + humo/cierre de visión + paciencia.</li>
+            <li><strong>Uso:</strong> encuentros tácticos con rutas alternativas.</li>
+          </ul>
+        </article>
+
+        <article class="enemy card">
+          <div class="tag">ROL_03</div>
+          <h3>Trampa</h3>
+          <p class="muted">No te mata por daño: te mata por descuido.</p>
+          <ul class="list">
+            <li><strong>Traducción:</strong> cebo, explosión, zona peligrosa, “activación”.</li>
+            <li><strong>Counter:</strong> lectura + no correr a lo loco + limpiar área.</li>
+            <li><strong>Uso:</strong> cuevas, ruinas, pasillos y arenas cerradas.</li>
+          </ul>
+        </article>
+
+        <article class="enemy card">
+          <div class="tag">ROL_04</div>
+          <h3>Control</h3>
+          <p class="muted">Define el espacio: te encierra o te corta rutas.</p>
+          <ul class="list">
+            <li><strong>Traducción:</strong> paredes, ralentización, empuje, zonas “no-go”.</li>
+            <li><strong>Counter:</strong> movilidad + elegir bien el ángulo.</li>
+            <li><strong>Uso:</strong> obligar a moverte a desventaja.</li>
+          </ul>
+        </article>
+
+        <article class="enemy card">
+          <div class="tag">ROL_05</div>
+          <h3>Ruptura</h3>
+          <p class="muted">Castiga el error y rompe defensas.</p>
+          <ul class="list">
+            <li><strong>Traducción:</strong> golpe pesado, carga, stun, “abre hueco”.</li>
+            <li><strong>Counter:</strong> anticipación + esquiva + castigo al final.</li>
+            <li><strong>Uso:</strong> mini-boss o élite en castillos.</li>
+          </ul>
+        </article>
+
+        <article class="enemy card">
+          <div class="tag">ROL_06</div>
+          <h3>Support</h3>
+          <p class="muted">Si lo ignoras, el combate se vuelve imposible.</p>
+          <ul class="list">
+            <li><strong>Traducción:</strong> buffs, invocación, curas, escudos, “rearme”.</li>
+            <li><strong>Counter:</strong> focus + burst + cortar animación.</li>
+            <li><strong>Uso:</strong> encuentros de prioridad y presión mental.</li>
+          </ul>
+        </article>
+      </div>
+    </article>
+
+    <!-- =============================== -->
+    <!-- JEFES POR CASTILLO -->
+    <!-- =============================== -->
+    <article class="card full">
+      <div class="label">// JEFES</div>
+      <h2>Jefes por castillo (3 escalones)</h2>
+      <p class="muted">
+        Los castillos funcionan como “pruebas”: suben dificultad, suben tensión y sueltan una pieza clave.
+        Cada jefe se diseña como una <strong>lectura</strong> + un <strong>ritmo</strong>, no como una esponja de balas.
+      </p>
+
+      <div class="grid2" style="margin-top:12px">
+        <div class="boss">
+          <div class="label">// CASTILLO I</div>
+          <h3>Noctiferum</h3>
+          <p class="muted">
+            Presión y caza: el jugador aprende que el espacio ya no le pertenece.
+          </p>
+          <ul class="list">
+            <li><strong>Fantasia:</strong> persecución “inteligente”.</li>
+            <li><strong>Mecánica:</strong> corta rutas + obliga a reposicionar.</li>
+            <li><strong>Recompensa:</strong> pieza del Guardián + acceso a atajo.</li>
+          </ul>
+        </div>
+
+        <div class="boss">
+          <div class="label">// CASTILLO II</div>
+          <h3>Umbrafortis</h3>
+          <p class="muted">
+            Control y doctrina: combate más táctico, más “humano”.
+          </p>
+          <ul class="list">
+            <li><strong>Fantasia:</strong> combate de cobertura real.</li>
+            <li><strong>Mecánica:</strong> unidad élite + support que hay que cortar.</li>
+            <li><strong>Recompensa:</strong> segunda pieza + llave de progreso.</li>
+          </ul>
+        </div>
+
+        <div class="boss" style="grid-column: span 2;">
+          <div class="label">// CASTILLO III</div>
+          <h3>Tenebrium</h3>
+          <p class="muted">
+            Clímax de peligro: mezcla de anomalía + estructura. Aquí se siente el “fin de acto”.
+          </p>
+          <ul class="list">
+            <li><strong>Fantasia:</strong> resistencia y lectura bajo presión extrema.</li>
+            <li><strong>Mecánica:</strong> fases (control → ruptura → ventana de castigo).</li>
+            <li><strong>Recompensa:</strong> pieza final + preparación narrativa para el Orbe.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Regla:</strong> si un jefe no cambia la forma de jugar (lectura, ritmo, prioridad), no es un jefe: es un enemigo grande.
+      </div>
+    </article>
+
+    <!-- =============================== -->
+    <!-- CTA / NAV ABAJO -->
+    <!-- =============================== -->
+    <div class="actions" style="margin-top:14px">
+      <a class="btn" href={base + "proyecto/"}>Volver a Proyecto</a>
+      <a class="btn" href={base + "proyecto/historia/"}>Ver Historia</a>
+      <a class="btn" href={base + "proyecto/mundo/"}>Ver Mundo</a>
+      <a class="btn" href={base + "proyecto/personajes/"}>Ver Personajes</a>
+      <a class="btn" href={base + "proyecto/cinematicas/"}>Ver Cinemáticas</a>
+      <a class="btn primary" href={base + "proyecto/progreso/"}>Ver Progreso</a>
+    </div>
+  </section>
+
+  <style>
+    .header{ margin-bottom: 20px; }
+    .kicker{
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      opacity: .7;
+      font-size: .85rem;
+      margin: 0 0 8px;
+    }
+    .lead{
+      margin-top: 6px;
+      line-height: 1.6;
+      opacity: .92;
+      max-width: 920px;
+    }
+
+    .card{
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+    }
+    .full{ grid-column: 1 / -1; }
+
+    .label{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      margin-bottom: 8px;
+      opacity: .85;
+    }
+
+    .muted{ opacity: .86; }
+
+    .subcard{
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(0,0,0,.20);
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .list{ margin: 10px 0 0; padding-left: 18px; }
+    .list li{ margin: 6px 0; line-height: 1.45; }
+
+    .grid2{
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .grid3{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .tag{
+      display: inline-block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: .72rem;
+      letter-spacing: .10em;
+      opacity: .75;
+      margin-bottom: 8px;
+    }
+
+    .enemy.card{
+      background: rgba(0,0,0,.14);
+    }
+
+    .boss{
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.16);
+    }
+
+    .callout{
+      margin-top: 14px;
+      border: 1px dashed rgba(120,255,180,.35);
+      background: rgba(70,255,150,.07);
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      color: var(--muted);
+      opacity: .95;
+    }
+
+    /* Galería imágenes */
+    .gallery{
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .shot{
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+      overflow: hidden;
+    }
+    .imgbox{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 14px;
+      min-height: 170px;
+      background: radial-gradient(1200px 400px at 50% 0%, rgba(170,120,255,.14), rgba(0,0,0,.0));
+    }
+    .imgbox img{
+      max-width: 100%;
+      max-height: 160px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.45));
+    }
+    figcaption{
+      padding: 10px 12px 12px;
+      display:flex;
+      flex-direction:column;
+      gap: 2px;
+    }
+    figcaption strong{ font-size: .98rem; }
+    figcaption span{ opacity: .78; font-size: .9rem; }
+
+    @media (max-width: 980px){
+      .grid3{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 520px){
+      .gallery{ grid-template-columns: 1fr; }
+    }
+  </style>
+</BaseLayout>

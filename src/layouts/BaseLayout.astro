@@ -31,7 +31,8 @@ const is = (p: string) => rel === p || rel.startsWith(p + "/");
 
         <nav class="nav">
           <a class={rel === "/" ? "pill active" : "pill"} href={base}>Inicio</a>
-          <a class={is("/kaelum") ? "pill active" : "pill"} href={`${base}kaelum/`}>Proyecto</a>
+          <a class={is("/kaelum") ? "pill active" : "pill"} href={`${base}kaelum/`}>Resumen</a>
+          <a class={is("/proyecto") ? "pill active" : "pill"} href={`${base}proyecto/`}>Proyecto</a>
           <a class={is("/vision") ? "pill active" : "pill"} href={`${base}vision/`}>Visión</a>
           <a class={is("/analisis") ? "pill active" : "pill"} href={`${base}analisis/`}>Análisis</a>
           <a class={is("/devlog") ? "pill active" : "pill"} href={`${base}devlog/`}>Devlog</a>

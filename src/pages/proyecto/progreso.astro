@@ -1,0 +1,134 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Kaelum — Progreso"
+  description="Progreso de Kaelum: objetivos principales, ritmo y relación narrativa/mecánica."
+>
+  <section class="hero">
+    <p class="kicker">Proyecto</p>
+    <h1>Progreso</h1>
+    <p class="lead">
+      Estructura clara de objetivos y ritmo, con la idea base del proyecto:
+      <strong>la narrativa acompaña</strong>, el gameplay manda.
+    </p>
+
+    <div class="actions">
+        <a class="btn primary" href={`${base}proyecto/`}>Volver a Proyecto</a>
+        <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+        <a class="btn " href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <section class="card full">
+      <div class="label">// PROGRESO PRINCIPAL</div>
+      <h2>Objetivos</h2>
+
+      <div class="steps">
+        <div class="step">
+          <div class="n">01</div>
+          <div class="t">Avanzar por zonas clave</div>
+        </div>
+        <div class="step">
+          <div class="n">02</div>
+          <div class="t">Resolver bloqueos de misión</div>
+        </div>
+        <div class="step">
+          <div class="n">03</div>
+          <div class="t">Enfrentar el conflicto principal</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card full">
+      <div class="label">// RELACIÓN NARRATIVA / MECÁNICA</div>
+      <h2>Cómo se conectan</h2>
+      <p class="muted">
+        Cada objetivo se apoya en el core: movimiento, gunplay, lectura del entorno y decisiones rápidas.
+        La historia no compite por tiempo con el jugador: lo refuerza.
+      </p>
+
+      <div class="grid" style="margin-top:10px">
+        <div class="card" style="grid-column: span 6;">
+          <h3>Cuando hay narrativa</h3>
+          <ul class="list">
+            <li>Contexto breve antes de una parte importante</li>
+            <li>Consecuencia visible tras una decisión</li>
+            <li>Información útil que cambia cómo juegas</li>
+          </ul>
+        </div>
+        <div class="card" style="grid-column: span 6;">
+          <h3>Cuando no la hay</h3>
+          <ul class="list">
+            <li>Exploración libre</li>
+            <li>Combate y dominio del core</li>
+            <li>Ritmo y flow del nivel</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="card full">
+      <div class="label">// CIERRE</div>
+      <h2>Resumen</h2>
+      <p class="muted">
+        Progreso simple, defendible y actualizable: objetivos claros, ritmo controlado y un enfoque coherente con el proyecto.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}proyecto/`}>Volver a Proyecto</a>
+        <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+        <a class="btn " href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+    </div>
+    </section>
+  </div>
+
+  <style>
+    .label{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      margin-bottom: 8px;
+    }
+    .steps{
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .step{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+    }
+    .step .n{
+      font-weight: 1000;
+      letter-spacing: .18em;
+      opacity:.55;
+    }
+    .step .t{
+      font-weight: 900;
+      color: var(--muted2);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      font-size: .92rem;
+      text-align:right;
+    }
+  </style>
+</BaseLayout>
