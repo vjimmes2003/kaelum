@@ -1,16 +1,65 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
+
+const cards = [
+  {
+    title: "🎮 Proyecto (dossier jugable)",
+    desc:
+      "Guion, mundo y contenido con intención: historia, personajes, enemigos, cinemáticas y progreso. Todo existe porque empuja gameplay.",
+    hint: "Si quieres entender el juego rápido, entra aquí.",
+    href: `${base}proyecto/`,
+    primary: true,
+    btn: "Abrir proyecto",
+  },
+  {
+    title: "🎨 Visión del proyecto",
+    desc:
+      "Moodboard y dirección visual. Tono, intención, estilo y promesa del juego. La referencia principal para coherencia estética.",
+    hint: "Recomendado si entras por primera vez.",
+    href: `${base}vision/`,
+    primary: false,
+    btn: "Abrir visión",
+  },
+  {
+    title: "📊 Análisis y decisiones",
+    desc:
+      "DAFO + CAME. Riesgos, fortalezas y acciones concretas para mantener el proyecto realista, defendible y con foco.",
+    hint: "Ideal para evaluación y criterio.",
+    href: `${base}analisis/`,
+    primary: false,
+    btn: "Abrir análisis",
+  },
+  {
+    title: "📄 Documentación técnica",
+    desc:
+      "GDD completo + folleto imprimible (A4). Documentación formal para entrega y revisión del detalle completo del proyecto.",
+    hint: "Para leerlo como documento.",
+    href: `${base}docs/`,
+    primary: false,
+    btn: "Abrir docs",
+  },
+  {
+    title: "🛠 Proceso de desarrollo",
+    desc:
+      "Devlog semanal con decisiones, iteraciones y progreso real. El “cómo” del proyecto: recortes, cambios y porqués.",
+    hint: "Para ver evolución y metodología.",
+    href: `${base}devlog/`,
+    primary: false,
+    btn: "Abrir devlog",
+  },
+];
 ---
 
 <BaseLayout title="Kaelum — Inicio">
-  <section class="hero">
+  <section class="hero hero-home">
     <p class="kicker">Portfolio · Documentación</p>
     <h1>Kaelum</h1>
 
     <p class="lead">
       Proyecto personal de videojuego FPS con habilidades. Aquí no enseño solo el resultado:
-      enseño la visión (moodboard), el análisis (DAFO/CAME) y la documentación que justifican cada decisión.
+      enseño la visión, el análisis y la documentación que justifican cada decisión.
+      <strong>Y sobre todo: el “Proyecto” como dossier jugable.</strong>
     </p>
 
     <div class="meta">
@@ -21,7 +70,8 @@ const base = import.meta.env.BASE_URL;
     </div>
 
     <div class="actions">
-      <a class="btn primary" href={`${base}vision/`}>Ver visión</a>
+      <a class="btn primary" href={`${base}proyecto/`}>Ver proyecto</a>
+      <a class="btn" href={`${base}vision/`}>Ver visión</a>
       <a class="btn" href={`${base}analisis/`}>Ver análisis</a>
       <a class="btn" href={`${base}docs/`}>Ver docs</a>
       <a class="btn" href={`${base}devlog/`}>Ver devlog</a>
@@ -29,56 +79,72 @@ const base = import.meta.env.BASE_URL;
   </section>
 
   <section class="grid" aria-label="Mapa del proyecto">
-    <article class="card">
-      <h2>🎨 Visión del proyecto</h2>
-      <p class="muted">
-        Moodboard y dirección visual. La presentación principal: tono, intención, estilo y promesa del juego.
-      </p>
-      <p class="small">Recomendado si entras por primera vez.</p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}vision/`}>Abrir visión</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <h2>📊 Análisis y decisiones</h2>
-      <p class="muted">
-        DAFO + CAME. Riesgos, fortalezas y acciones concretas para mantener el proyecto realista y defendible.
-      </p>
-      <p class="small">Ideal para evaluación y coherencia.</p>
-      <div class="actions">
-        <a class="btn" href={`${base}analisis/`}>Abrir análisis</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <h2>📄 Documentación técnica</h2>
-      <p class="muted">
-        GDD completo + folleto imprimible (A4). Documentación formal de entrega (sin ser la portada).
-      </p>
-      <p class="small">Para revisar el detalle completo.</p>
-      <div class="actions">
-        <a class="btn" href={`${base}docs/`}>Abrir docs</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <h2>🛠 Proceso de desarrollo</h2>
-      <p class="muted">
-        Devlog semanal con decisiones, iteraciones y progreso real. El “cómo” del proyecto.
-      </p>
-      <p class="small">Para ver evolución y metodología.</p>
-      <div class="actions">
-        <a class="btn" href={`${base}devlog/`}>Abrir devlog</a>
-      </div>
-    </article>
-
+    {cards.map((c) => (
+      <article class={`card ${c.primary ? "featured" : ""}`}>
+        <h2>{c.title}</h2>
+        <p class="muted">{c.desc}</p>
+        <p class="small">{c.hint}</p>
+        <div class="actions">
+          <a class={c.primary ? "btn primary" : "btn"} href={c.href}>{c.btn}</a>
+        </div>
+      </article>
+    ))}
     <article class="card full">
       <h2>Estado actual</h2>
       <p class="muted">
-        Kaelum está en fase de prototipo: visión y análisis cerrados, documentación lista para presentar.
-        El desarrollo ahora se centra en validar sensaciones de gameplay y núcleo jugable.
+        Kaelum está en fase de prototipo: visión y análisis cerrados, documentación lista para presentar,
+        y el dossier de “Proyecto” ya maquetado para lectura rápida. El desarrollo ahora se centra en validar
+        sensaciones de gameplay, estructura narrativa y núcleo jugable.
       </p>
+      <div class="callout subtle" style="margin-top:12px">
+        <strong>Orden recomendado si eres nuevo:</strong> Proyecto → Visión → Análisis → Docs → Devlog.
+      </div>
     </article>
   </section>
+
+  <style>
+    /* Hero un pelín más “main page” sin romper tu sistema */
+    .hero-home{ position:relative; overflow:hidden; }
+    .hero-home:after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      pointer-events:none;
+      background:
+        radial-gradient(900px 340px at 18% 0%, rgba(70,255,150,.10), transparent 65%),
+        radial-gradient(760px 320px at 92% 12%, rgba(120,160,255,.12), transparent 60%);
+      opacity:.9;
+    }
+    .hero-home > *{ position:relative; z-index:1; }
+
+    .kicker{ letter-spacing:.08em; text-transform:uppercase; opacity:.75; font-size:.82rem; margin-bottom:6px; }
+    .lead{ margin-top:8px; line-height:1.6; opacity:.92; max-width: 980px; }
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+      justify-content:flex-start;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+      color: rgba(255,255,255,.82);
+      font-weight:900;
+      letter-spacing:.02em;
+      font-size:.86rem;
+    }
+
+    /* Featured card (Proyecto) */
+    .featured{
+      border-color: rgba(140,120,255,.28);
+      background: linear-gradient(180deg, rgba(140,120,255,.10), rgba(0,0,0,.18));
+      box-shadow: 0 18px 60px rgba(140,120,255,.10);
+    }
+  </style>
 </BaseLayout>

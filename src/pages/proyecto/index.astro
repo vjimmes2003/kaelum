@@ -5,25 +5,28 @@ const base = import.meta.env.BASE_URL;
 
 <BaseLayout
   title="Kaelum — Proyecto"
-  description="Sección de proyecto: guion, mundo, cinemáticas, personajes, enemigos y progreso."
+  description="Sección de proyecto: historia, mundo, cinemáticas, personajes, enemigos y progreso."
 >
   <section class="hero hero-pro">
     <p class="kicker">Proyecto</p>
     <h1>Guion, mundo y contenido</h1>
     <p class="lead">
-      Esta sección agrupa la parte narrativa y de diseño presentable: historia, mundo, cinemáticas,
-      personajes, enemigos y estructura de progreso. Todo en formato claro, visual y defendible.
+      Esto se lee como un dossier: titulares claros, bloques visuales y decisiones defendibles.
+      En Kaelum nada está “por estar”: cada pieza existe porque <strong>empuja gameplay</strong>.
     </p>
-
     <div class="meta">
       <span class="tag">Narrativa</span>
       <span class="tag">Cinemáticas</span>
       <span class="tag">Personajes</span>
       <span class="tag">Enemigos</span>
       <span class="tag">Progreso</span>
+      <span class="tag">Devlog</span>
     </div>
-
-    <div class="actions">
+    <div class="callout subtle" style="margin-top:12px">
+      <strong>Orden recomendado:</strong> Historia → Mundo → Personajes → Enemigos → Cinemáticas → Progreso.
+      (Las cinemáticas aquí están en versión resumida “publicable”, no storyboard full.)
+    </div>
+        <div class="actions">
       <a class="btn primary" href={`${base}proyecto/historia/`}>Historia</a>
       <a class="btn" href={`${base}proyecto/mundo/`}>Mundo</a>
       <a class="btn" href={`${base}proyecto/cinematicas/`}>Cinemáticas</a>
@@ -35,11 +38,11 @@ const base = import.meta.env.BASE_URL;
 
   <div class="grid">
     <article class="card">
-      <div class="label">// DOCUMENTACIÓN_FASE_03</div>
+      <div class="label">// BACKGROUND</div>
       <h2>Historia</h2>
       <p class="muted">
         Premisa, conflicto, objetivo del protagonista y rumbo narrativo.
-        Enfocado para que cualquier persona ajena al proyecto lo entienda rápido.
+        Enfocado para que alguien ajeno al proyecto lo entienda rápido.
       </p>
       <div class="actions">
         <a class="btn primary" href={`${base}proyecto/historia/`}>Abrir</a>
@@ -51,22 +54,10 @@ const base = import.meta.env.BASE_URL;
       <h2>Mundo</h2>
       <p class="muted">
         Tono, ambientación, reglas del universo y referencias visuales.
-        Lo justo para sostener el juego sin convertirlo en una novela.
+        Lo justo para sostener el juego sin convertirlo en novela.
       </p>
       <div class="actions">
         <a class="btn primary" href={`${base}proyecto/mundo/`}>Abrir</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="label">// SEQUENCES</div>
-      <h2>Cinemáticas</h2>
-      <p class="muted">
-        Tabla por secuencia (tiempo / plano / acción / cámara / audio / VFX),
-        con un estilo limpio tipo “documento de producción”.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}proyecto/cinematicas/`}>Abrir</a>
       </div>
     </article>
 
@@ -75,7 +66,7 @@ const base = import.meta.env.BASE_URL;
       <h2>Personajes</h2>
       <p class="muted">
         Protagonista, aliados y secundarios. Ficha rápida, rol en historia, función en gameplay,
-        y estética/lectura.
+        y “lectura” visual.
       </p>
       <div class="actions">
         <a class="btn primary" href={`${base}proyecto/personajes/`}>Abrir</a>
@@ -86,7 +77,8 @@ const base = import.meta.env.BASE_URL;
       <div class="label">// ENEMIES</div>
       <h2>Enemigos</h2>
       <p class="muted">
-        Lista de enemigos con rol, “fantasía de combate” y cómo se traducen en mecánicas jugables.
+        Roles de combate + facciones por color. Diseñado para lectura rápida: qué es, qué hace,
+        cómo se contrarresta.
       </p>
       <div class="actions">
         <a class="btn primary" href={`${base}proyecto/enemigos/`}>Abrir</a>
@@ -94,21 +86,32 @@ const base = import.meta.env.BASE_URL;
     </article>
 
     <article class="card">
+      <div class="label">// SEQUENCES</div>
+      <h2>Cinemáticas</h2>
+      <p class="muted">
+        Versión resumida “publicable”: intención audiovisual, estructura y momentos clave.
+        Profundiza sin comerse la página.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}proyecto/cinematicas/`}>Abrir</a>
+      </div>
+    </article>
+
+    <article class="card">
       <div class="label">// PROGRESSION</div>
       <h2>Progreso</h2>
       <p class="muted">
-        Objetivos principales, ritmo, estructura de misión y relación entre narrativa y mecánica.
+        Objetivos, ritmo y consecuencias. Un mapa defendible: bucle de progreso + estructura + hitos.
       </p>
       <div class="actions">
         <a class="btn primary" href={`${base}proyecto/progreso/`}>Abrir</a>
       </div>
     </article>
-
     <article class="card full">
-      <h2>Cómo está pensado este formato</h2>
+      <h2>Por qué este formato</h2>
       <p class="muted">
-        La idea es que esta subcategoría se lea como un dossier: titulares claros, bloques visuales,
-        y tablas donde toca. Si mañana cambias una cinemática o un personaje, aquí se actualiza sin romper el resto.
+        La idea es que mañana cambias una cinemática o un enemigo y esto se actualiza sin romper el resto.
+        Todo queda en piezas pequeñas, con intención, y sin “texto de guía” que dé vergüenza enseñar.
       </p>
       <div class="actions" style="margin-top:10px">
         <a class="btn" href={`${base}kaelum/`}>Volver a Resumen</a>
@@ -118,10 +121,7 @@ const base = import.meta.env.BASE_URL;
   </div>
 
   <style>
-    .hero-pro{
-      position:relative;
-      overflow:hidden;
-    }
+    .hero-pro{ position:relative; overflow:hidden; }
     .hero-pro:after{
       content:"";
       position:absolute;
@@ -131,6 +131,7 @@ const base = import.meta.env.BASE_URL;
                   radial-gradient(700px 260px at 90% 10%, rgba(120,160,255,.10), transparent 60%);
       opacity:.9;
     }
+
     .label{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       color: var(--muted2);
@@ -139,5 +140,15 @@ const base = import.meta.env.BASE_URL;
       font-size: .72rem;
       margin-bottom: 8px;
     }
+
+    .callout{
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255,255,255,.18);
+      background: rgba(0,0,0,.18);
+      color: var(--muted);
+    }
+    .callout.subtle{ border-style: solid; border-color: rgba(255,255,255,.08); background: rgba(255,255,255,.03); }
   </style>
 </BaseLayout>

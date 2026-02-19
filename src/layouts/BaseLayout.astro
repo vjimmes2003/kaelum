@@ -7,6 +7,8 @@ const base = import.meta.env.BASE_URL;                 // "/kaelum/" en prod, "/
 const path = Astro.url.pathname;                       // "/kaelum/devlog/..." en prod
 const rel = path.startsWith(base) ? path.slice(base.length - 1) : path; // "/devlog/..." o "/"
 const is = (p: string) => rel === p || rel.startsWith(p + "/");
+
+const pitchPdf = `${base}pitch/kaelum-pitch.pdf`;
 ---
 
 <!doctype html>
@@ -38,6 +40,7 @@ const is = (p: string) => rel === p || rel.startsWith(p + "/");
           <a class={is("/devlog") ? "pill active" : "pill"} href={`${base}devlog/`}>Devlog</a>
           <a class={is("/docs") ? "pill active" : "pill"} href={`${base}docs/`}>Docs</a>
           <a class={is("/sobre-mi") ? "pill active" : "pill"} href={`${base}sobre-mi/`}>Sobre mí</a>
+          <a class="pill" href={pitchPdf} download="Kaelum_Pitch.pdf" title="Descargar Pitch (PDF)"> Pitch</a>
         </nav>
       </div>
     </header>

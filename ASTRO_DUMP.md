@@ -1,7 +1,7 @@
 # Dump completo de archivos .astro
 
 - Carpeta escaneada: `src`
-- Archivos encontrados: **18**
+- Archivos encontrados: **24**
 
 
 ---
@@ -18,6 +18,8 @@ const base = import.meta.env.BASE_URL;                 // "/kaelum/" en prod, "/
 const path = Astro.url.pathname;                       // "/kaelum/devlog/..." en prod
 const rel = path.startsWith(base) ? path.slice(base.length - 1) : path; // "/devlog/..." o "/"
 const is = (p: string) => rel === p || rel.startsWith(p + "/");
+
+const pitchPdf = `${base}pitch/kaelum-pitch.pdf`;
 ---
 
 <!doctype html>
@@ -42,12 +44,14 @@ const is = (p: string) => rel === p || rel.startsWith(p + "/");
 
         <nav class="nav">
           <a class={rel === "/" ? "pill active" : "pill"} href={base}>Inicio</a>
-          <a class={is("/kaelum") ? "pill active" : "pill"} href={`${base}kaelum/`}>Proyecto</a>
+          <a class={is("/kaelum") ? "pill active" : "pill"} href={`${base}kaelum/`}>Resumen</a>
+          <a class={is("/proyecto") ? "pill active" : "pill"} href={`${base}proyecto/`}>Proyecto</a>
           <a class={is("/vision") ? "pill active" : "pill"} href={`${base}vision/`}>Visión</a>
           <a class={is("/analisis") ? "pill active" : "pill"} href={`${base}analisis/`}>Análisis</a>
           <a class={is("/devlog") ? "pill active" : "pill"} href={`${base}devlog/`}>Devlog</a>
           <a class={is("/docs") ? "pill active" : "pill"} href={`${base}docs/`}>Docs</a>
           <a class={is("/sobre-mi") ? "pill active" : "pill"} href={`${base}sobre-mi/`}>Sobre mí</a>
+          <a class="pill" href={pitchPdf} download="Kaelum_Pitch.pdf" title="Descargar Pitch (PDF)"> Pitch</a>
         </nav>
       </div>
     </header>
@@ -1489,16 +1493,65 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
+
+const cards = [
+  {
+    title: "🎮 Proyecto (dossier jugable)",
+    desc:
+      "Guion, mundo y contenido con intención: historia, personajes, enemigos, cinemáticas y progreso. Todo existe porque empuja gameplay.",
+    hint: "Si quieres entender el juego rápido, entra aquí.",
+    href: `${base}proyecto/`,
+    primary: true,
+    btn: "Abrir proyecto",
+  },
+  {
+    title: "🎨 Visión del proyecto",
+    desc:
+      "Moodboard y dirección visual. Tono, intención, estilo y promesa del juego. La referencia principal para coherencia estética.",
+    hint: "Recomendado si entras por primera vez.",
+    href: `${base}vision/`,
+    primary: false,
+    btn: "Abrir visión",
+  },
+  {
+    title: "📊 Análisis y decisiones",
+    desc:
+      "DAFO + CAME. Riesgos, fortalezas y acciones concretas para mantener el proyecto realista, defendible y con foco.",
+    hint: "Ideal para evaluación y criterio.",
+    href: `${base}analisis/`,
+    primary: false,
+    btn: "Abrir análisis",
+  },
+  {
+    title: "📄 Documentación técnica",
+    desc:
+      "GDD completo + folleto imprimible (A4). Documentación formal para entrega y revisión del detalle completo del proyecto.",
+    hint: "Para leerlo como documento.",
+    href: `${base}docs/`,
+    primary: false,
+    btn: "Abrir docs",
+  },
+  {
+    title: "🛠 Proceso de desarrollo",
+    desc:
+      "Devlog semanal con decisiones, iteraciones y progreso real. El “cómo” del proyecto: recortes, cambios y porqués.",
+    hint: "Para ver evolución y metodología.",
+    href: `${base}devlog/`,
+    primary: false,
+    btn: "Abrir devlog",
+  },
+];
 ---
 
 <BaseLayout title="Kaelum — Inicio">
-  <section class="hero">
+  <section class="hero hero-home">
     <p class="kicker">Portfolio · Documentación</p>
     <h1>Kaelum</h1>
 
     <p class="lead">
       Proyecto personal de videojuego FPS con habilidades. Aquí no enseño solo el resultado:
-      enseño la visión (moodboard), el análisis (DAFO/CAME) y la documentación que justifican cada decisión.
+      enseño la visión, el análisis y la documentación que justifican cada decisión.
+      <strong>Y sobre todo: el “Proyecto” como dossier jugable.</strong>
     </p>
 
     <div class="meta">
@@ -1509,7 +1562,8 @@ const base = import.meta.env.BASE_URL;
     </div>
 
     <div class="actions">
-      <a class="btn primary" href={`${base}vision/`}>Ver visión</a>
+      <a class="btn primary" href={`${base}proyecto/`}>Ver proyecto</a>
+      <a class="btn" href={`${base}vision/`}>Ver visión</a>
       <a class="btn" href={`${base}analisis/`}>Ver análisis</a>
       <a class="btn" href={`${base}docs/`}>Ver docs</a>
       <a class="btn" href={`${base}devlog/`}>Ver devlog</a>
@@ -1517,58 +1571,74 @@ const base = import.meta.env.BASE_URL;
   </section>
 
   <section class="grid" aria-label="Mapa del proyecto">
-    <article class="card">
-      <h2>🎨 Visión del proyecto</h2>
-      <p class="muted">
-        Moodboard y dirección visual. La presentación principal: tono, intención, estilo y promesa del juego.
-      </p>
-      <p class="small">Recomendado si entras por primera vez.</p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}vision/`}>Abrir visión</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <h2>📊 Análisis y decisiones</h2>
-      <p class="muted">
-        DAFO + CAME. Riesgos, fortalezas y acciones concretas para mantener el proyecto realista y defendible.
-      </p>
-      <p class="small">Ideal para evaluación y coherencia.</p>
-      <div class="actions">
-        <a class="btn" href={`${base}analisis/`}>Abrir análisis</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <h2>📄 Documentación técnica</h2>
-      <p class="muted">
-        GDD completo + folleto imprimible (A4). Documentación formal de entrega (sin ser la portada).
-      </p>
-      <p class="small">Para revisar el detalle completo.</p>
-      <div class="actions">
-        <a class="btn" href={`${base}docs/`}>Abrir docs</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <h2>🛠 Proceso de desarrollo</h2>
-      <p class="muted">
-        Devlog semanal con decisiones, iteraciones y progreso real. El “cómo” del proyecto.
-      </p>
-      <p class="small">Para ver evolución y metodología.</p>
-      <div class="actions">
-        <a class="btn" href={`${base}devlog/`}>Abrir devlog</a>
-      </div>
-    </article>
-
+    {cards.map((c) => (
+      <article class={`card ${c.primary ? "featured" : ""}`}>
+        <h2>{c.title}</h2>
+        <p class="muted">{c.desc}</p>
+        <p class="small">{c.hint}</p>
+        <div class="actions">
+          <a class={c.primary ? "btn primary" : "btn"} href={c.href}>{c.btn}</a>
+        </div>
+      </article>
+    ))}
     <article class="card full">
       <h2>Estado actual</h2>
       <p class="muted">
-        Kaelum está en fase de prototipo: visión y análisis cerrados, documentación lista para presentar.
-        El desarrollo ahora se centra en validar sensaciones de gameplay y núcleo jugable.
+        Kaelum está en fase de prototipo: visión y análisis cerrados, documentación lista para presentar,
+        y el dossier de “Proyecto” ya maquetado para lectura rápida. El desarrollo ahora se centra en validar
+        sensaciones de gameplay, estructura narrativa y núcleo jugable.
       </p>
+      <div class="callout subtle" style="margin-top:12px">
+        <strong>Orden recomendado si eres nuevo:</strong> Proyecto → Visión → Análisis → Docs → Devlog.
+      </div>
     </article>
   </section>
+
+  <style>
+    /* Hero un pelín más “main page” sin romper tu sistema */
+    .hero-home{ position:relative; overflow:hidden; }
+    .hero-home:after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      pointer-events:none;
+      background:
+        radial-gradient(900px 340px at 18% 0%, rgba(70,255,150,.10), transparent 65%),
+        radial-gradient(760px 320px at 92% 12%, rgba(120,160,255,.12), transparent 60%);
+      opacity:.9;
+    }
+    .hero-home > *{ position:relative; z-index:1; }
+
+    .kicker{ letter-spacing:.08em; text-transform:uppercase; opacity:.75; font-size:.82rem; margin-bottom:6px; }
+    .lead{ margin-top:8px; line-height:1.6; opacity:.92; max-width: 980px; }
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+      justify-content:flex-start;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+      color: rgba(255,255,255,.82);
+      font-weight:900;
+      letter-spacing:.02em;
+      font-size:.86rem;
+    }
+
+    /* Featured card (Proyecto) */
+    .featured{
+      border-color: rgba(140,120,255,.28);
+      background: linear-gradient(180deg, rgba(140,120,255,.10), rgba(0,0,0,.18));
+      box-shadow: 0 18px 60px rgba(140,120,255,.10);
+    }
+  </style>
 </BaseLayout>
 ```
 
@@ -1651,11 +1721,2743 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 ```
 
 ---
+## FILE: src/pages/proyecto/cinematicas.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+    title="Kaelum — Cinemáticas"
+    description="Escenas narrativas y cinemáticas completas de Kaelum: dirección visual, storyboard, carga emocional y diseño audiovisual."
+>
+    <section class="hero">
+        <header class="header">
+            <p class="kicker">GDD · Dirección Cinemática</p>
+            <h1>Cinemáticas</h1>
+            <p class="lead">
+                Las cinemáticas de <strong>Kaelum</strong> no sustituyen el gameplay.
+                Lo estructuran. Marcan puntos de no retorno narrativos y emocionales.
+                Todo lo que ocurre aquí redefine cómo el jugador entiende el mundo.
+            </p>
+
+            <div class="actions">
+                <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+                <a class="btn" href={`${base}proyecto/historia/`}
+                    >Ver Historia</a
+                >
+                <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+                <a class="btn" href={`${base}proyecto/personajes/`}
+                    >Ver Personajes</a
+                >
+                <a class="btn primary" href={`${base}proyecto/enemigos/`}
+                    >Ver Enemigos</a
+                >
+                <a class="btn" href={`${base}proyecto/progreso/`}
+                    >Ver Progreso</a
+                >
+            </div>
+        </header>
+    </section>
+    <section class="gdd-section">
+        <article class="card">
+            <h2>Estructura narrativa audiovisual</h3>
+
+            <ul class="bullets">
+                <li>Tercera persona limitada centrada en Kael.</li>
+                <li>Sin narrador omnisciente.</li>
+                <li>Lo que se muestra es lo que Kael vive o comprende.</li>
+                <li>
+                    Transiciones diseñadas para volver al gameplay sin ruptura
+                    artificial.
+                </li>
+            </ul>
+
+            <div class="callout">
+                Las cinemáticas están vinculadas directamente a decisiones,
+                karma y reputación. No son decorativas. Son estructurales.
+            </div>
+        </article>
+
+        <article class="card major">
+            <p class="kicker">PRÓLOGO</p>
+            <h2>El Eclipse</h2>
+            <p class="muted">
+                Introducción absoluta. Evento imposible. Ruptura de realidad.
+            </p>
+
+            <div class="subcard">
+                <h3>Objetivo narrativo</h3>
+                <ul>
+                    <li>El protagonista era normal.</li>
+                    <li>El eclipse es anómalo.</li>
+                    <li>Solo él reacciona.</li>
+                    <li>Despierta como Kael en Kaelum.</li>
+                </ul>
+            </div>
+
+            <div class="subcard">
+                <h3>Clave emocional</h3>
+                <blockquote>“¿Eso… siempre ha estado ahí?”</blockquote>
+                <p>Nadie responde. Nadie mira. Solo tú.</p>
+            </div>
+
+            <div class="subcard">
+                <h3>Dirección visual</h3>
+                <ul>
+                    <li>
+                        Transición cálido → púrpura → oscuridad → rural apagado.
+                    </li>
+                    <li>Glitches progresivos.</li>
+                    <li>Latido en negro total.</li>
+                </ul>
+            </div>
+        </article>
+
+        <article class="card">
+            <p class="kicker">FIN ACTO I</p>
+            <h2>La Persecución</h2>
+
+            <p class="muted">
+                El momento donde Kael deja de ser extraño para convertirse en
+                amenaza pública.
+            </p>
+
+            <div class="subcard">
+                <h3>Escenario</h3>
+                <ul>
+                    <li>Plaza central de Vesperia.</li>
+                    <li>Guardias movilizados.</li>
+                    <li>Multitud alterada.</li>
+                </ul>
+            </div>
+
+            <div class="subcard">
+                <h3>Carga emocional</h3>
+                <blockquote>
+                    “¡El monstruo!” “¡No dejéis que escape!”
+                </blockquote>
+                <p>No hay juicio. Solo miedo colectivo.</p>
+            </div>
+        </article>
+
+        <article class="card">
+            <p class="kicker">FIN ACTO II</p>
+            <h3>La Verdad del Orbe</h3>
+
+            <p class="muted">
+                La ruptura moral del juego. La Orden no combatía el caos. Lo
+                administraba.
+            </p>
+
+            <div class="subcard">
+                <h4>Revelación</h4>
+                <ul>
+                    <li>Registros sellados.</li>
+                    <li>Sacrificios aceptados como “coste”.</li>
+                    <li>Gran Maestro convencido de su postura.</li>
+                </ul>
+            </div>
+
+            <div class="subcard">
+                <blockquote>“El mundo necesita control.”</blockquote>
+                <p>No suena villano. Suena necesario.</p>
+            </div>
+        </article>
+
+        <article class="card major">
+            <p class="kicker">CLÍMAX</p>
+            <h3>El Orbe del Origen — Final Variable</h3>
+
+            <div class="grid3">
+                <div class="pill good">
+                    <h4>Final Bueno — La Luz No Es Gratis</h4>
+                    <p>
+                        Kael destruye el Orbe. Renuncia al poder. La Fisura
+                        retrocede.
+                    </p>
+                    <blockquote>“No necesita otro tirano.”</blockquote>
+                </div>
+
+                <div class="pill neutral">
+                    <h4>Final Neutral — Equilibrio Inestable</h4>
+                    <p>
+                        El Orbe se sella parcialmente. El ciclo no desaparece.
+                    </p>
+                    <blockquote>“Solo lo he frenado.”</blockquote>
+                </div>
+
+                <div class="pill bad">
+                    <h4>Final Malo — El Monstruo Que Eligieron</h4>
+                    <p>Kael absorbe el poder. El eclipse se completa.</p>
+                    <blockquote>“Queríais un monstruo.”</blockquote>
+                </div>
+            </div>
+
+            <div class="callout">
+                El final depende de karma acumulado + decisiones clave +
+                elección final. No es estético. Es estructural.
+            </div>
+        </article>
+        <div class="actions">
+                <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+                <a class="btn" href={`${base}proyecto/historia/`}
+                    >Ver Historia</a
+                >
+                <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+                <a class="btn" href={`${base}proyecto/personajes/`}
+                    >Ver Personajes</a
+                >
+                <a class="btn primary" href={`${base}proyecto/enemigos/`}
+                    >Ver Enemigos</a
+                >
+                <a class="btn" href={`${base}proyecto/progreso/`}
+                    >Ver Progreso</a
+                >
+            </div>
+    </section>
+
+    <style>
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .kicker {
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            opacity: 0.7;
+            font-size: 0.85rem;
+        }
+
+        .lead {
+            margin-top: 6px;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .card {
+            margin-top: 18px;
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .card.major {
+            border: 1px solid rgba(170, 120, 255, 0.25);
+            background: rgba(170, 120, 255, 0.08);
+        }
+
+        .subcard {
+            margin-top: 14px;
+            padding: 14px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .bullets {
+            padding-left: 20px;
+        }
+
+        blockquote {
+            margin: 8px 0;
+            font-weight: 600;
+        }
+
+        .grid3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        .pill {
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pill.good {
+            background: rgba(100, 255, 170, 0.07);
+        }
+        .pill.neutral {
+            background: rgba(255, 220, 120, 0.07);
+        }
+        .pill.bad {
+            background: rgba(255, 90, 140, 0.07);
+        }
+
+        .callout {
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px dashed rgba(255, 255, 255, 0.2);
+            opacity: 0.85;
+        }
+    </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/proyecto/enemigos.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const roles = [
+  {
+    id: "luchador",
+    name: "Luchadores",
+    desc: "Cuerpo a cuerpo y ejecución. Te persiguen, te acorralan y castigan cada duda.",
+    points: [
+      { k: "Te obliga a", v: "moverte, kitear, usar verticalidad y cobertura" },
+      { k: "Señal clara", v: "silueta agresiva + animación de carga + audio cercano" },
+      { k: "Counter", v: "control de espacio + burst + precisión bajo presión" },
+    ],
+  },
+  {
+    id: "soporte",
+    name: "Soportes",
+    desc: "No ganan el combate por daño: lo ganan por ventaja. Curación, escudos, rescates, buffs.",
+    points: [
+      { k: "Te obliga a", v: "priorizar objetivos y cortar habilidades" },
+      { k: "Señal clara", v: "pulsos, enlaces, marcas y “ritmo” de equipo" },
+      { k: "Counter", v: "focus + interrupción + presión constante" },
+    ],
+  },
+  {
+    id: "especialista",
+    name: "Especialistas",
+    desc: "Controlan escenario e información: humo, señuelos, CC, trampas activas, negación de visión.",
+    points: [
+      { k: "Te obliga a", v: "leer señales, avanzar con calma y evitar túneles de muerte" },
+      { k: "Señal clara", v: "gadgets/rituales visibles + sonido de activación + zonas marcadas" },
+      { k: "Counter", v: "paciencia + lectura + romper su set-up" },
+    ],
+  },
+  {
+    id: "guardian",
+    name: "Guardianes",
+    desc: "Defensa dura. No destacan por daño, destacan por negarte el avance y obligarte a ejecutar plan.",
+    points: [
+      { k: "Te obliga a", v: "buscar ángulos, rodear, destruir núcleos y jugar con recursos" },
+      { k: "Señal clara", v: "postura firme + elementos anclados al terreno (barreras/tótems/torretas)" },
+      { k: "Counter", v: "flanqueo + explosivo/impacto + romper foco o punto débil" },
+    ],
+  },
+];
+
+const families = [
+  {
+    id: "fisura",
+    name: "La Fisura",
+    subtitle: "morado — anomalías orgánicas e inhumanas",
+    intro:
+      "No son monstruos “random”: son la ruptura del mundo hecha carne. El púrpura no es decoración, es infección. Su fantasía es clara: la realidad está rota y ellos son la forma en la que esa rotura te muerde.",
+  },
+  {
+    id: "pueblo",
+    name: "Extremistas del pueblo",
+    subtitle: "naranja — humanos improvisados (miedo organizado)",
+    intro:
+      "No tienen “magia de videojuego”. Tienen rabia, antorchas, calle y números. Su peligro no es lo sobrenatural: es lo humano cuando decide que tú eres el problema.",
+  },
+  {
+    id: "orden",
+    name: "La Orden",
+    subtitle: "azul — disciplina, arcano y control",
+    intro:
+      "Su color no es estético, es jerarquía. Sus armas son funcionales y sus símbolos son propaganda. No vienen a “ganarte por daño”: vienen a controlarte, negarte rutas y convertir el combate en un procedimiento.",
+  },
+  {
+    id: "ruinas",
+    name: "Ruinas y subditos",
+    subtitle: "ámbar/amarillo — defensa mineral, ritual y núcleo",
+    intro:
+      "No son “malos” en lo moral: son mecanismos antiguos reactivados. Se sienten como estatuas vivas con un ente dentro: mineral, luz ámbar, runas y núcleos expuestos.",
+  },
+];
+
+const enemies = [
+  // ===== FISURA (4 roles) =====
+  {
+    id: "fisura-voraz",
+    faction: "fisura",
+    role: "luchador",
+    name: "Anomalía Voraz",
+    fantasy: "Caza a corta distancia. Si te pilla, te ejecuta.",
+    lectura: "carga + chillido corto + estela violeta",
+    peligro: "salto/agarre si te quedas quieto",
+    counter: "espacio + burst + castigar la carga",
+    img: `${base}img/enemigos/fisura_anomalia_voraz.png`,
+  },
+  {
+    id: "fisura-asceta",
+    faction: "fisura",
+    role: "soporte",
+    name: "Asceta de Bruma",
+    fantasy: "Sostiene al grupo con pulsos: cura, refuerza o rescata anomalías.",
+    lectura: "cántico + halo violeta suave + enlaces",
+    peligro: "alarga combates, vuelve injusto el DPS race",
+    counter: "focus + interrupción + presión constante",
+    img: `${base}img/enemigos/fisura_asceta_bruma.png`,
+  },
+  {
+    id: "fisura-mimetico",
+    faction: "fisura",
+    role: "especialista",
+    name: "Mimético de Umbral",
+    fantasy: "Engaña y controla: humo violeta, señuelos y CC breve. Te roba información.",
+    lectura: "distorsión del aire + “doble” falso + chasquido",
+    peligro: "te descoloca y te mete en túnel de muerte",
+    counter: "calma + lectura + no perseguir sombras",
+    img: `${base}img/enemigos/fisura_mimetico_umbral.png`,
+  },
+  {
+    id: "fisura-obelisco",
+    faction: "fisura",
+    role: "guardian",
+    name: "Obelisco Latente",
+    fantasy: "Defensa viva: bloquea ruta, crea barrera y castiga acercarte sin plan.",
+    lectura: "ancla al suelo + runas violetas + pulso periódico",
+    peligro: "te frena y te obliga a exponerte",
+    counter: "flanqueo + destruir núcleo/punto débil",
+    img: `${base}img/enemigos/fisura_obelisco_latente.png`,
+  },
+
+  // ===== PUEBLO (4 “humanos”) =====
+  {
+    id: "pueblo-bravo",
+    faction: "pueblo",
+    role: "luchador",
+    name: "Bravo del Umbral",
+    fantasy: "Cuerpo a cuerpo con arma improvisada. Te acorrala en espacios estrechos.",
+    lectura: "grito + carga torpe + swings amplios",
+    peligro: "knockback/stagger si te pilla mal posicionado",
+    counter: "espacio + headshots + no encerrarte",
+    img: `${base}img/enemigos/pueblo_bravo_umbral.png`,
+  },
+  {
+    id: "pueblo-abanderado",
+    faction: "pueblo",
+    role: "soporte",
+    name: "Abanderado",
+    fantasy: "Coordina y “bufea” con gritos y señales: moral + empuje colectivo.",
+    lectura: "silbato/bandera/brazalete naranja",
+    peligro: "convierte una turba en amenaza real",
+    counter: "focus temprano + cortar la cadena",
+    img: `${base}img/enemigos/pueblo_abanderado.png`,
+  },
+  {
+    id: "pueblo-alquimista",
+    faction: "pueblo",
+    role: "especialista",
+    name: "Alquimista de Calle",
+    fantasy: "Lanza humo, brea o polvo irritante. Niega visión y corta rutas.",
+    lectura: "frascos/bandolera/chispa",
+    peligro: "te obliga a moverte “mal”",
+    counter: "cambiar ángulo + no atravesar humo gratis",
+    img: `${base}img/enemigos/pueblo_alquimista_calle.png`,
+  },
+  {
+    id: "pueblo-barricadero",
+    faction: "pueblo",
+    role: "guardian",
+    name: "Barricadero",
+    fantasy: "Defensa improvisada: escudo chatarra + trampas simples + bloqueo de calle.",
+    lectura: "placas metálicas + clavos + postura baja",
+    peligro: "te frena y te expone a la turba",
+    counter: "flanqueo + explosivo/impacto + punto débil",
+    img: `${base}img/enemigos/pueblo_barricadero.png`,
+  },
+
+  // ===== ORDEN =====
+  {
+    id: "orden-verdugo",
+    faction: "orden",
+    role: "luchador",
+    name: "Verdugo Inquisitorial",
+    fantasy: "Cierra distancia con técnica: te persigue con disciplina y remata.",
+    lectura: "pasos pesados + capa corta azul + arma de asta/filo",
+    peligro: "castiga asomar sin pensar",
+    counter: "distancia + burst + negar su entrada",
+    img: `${base}img/enemigos/orden_verdugo_inquisitorial.png`,
+  },
+  {
+    id: "orden-capellan",
+    faction: "orden",
+    role: "soporte",
+    name: "Capellán de Sello",
+    fantasy: "Escudo/curación ritual. Mantiene la línea. Si vive, el frente no cae.",
+    lectura: "sello azul brillante + gesto de mano + cantos cortos",
+    peligro: "resetea tu progreso de combate",
+    counter: "focus + cortar canalización",
+    img: `${base}img/enemigos/orden_capellan_sello.png`,
+  },
+  {
+    id: "orden-estratega",
+    faction: "orden",
+    role: "especialista",
+    name: "Estratega de Campo",
+    fantasy: "Control de información y rutas: marcas, humo arcano, trampas de visión.",
+    lectura: "visor/monóculo + runas azules flotantes",
+    peligro: "te obliga a pelear en su terreno",
+    counter: "cambiar ritmo + romper gadgets",
+    img: `${base}img/enemigos/orden_estratega_campo.png`,
+  },
+  {
+    id: "orden-bastion",
+    faction: "orden",
+    role: "guardian",
+    name: "Bastión Juramentado",
+    fantasy: "Defensa formal: barrera arcana, escudo de torre, negación de ángulo.",
+    lectura: "escudo grande + runas azules + postura inmóvil",
+    peligro: "te bloquea rutas y te “ordena” el combate",
+    counter: "flanqueo + romper foco/núcleo de barrera",
+    img: `${base}img/enemigos/orden_bastion_juramentado.png`,
+  },
+
+  // ===== RUINAS =====
+  {
+    id: "ruinas-martillo",
+    faction: "ruinas",
+    role: "luchador",
+    name: "Martillo de Ruina",
+    fantasy: "Golpes pesados en corto. Te obliga a respetar tiempos y distancias.",
+    lectura: "crujido de piedra + levantamiento lento + golpe brutal",
+    peligro: "stun/knock si comes el impacto",
+    counter: "castigar recovery + mantener distancia",
+    img: `${base}img/enemigos/ruinas_martillo_ruina.png`,
+  },
+  {
+    id: "ruinas-cantor",
+    faction: "ruinas",
+    role: "soporte",
+    name: "Cantor del Núcleo",
+    fantasy: "Repara y refuerza a otros constructos con pulsos ámbar.",
+    lectura: "runas encendiendo en ciclos + zumbido armónico",
+    peligro: "si no lo cortas, el dungeon se alarga",
+    counter: "focus + romper tótem/columna cercana",
+    img: `${base}img/enemigos/ruinas_cantor_nucleo.png`,
+  },
+  {
+    id: "ruinas-oraculo",
+    faction: "ruinas",
+    role: "especialista",
+    name: "Oráculo de Runa",
+    fantasy: "Control del escenario: marcas, zonas de CC y negación de ruta.",
+    lectura: "círculos en el suelo + líneas ámbar + “clic” de activación",
+    peligro: "te encierra en rutas malas",
+    counter: "leer el suelo + rotar rápido",
+    img: `${base}img/enemigos/ruinas_oraculo_runa.png`,
+  },
+  {
+    id: "ruinas-muralla",
+    faction: "ruinas",
+    role: "guardian",
+    name: "Muralla Viva",
+    fantasy: "Defensa pura: muro/torreta/escudo. Te bloquea hasta que rompes el núcleo.",
+    lectura: "anclaje al terreno + núcleo expuesto parcial + foco ámbar",
+    peligro: "te corta avance y te obliga a exponerte",
+    counter: "flanqueo + romper núcleo/punto débil",
+    img: `${base}img/enemigos/ruinas_muralla_viva.png`,
+  },
+];
+
+const bosses = [
+  {
+    id:"b1",
+    faction:"fisura",
+    tag:"Castillo Noctiferum",
+    name:"Boss 01 — Heraldo Voraz",
+    desc:"Caza, salto y ejecución. El castillo se siente como una garganta.",
+    img:`${base}img/bosses/fisura_heraldo_voraz.png`,
+  },
+  {
+    id:"b2",
+    faction:"fisura",
+    tag:"Castillo Umbrafortis",
+    name:"Boss 02 — Arconte de Bruma",
+    desc:"Soporte + fase de niebla. El combate es información y paciencia.",
+    img:`${base}img/bosses/fisura_arconte_bruma.png`,
+  },
+  {
+    id:"b3",
+    faction:"fisura",
+    tag:"Castillo Tenebrium",
+    name:"Boss 03 — Obispo del Umbral",
+    desc:"Control del escenario + barreras vivas. Te obliga a romper el sistema.",
+    img:`${base}img/bosses/fisura_obispo_umbral.png`,
+  },
+  {
+    id:"b4",
+    faction:"pueblo",
+    tag:"Side quest",
+    name:"Boss — El Portantorchas",
+    desc:"Carisma de turba. Miedo en forma humana. Setpiece social.",
+    img:`${base}img/bosses/pueblo_portantorchas.png`,
+  },
+  {
+    id:"b5",
+    faction:"orden",
+    tag:"Asalto al Orbe",
+    name:"Boss 01 — Inquisidor de Umbral",
+    desc:"Si no te infiltraste: castigo frontal. Defensa + disciplina.",
+    img:`${base}img/bosses/orden_inquisidor_umbral.png`,
+  },
+  {
+    id:"b6",
+    faction:"orden",
+    tag:"Antes del final",
+    name:"Boss 02 — Custodio del Sello",
+    desc:"Prueba de control: muros, sellos, negación de ruta. Te obliga a pensar.",
+    img:`${base}img/bosses/orden_custodio_sello.png`,
+  },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Enemigos"
+  description="Enemigos del proyecto Kaelum: roles, facciones, lectura visual y diseño de combate."
+>
+  <section class="hero">
+    <header class="header">
+      <p class="kicker">GDD · Combate</p>
+      <h1>Enemigos</h1>
+      <p class="lead">
+        En Kaelum, un enemigo no es una skin: es una decisión.
+        Cada tipo existe para forzarte a leer el escenario, reposicionarte y elegir cómo gastas recursos.
+        Menos cantidad. Más identidad. Más intención.
+      </p>
+
+      <div class="actions">
+        <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+        <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn primary" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+      </div>
+        <nav class="subnav" aria-label="Índice de enemigos">
+          <a class="chip" href="#roles">Roles</a>
+          <a class="chip chip-fisura" href="#fisura">La Fisura</a>
+          <a class="chip chip-pueblo" href="#pueblo">Extremistas</a>
+          <a class="chip chip-orden" href="#orden">La Orden</a>
+          <a class="chip chip-ruinas" href="#ruinas">Ruinas</a>
+          <a class="chip" href="#jefes">Bosses</a>
+        </nav>
+    </header>
+  </section>
+
+  <section class="gdd-section">
+
+    <article class="card full" id="roles">
+      <div class="label">// ROLES</div>
+      <h2>4 roles (lectura rápida, identidad clara)</h2>
+      <p class="muted">
+        Inspiración estructural tipo “agentes” (para entenderlo rápido), pero llevado a Kaelum:
+        aquí los roles no son “clases bonitas”, son <strong>comportamientos</strong> que cambian cómo se juega el combate.
+      </p>
+
+      <div class="role-grid">
+        {roles.map((r) => (
+          <section class="role" data-role={r.id}>
+            <div class="role-top">
+              <span class="badge role">{r.id.toUpperCase()}</span>
+              <h3>{r.name}</h3>
+            </div>
+            <p class="muted">{r.desc}</p>
+            <ul class="list">
+              {r.points.map((p) => (
+                <li><strong>{p.k}:</strong> {p.v}</li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    {families.map((f) => (
+      <article
+        id={f.id}
+        class={`card full family faction--${f.id}`}
+        data-faction={f.id}
+      >
+        <div class="label">// FAMILIA</div>
+        <h2>{f.name} <span class="muted">({f.subtitle})</span></h2>
+        <p class="muted">{f.intro}</p>
+
+        <div class="enemy-flex">
+          {enemies.filter(e => e.faction === f.id).map((e) => (
+            <article class={`enemy faction--${e.faction}`} data-faction={e.faction} data-role={e.role}>
+              <header class="enemy-head">
+                <div class="badges">
+                  <span class="badge faction">{e.faction.toUpperCase()}</span>
+                  <span class="badge role">{e.role}</span>
+                </div>
+                <h3>{e.name}</h3>
+                <p class="muted">{e.fantasy}</p>
+              </header>
+
+              <div class="enemy-body">
+                <div class="enemy-media">
+                  <div class="ph" aria-hidden="true">
+                    <div class="ph-icon">✦</div>
+                    <div class="ph-text">Imagen pendiente</div>
+                  </div>
+                  <img
+                    src={e.img}
+                    alt={e.name}
+                    loading="lazy"
+                    onload="this.parentElement.classList.add('has-img')"
+                    onerror="this.remove()"
+                  />
+                </div>
+
+                <div class="enemy-info">
+                  <ul class="list compact">
+                    <li><strong>Lectura:</strong> {e.lectura}.</li>
+                    <li><strong>Peligro:</strong> {e.peligro}.</li>
+                    <li><strong>Counter:</strong> {e.counter}.</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </article>
+    ))}
+
+    <article class="card full" id="jefes">
+      <div class="label">// BOSSES</div>
+      <h2>Bosses (setpieces con propósito)</h2>
+      <p class="muted">
+        Los bosses no son “más vida y ya”: son pruebas de lectura.
+        En Kaelum cada boss representa un argumento del mundo: Fisura (corrupción), Orden (control), Pueblo (odio organizado).
+      </p>
+
+      <div class="boss-flex">
+        {bosses.map((b) => (
+          <article class={`boss faction--${b.faction}`} data-faction={b.faction}>
+            <div class="boss-media">
+              <div class="ph" aria-hidden="true">
+                <div class="ph-icon">✦</div>
+                <div class="ph-text">Imagen pendiente</div>
+              </div>
+              <img
+                src={b.img}
+                alt={b.name}
+                loading="lazy"
+                onload="this.parentElement.classList.add('has-img')"
+                onerror="this.remove()"
+              />
+            </div>
+
+            <div class="boss-info">
+              <div class="badges">
+                <span class="badge faction">{b.faction.toUpperCase()}</span>
+                <span class="badge tag">{b.tag}</span>
+              </div>
+              <h3>{b.name}</h3>
+              <p class="muted">{b.desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </article>
+
+    <div class="actions bottom">
+      <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+      <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn primary" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+    </div>
+
+  </section>
+
+<style>
+  /* ===== Base ===== */
+  .header{ margin-bottom:18px; }
+  .kicker{ letter-spacing:.06em; text-transform:uppercase; opacity:.7; font-size:.85rem; }
+  .lead{ margin-top:6px; line-height:1.6; opacity:.9; max-width:980px; }
+  .muted{ color:var(--muted); opacity:.95; }
+
+  .card{
+    margin-top:18px;
+    padding:18px;
+    border-radius:14px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.04);
+  }
+  .card.full{ width:100%; }
+
+  .label{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    color:var(--muted2);
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    font-size:.72rem;
+    margin-bottom:8px;
+  }
+
+  .list{ padding-left:18px; }
+  .list.compact{ margin:0; padding-left:18px; }
+  .list li{ margin:6px 0; }
+
+  .callout{
+    margin-top:14px;
+    padding:12px 14px;
+    border-radius:12px;
+    border:1px dashed rgba(255,255,255,.18);
+    background:rgba(0,0,0,.18);
+    color:var(--muted);
+  }
+  .callout.subtle{
+    border-style:solid;
+    border-color:rgba(255,255,255,.08);
+    background:rgba(255,255,255,.03);
+  }
+
+  /* ===== Subnav chips ===== */
+  .subnav{
+    margin-top:14px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .chip{
+    display:inline-flex;
+    align-items:center;
+    text-decoration:none;
+    color:rgba(255,255,255,.82);
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(0,0,0,.16);
+    padding:8px 12px;
+    border-radius:999px;
+    font-weight:900;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    font-size:.78rem;
+    transition:transform .12s ease, background .12s ease, border-color .12s ease;
+  }
+  .chip:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.18);
+    }
+    .chip-fisura{ border-color: rgba(170,120,255,.28); background: rgba(170,120,255,.10); }
+    .chip-pueblo{ border-color: rgba(255,170,90,.28);  background: rgba(255,170,90,.10); }
+    .chip-orden { border-color: rgba(110,170,255,.28); background: rgba(110,170,255,.10); }
+    .chip-ruinas{ border-color: rgba(255,220,120,.28); background: rgba(255,220,120,.10); }
+
+  /* ===== Facciones (accent real) ===== */
+  .faction--fisura{ --accent:170,120,255; }
+  .faction--pueblo{ --accent:255,170,90; }
+  .faction--orden { --accent:110,170,255; }
+  .faction--ruinas{ --accent:255,220,120; }
+
+  .family{
+    border:1px solid rgba(var(--accent), .20);
+    background:rgba(var(--accent), .06);
+    box-shadow:0 18px 60px rgba(var(--accent), .10);
+  }
+  .family .callout{
+    border-color:rgba(var(--accent), .22);
+    background:rgba(var(--accent), .07);
+  }
+  .family .callout.subtle{
+    border-color:rgba(var(--accent), .16);
+    background:rgba(0,0,0,.16);
+  }
+
+  /* ===== Roles ===== */
+  .role-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:14px;
+    margin-top:14px;
+  }
+  .role{
+    padding:14px;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.03);
+  }
+  .role-top{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:6px;
+  }
+
+  /* ===== Role colors ===== */
+  [data-role="luchador"]{ --role:255, 90, 140; }
+  [data-role="soporte"]{ --role:100,255,170; }
+  [data-role="especialista"]{ --role:170,120,255; }
+  [data-role="guardian"]{ --role:255,220,120; }
+
+  /* ===== Badges ===== */
+  .badge{
+    display:inline-flex;
+    align-items:center;
+    padding:5px 10px;
+    border-radius:999px;
+    font-size:.78rem;
+    border:1px solid rgba(255,255,255,.10);
+    background:rgba(255,255,255,.03);
+    color:rgba(255,255,255,.85);
+    white-space:nowrap;
+  }
+  .badge.faction{
+    background:rgba(var(--accent), .10);
+    border-color:rgba(var(--accent), .22);
+  }
+  .badge.role{
+    background:rgba(var(--role), .10);
+    border-color:rgba(var(--role), .22);
+    text-transform:capitalize;
+  }
+  .badge.tag{
+    background:rgba(0,0,0,.18);
+    border-color:rgba(255,255,255,.10);
+    color:rgba(255,255,255,.78);
+  }
+
+  /* =========================================================
+     ENEMIES — FLEX WRAP + 2 POR FILA (desktop first)
+     - enemy-grid: flex row wrap
+     - enemy: flex 1 1 40%
+     - enemy-body: COLUMN (imagen arriba, info abajo)
+     ========================================================= */
+  .enemy-grid{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:14px;
+    align-items:stretch;
+    justify-content:stretch;
+  }
+
+  .enemy{
+    flex:1 1 40%;
+    min-width:460px; /* si quieres más 2-por-fila, baja a 420 */
+    border-radius:14px;
+    border:1px solid rgba(var(--accent), .18);
+    background:rgba(0,0,0,.18);
+    padding:14px;
+    overflow:hidden;
+  }
+
+  /* anti desbordes por si acaso */
+  .enemy, .boss{ overflow-wrap:anywhere; word-break:break-word; }
+
+  .enemy-flex{
+    display:flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    gap:14px;
+    align-items:stretch;
+  }
+
+  .enemy-head{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:6px;
+  }
+  .enemy-head .badges{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-bottom:6px;
+  }
+  .enemy-head h3{ margin:4px 0 2px; line-height:1.15; }
+
+  /* BODY en columna: media arriba, info abajo */
+  .enemy-body{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    margin-top:12px;
+  }
+
+  .enemy-media{
+    width:100%;
+    border-radius:12px;
+    border:1px solid rgba(var(--accent), .22);
+    background:rgba(255,255,255,.03);
+    padding:10px;
+    display:grid;
+    place-items:center;
+    min-height:220px;
+    position:relative;
+    overflow:hidden;
+  }
+
+  .enemy-media .ph{
+    display:grid;
+    place-items:center;
+    gap:6px;
+    text-align:center;
+    padding:14px 10px;
+    color:rgba(255,255,255,.75);
+    border-radius:10px;
+    border:1px dashed rgba(var(--accent), .26);
+    background:rgba(var(--accent), .08);
+    width:100%;
+    height:100%;
+    min-height:190px;
+  }
+  .enemy-media .ph-icon{ font-size:1.2rem; opacity:.9; }
+  .enemy-media .ph-text{
+    font-weight:900;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    font-size:.78rem;
+    opacity:.85;
+  }
+  .enemy-media.has-img .ph{ display:none; }
+  .enemy-media img{
+    width:100%;
+    height:auto;
+    max-height:300px;
+    object-fit:contain;
+    filter:drop-shadow(0 10px 22px rgba(0,0,0,.45));
+  }
+
+  .enemy-info{ width:100%; }
+  .enemy-info .list.compact{ margin:0; }
+
+  /* =========================================================
+     BOSSES — FLEX WRAP + 2 POR FILA (desktop first)
+     - boss-grid: flex wrap
+     - boss: flex 1 1 40%
+     - boss interno en columna para imagen/escenario arriba
+     ========================================================= */
+  .boss-grid{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    gap:14px;
+    margin-top:14px;
+    align-items:stretch;
+    justify-content:stretch;
+  }
+
+  .boss{
+    flex:1 1 40%;
+    min-width:460px;
+    border-radius:14px;
+    border:1px solid rgba(var(--accent), .18);
+    background:rgba(var(--accent), .06);
+    padding:14px;
+    overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .boss-flex{
+    display:flex;
+    flex-direction:row;
+    flex-wrap: wrap;
+    gap:14px;
+    align-items:flex-start;
+  }
+  .boss .badges{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:6px;
+  }
+  .boss h3{ margin:4px 0 2px; line-height:1.15; }
+
+  .boss-media{
+    width:100%;
+    border-radius:12px;
+    border:1px solid rgba(var(--accent), .22);
+    background:rgba(0,0,0,.18);
+    padding:10px;
+    display:grid;
+    place-items:center;
+    min-height:220px;
+    overflow:hidden;
+  }
+  .boss-media.has-img .ph{ display:none; }
+  .boss-media img{
+    width:100%;
+    height:auto;
+    max-height:320px;
+    object-fit:contain;
+    filter:drop-shadow(0 10px 22px rgba(0,0,0,.45));
+  }
+  .boss-info{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    gap:6px;
+  }
+  .actions.bottom{ margin-top:18px; }
+</style>
+
+</BaseLayout>
+```
+
+---
 ## FILE: src/pages/proyecto/historia.astro
 ---
 
 ```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
 
+<BaseLayout
+  title="Kaelum — Historia"
+  description="Historia y narrativa (Actos 1–3 + Misiones principales): enfoque narrativo, estructura de actos, misiones clave y decisiones."
+>
+
+<section class="hero">
+  <header class="header">
+    <p class="kicker">GDD · Modo Historia</p>
+    <h1>Historia y narrativa</h1>
+    <p class="lead">
+      Kaelum cuenta su historia desde dentro: lo que vives, lo que eliges y lo que el mundo decide creer sobre ti.
+      No vienes a que te aplaudan. Vienes a sobrevivir… y a decidir qué tipo de persona vas a ser cuando tengas poder de verdad.
+    </p>
+    <div class="actions">
+        <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+        <a class="btn primary" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+        <a class="btn " href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver cinemáticas</a>
+        <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+        <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+    </div>
+  </header>
+</section>
+<section class="gdd-section" id="historia">
+  <article class="card">
+    <h2>Enfoque narrativo</h2>
+    <ul class="bullets">
+      <li>La narrativa no corta el ritmo: se construye con exploración, diálogos, misiones y consecuencias.</li>
+      <li>La información se revela poco a poco: primero el rechazo, luego la verdad, y al final la decisión.</li>
+      <li>El conflicto no es solo contra monstruos: es social, moral y estructural.</li>
+    </ul>
+
+    <blockquote class="quote">
+      <p>“Te trajeron para salvarlos… pero también puedes ser la razón de su caída.”</p>
+      <cite>Frase núcleo</cite>
+    </blockquote>
+  </article>
+
+  <article class="card">
+    <h2>Acto 1 — “No eres bienvenido”</h2>
+    <p>
+      El juego abre con <strong>El Eclipse</strong>: una calle normal, un evento imposible y una ruptura de realidad.
+      Despiertas en Kaelum convertido en <strong>Kael</strong>, y el primer aprendizaje no es el combate: es la sensación de ser
+      observado como una amenaza.
+    </p>
+
+    <div class="subcard">
+      <h3>El tabú del pasado (por qué el pueblo te teme)</h3>
+      <p>
+        Durante un ataque de anomalías, Kael desató por primera vez una magia distinta, vinculada a la energía violeta de La Fisura.
+        Detuvo a las criaturas… pero esa energía rebotó e impactó en civiles. Algunos murieron. Otros sobrevivieron rotos.
+        Fue un accidente, pero el mundo lo recuerda como prueba.
+      </p>
+    </div>
+
+    <div class="subcard">
+      <h4>Giro del Acto 1 (punto de no retorno emocional)</h4>
+      <p>
+        Tras un evento con <strong>Liora</strong> (criaturas de una anomalía entrando en la ciudad y yendo a por ella),
+        el mundo no responde con gratitud: aparecen extremistas del pueblo llano y la situación escala a persecución.
+        Da igual tu intención: si te temen, te van a querer muerto.
+      </p>
+    </div>
+  </article>
+
+  <article class="card">
+    <h2>Acto 2 — “La verdad está bajo sus túnicas”</h2>
+    <p>
+      El Acto 2 deja de ir “sobre aguantar el rechazo” y pasa a ir sobre entender el sistema.
+      Ruinas, runas y pistas te llevan al núcleo: <strong>el Orbe del Origen</strong> y su relación con La Fisura.
+    </p>
+
+    <div class="subcard">
+      <h3>La Orden no es un villano plano</h3>
+      <p>
+        La Orden funciona: ha contenido amenazas, ha construido conocimiento y ha dado herramientas al mundo.
+        Pero el coste está oculto: estabilidad a cambio de aceptar tragedias como “daño colateral”.
+      </p>
+    </div>
+
+    <div class="subcard">
+      <h3>Giro del Acto 2 (plot twist principal)</h3>
+      <p>
+        Descubres que La Orden no solo conocía el Orbe: lo tenía y lo usaba deliberadamente.
+        Ese momento rompe el centro moral del juego: ya no puedes “seguir como si nada”.
+      </p>
+    </div>
+  </article>
+
+  <article class="card">
+    <h2>Acto 3 — “Tu decisión pesa”</h2>
+    <p>
+      El cierre no va de ganar o perder: va de qué haces con lo que has entendido.
+      El final depende del <strong>karma</strong>, de decisiones clave y de la elección final sobre el Orbe.
+    </p>
+
+    <div class="subcard">
+      <h3>Golpe inevitable antes del clímax</h3>
+      <p>
+        Antes del final, <strong>Liora muere</strong> durante el avance a la batalla final, en medio del caos (restos de La Orden y anomalías).
+        Es un recordatorio: da igual lo que hayas intentado, hay cosas que la guerra no negocia.
+      </p>
+    </div>
+
+    <div class="grid3">
+      <div class="pill">
+        <h3>Final bueno</h3>
+        <p>Kael destruye el Orbe. Renuncia al dominio. No hay celebración: hay alivio.</p>
+      </div>
+      <div class="pill">
+        <h3>Final neutral</h3>
+        <p>Kael sella el Orbe. Estabilidad imperfecta. El peso se comparte, no se elimina.</p>
+      </div>
+      <div class="pill">
+        <h3>Final malo</h3>
+        <p>Kael absorbe el Orbe. Abraza La Fisura. Se convierte en lo que el mundo temía.</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="card">
+    <h2>Misiones principales (columna vertebral)</h2>
+    <p class="muted">
+      La estructura sigue un escalado claro: <strong>Identidad → Verdad → Decisión</strong>.
+      Cada bloque desbloquea sistemas y eleva el conflicto sin perder el foco del gunplay.
+    </p>
+
+    <div class="timeline">
+      <div class="tblock">
+        <h3>Acto 1 — Identidad</h3>
+        <ol>
+          <li><strong>Despertar en Kaelum</strong> — tutorial + primer rechazo.</li>
+          <li><strong>La Ciudad no te quiere</strong> — primer hub + Liora + reputación social.</li>
+          <li><strong>El Taller Silencioso</strong> — Maeren + memoria 1.</li>
+          <li><strong>Grieta en el Bosque</strong> — decisión civiles vs eficacia.</li>
+          <li><strong>El Poder de la Fisura</strong> — primer poder + persecución (fin de acto).</li>
+        </ol>
+      </div>
+
+      <div class="tblock">
+        <h3>Acto 2 — Verdad</h3>
+        <ol start="6">
+          <li><strong>Ruinas y Runas</strong> — vínculo Orbe-Fisura.</li>
+          <li><strong>La Orden observa</strong> — jerarquía + control.</li>
+          <li><strong>El Fugitivo</strong> — proteger o entregar (punto de no retorno).</li>
+          <li><strong>Castillo de la Pieza</strong> — jefe + pieza para guardianes.</li>
+          <li><strong>El Orbe del Origen</strong> — revelación: La Orden lo usaba.</li>
+        </ol>
+      </div>
+
+      <div class="tblock">
+        <h3>Acto 3 — Decisión</h3>
+        <ol start="11">
+          <li><strong>Reunir a los Guardianes</strong> — aliados + preparación final.</li>
+          <li><strong>Decisión y Final</strong> — 3 finales según karma + decisiones.</li>
+        </ol>
+      </div>
+    </div>
+  </article>
+  <div class="actions">
+        <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+        <a class="btn primary" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+        <a class="btn " href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver cinemáticas</a>
+        <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+        <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+    </div>
+</section>
+
+<style>
+  .header{ margin-bottom: 18px; }
+  .kicker{
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    opacity: .75;
+    margin: 0 0 6px;
+    font-size: .86rem;
+  }
+  h2{ margin: 0 0 10px; font-size: 2rem; }
+  .lead{ margin: 0 ; text-align:justify; opacity: .92; line-height: 1.55; }
+  .card{
+    margin-top: 16px;
+    padding: 16px 16px;
+    border: 1px solid rgba(255,255,255,.10);
+    border-radius: 14px;
+    background: rgba(255,255,255,.04);
+  }
+  .subcard{
+    margin-top: 12px;
+    padding: 12px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(29, 11, 11, 0.1);
+    background: rgba(0,0,0,.18);
+  }
+  .subcard p{
+    text-align: justify;
+  }
+  .bullets{ margin: 10px 0 0; padding-left: 38px; }
+  .bullets li{ margin: 6px 0; }
+
+  .quote{
+    margin: 14px 0 0;
+    padding: 12px 12px;
+    border-left: 4px solid rgba(170,120,255,.65);
+    background: rgba(170,120,255,.08);
+    border-radius: 10px;
+  }
+  .quote p{ margin: 0 0 6px; font-weight: 600; }
+  .quote cite{ opacity: .8; font-style: normal; font-size: .92rem; }
+
+  .grid3{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .pill{
+    padding: 12px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(255,255,255,.03);
+  }
+  .pill h3{ margin: 0 0 8px; }
+  .pill p{ margin: 0; opacity: .92; line-height: 1.45; }
+
+  .muted{ opacity: .82; }
+
+  .timeline{ margin-top: 12px; display: grid; gap: 12px; }
+  .tblock{
+    padding: 12px 12px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,.10);
+    background: rgba(0,0,0,.14);
+  }
+  .tblock h3{ margin: 0 0 10px; font-size: 1.4rem; }
+  .tblock ol{ margin: 0; padding-left: 18px; }
+  .tblock li{ margin: 6px 40px; line-height: 1.45; }
+
+  @media (max-width: 860px){
+    .grid3{ grid-template-columns: 1fr; }
+  }
+</style>
+
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/proyecto/index.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Kaelum — Proyecto"
+  description="Sección de proyecto: historia, mundo, cinemáticas, personajes, enemigos y progreso."
+>
+  <section class="hero hero-pro">
+    <p class="kicker">Proyecto</p>
+    <h1>Guion, mundo y contenido</h1>
+    <p class="lead">
+      Esto se lee como un dossier: titulares claros, bloques visuales y decisiones defendibles.
+      En Kaelum nada está “por estar”: cada pieza existe porque <strong>empuja gameplay</strong>.
+    </p>
+    <div class="meta">
+      <span class="tag">Narrativa</span>
+      <span class="tag">Cinemáticas</span>
+      <span class="tag">Personajes</span>
+      <span class="tag">Enemigos</span>
+      <span class="tag">Progreso</span>
+      <span class="tag">Devlog</span>
+    </div>
+    <div class="callout subtle" style="margin-top:12px">
+      <strong>Orden recomendado:</strong> Historia → Mundo → Personajes → Enemigos → Cinemáticas → Progreso.
+      (Las cinemáticas aquí están en versión resumida “publicable”, no storyboard full.)
+    </div>
+        <div class="actions">
+      <a class="btn primary" href={`${base}proyecto/historia/`}>Historia</a>
+      <a class="btn" href={`${base}proyecto/mundo/`}>Mundo</a>
+      <a class="btn" href={`${base}proyecto/cinematicas/`}>Cinemáticas</a>
+      <a class="btn" href={`${base}proyecto/personajes/`}>Personajes</a>
+      <a class="btn" href={`${base}proyecto/enemigos/`}>Enemigos</a>
+      <a class="btn" href={`${base}proyecto/progreso/`}>Progreso</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card">
+      <div class="label">// BACKGROUND</div>
+      <h2>Historia</h2>
+      <p class="muted">
+        Premisa, conflicto, objetivo del protagonista y rumbo narrativo.
+        Enfocado para que alguien ajeno al proyecto lo entienda rápido.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}proyecto/historia/`}>Abrir</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="label">// WORLD_BUILDING</div>
+      <h2>Mundo</h2>
+      <p class="muted">
+        Tono, ambientación, reglas del universo y referencias visuales.
+        Lo justo para sostener el juego sin convertirlo en novela.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}proyecto/mundo/`}>Abrir</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="label">// CHARACTERS</div>
+      <h2>Personajes</h2>
+      <p class="muted">
+        Protagonista, aliados y secundarios. Ficha rápida, rol en historia, función en gameplay,
+        y “lectura” visual.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}proyecto/personajes/`}>Abrir</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="label">// ENEMIES</div>
+      <h2>Enemigos</h2>
+      <p class="muted">
+        Roles de combate + facciones por color. Diseñado para lectura rápida: qué es, qué hace,
+        cómo se contrarresta.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}proyecto/enemigos/`}>Abrir</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="label">// SEQUENCES</div>
+      <h2>Cinemáticas</h2>
+      <p class="muted">
+        Versión resumida “publicable”: intención audiovisual, estructura y momentos clave.
+        Profundiza sin comerse la página.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}proyecto/cinematicas/`}>Abrir</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="label">// PROGRESSION</div>
+      <h2>Progreso</h2>
+      <p class="muted">
+        Objetivos, ritmo y consecuencias. Un mapa defendible: bucle de progreso + estructura + hitos.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}proyecto/progreso/`}>Abrir</a>
+      </div>
+    </article>
+    <article class="card full">
+      <h2>Por qué este formato</h2>
+      <p class="muted">
+        La idea es que mañana cambias una cinemática o un enemigo y esto se actualiza sin romper el resto.
+        Todo queda en piezas pequeñas, con intención, y sin “texto de guía” que dé vergüenza enseñar.
+      </p>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href={`${base}kaelum/`}>Volver a Resumen</a>
+        <a class="btn" href={`${base}vision/`}>Ir a Visión</a>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    .hero-pro{ position:relative; overflow:hidden; }
+    .hero-pro:after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      pointer-events:none;
+      background: radial-gradient(900px 260px at 20% 0%, rgba(70,255,150,.12), transparent 65%),
+                  radial-gradient(700px 260px at 90% 10%, rgba(120,160,255,.10), transparent 60%);
+      opacity:.9;
+    }
+
+    .label{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      margin-bottom: 8px;
+    }
+
+    .callout{
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255,255,255,.18);
+      background: rgba(0,0,0,.18);
+      color: var(--muted);
+    }
+    .callout.subtle{ border-style: solid; border-color: rgba(255,255,255,.08); background: rgba(255,255,255,.03); }
+  </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/proyecto/mundo.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+    title="Kaelum — Mundo"
+    description="Mundo y ambientación de Kaelum: zonas, reglas, facciones, La Fisura y lectura visual aplicada a gameplay."
+>
+    <section class="hero">
+        <p class="kicker">Proyecto</p>
+        <h1>Mundo</h1>
+        <p class="lead">
+            Kaelum no es un decorado: es un sistema que empuja al jugador a leer
+            el entorno, entender el rechazo social y tomar decisiones que dejan
+            huella. Medieval y rural en apariencia, pero con tecnología arcana y
+            armas de fuego lo bastante presentes como para que el mundo se
+            sienta “funcional”.
+        </p>
+
+        <div class="actions">
+            <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+            <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+            <a class="btn primary" href={`${base}proyecto/personajes/`}
+                >Ver Personajes</a
+            >
+            <a class="btn" href={`${base}proyecto/cinematicas/`}
+                >Ver cinemáticas</a
+            >
+            <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+            <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+        </div>
+    </section>
+
+    <div class="grid">
+        <section class="card full">
+            <div class="label">// IDENTIDAD</div>
+            <h2>Medieval funcional + tecnología arcana (la mezcla)</h2>
+            <p class="muted">
+                La estética base es rural/medieval, pero el mundo está
+                atravesado por una “lógica moderna”: control, jerarquía, rutas,
+                permisos, protocolos. Lo que la gente no entiende lo llama
+                maldición, pero lo que la Orden no explica… lo administra.
+            </p>
+
+            <div class="chips">
+                <span class="chip">Arquitectura robusta</span>
+                <span class="chip">Rutas de control</span>
+                <span class="chip">Armas comunes</span>
+                <span class="chip">Energía rara</span>
+                <span class="chip">Miedo social</span>
+                <span class="chip">Bruma violeta</span>
+            </div>
+
+            <div class="callout">
+                <strong>Idea clave:</strong> Kaelum se entiende por contraste: lo
+                cotidiano busca calma, pero La Fisura y la Orden convierten esa calma
+                en una “estabilidad vigilada”.
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="label">// LA FISURA</div>
+            <h2>Qué es para la gente</h2>
+            <p class="muted">
+                La mayoría no sabe “qué es” La Fisura. Lo que sí conoce: grietas
+                que se abren, anomalías que salen, y temporadas donde el bosque
+                se vuelve territorio hostil. La explicación popular es simple y
+                peligrosa:
+                <strong>una maldición</strong>, “el reflejo de que el mundo no
+                está en balance”.
+            </p>
+
+            <ul class="list">
+                <li>
+                    <strong>Señales:</strong> bruma violeta, distorsión sutil, cicatrices
+                    en el terreno.
+                </li>
+                <li>
+                    <strong>Consecuencia:</strong> aparición de anomalías en rutas
+                    y eventos de grieta.
+                </li>
+                <li>
+                    <strong>Lectura jugable:</strong> el jugador aprende a identificar
+                    “zonas enfermas” sin HUD invasivo.
+                </li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <div class="label">// SOCIEDAD</div>
+            <h2>Rechazo como sistema</h2>
+            <p class="muted">
+                Kael no es rechazado por un rumor cualquiera: el pueblo lo
+                asocia con un accidente real (magia violeta fuera de control
+                durante un ataque) que dejó civiles muertos y otros marcados.
+                Aunque intente hacer el bien, el mundo responde con miedo.
+            </p>
+            <ul class="list">
+                <li>
+                    <strong>El miedo se contagia:</strong> primero miradas, luego
+                    rumores, luego persecución.
+                </li>
+                <li>
+                    <strong>El tabú se hereda:</strong> lo “diferente” se trata como
+                    amenaza.
+                </li>
+                <li>
+                    <strong>El jugador lo vive:</strong> cambia la reacción de NPCs,
+                    acceso a rutas y apoyo social.
+                </li>
+            </ul>
+        </section>
+
+        <section class="card full">
+            <div class="label">// ZONAS</div>
+            <h2>Mapa mental del mundo (zonas y función jugable)</h2>
+            <p class="muted">
+                El viaje se apoya en transiciones claras de tono y color: <strong
+                    >cálido cotidiano</strong
+                > → <strong>violeta frío</strong> →
+                <strong>oscuridad</strong> → <strong>rural apagado</strong>. No
+                es solo cinemática: guía la progresión por biomas y tensión.
+            </p>
+
+            <div class="grid" style="margin-top:10px">
+                <div class="card" style="grid-column: span 6;">
+                    <h3>1) Casa de Kael</h3>
+                    <p class="muted">
+                        Inicio y choque de identidad. Espacio seguro narrativo
+                        (no por “peligro cero”, sino por intimidad). Sirve para
+                        tutorial, atmósfera y primer contacto con el rechazo.
+                    </p>
+                    <ul class="list">
+                        <li>Tutorial + lectura de entorno</li>
+                        <li>Transición del mundo “real” a Kaelum</li>
+                        <li>Primeras pistas de La Fisura a distancia</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="grid-column: span 6;">
+                    <h3>2) Vesperia (ciudad principal / hub)</h3>
+                    <p class="muted">
+                        Núcleo social y político. Misiones, comercio, jerarquía
+                        visible, propaganda y “normalidad” forzada. Aquí vive
+                        Liora como ancla emocional y humana del mundo.
+                    </p>
+                    <ul class="list">
+                        <li>Misiones principales y secundarias</li>
+                        <li>Facciones, reputación, rumores</li>
+                        <li>
+                            Control de la Orden (guardias, símbolos, permisos)
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card" style="grid-column: span 6;">
+                    <h3>3) Bosques exteriores</h3>
+                    <p class="muted">
+                        Zona intermedia recurrente. Camino de paso y termómetro
+                        de amenaza: patrullas, emboscadas, eventos aleatorios y
+                        grietas que “respiran”.
+                    </p>
+                    <ul class="list">
+                        <li>Rutas, patrullas, eventos</li>
+                        <li>Primeras grietas serias</li>
+                        <li>Lectura clara de peligro por ambiente</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="grid-column: span 6;">
+                    <h3>4) Ruinas antiguas</h3>
+                    <p class="muted">
+                        Altares, runas y llaves de progreso. Aquí el lore se
+                        cuenta con símbolos, mecánicas y memorias, no con
+                        biblias eternas.
+                    </p>
+                    <ul class="list">
+                        <li>Runas / llaves / gating</li>
+                        <li>Lore breve y significativo</li>
+                        <li>Piezas del sistema de Guardianes</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="grid-column: span 6;">
+                    <h3>5) Cuevas</h3>
+                    <p class="muted">
+                        Atajos y secretos. Funcionan como “tuberías”: conectan
+                        zonas y recompensan exploración con loot, lore y rutas
+                        alternativas.
+                    </p>
+                    <ul class="list">
+                        <li>Atajos entre biomas</li>
+                        <li>Loot / notas / coleccionables</li>
+                        <li>Secretos y acceso alternativo</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="grid-column: span 6;">
+                    <h3>6) Nocturn (aldea secundaria)</h3>
+                    <p class="muted">
+                        Identidad propia. Es el lugar donde el “precio” se
+                        vuelve humano: misiones, trauma social, supersticiones y
+                        consecuencias de decisiones.
+                    </p>
+                    <ul class="list">
+                        <li>Misiones y microhistorias</li>
+                        <li>Reacción fuerte al karma</li>
+                        <li>Espacios de calma que se rompen rápido</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="grid-column: span 12;">
+                    <h3>7) Castillos (3 fortalezas clave)</h3>
+                    <p class="muted">
+                        Escalones de dificultad. Zonas de prueba real: jefes,
+                        piezas clave y momentos de “subida” narrativa. Aquí el
+                        mundo deja claro que la amenaza no es solo monstruosa:
+                        también es estructural.
+                    </p>
+                    <ul class="list">
+                        <li>
+                            <strong>Noctiferum</strong> — noche como naturaleza (acto
+                            de presión y caza)
+                        </li>
+                        <li>
+                            <strong>Umbrafortis</strong> — fortaleza de sombra (control
+                            y bloqueo de rutas)
+                        </li>
+                        <li>
+                            <strong>Tenebrium</strong> — tiniebla estructural (clímax
+                            de peligro y pieza clave)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="card full">
+            <div class="label">// TECNOLOGÍA Y ARMAS</div>
+            <h2>Armas de fuego comunes, energía rara</h2>
+            <p class="muted">
+                Las armas de fuego son parte del mundo: no son un “capricho
+                moderno”. Lo raro es la tecnología de energía: aparece como
+                ventaja, misterio o símbolo de estatus. La Orden y artesanos
+                forasteros fabrican y mantienen.
+            </p>
+
+            <div class="grid" style="margin-top:10px">
+                <div class="card" style="grid-column: span 6;">
+                    <h3>Lo común</h3>
+                    <ul class="list">
+                        <li>
+                            Armas de fuego presentes en rutas, guardias y
+                            mercado
+                        </li>
+                        <li>
+                            Mejoras y consumibles accesibles para progresión
+                        </li>
+                        <li>Economía sencilla y clara para el jugador</li>
+                    </ul>
+                </div>
+                <div class="card" style="grid-column: span 6;">
+                    <h3>Lo raro</h3>
+                    <ul class="list">
+                        <li>
+                            Armas/artefactos de energía con identidad visual
+                            propia
+                        </li>
+                        <li>Más únicas, más “de historia” que de spam</li>
+                        <li>
+                            Asociadas a jerarquía, pruebas o zonas restringidas
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="label">// REGLAS</div>
+            <h2>Reglas del mundo</h2>
+            <ul class="list">
+                <li>
+                    <strong>El poder se nota:</strong> guardias, checkpoints, símbolos,
+                    permisos, patrullas.
+                </li>
+                <li>
+                    <strong>La información es un recurso:</strong> rumores, carteles,
+                    notas cortas, coleccionables.
+                </li>
+                <li>
+                    <strong>El entorno enseña:</strong> La Fisura se lee por bruma,
+                    distorsión y cicatrices, no por tutoriales eternos.
+                </li>
+                <li>
+                    <strong>La calma es frágil:</strong> el mundo puede parecer estable…
+                    hasta que una grieta decide abrirse.
+                </li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <div class="label">// LECTURA</div>
+            <h2>Lectura visual</h2>
+            <ul class="list">
+                <li>
+                    <strong>Claridad</strong> por encima de detalle: que el jugador
+                    entienda dónde está y qué amenaza hay.
+                </li>
+                <li>
+                    <strong>Landmarks</strong> para orientar (torres, puertas, símbolos
+                    de la Orden, altares en ruinas).
+                </li>
+                <li>
+                    <strong>Color</strong> como lenguaje: cálido = humano, violeta
+                    = infección, apagado = desgaste.
+                </li>
+            </ul>
+        </section>
+
+        <section class="card full">
+            <div class="label">// TRADUCCIÓN A GAMEPLAY</div>
+            <h2>Cómo se convierte en gameplay</h2>
+            <p class="muted">
+                El mundo se diseña para soportar el loop central: explorar →
+                enterarte → decidir → pagar consecuencias. Kael no avanza solo
+                por disparar mejor, sino por cómo se relaciona con el poder y
+                con el miedo de la gente.
+            </p>
+
+            <div class="grid" style="margin-top:10px">
+                <div class="card" style="grid-column: span 6;">
+                    <h3>Escenarios</h3>
+                    <ul class="list">
+                        <li>
+                            Zonas de control (puertas, inspecciones, rutas
+                            cortadas, guardias)
+                        </li>
+                        <li>
+                            Zonas de conflicto (líneas de visión, cobertura,
+                            emboscadas, persecuciones)
+                        </li>
+                        <li>
+                            Zonas de descubrimiento (ruinas, cuevas, altares,
+                            notas, memorias)
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card" style="grid-column: span 6;">
+                    <h3>Recompensas</h3>
+                    <ul class="list">
+                        <li>
+                            Información útil (rutas, llaves, decisiones, acceso)
+                        </li>
+                        <li>
+                            Recursos (mejoras, consumibles, ventajas
+                            situacionales)
+                        </li>
+                        <li>
+                            Contexto (lore breve pero con intención y
+                            consecuencias)
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="actions">
+            <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+            <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+            <a class="btn primary" href={`${base}proyecto/personajes/`}
+                >Ver Personajes</a
+            >
+            <a class="btn" href={`${base}proyecto/cinematicas/`}
+                >Ver cinemáticas</a
+            >
+            <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+            <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+        </div>
+        </section>
+    </div>
+
+    <style>
+        .label {
+            font-family:
+                ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                "Liberation Mono", "Courier New", monospace;
+            color: var(--muted2);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-size: 0.72rem;
+            margin-bottom: 8px;
+        }
+        .chips {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .chip {
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--muted);
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+        }
+        .callout {
+            margin-top: 14px;
+            border: 1px dashed rgba(120, 255, 180, 0.35);
+            background: rgba(70, 255, 150, 0.07);
+            border-radius: var(--radius);
+            padding: 12px 14px;
+            color: var(--muted);
+        }
+    </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/proyecto/personajes.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+    title="Kaelum — Personajes"
+    description="Personajes principales de Kaelum: Kael, Liora, Maeren y el Gran Maestro. Rol narrativo, motivaciones y presencia en gameplay."
+>
+    <section class="hero" id="personajes">
+        <header class="header">
+            <p class="kicker">GDD · Modo Historia</p>
+            <h2>Personajes</h2>
+            <p class="lead">
+                En Kaelum, los personajes no están para “contar lore”: están
+                para empujarte a decisiones. Kael es el centro del conflicto,
+                Liora es el ancla humana, Maeren es la raíz, y el Gran Maestro
+                es el sistema con cara.
+            </p>
+
+            <div class="actions">
+                <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+                <a class="btn" href={`${base}proyecto/historia/`}
+                    >Ver Historia</a
+                >
+                <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+                <a class="btn primary" href={`${base}proyecto/cinematicas/`}
+                    >Ver cinemáticas</a
+                >
+                <a class="btn" href={`${base}proyecto/enemigos/`}
+                    >Ver Enemigos</a
+                >
+                <a class="btn" href={`${base}proyecto/progreso/`}
+                    >Ver Progreso</a
+                >
+            </div>
+        </header>
+    </section>
+    <section class="card-container">
+        <article class="card">
+            <h3>Kael</h3>
+
+            <div class="pgrid">
+                <div class="portrait">
+                    <img
+                        src={`${base}assets/personajes/kael.webp`}
+                        alt="Ilustración de Kael"
+                        loading="lazy"
+                    />
+                </div>
+
+                <div class="pcontent">
+                    <p class="muted">
+                        Joven adulto (25–30). No busca ser héroe: busca
+                        demostrar que su existencia no es un error. Su arco no
+                        va de “ser más fuerte”, va de decidir qué tipo de
+                        persona es cuando el poder deja de ser teoría.
+                    </p>
+
+                    <div class="chips">
+                        <span class="chip">Frases cortas</span>
+                        <span class="chip">Ironía defensiva</span>
+                        <span class="chip">Moral obstinada</span>
+                        <span class="chip">Poder como riesgo</span>
+                    </div>
+
+                    <div class="grid2">
+                        <div class="subcard">
+                            <h4>Objetivo interno</h4>
+                            <p>
+                                Que el mundo deje de tratarlo como amenaza.
+                                <br />Vivir sin tener que justificarse.
+                            </p>
+                        </div>
+                        <div class="subcard">
+                            <h4>Objetivo externo</h4>
+                            <p>
+                                Decidir el destino del Orbe del Origen y el
+                                futuro de La Fisura.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="subcard">
+                        <h4>Relación con el poder</h4>
+                        <p>
+                            Empieza con miedo y supervivencia. Evoluciona a
+                            desconfianza lúcida. El final lo define: ayudar a
+                            todos, apartarse y delegar, o abrazar la caída y
+                            volverse el monstruo que esperaban.
+                        </p>
+                    </div>
+
+                    <blockquote class="quote">
+                        <p>“No necesita otro tirano.”</p>
+                        <cite>Kael</cite>
+                    </blockquote>
+
+                    <div class="subcard">
+                        <h4>Arma icónica</h4>
+                        <p>
+                            Una espada heredada de Maeren. No es “la mejor” para
+                            un shooter… por eso pesa más: la lleva como
+                            recordatorio de quién confió en él cuando nadie lo
+                            hacía.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <h3>Liora</h3>
+
+            <div class="pgrid">
+                <div class="portrait">
+                    <img
+                        src={`${base}assets/personajes/liora.webp`}
+                        alt="Ilustración de Liora"
+                        loading="lazy"
+                    />
+                </div>
+
+                <div class="pcontent">
+                    <p class="muted">
+                        Liora es el punto raro del mundo: alguien que mira a
+                        Kael y ve persona, no leyenda. No sabe la verdad del
+                        Orbe ni las cloacas políticas del consejo. Su papel es
+                        humano: confianza, vínculo y pérdida.
+                    </p>
+
+                    <div class="chips">
+                        <span class="chip">Ancla emocional</span>
+                        <span class="chip">Confianza difícil</span>
+                        <span class="chip">Rechazo del mundo</span>
+                        <span class="chip">Tragedia inevitable</span>
+                    </div>
+
+                    <div class="grid2">
+                        <div class="subcard">
+                            <h4>Qué es para Kael</h4>
+                            <p>
+                                La persona que lo llena. El “si existe alguien
+                                bueno aquí, quizá todavía no está todo roto”.
+                            </p>
+                        </div>
+                        <div class="subcard">
+                            <h4>Función jugable</h4>
+                            <p>
+                                Apoya el peso de decisiones (ayudar / fallar /
+                                consecuencias), y marca el coste real antes del
+                                clímax.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="subcard">
+                        <h4>Momento clave</h4>
+                        <p>
+                            Su muerte ocurre durante el avance hacia la batalla
+                            final, en medio del caos (restos de La Orden y
+                            anomalías). No es “castigo al jugador”: es una
+                            verdad del mundo. Hay cosas que la guerra no
+                            negocia.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <h3>Maeren</h3>
+
+            <div class="pgrid">
+                <div class="portrait">
+                    <img
+                        src={`${base}assets/personajes/maeren.webp`}
+                        alt="Ilustración de Maeren"
+                        loading="lazy"
+                    />
+                </div>
+
+                <div class="pcontent">
+                    <p class="muted">
+                        Mentor y única figura real de confianza para Kael. La
+                        voz que le enseñó a sostenerse cuando todo lo demás lo
+                        empujaba al barro. Muere (o desaparece) 5 años antes de
+                        los eventos del juego. Su ausencia se convierte en
+                        sistema: memorias, taller, legado.
+                    </p>
+
+                    <div class="chips">
+                        <span class="chip">Mentor</span>
+                        <span class="chip">Legado</span>
+                        <span class="chip">Memorias</span>
+                        <span class="chip">Herida abierta</span>
+                    </div>
+
+                    <div class="subcard">
+                        <h4>Función narrativa</h4>
+                        <p>
+                            El Taller Silencioso y las Memorias no son
+                            “flashbacks bonitos”: son piezas de comprensión. Te
+                            dan mecánicas, contexto y un espejo moral: qué
+                            significa controlar el poder sin convertirte en
+                            excusa.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article class="card">
+            <h3>Gran Maestro</h3>
+
+            <div class="pgrid">
+                <div class="portrait">
+                    <img
+                        src={`${base}assets/personajes/gran-maestro.webp`}
+                        alt="Ilustración del Gran Maestro"
+                        loading="lazy"
+                    />
+                </div>
+
+                <div class="pcontent">
+                    <p class="muted">
+                        No es un villano de caricatura. Es una idea con mando:
+                        “estabilidad a cualquier precio”. Representa el control
+                        como doctrina, y el Orbe como herramienta. Si el mundo
+                        te teme, él lo usa.
+                    </p>
+
+                    <div class="chips">
+                        <span class="chip">Autoridad</span>
+                        <span class="chip">Control</span>
+                        <span class="chip">Consejo</span>
+                        <span class="chip">Orbe del Origen</span>
+                    </div>
+
+                    <div class="grid2">
+                        <div class="subcard">
+                            <h4>Lo que defiende</h4>
+                            <p>
+                                Orden, jerarquía, “paz” sostenida por
+                                sacrificios aceptados como daño colateral.
+                            </p>
+                        </div>
+                        <div class="subcard">
+                            <h4>Lo que provoca</h4>
+                            <p>
+                                Ruptura moral del Acto 2: cuando el jugador
+                                descubre que La Orden lo tenía… y lo usaba
+                                deliberadamente.
+                            </p>
+                        </div>
+                    </div>
+
+                    <blockquote class="quote">
+                        <p>“El mundo necesita control.”</p>
+                        <cite>Gran Maestro</cite>
+                    </blockquote>
+                </div>
+            </div>
+        </article>
+    </section>
+    <div class="actions">
+                <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+                <a class="btn" href={`${base}proyecto/historia/`}
+                    >Ver Historia</a
+                >
+                <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+                <a class="btn primary" href={`${base}proyecto/cinematicas/`}
+                    >Ver cinemáticas</a
+                >
+                <a class="btn" href={`${base}proyecto/enemigos/`}
+                    >Ver Enemigos</a
+                >
+                <a class="btn" href={`${base}proyecto/progreso/`}
+                    >Ver Progreso</a
+                >
+            </div>
+</BaseLayout>
+
+<style>
+    .kicker {
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        opacity: 0.75;
+        margin: 0 0 6px;
+        font-size: 0.86rem;
+    }
+    h2 {
+        margin: 0 0 10px;
+        font-size: 2rem;
+    }
+    .lead {
+        margin: 0;
+        text-align: justify;
+        opacity: 0.92;
+        line-height: 1.55;
+    }
+    .card-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 5% 5%;
+    }
+    .card {
+        flex: 1 1 45%;
+        display: flex;
+        flex-direction: column;
+        margin-top: 16px;
+        padding: 16px 16px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+    }
+
+    .pgrid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .portrait {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        background: rgba(0, 0, 0, 0.18);
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 260px;
+        overflow: hidden;
+    }
+    .portrait img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45));
+    }
+
+    .pcontent p {
+        text-align: justify;
+    }
+    .muted {
+        opacity: 0.86;
+    }
+
+    .chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 10px;
+    }
+    .chip {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.03);
+        color: rgba(255, 255, 255, 0.82);
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.85rem;
+    }
+
+    .grid2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .subcard {
+        margin-top: 12px;
+        padding: 12px 12px;
+        border-radius: 12px;
+        border: 1px solid rgba(29, 11, 11, 0.1);
+        background: rgba(0, 0, 0, 0.18);
+    }
+    .subcard h4 {
+        margin: 0 0 8px;
+    }
+    .subcard p {
+        margin: 0;
+        opacity: 0.92;
+        line-height: 1.5;
+    }
+
+    .quote {
+        margin: 14px 0 0;
+        padding: 12px 12px;
+        border-left: 4px solid rgba(170, 120, 255, 0.65);
+        background: rgba(170, 120, 255, 0.08);
+        border-radius: 10px;
+    }
+    .quote p {
+        margin: 0 0 6px;
+        font-weight: 600;
+    }
+    .quote cite {
+        opacity: 0.8;
+        font-style: normal;
+        font-size: 0.92rem;
+    }
+
+    @media (max-width: 860px) {
+        .pgrid {
+            grid-template-columns: 1fr;
+        }
+        .grid2 {
+            grid-template-columns: 1fr;
+        }
+        .portrait {
+            min-height: 220px;
+        }
+    }
+</style>
+```
+
+---
+## FILE: src/pages/proyecto/progreso.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const acts = [
+  {
+    n: "00",
+    title: "Prólogo — El Eclipse",
+    desc: "Un evento ignorado por casi todos. El protagonista humano lo observa… y despierta en Kaelum dentro de Kael. Desde el minuto uno, el mundo te mira raro: no eres “el elegido”, eres el que no encaja.",
+    goals: [
+      "Presentar el tono: oscuro, funcional, sin épica gratis",
+      "Primer choque: estar en Kael = cargar con prejuicios ajenos",
+      "Plantar la semilla: La Fisura responde a “señales”",
+    ],
+  },
+  {
+    n: "01",
+    title: "Acto 1 — “No eres bienvenido”",
+    desc: "Aprendes el mundo por experiencia: ayudas, te esfuerzas, intentas hacer lo correcto… y aun así te rechazan. Kael no es odiado por lo que hace hoy, sino por lo que creen que es.",
+    goals: [
+      "Entender por qué Kael es tratado como “peligro”",
+      "Conocer zonas base, aliados y reglas sociales del mundo",
+      "Introducir a La Orden como poder real (control + jerarquía)",
+    ],
+    twist:
+      "Plot twist 1: Kael usa por primera vez el Poder de La Fisura para salvar… y la reacción es miedo, persecución y rechazo. Se fija la idea: la intención no basta; el mundo responde a lo que teme.",
+  },
+  {
+    n: "02",
+    title: "Acto 2 — “La verdad está bajo sus túnicas”",
+    desc: "Dejas de pelear solo contra anomalías y empiezas a pelear contra el sistema: aparece el Orbe del Origen, y con él la doble cara de La Orden. El enemigo ya no es “lo raro”. Es lo organizado.",
+    goals: [
+      "Conocer el Orbe del Origen y su impacto real en el mundo",
+      "Descubrir qué esconde La Orden (y lo que ha aceptado como coste)",
+      "Elegir hacia dónde tiras: pueblo, disidentes, guardianes… o tu ambición",
+    ],
+    twist:
+      "Plot twist 2: La Orden no solo sabía del Orbe: lo ha usado deliberadamente asumiendo tragedias como “daño colateral”. Aquí el jugador se define: se rompe por dentro… o se le despierta el hambre de poder.",
+  },
+  {
+    n: "03",
+    title: "Acto 3 — “Tu decisión pesa”",
+    desc: "El cierre no va de “ganar”. Va de qué haces con lo que ya sabes. El mundo se alinea contra ti o contigo en base a tu conducta y a puntos de no retorno. Y el Orbe deja de ser un objeto: se convierte en sentencia.",
+    goals: [
+      "Resolver el destino del Orbe (y lo que implica para Kaelum)",
+      "Afrontar las consecuencias de tu karma y decisiones irreversibles",
+      "Cierre por rutas: bueno / neutral / malo",
+    ],
+  },
+];
+
+const endings = [
+  {
+    title: "Final bueno",
+    subtitle: "protección del mundo (cuesta, pero se sostiene)",
+    desc: "Con ayuda de aliados y guardianes, se invoca el enfrentamiento definitivo contra la amenaza y se busca cerrar el ciclo sin perpetuar el control. Kael no se convierte en símbolo perfecto: se convierte en alguien que eligió cargar con el precio.",
+    points: [
+      "Karma alto (tendencia responsable)",
+      "Ayudas y alianzas activas",
+      "El mundo reacciona con respeto (no con miedo)",
+    ],
+  },
+  {
+    title: "Final neutral",
+    subtitle: "contención (estabilidad… con sombra)",
+    desc: "Se entrega el Orbe a guardianes para contenerlo/controlarlo. Kaelum se estabiliza, pero Kael elige no cargar con todo el peso del destino. No es cobardía: es aceptar límites.",
+    points: [
+      "Karma medio (decisiones mezcladas)",
+      "Menos aliados, más pragmatismo",
+      "El mundo queda estable, pero no “libre”",
+    ],
+  },
+  {
+    title: "Final malo",
+    subtitle: "poder (el mundo confirma lo que temía)",
+    desc: "Kael toma el Orbe, abraza La Fisura y se convierte en el jefe final. El jugador decide si lo justifica como justicia… o como caos. El mundo no te perdona: te recuerda.",
+    points: [
+      "Karma bajo (tendencia egoísta / uso desmedido)",
+      "Caza activa y ruptura social total",
+      "Corrupción visible y autoridad por miedo",
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Progreso"
+  description="Progreso del juego (historia): prólogo, actos, giros y finales por decisiones."
+>
+  <section class="hero">
+    <p class="kicker">Proyecto</p>
+    <h1>Progreso</h1>
+    <p class="lead">
+      Aquí “progreso” no es el estado del portfolio: es <strong
+        >cómo avanza el juego</strong
+      >. Prólogo → Acto 1 → Acto 2 → Acto 3. Y el final cambia según lo que
+      hayas hecho.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}proyecto/`}>Volver a Proyecto</a>
+      <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <section class="card full">
+      <div class="label">// PROGRESO PRINCIPAL</div>
+      <h2>Estructura narrativa (Prólogo + 3 actos)</h2>
+      <p class="muted">
+        Escalado dramático claro: <strong>identidad → verdad → decisión</strong
+        >. En Acto 1 aprendes lo que el mundo cree que eres. En Acto 2 descubres
+        por qué funciona así. En Acto 3 decides qué haces con el Orbe… y qué
+        haces contigo.
+      </p>
+
+      <div class="steps">
+        {
+          acts.map((a) => (
+            <div class="step">
+              <div class="left">
+                <div class="n">{a.n}</div>
+              </div>
+
+              <div class="right">
+                <div class="t">{a.title}</div>
+                <div class="d muted">{a.desc}</div>
+
+                <ul class="list compact">
+                  {a.goals.map((g) => (
+                    <li>{g}</li>
+                  ))}
+                </ul>
+
+                {a.twist && (
+                  <div class="callout">
+                    <strong>Giro narrativo:</strong> {a.twist}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="card full">
+      <div class="label">// RELACIÓN NARRATIVA / MECÁNICA</div>
+      <h2>Qué cambia realmente al avanzar</h2>
+      <p class="muted">
+        La historia no está para adornar el combate. Está para modificar cómo el
+        mundo reacciona a ti, qué puertas se abren y cuáles se cierran. La
+        narrativa no interrumpe el gameplay: lo condiciona.
+      </p>
+
+      <div class="grid" style="margin-top:10px">
+        <div class="card" style="grid-column: span 6;">
+          <h3>Lo que entiendes como jugador</h3>
+          <ul class="list">
+            <li>
+              <strong>Acto 1:</strong> la intención no basta. El mundo reacciona a
+              lo que teme.
+            </li>
+            <li>
+              <strong>Acto 2:</strong> el verdadero peligro no siempre es la anomalía,
+              sino quien la administra.
+            </li>
+            <li>
+              <strong>Acto 3:</strong> decidir implica aceptar consecuencias irreversibles.
+            </li>
+          </ul>
+        </div>
+
+        <div class="card" style="grid-column: span 6;">
+          <h3>Lo que se vuelve jugable</h3>
+          <ul class="list">
+            <li>
+              Sistema de reputación y tendencia moral visible en reacciones
+              sociales.
+            </li>
+            <li>
+              Puntos de no retorno que alteran rutas, alianzas y
+              enfrentamientos.
+            </li>
+            <li>
+              El Orbe como elemento jugable y moral: no es un objeto, es una
+              postura.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout subtle">
+        <strong>Clave temática:</strong> cuando usas el Poder de La Fisura para resolver
+        conflictos, el mundo no lo interpreta como salvación. Lo interpreta como una
+        confirmación de lo que ya sospechaba.
+      </div>
+    </section>
+
+    <section class="card full">
+      <div class="label">// FINALES</div>
+      <h2>Tres rutas finales (derivadas de tu conducta)</h2>
+      <p class="muted">
+        No hay finales por “seleccionar una frase correcta”. El desenlace es el
+        resultado acumulado de tus decisiones, tus alianzas y cómo utilizaste el
+        Orbe del Origen.
+      </p>
+
+      <div class="endings">
+        {
+          endings.map((e) => (
+            <div class="ending">
+              <h3>{e.title}</h3>
+              <p class="muted">
+                <strong>{e.subtitle}</strong>
+              </p>
+              <p class="muted">{e.desc}</p>
+              <ul class="list compact">
+                {e.points.map((p) => (
+                  <li>{p}</li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="card full">
+      <div class="label">// MULTIJUGADOR</div>
+      <h2>Mismo universo, intención distinta</h2>
+      <p class="muted">
+        El modo multijugador comparte estética, facciones y trasfondo, pero no
+        continúa la línea argumental del singleplayer. La campaña construye
+        identidad y conflicto. El multijugador destila ese mundo en
+        enfrentamientos directos, legibles y competitivos.
+      </p>
+
+      <div class="callout">
+        <strong>En resumen:</strong> la historia crea significado. El multijugador
+        explota sus sistemas.
+      </div>
+    </section>
+
+    <section class="card full">
+      <div class="label">// CIERRE</div>
+      <h2>Progresión en una frase</h2>
+      <p class="muted">
+        Kaelum no progresa por dificultad creciente, sino por revelación
+        creciente. Empieza definiéndote desde fuera, continúa mostrándote el
+        sistema que te clasifica, y termina obligándote a elegir si lo rompes,
+        lo perpetúas o te conviertes en él.
+      </p>
+    </section>
+  </div>
+  <div class="actions">
+      <a class="btn primary" href={`${base}proyecto/`}>Volver a Proyecto</a>
+      <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+  </div>
+</BaseLayout>
+
+<style>
+  .label {
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+    color: var(--muted2);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    margin-bottom: 8px;
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 12px;
+  }
+
+  .step {
+    display: flex;
+    gap: 14px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    align-items: flex-start;
+  }
+
+  .left {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    min-width: 60px;
+    padding-top: 2px;
+  }
+
+  .step .n {
+    font-weight: 1000;
+    letter-spacing: 0.18em;
+    opacity: 0.55;
+    font-size: 1rem;
+  }
+
+  .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  .step .t {
+    font-weight: 900;
+    color: var(--muted2);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.92rem;
+    line-height: 1.15;
+  }
+
+  .d {
+    line-height: 1.55;
+  }
+
+  .list.compact {
+    margin: 0;
+    padding-left: 18px;
+  }
+
+  .callout {
+    margin-top: 6px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: 1px dashed rgba(255, 255, 255, 0.18);
+    background: rgba(0, 0, 0, 0.18);
+    color: var(--muted);
+  }
+
+  .callout.subtle {
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .endings {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+    align-items: stretch;
+  }
+
+  .ending {
+    flex: 1 1 320px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    min-width: 280px;
+  }
+</style>
 ```
 
 ---
@@ -1814,7 +4616,9 @@ const base = import.meta.env.BASE_URL;
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
-const imgUrl = `${base}images/vision/moodboard.jpg`;
+//const imgUrl = `${base}images/vision/moodboard.jpg`;
+const imgUrl = `${base}images/vision/Moodboard_QR.png`;
+
 ---
 
 <BaseLayout
