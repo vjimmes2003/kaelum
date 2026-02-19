@@ -1,7 +1,7 @@
 # Dump completo de archivos .astro
 
 - Carpeta escaneada: `src`
-- Archivos encontrados: **24**
+- Archivos encontrados: **26**
 
 
 ---
@@ -493,6 +493,22 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <p class="muted">Pulido de impacto, claridad y primer mapa de pruebas para medir flow.</p>
       <div class="actions">
         <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-4/`}>Leer</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <h3>Semana 5 · Progresión narrativa</h3>
+      <p class="muted">Prólogo + 3 actos: identidad → verdad → decisión. Kael, el Eclipse y el Orbe como motor real.</p>
+      <div class="actions">
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-5/`}>Leer</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <h3>Semana 6 · Rutas, karma y finales</h3>
+      <p class="muted">Puntos de no retorno, rutas bueno/neutral/malo y cómo el mundo te “sentencia” por conducta.</p>
+      <div class="actions">
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-6/`}>Leer</a>
       </div>
     </article>
   </div>
@@ -1043,10 +1059,278 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       </p>
 
       <div class="actions">
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-5/`}>Ir a Semana 5</a>
         <a class="btn" href={`${import.meta.env.BASE_URL}devlog/`}>Volver al índice</a>
       </div>
     </section>
   </div>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/devlog/semana-5.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Kaelum · Devlog Semana 5" description="Semana 5 del desarrollo: progresión narrativa y estructura del juego.">
+  <section class="hero">
+    <p class="kicker">Devlog</p>
+    <h1>Semana 5 · Progresión narrativa (Prólogo + 3 actos)</h1>
+    <p class="lead">
+      Esta semana cerramos la columna vertebral del modo historia: un escalado claro
+      <strong>identidad → verdad → decisión</strong>. No es “lore por lore”: es estructura para que el mundo te trate distinto
+      y el jugador entienda por qué Kael vive en tensión constante.
+    </p>
+
+    <div class="actions">
+      <a class="btn" href={`${base}devlog/`}>Volver al Devlog</a>
+      <a class="btn" href={`${base}devlog/semana-4/`}>Semana anterior</a>
+      <a class="btn primary" href={`${base}devlog/semana-6/`}>Siguiente semana</a>
+    </div>
+  </section>
+
+  <section class="gdd-section">
+    <article class="card full">
+      <div class="label">// OBJETIVO</div>
+      <h2>Qué queríamos conseguir</h2>
+      <p class="muted">
+        Que el jugador sienta que la historia avanza porque <strong>tú existes</strong> en Kaelum, no porque “toca cinemática”.
+        Kael no es rechazado por lo que hace hoy. Es rechazado por lo que creen que es… y por lo que temen que pueda llegar a ser.
+      </p>
+      <ul class="list">
+        <li><strong>Dejar clara la progresión:</strong> primero te miran raro → luego entiendes el sistema → luego te juzgan por conducta.</li>
+        <li><strong>Conectar facciones con intención:</strong> Fisura como ruptura, Orden como control, pueblo como miedo organizado.</li>
+        <li><strong>Dar un motor tangible:</strong> el Orbe del Origen deja de ser “objeto” y pasa a ser decisión con consecuencias.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <div class="label">// ESTRUCTURA</div>
+      <h2>Prólogo + 3 actos (sin humo)</h2>
+
+      <div class="callout subtle">
+        <strong>Idea central:</strong> el mundo no reacciona a tu discurso, reacciona a tu <strong>lectura pública</strong>.
+        Lo que haces (y cómo lo haces) pesa más que lo que “intentas”.
+      </div>
+
+      <div class="grid" style="margin-top:12px">
+        <div class="card" style="grid-column: span 12;">
+          <h3>00 · Prólogo — El Eclipse</h3>
+          <p class="muted">
+            Un evento que casi nadie entiende y que lo cambia todo. El protagonista humano lo observa…
+            y despierta en Kaelum dentro de Kael. Desde el minuto uno, el mundo te mira raro:
+            no eres “el elegido”, eres <strong>el que no encaja</strong>.
+          </p>
+          <ul class="list">
+            <li>Presentar tono: oscuro, funcional, sin épica gratis.</li>
+            <li>Primer choque: existir como Kael ya viene con prejuicios ajenos.</li>
+            <li>Semilla: la Fisura responde a “señales” y a rupturas de norma.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="grid-column: span 12;">
+          <h3>01 · Acto 1 — “No eres bienvenido”</h3>
+          <p class="muted">
+            Aprendes el mundo por experiencia: ayudas, te esfuerzas, intentas hacerlo “bien”…
+            y aun así te rechazan. Aquí el juego te enseña la regla cruel:
+            <strong>la intención no basta</strong>.
+          </p>
+          <ul class="list">
+            <li>Entender por qué Kael es tratado como “peligro”.</li>
+            <li>Conocer zonas base, aliados y reglas sociales del mundo.</li>
+            <li>Introducir a la Orden como poder real: jerarquía, protocolo, control.</li>
+          </ul>
+          <div class="callout">
+            <strong>Giro (plot twist 1):</strong> Kael usa por primera vez el Poder de La Fisura para salvar…
+            y la reacción es miedo, persecución y rechazo. Se fija la idea: el mundo responde a lo que teme.
+          </div>
+        </div>
+
+        <div class="card" style="grid-column: span 12;">
+          <h3>02 · Acto 2 — “La verdad está bajo sus túnicas”</h3>
+          <p class="muted">
+            Dejas de pelear solo contra anomalías y empiezas a pelear contra el sistema.
+            Aparece el Orbe del Origen y, con él, la doble cara de la Orden.
+            El enemigo ya no es “lo raro”. Es <strong>lo organizado</strong>.
+          </p>
+          <ul class="list">
+            <li>Conocer el Orbe del Origen y su impacto real en Kaelum.</li>
+            <li>Descubrir qué esconde la Orden y qué ha aceptado como “coste”.</li>
+            <li>Empezar a elegir hacia dónde tiras: pueblo, disidentes, guardianes… o tu ambición.</li>
+          </ul>
+          <div class="callout">
+            <strong>Giro (plot twist 2):</strong> la Orden no solo sabía del Orbe: lo ha usado deliberadamente,
+            asumiendo tragedias como “daño colateral”. Aquí el jugador se define: se rompe… o se endurece.
+          </div>
+        </div>
+
+        <div class="card" style="grid-column: span 12;">
+          <h3>03 · Acto 3 — “Tu decisión pesa”</h3>
+          <p class="muted">
+            El cierre no va de “ganar”. Va de qué haces con lo que ya sabes.
+            El mundo se alinea contigo o contra ti en base a tu conducta y a puntos de no retorno.
+            El Orbe deja de ser un objeto: se convierte en sentencia.
+          </p>
+          <ul class="list">
+            <li>Resolver el destino del Orbe (y lo que implica para Kaelum).</li>
+            <li>Afrontar consecuencias: karma, alianzas rotas y decisiones irreversibles.</li>
+            <li>Cierre por rutas: bueno / neutral / malo (ganadas, no escogidas al final).</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full">
+      <div class="label">// PRÓXIMO</div>
+      <h2>Qué viene después</h2>
+      <p class="muted">
+        Ya tenemos el esqueleto sólido. La siguiente semana lo aterrizamos en rutas finales:
+        <strong>cómo te sentencia el mundo</strong>, dónde están los puntos de no retorno y qué significa “bueno/neutral/malo”
+        dentro de Kaelum (sin moralina barata).
+      </p>
+
+      <div class="actions">
+        <a class="btn" href={`${base}devlog/`}>Volver al Devlog</a>
+        <a class="btn primary" href={`${base}devlog/semana-6/`}>Ir a Semana 6</a>
+      </div>
+    </article>
+  </section>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/devlog/semana-6.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Kaelum · Devlog Semana 6" description="Semana 6 del desarrollo: rutas finales, karma y puntos de no retorno.">
+  <section class="hero">
+    <p class="kicker">Devlog</p>
+    <h1>Semana 6 · Rutas, karma y finales (el mundo te devuelve lo que haces)</h1>
+    <p class="lead">
+      Si la Semana 5 fue “la columna”, esta semana fue “los tornillos”.
+      Definimos cómo se traduce la progresión narrativa en consecuencias jugables:
+      <strong>puntos de no retorno</strong>, reacciones del mundo y rutas finales que no se eligen con un botón.
+    </p>
+
+    <div class="actions">
+      <a class="btn" href={`${base}devlog/`}>Volver al Devlog</a>
+      <a class="btn" href={`${base}devlog/semana-5/`}>Semana anterior</a>
+      <a class="btn primary" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+    </div>
+  </section>
+
+  <section class="gdd-section">
+    <article class="card full">
+      <div class="label">// PRINCIPIO</div>
+      <h2>La regla de Kaelum</h2>
+      <p class="muted">
+        El juego no te pregunta “qué dices que eres”. Te mira y decide “qué pareces”.
+        Y eso lo marcas con conducta: cómo resuelves conflictos, a quién proteges, qué sacrificas…
+        y cuándo decides que el fin justifica el medio.
+      </p>
+      <div class="callout subtle">
+        <strong>Traducción:</strong> no hay “final bueno” por elegir bien una frase. Hay una ruta coherente con lo que hiciste.
+      </div>
+    </article>
+
+    <article class="card full">
+      <div class="label">// PUNTOS DE NO RETORNO</div>
+      <h2>Decisiones que cierran puertas</h2>
+      <p class="muted">
+        Marcamos la progresión con momentos que no son “decorado”: cambian rutas, aliados, acceso y trato.
+        Si el jugador nota que puede hacer cualquier cosa sin coste, el tema del juego se muere.
+      </p>
+      <ul class="list">
+        <li><strong>Acto 1:</strong> la primera vez que el Poder de La Fisura “te salva” te deja una lectura pública encima.</li>
+        <li><strong>Acto 2:</strong> cuando entiendes el Orbe, ya no puedes volver a mirar a la Orden como “guardias del bien”.</li>
+        <li><strong>Acto 3:</strong> el destino del Orbe no es una misión: es una sentencia que reescribe Kaelum (y a Kael).</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <div class="label">// RUTAS FINALES</div>
+      <h2>Tres rutas (bueno / neutral / malo)</h2>
+      <p class="muted">
+        Las rutas no son moralina. Son el resultado lógico de tu conducta + tus alianzas + tus puntos de no retorno.
+        El mundo no “te perdona” porque tú creas que tenías motivos.
+      </p>
+
+      <div class="grid" style="margin-top:12px">
+        <div class="card" style="grid-column: span 4;">
+          <h3>Ruta buena</h3>
+          <p class="muted"><strong>“Cargar con el peso sin convertirte en amenaza.”</strong></p>
+          <ul class="list">
+            <li>Usas poder con control, pero pagas el coste social igual.</li>
+            <li>Proteges a otros aunque te complique el camino.</li>
+            <li>El Orbe se resuelve sin “arrasar” Kaelum para ganar.</li>
+          </ul>
+        </div>
+
+        <div class="card" style="grid-column: span 4;">
+          <h3>Ruta neutral</h3>
+          <p class="muted"><strong>“Sobrevivir sin ser mártir.”</strong></p>
+          <ul class="list">
+            <li>Priorizas estabilidad y tu propia supervivencia.</li>
+            <li>Evitas extremos: ni santidad, ni dominio total.</li>
+            <li>El Orbe queda en equilibrio tenso (no cómodo).</li>
+          </ul>
+        </div>
+
+        <div class="card" style="grid-column: span 4;">
+          <h3>Ruta mala</h3>
+          <p class="muted"><strong>“Ganar… y convertirte en lo que temían.”</strong></p>
+          <ul class="list">
+            <li>El poder se vuelve atajo recurrente.</li>
+            <li>Las decisiones rompen alianzas y justifican daño colateral.</li>
+            <li>El Orbe se usa como herramienta de dominio o ruptura.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout">
+        <strong>Clave:</strong> cuando usas el Poder de La Fisura para “hacerlo fácil”, el mundo no lo interpreta como heroísmo.
+        Lo interpreta como amenaza.
+      </div>
+    </article>
+
+    <article class="card full">
+      <div class="label">// MULTIJUGADOR</div>
+      <h2>Cómo encaja (sin comerse la historia)</h2>
+      <p class="muted">
+        El multijugador comparte universo e identidad, pero no “continúa” la campaña.
+        La campaña construye contexto, presión y significado; el multijugador se centra en lectura rápida,
+        partidas competitivas y decisiones de combate.
+      </p>
+      <div class="callout subtle">
+        <strong>Traducción:</strong> vienes por historia → te quedas por gameplay. Si vienes solo a competir, el universo está ahí sin obligarte a “tragarte lore”.
+      </div>
+    </article>
+
+    <article class="card full">
+      <div class="label">// CIERRE</div>
+      <h2>Resumen</h2>
+      <p class="muted">
+        Kaelum progresa como una escalera: primero te define (rechazo), luego te revela (verdad), y al final te sentencia (decisión).
+        El jugador no “elige un final”: <strong>se lo gana</strong>.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}devlog/`}>Volver al Devlog</a>
+        <a class="btn" href={`${base}devlog/semana-5/`}>Volver a Semana 5</a>
+      </div>
+    </article>
+  </section>
 </BaseLayout>
 ```
 
