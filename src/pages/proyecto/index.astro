@@ -1,117 +1,117 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
+
+const dossier = [
+  {
+    label: "// BACKGROUND",
+    title: "Historia",
+    desc: "Premisa, conflicto, objetivo del protagonista y rumbo narrativo. Enfocado para que alguien ajeno al proyecto lo entienda rápido.",
+    href: `${base}proyecto/historia/`,
+  },
+  {
+    label: "// WORLD_BUILDING",
+    title: "Mundo",
+    desc: "Tono, ambientación, reglas del universo y referencias visuales. Lo justo para sostener el juego sin convertirlo en novela.",
+    href: `${base}proyecto/mundo/`,
+  },
+  {
+    label: "// CHARACTERS",
+    title: "Personajes",
+    desc: "Protagonista, aliados y secundarios. Ficha rápida: rol en historia, función en gameplay y lectura visual.",
+    href: `${base}proyecto/personajes/`,
+  },
+  {
+    label: "// ENEMIES",
+    title: "Enemigos",
+    desc: "Roles de combate + facciones por color. Diseñado para lectura rápida: qué es, qué hace y cómo se contrarresta.",
+    href: `${base}proyecto/enemigos/`,
+  },
+  {
+    label: "// SEQUENCES",
+    title: "Cinemáticas",
+    desc: "Versión resumida “publicable”: intención audiovisual, estructura y momentos clave. Profundiza sin comerse la página.",
+    href: `${base}proyecto/cinematicas/`,
+  },
+  {
+    label: "// PROGRESSION",
+    title: "Progreso",
+    desc: "Objetivos, ritmo y consecuencias. Cómo avanza el juego: prólogo, actos, rutas y cierres por decisiones.",
+    href: `${base}proyecto/progreso/`,
+  },
+  {
+    label: "// SYSTEMS",
+    title: "Mecánicas",
+    desc: "Armas, movimiento, habilidades, interacción y filosofía jugable. El bloque donde se explica cómo se juega Kaelum.",
+    href: `${base}proyecto/mecanicas/`,
+    featured: true,
+  },
+  {
+    label: "// FLOW",
+    title: "Flujo de estados",
+    desc: "Pantallas principales, menús, gameplay, pausa, game over y victoria. Incluye el diagrama general del flujo del juego.",
+    href: `${base}proyecto/flujo/`,
+    featured: true,
+  },
+];
 ---
 
 <BaseLayout
   title="Kaelum — Proyecto"
-  description="Sección de proyecto: historia, mundo, cinemáticas, personajes, enemigos y progreso."
+  description="Sección de proyecto: historia, mundo, personajes, enemigos, mecánicas, flujo de estados, cinemáticas y progreso."
 >
   <section class="hero hero-pro">
     <p class="kicker">Proyecto</p>
-    <h1>Guion, mundo y contenido</h1>
+    <h1>Guion, mundo, sistemas y estructura</h1>
     <p class="lead">
       Esto se lee como un dossier: titulares claros, bloques visuales y decisiones defendibles.
       En Kaelum nada está “por estar”: cada pieza existe porque <strong>empuja gameplay</strong>.
     </p>
+
     <div class="meta">
       <span class="tag">Narrativa</span>
-      <span class="tag">Cinemáticas</span>
       <span class="tag">Personajes</span>
       <span class="tag">Enemigos</span>
+      <span class="tag">Mecánicas</span>
+      <span class="tag">Flujo</span>
+      <span class="tag">Cinemáticas</span>
       <span class="tag">Progreso</span>
-      <span class="tag">Devlog</span>
     </div>
+
     <div class="callout subtle" style="margin-top:12px">
-      <strong>Orden recomendado:</strong> Historia → Mundo → Personajes → Enemigos → Cinemáticas → Progreso.
-      (Las cinemáticas aquí están en versión resumida “publicable”, no storyboard full.)
+      <strong>Orden recomendado:</strong> Historia → Mundo → Personajes → Enemigos → Mecánicas → Flujo de estados → Cinemáticas → Progreso.
     </div>
-        <div class="actions">
+
+    <div class="actions">
       <a class="btn primary" href={`${base}proyecto/historia/`}>Historia</a>
       <a class="btn" href={`${base}proyecto/mundo/`}>Mundo</a>
-      <a class="btn" href={`${base}proyecto/cinematicas/`}>Cinemáticas</a>
       <a class="btn" href={`${base}proyecto/personajes/`}>Personajes</a>
       <a class="btn" href={`${base}proyecto/enemigos/`}>Enemigos</a>
+      <a class="btn" href={`${base}proyecto/cinematicas/`}>Cinemáticas</a>
       <a class="btn" href={`${base}proyecto/progreso/`}>Progreso</a>
+      <a class="btn" href={`${base}proyecto/mecanicas/`}>Mecánicas</a>
+      <a class="btn" href={`${base}proyecto/flujo/`}>Flujo</a>
     </div>
   </section>
 
   <div class="grid">
-    <article class="card">
-      <div class="label">// BACKGROUND</div>
-      <h2>Historia</h2>
-      <p class="muted">
-        Premisa, conflicto, objetivo del protagonista y rumbo narrativo.
-        Enfocado para que alguien ajeno al proyecto lo entienda rápido.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}proyecto/historia/`}>Abrir</a>
-      </div>
-    </article>
+    {dossier.map((s) => (
+      <article class={`card ${s.featured ? "featured" : ""}`}>
+        <div class="label">{s.label}</div>
+        <h2>{s.title}</h2>
+        <p class="muted">{s.desc}</p>
+        <div class="actions">
+          <a class={s.featured ? "btn primary" : "btn"} href={s.href}>Abrir</a>
+        </div>
+      </article>
+    ))}
 
-    <article class="card">
-      <div class="label">// WORLD_BUILDING</div>
-      <h2>Mundo</h2>
-      <p class="muted">
-        Tono, ambientación, reglas del universo y referencias visuales.
-        Lo justo para sostener el juego sin convertirlo en novela.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}proyecto/mundo/`}>Abrir</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="label">// CHARACTERS</div>
-      <h2>Personajes</h2>
-      <p class="muted">
-        Protagonista, aliados y secundarios. Ficha rápida, rol en historia, función en gameplay,
-        y “lectura” visual.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}proyecto/personajes/`}>Abrir</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="label">// ENEMIES</div>
-      <h2>Enemigos</h2>
-      <p class="muted">
-        Roles de combate + facciones por color. Diseñado para lectura rápida: qué es, qué hace,
-        cómo se contrarresta.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}proyecto/enemigos/`}>Abrir</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="label">// SEQUENCES</div>
-      <h2>Cinemáticas</h2>
-      <p class="muted">
-        Versión resumida “publicable”: intención audiovisual, estructura y momentos clave.
-        Profundiza sin comerse la página.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}proyecto/cinematicas/`}>Abrir</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="label">// PROGRESSION</div>
-      <h2>Progreso</h2>
-      <p class="muted">
-        Objetivos, ritmo y consecuencias. Un mapa defendible: bucle de progreso + estructura + hitos.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}proyecto/progreso/`}>Abrir</a>
-      </div>
-    </article>
     <article class="card full">
       <h2>Por qué este formato</h2>
       <p class="muted">
-        La idea es que mañana cambias una cinemática o un enemigo y esto se actualiza sin romper el resto.
-        Todo queda en piezas pequeñas, con intención, y sin “texto de guía” que dé vergüenza enseñar.
+        La idea es que alguien pueda entrar al proyecto sin perderse: primero entiende qué es Kaelum,
+        luego cómo funciona su mundo, después cómo se juega y, por último, cómo se estructura su progreso.
+        Todo queda separado por bloques, pero conectado como un único GDD navegable.
       </p>
       <div class="actions" style="margin-top:10px">
         <a class="btn" href={`${base}kaelum/`}>Volver a Resumen</a>
@@ -127,13 +127,51 @@ const base = import.meta.env.BASE_URL;
       position:absolute;
       inset:-2px;
       pointer-events:none;
-      background: radial-gradient(900px 260px at 20% 0%, rgba(70,255,150,.12), transparent 65%),
-                  radial-gradient(700px 260px at 90% 10%, rgba(120,160,255,.10), transparent 60%);
+      background:
+        radial-gradient(900px 280px at 18% 0%, rgba(70,255,150,.10), transparent 65%),
+        radial-gradient(760px 280px at 90% 12%, rgba(120,160,255,.10), transparent 60%);
       opacity:.9;
+    }
+    .hero-pro > *{ position:relative; z-index:1; }
+
+    .kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      font-size:.82rem;
+      margin-bottom:6px;
+    }
+
+    .lead{
+      margin-top:8px;
+      line-height:1.6;
+      opacity:.92;
+      max-width:980px;
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+      justify-content:flex-start;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+      color: rgba(255,255,255,.82);
+      font-weight:900;
+      letter-spacing:.02em;
+      font-size:.86rem;
     }
 
     .label{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
       color: var(--muted2);
       letter-spacing: .12em;
       text-transform: uppercase;
@@ -141,14 +179,13 @@ const base = import.meta.env.BASE_URL;
       margin-bottom: 8px;
     }
 
-    .callout{
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 1px dashed rgba(255,255,255,.18);
-      background: rgba(0,0,0,.18);
-      color: var(--muted);
+    .featured{
+      border-color: rgba(140,120,255,.28);
+      background: linear-gradient(180deg, rgba(140,120,255,.10), rgba(0,0,0,.18));
+      box-shadow: 0 18px 60px rgba(140,120,255,.10);
     }
-    .callout.subtle{ border-style: solid; border-color: rgba(255,255,255,.08); background: rgba(255,255,255,.03); }
+
+    .grid .card h2{ margin-top:2px; }
+    .grid .card .actions{ margin-top:12px; }
   </style>
 </BaseLayout>
