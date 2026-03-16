@@ -1,7 +1,7 @@
 # Dump completo de archivos .astro
 
 - Carpeta escaneada: `src`
-- Archivos encontrados: **26**
+- Archivos encontrados: **28**
 
 
 ---
@@ -2043,12 +2043,18 @@ const base = import.meta.env.BASE_URL;
                 <a class="btn" href={`${base}proyecto/progreso/`}
                     >Ver Progreso</a
                 >
+                <a class="btn" href={`${base}proyecto/mecanicas/`}
+                    >Ver Mecánicas</a
+                >
+                <a class="btn" href={`${base}proyecto/flujo/`}
+                    >Ver Flujo de estados</a
+                >
             </div>
         </header>
     </section>
     <section class="gdd-section">
         <article class="card">
-            <h2>Estructura narrativa audiovisual</h3>
+            <h2>Estructura narrativa audiovisual</h2>
 
             <ul class="bullets">
                 <li>Tercera persona limitada centrada en Kael.</li>
@@ -2187,25 +2193,24 @@ const base = import.meta.env.BASE_URL;
             </div>
         </article>
         <div class="actions">
-                <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-                <a class="btn" href={`${base}proyecto/historia/`}
-                    >Ver Historia</a
-                >
-                <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-                <a class="btn" href={`${base}proyecto/personajes/`}
-                    >Ver Personajes</a
-                >
-                <a class="btn primary" href={`${base}proyecto/enemigos/`}
-                    >Ver Enemigos</a
-                >
-                <a class="btn" href={`${base}proyecto/progreso/`}
-                    >Ver Progreso</a
-                >
-            </div>
+            <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+            <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+            <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+            <a class="btn" href={`${base}proyecto/personajes/`}
+                >Ver Personajes</a
+            >
+            <a class="btn primary" href={`${base}proyecto/enemigos/`}
+                >Ver Enemigos</a
+            >
+            <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+            <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
+            <a class="btn" href={`${base}proyecto/flujo/`}
+                >Ver Flujo de estados</a
+            >
+        </div>
     </section>
 
     <style>
-
         .header {
             margin-bottom: 20px;
         }
@@ -2628,6 +2633,8 @@ const bosses = [
         <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
         <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
         <a class="btn primary" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
+        <a class="btn" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
       </div>
         <nav class="subnav" aria-label="Índice de enemigos">
           <a class="chip" href="#roles">Roles</a>
@@ -2758,12 +2765,14 @@ const bosses = [
     </article>
 
     <div class="actions bottom">
-      <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-      <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn primary" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+        <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn primary" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
+        <a class="btn" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
     </div>
 
   </section>
@@ -3103,6 +3112,318 @@ const bosses = [
 ```
 
 ---
+## FILE: src/pages/proyecto/flujo.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const states = [
+  {
+    title: "Pantalla de inicio",
+    desc: "Primer contacto visual con el juego. Funciona como boot o splash screen antes de pasar al menú principal.",
+  },
+  {
+    title: "Menú principal",
+    desc: "Punto central de navegación. Desde aquí el jugador accede al modo historia, multijugador, opciones, créditos o salida.",
+  },
+  {
+    title: "Gameplay — Singleplayer",
+    desc: "Estado principal del modo historia. Aquí conviven exploración, combate, eventos narrativos, puzles y zonas seguras.",
+  },
+  {
+    title: "Gameplay — Multijugador",
+    desc: "Estado principal del competitivo. Incluye emparejamiento, selección de personajes, inicio de partida, rondas y resultados.",
+  },
+  {
+    title: "Menú de pausa",
+    desc: "Suspensión temporal del estado activo. En singleplayer es pausa real; en multijugador, pausa individual no global.",
+  },
+  {
+    title: "Game Over",
+    desc: "Se activa al morir en el modo historia. Incluye mensaje contextual, estadísticas y opciones de reintento o salida.",
+  },
+  {
+    title: "Victoria / Resultados",
+    desc: "Cierre de partida o finalización del juego. Recoge estadísticas, cinemática final o retorno al menú principal.",
+  },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Flujo de estados"
+  description="Flujo de estados del juego: inicio, menú, gameplay, pausa, game over, victoria y resultados."
+>
+  <section class="hero">
+    <p class="kicker">Proyecto · Flujo</p>
+    <h1>Flujo de estados del juego</h1>
+    <p class="lead">
+      Esta sección resume cómo se organiza la experiencia del jugador desde que inicia el juego
+      hasta que termina una partida. El objetivo es que la navegación sea clara tanto en singleplayer como en multijugador.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}proyecto/`}>Volver a Proyecto</a>
+      <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
+    </div>
+
+    <nav class="subnav" aria-label="Índice de la página">
+      <a class="chip" href="#estados">Estados</a>
+      <a class="chip" href="#single">Singleplayer</a>
+      <a class="chip" href="#multi">Multijugador</a>
+      <a class="chip" href="#pausa">Pausa</a>
+      <a class="chip" href="#diagrama">Diagrama</a>
+    </nav>
+  </section>
+
+  <section class="gdd-section">
+    <article class="card full" id="estados">
+      <div class="label">// ESTADOS PRINCIPALES</div>
+      <h2>Panorama general</h2>
+      <p class="muted">
+        Kaelum se estructura en una secuencia clara de pantallas y estados.
+        Esto permite separar navegación, juego activo y cierres de partida sin mezclar sistemas.
+      </p>
+
+      <div class="state-flex">
+        {states.map((s) => (
+          <div class="state-card">
+            <h3>{s.title}</h3>
+            <p class="muted">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </article>
+
+    <article class="card full" id="single">
+      <div class="label">// SINGLEPLAYER</div>
+      <h2>Estado de gameplay — modo historia</h2>
+      <p class="muted">
+        En el singleplayer el gameplay combina exploración, combate, eventos narrativos, puzles y zonas seguras.
+        Desde este estado el jugador puede avanzar, pausar la partida o llegar a una condición de derrota o victoria.
+      </p>
+
+      <ul class="list">
+        <li><strong>Entrada:</strong> menú principal → iniciar partida.</li>
+        <li><strong>Sistemas activos:</strong> exploración, combate, narrativa contextual, puzles y progresión.</li>
+        <li><strong>Salidas:</strong> pausa, game over o estado de victoria.</li>
+      </ul>
+    </article>
+
+    <article class="card full" id="multi">
+      <div class="label">// MULTIJUGADOR</div>
+      <h2>Estado de gameplay — modo competitivo</h2>
+      <p class="muted">
+        En multijugador el flujo es más estructurado: emparejamiento, selección de personajes, inicio de partida,
+        desarrollo de ronda, final de ronda y resumen de resultados.
+      </p>
+
+      <ul class="list">
+        <li><strong>Fases internas:</strong> emparejamiento, selección, inicio, desarrollo, fin de ronda y resultados.</li>
+        <li><strong>Sistemas activos:</strong> combate, movimiento, habilidades, puntuación y HUD competitivo.</li>
+        <li><strong>Salidas:</strong> fin de partida, salida manual o pausa individual.</li>
+      </ul>
+    </article>
+
+    <article class="card full" id="pausa">
+      <div class="label">// MENÚ DE PAUSA</div>
+      <h2>Suspensión temporal del estado activo</h2>
+      <p class="muted">
+        El menú de pausa permite interrumpir temporalmente la experiencia sin romper la lógica general del juego.
+        En singleplayer actúa como pausa real. En multijugador funciona como pausa individual.
+      </p>
+
+      <div class="grid2">
+        <div class="mini-card">
+          <h3>Opciones</h3>
+          <ul class="list compact">
+            <li>Reanudar</li>
+            <li>Opciones rápidas</li>
+            <li>Reiniciar misión</li>
+            <li>Salir al menú principal</li>
+          </ul>
+        </div>
+
+        <div class="mini-card">
+          <h3>Transiciones</h3>
+          <ul class="list compact">
+            <li>Pausa → retorno al estado previo</li>
+            <li>Pausa → menú principal</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full">
+      <div class="label">// DERROTA Y VICTORIA</div>
+      <h2>Cierres de partida</h2>
+      <p class="muted">
+        El sistema diferencia entre derrota y victoria para reforzar la lectura del resultado.
+        En historia, el game over está planteado para fomentar aprendizaje. En competitivo, el cierre se centra en resultados y resumen.
+      </p>
+
+      <div class="grid2">
+        <div class="mini-card">
+          <h3>Game Over</h3>
+          <ul class="list compact">
+            <li>Condición: vida del jugador = 0 en modo historia.</li>
+            <li>Mensaje contextual y estadísticas.</li>
+            <li>Opciones: reintentar o salir.</li>
+          </ul>
+        </div>
+
+        <div class="mini-card">
+          <h3>Victoria / Resultados</h3>
+          <ul class="list compact">
+            <li>Finalización del modo historia o de una partida multijugador.</li>
+            <li>Cinemática final, estadísticas, créditos o resumen.</li>
+            <li>Retorno al menú principal.</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full" id="diagrama">
+      <div class="label">// DIAGRAMA</div>
+      <h2>Diagrama simple de transición de estados</h2>
+      <p class="muted">
+        Representación visual del flujo general del juego, diferenciando la rama de singleplayer y la de multijugador.
+      </p>
+
+      <div class="diagram-wrap">
+        <img
+          src={`${base}images/proyecto/diagrama_de_flujo.webp`}
+          alt="Diagrama de flujo de estados del juego Kaelum"
+          class="diagram"
+        />
+      </div>
+
+      <div class="callout subtle">
+        <strong>Ruta resumida:</strong> Pantalla de inicio → Menú principal → Singleplayer / Multijugador → Gameplay → Pausa / Game Over / Resultados / Victoria → Menú principal.
+      </div>
+    </article>
+
+    <div class="actions bottom">
+      <a class="btn primary" href={`${base}proyecto/`}>Volver a Proyecto</a>
+      <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
+    </div>
+  </section>
+
+  <style>
+    .kicker{ letter-spacing:.06em; text-transform:uppercase; opacity:.7; font-size:.85rem; }
+    .lead{ margin-top:6px; line-height:1.6; opacity:.9; max-width:980px; }
+
+    .label{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      font-size: .72rem;
+      margin-bottom: 8px;
+    }
+
+    .subnav{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .chip{
+      display:inline-flex;
+      align-items:center;
+      text-decoration:none;
+      color: rgba(255,255,255,.82);
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      font-size: .78rem;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+
+    .chip:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.06);
+      border-color: rgba(255,255,255,.18);
+    }
+
+    .state-flex, .grid2{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:14px;
+      align-items:stretch;
+    }
+
+    .state-card, .mini-card{
+      flex:1 1 280px;
+      padding:14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);
+      min-width:260px;
+    }
+
+    .list{ padding-left:18px; }
+    .list.compact{ margin:0; padding-left:18px; }
+    .list li{ margin:6px 0; }
+
+    .diagram-wrap{
+      margin-top:14px;
+      padding:14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      overflow:hidden;
+    }
+
+    .diagram{
+      display:block;
+      width:100%;
+      height:auto;
+      border-radius:12px;
+    }
+
+    .callout{
+      margin-top:14px;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px dashed rgba(255,255,255,.18);
+      background:rgba(0,0,0,.18);
+      color:var(--muted);
+    }
+
+    .callout.subtle{
+      border-style:solid;
+      border-color:rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+    }
+
+    .actions.bottom{ margin-top:18px; }
+  </style>
+</BaseLayout>
+```
+
+---
 ## FILE: src/pages/proyecto/historia.astro
 ---
 
@@ -3126,12 +3447,14 @@ const base = import.meta.env.BASE_URL;
       No vienes a que te aplaudan. Vienes a sobrevivir… y a decidir qué tipo de persona vas a ser cuando tengas poder de verdad.
     </p>
     <div class="actions">
-        <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-        <a class="btn primary" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-        <a class="btn " href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-        <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver cinemáticas</a>
-        <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
-        <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+      <a class="btn primary" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+      <a class="btn " href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver cinemáticas</a>
+      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
+      <a class="btn" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
     </div>
   </header>
 </section>
@@ -3272,12 +3595,14 @@ const base = import.meta.env.BASE_URL;
     </div>
   </article>
   <div class="actions">
-        <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-        <a class="btn primary" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-        <a class="btn " href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-        <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver cinemáticas</a>
-        <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
-        <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+      <a class="btn primary" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+      <a class="btn " href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver cinemáticas</a>
+      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
+      <a class="btn" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
     </div>
 </section>
 
@@ -3366,117 +3691,117 @@ const base = import.meta.env.BASE_URL;
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
+
+const dossier = [
+  {
+    label: "// BACKGROUND",
+    title: "Historia",
+    desc: "Premisa, conflicto, objetivo del protagonista y rumbo narrativo. Enfocado para que alguien ajeno al proyecto lo entienda rápido.",
+    href: `${base}proyecto/historia/`,
+  },
+  {
+    label: "// WORLD_BUILDING",
+    title: "Mundo",
+    desc: "Tono, ambientación, reglas del universo y referencias visuales. Lo justo para sostener el juego sin convertirlo en novela.",
+    href: `${base}proyecto/mundo/`,
+  },
+  {
+    label: "// CHARACTERS",
+    title: "Personajes",
+    desc: "Protagonista, aliados y secundarios. Ficha rápida: rol en historia, función en gameplay y lectura visual.",
+    href: `${base}proyecto/personajes/`,
+  },
+  {
+    label: "// ENEMIES",
+    title: "Enemigos",
+    desc: "Roles de combate + facciones por color. Diseñado para lectura rápida: qué es, qué hace y cómo se contrarresta.",
+    href: `${base}proyecto/enemigos/`,
+  },
+  {
+    label: "// SEQUENCES",
+    title: "Cinemáticas",
+    desc: "Versión resumida “publicable”: intención audiovisual, estructura y momentos clave. Profundiza sin comerse la página.",
+    href: `${base}proyecto/cinematicas/`,
+  },
+  {
+    label: "// PROGRESSION",
+    title: "Progreso",
+    desc: "Objetivos, ritmo y consecuencias. Cómo avanza el juego: prólogo, actos, rutas y cierres por decisiones.",
+    href: `${base}proyecto/progreso/`,
+  },
+  {
+    label: "// SYSTEMS",
+    title: "Mecánicas",
+    desc: "Armas, movimiento, habilidades, interacción y filosofía jugable. El bloque donde se explica cómo se juega Kaelum.",
+    href: `${base}proyecto/mecanicas/`,
+    featured: true,
+  },
+  {
+    label: "// FLOW",
+    title: "Flujo de estados",
+    desc: "Pantallas principales, menús, gameplay, pausa, game over y victoria. Incluye el diagrama general del flujo del juego.",
+    href: `${base}proyecto/flujo/`,
+    featured: true,
+  },
+];
 ---
 
 <BaseLayout
   title="Kaelum — Proyecto"
-  description="Sección de proyecto: historia, mundo, cinemáticas, personajes, enemigos y progreso."
+  description="Sección de proyecto: historia, mundo, personajes, enemigos, mecánicas, flujo de estados, cinemáticas y progreso."
 >
   <section class="hero hero-pro">
     <p class="kicker">Proyecto</p>
-    <h1>Guion, mundo y contenido</h1>
+    <h1>Guion, mundo, sistemas y estructura</h1>
     <p class="lead">
       Esto se lee como un dossier: titulares claros, bloques visuales y decisiones defendibles.
       En Kaelum nada está “por estar”: cada pieza existe porque <strong>empuja gameplay</strong>.
     </p>
+
     <div class="meta">
       <span class="tag">Narrativa</span>
-      <span class="tag">Cinemáticas</span>
       <span class="tag">Personajes</span>
       <span class="tag">Enemigos</span>
+      <span class="tag">Mecánicas</span>
+      <span class="tag">Flujo</span>
+      <span class="tag">Cinemáticas</span>
       <span class="tag">Progreso</span>
-      <span class="tag">Devlog</span>
     </div>
+
     <div class="callout subtle" style="margin-top:12px">
-      <strong>Orden recomendado:</strong> Historia → Mundo → Personajes → Enemigos → Cinemáticas → Progreso.
-      (Las cinemáticas aquí están en versión resumida “publicable”, no storyboard full.)
+      <strong>Orden recomendado:</strong> Historia → Mundo → Personajes → Enemigos → Mecánicas → Flujo de estados → Cinemáticas → Progreso.
     </div>
-        <div class="actions">
+
+    <div class="actions">
       <a class="btn primary" href={`${base}proyecto/historia/`}>Historia</a>
       <a class="btn" href={`${base}proyecto/mundo/`}>Mundo</a>
-      <a class="btn" href={`${base}proyecto/cinematicas/`}>Cinemáticas</a>
       <a class="btn" href={`${base}proyecto/personajes/`}>Personajes</a>
       <a class="btn" href={`${base}proyecto/enemigos/`}>Enemigos</a>
+      <a class="btn" href={`${base}proyecto/cinematicas/`}>Cinemáticas</a>
       <a class="btn" href={`${base}proyecto/progreso/`}>Progreso</a>
+      <a class="btn" href={`${base}proyecto/mecanicas/`}>Mecánicas</a>
+      <a class="btn" href={`${base}proyecto/flujo/`}>Flujo</a>
     </div>
   </section>
 
   <div class="grid">
-    <article class="card">
-      <div class="label">// BACKGROUND</div>
-      <h2>Historia</h2>
-      <p class="muted">
-        Premisa, conflicto, objetivo del protagonista y rumbo narrativo.
-        Enfocado para que alguien ajeno al proyecto lo entienda rápido.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}proyecto/historia/`}>Abrir</a>
-      </div>
-    </article>
+    {dossier.map((s) => (
+      <article class={`card ${s.featured ? "featured" : ""}`}>
+        <div class="label">{s.label}</div>
+        <h2>{s.title}</h2>
+        <p class="muted">{s.desc}</p>
+        <div class="actions">
+          <a class={s.featured ? "btn primary" : "btn"} href={s.href}>Abrir</a>
+        </div>
+      </article>
+    ))}
 
-    <article class="card">
-      <div class="label">// WORLD_BUILDING</div>
-      <h2>Mundo</h2>
-      <p class="muted">
-        Tono, ambientación, reglas del universo y referencias visuales.
-        Lo justo para sostener el juego sin convertirlo en novela.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}proyecto/mundo/`}>Abrir</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="label">// CHARACTERS</div>
-      <h2>Personajes</h2>
-      <p class="muted">
-        Protagonista, aliados y secundarios. Ficha rápida, rol en historia, función en gameplay,
-        y “lectura” visual.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}proyecto/personajes/`}>Abrir</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="label">// ENEMIES</div>
-      <h2>Enemigos</h2>
-      <p class="muted">
-        Roles de combate + facciones por color. Diseñado para lectura rápida: qué es, qué hace,
-        cómo se contrarresta.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}proyecto/enemigos/`}>Abrir</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="label">// SEQUENCES</div>
-      <h2>Cinemáticas</h2>
-      <p class="muted">
-        Versión resumida “publicable”: intención audiovisual, estructura y momentos clave.
-        Profundiza sin comerse la página.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}proyecto/cinematicas/`}>Abrir</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <div class="label">// PROGRESSION</div>
-      <h2>Progreso</h2>
-      <p class="muted">
-        Objetivos, ritmo y consecuencias. Un mapa defendible: bucle de progreso + estructura + hitos.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}proyecto/progreso/`}>Abrir</a>
-      </div>
-    </article>
     <article class="card full">
       <h2>Por qué este formato</h2>
       <p class="muted">
-        La idea es que mañana cambias una cinemática o un enemigo y esto se actualiza sin romper el resto.
-        Todo queda en piezas pequeñas, con intención, y sin “texto de guía” que dé vergüenza enseñar.
+        La idea es que alguien pueda entrar al proyecto sin perderse: primero entiende qué es Kaelum,
+        luego cómo funciona su mundo, después cómo se juega y, por último, cómo se estructura su progreso.
+        Todo queda separado por bloques, pero conectado como un único GDD navegable.
       </p>
       <div class="actions" style="margin-top:10px">
         <a class="btn" href={`${base}kaelum/`}>Volver a Resumen</a>
@@ -3492,13 +3817,51 @@ const base = import.meta.env.BASE_URL;
       position:absolute;
       inset:-2px;
       pointer-events:none;
-      background: radial-gradient(900px 260px at 20% 0%, rgba(70,255,150,.12), transparent 65%),
-                  radial-gradient(700px 260px at 90% 10%, rgba(120,160,255,.10), transparent 60%);
+      background:
+        radial-gradient(900px 280px at 18% 0%, rgba(70,255,150,.10), transparent 65%),
+        radial-gradient(760px 280px at 90% 12%, rgba(120,160,255,.10), transparent 60%);
       opacity:.9;
+    }
+    .hero-pro > *{ position:relative; z-index:1; }
+
+    .kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      font-size:.82rem;
+      margin-bottom:6px;
+    }
+
+    .lead{
+      margin-top:8px;
+      line-height:1.6;
+      opacity:.92;
+      max-width:980px;
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:12px;
+      justify-content:flex-start;
+    }
+
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      padding:7px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+      color: rgba(255,255,255,.82);
+      font-weight:900;
+      letter-spacing:.02em;
+      font-size:.86rem;
     }
 
     .label{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
       color: var(--muted2);
       letter-spacing: .12em;
       text-transform: uppercase;
@@ -3506,15 +3869,1007 @@ const base = import.meta.env.BASE_URL;
       margin-bottom: 8px;
     }
 
-    .callout{
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 1px dashed rgba(255,255,255,.18);
-      background: rgba(0,0,0,.18);
-      color: var(--muted);
+    .featured{
+      border-color: rgba(140,120,255,.28);
+      background: linear-gradient(180deg, rgba(140,120,255,.10), rgba(0,0,0,.18));
+      box-shadow: 0 18px 60px rgba(140,120,255,.10);
     }
-    .callout.subtle{ border-style: solid; border-color: rgba(255,255,255,.08); background: rgba(255,255,255,.03); }
+
+    .grid .card h2{ margin-top:2px; }
+    .grid .card .actions{ margin-top:12px; }
+  </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/proyecto/mecanicas.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const summary = {
+  total: 12,
+  principal: 3,
+  secondary: 4,
+  meta: 5,
+};
+
+const coreLoop = [
+  "Explorar",
+  "Combatir",
+  "Interactuar",
+  "Progresar",
+  "Decidir",
+];
+
+const mechanics = [
+  {
+    id: "movimiento",
+    name: "Movimiento del jugador",
+    category: "Principal",
+    status: "Avanzada",
+    short: "Desplazamiento base del jugador. Es la mecánica que sostiene la lectura del espacio, la cobertura y el posicionamiento.",
+    definition:
+      "Sistema de locomoción principal que permite desplazarse por el escenario con fluidez, reposicionarse y construir ventaja táctica a través del espacio.",
+    input: "W / A / S / D para desplazamiento. Shift para sprint si se habilita.",
+    process: [
+      "El jugador introduce dirección.",
+      "El controlador calcula velocidad y vector de movimiento.",
+      "Se aplican colisiones, fricción y límites del escenario.",
+      "El personaje cambia de estado visual según velocidad y contexto.",
+    ],
+    rules: [
+      "El movimiento debe ser responsivo y sin sensación de arrastre innecesario.",
+      "No se permite atravesar geometría sólida.",
+      "La velocidad puede verse afectada por habilidades, estados o terreno.",
+    ],
+    affected: "Jugador, navegación por escenario, lectura de coberturas, distancia frente a enemigos.",
+    states: "Idle → Walk → Run / Sprint → Stopped / Affected State.",
+    vfx: "Animaciones de locomoción, inclinación corporal, cambios de postura y lectura clara de desplazamiento.",
+    sfx: "Pasos diferenciados según superficie y ritmo de movimiento.",
+    haptic: "Vibración ligera y rítmica en superficies o impactos de movimiento relevantes.",
+    systems: "Se conecta con combate, salto, habilidades de movilidad, exploración y sistema de estados.",
+    scaling: "Puede tensionarse con escenarios más complejos, menos cobertura o enemigos que castigan mala colocación.",
+    metric: "La acción es exitosa si el jugador se reposiciona con control y sin fricción artificial.",
+  },
+  {
+    id: "salto",
+    name: "Salto del jugador",
+    category: "Principal",
+    status: "Avanzada",
+    short: "Acción de movilidad vertical usada para salvar desniveles, romper líneas de tiro y apoyar el posicionamiento.",
+    definition:
+      "Mecánica de elevación puntual que amplía el movimiento base y permite responder a obstáculos, rutas verticales y microreposicionamientos.",
+    input: "Barra espaciadora / botón de salto.",
+    process: [
+      "Se valida si el jugador está en suelo o en una condición que permita saltar.",
+      "Se aplica un impulso vertical.",
+      "El sistema mantiene el estado aéreo hasta detectar aterrizaje.",
+      "Al tocar suelo, vuelve al estado base.",
+    ],
+    rules: [
+      "No se puede encadenar indefinidamente salvo que el diseño defina dobles saltos o excepciones.",
+      "El salto no debe invalidar coberturas ni encuentros pensados para tierra.",
+      "Puede quedar condicionado por estados negativos o por zona.",
+    ],
+    affected: "Jugador, navegación vertical, rutas de exploración y ventanas de combate.",
+    states: "Grounded → Jump Start → Airborne → Landing.",
+    vfx: "Animación de impulso, caída y aterrizaje; posible pequeña sacudida al tocar suelo.",
+    sfx: "Sonido de impulso y aterrizaje según superficie.",
+    haptic: "Pulso corto al despegar y pulso algo más seco al aterrizar.",
+    systems: "Se cruza con movimiento, combate, puzles, exploración y habilidades de movilidad.",
+    scaling: "Gana valor en niveles con más verticalidad, rutas secretas o enemigos que fuerzan reposicionamiento.",
+    metric: "Éxito si el jugador usa el salto para alcanzar una posición o evitar una amenaza concreta sin romper claridad.",
+  },
+  {
+    id: "gunplay",
+    name: "Gunplay",
+    category: "Principal",
+    status: "Muy avanzada",
+    short: "Núcleo del combate. El disparo debe sentirse consistente, legible y justo.",
+    definition:
+      "Sistema de combate con armas de fuego basado en disparo directo, lectura clara del impacto y control de recursos como cargador, munición y tiempos de recarga.",
+    input: "Click izquierdo disparar · Click derecho apuntar · R recargar · 1/2/3 cambiar arma.",
+    process: [
+      "El jugador dispara desde cámara o ADS.",
+      "El sistema lanza un raycast directo.",
+      "Se calcula impacto, daño y feedback.",
+      "Se aplica retroceso progresivo controlable y dispersión base por arma.",
+      "El sistema gestiona cargador, reserva y cambio de estados.",
+    ],
+    rules: [
+      "No se puede disparar sin munición.",
+      "No existe auto-aim.",
+      "La recarga puede bloquear o ser parcialmente cancelable según arma.",
+      "Cambiar de arma puede interrumpir la recarga si así se define.",
+      "Si se falla, la causa debe ser identificable por el jugador.",
+    ],
+    affected: "Jugador, enemigos, HUD de munición, ritmo del combate y economía de recursos.",
+    states: "Hipfire → ADS → Firing → Reloading → Swapping → Empty.",
+    vfx: "Fogonazo, trazas o impacto legible, animación de arma, feedback de hit confirmado.",
+    sfx: "Disparo por tipo de arma, clic de cargador vacío, recarga y confirmación de impacto.",
+    haptic: "Vibración corta al disparar, más marcada en armas pesadas o al confirmar impacto fuerte.",
+    systems: "Se relaciona con habilidades, movimiento, enemigos, inventario y progresión de manejo.",
+    scaling: "Escala a través de variedad de armas, precisión exigida, presión enemiga y lectura de recursos.",
+    metric: "Éxito si el jugador entiende por qué acertó o falló y percibe el disparo como justo y consistente.",
+  },
+  {
+    id: "q",
+    name: "Habilidad básica (Q)",
+    category: "Secundaria",
+    status: "Definida",
+    short: "Uso frecuente y apoyo directo al combate. Refuerza decisiones inmediatas sin sustituir al arma.",
+    definition:
+      "Habilidad de ciclo corto pensada para apoyar el combate de forma constante con una identidad clara y una lectura rápida.",
+    input: "Q.",
+    process: [
+      "El sistema comprueba que la habilidad está lista.",
+      "Se activa su efecto principal.",
+      "Permanece activa el tiempo definido o hasta completar su función.",
+      "Entra en cooldown.",
+    ],
+    rules: [
+      "No sustituye al arma como eje del gameplay.",
+      "Debe tener lectura inmediata y uso intuitivo.",
+      "No puede convertirse en la opción dominante en todos los enfrentamientos.",
+    ],
+    affected: "Jugador, enemigos cercanos o zona inmediata según personaje.",
+    states: "Ready → Active → Cooldown.",
+    vfx: "Efecto rápido y claro, fácil de leer incluso en combate intenso.",
+    sfx: "Sonido breve de activación y confirmación del efecto.",
+    haptic: "Pulso corto de activación.",
+    systems: "Se combina con gunplay, movimiento, gestión de cooldown y lectura de personaje.",
+    scaling: "Su valor aumenta con dominio del jugador, pero no debería escalar hasta eclipsar otras herramientas.",
+    metric: "Éxito si genera una ventaja táctica clara y comprensible en un uso corto.",
+  },
+  {
+    id: "e",
+    name: "Habilidad de utilidad (E)",
+    category: "Secundaria",
+    status: "Definida",
+    short: "Herramienta de movilidad o supervivencia puntual: dash, escudo breve, escaneo o curación ligera.",
+    definition:
+      "Habilidad situacional diseñada para dar margen de maniobra, supervivencia o información sin trivializar errores.",
+    input: "E.",
+    process: [
+      "Se valida disponibilidad.",
+      "Se ejecuta el efecto de utilidad correspondiente.",
+      "El jugador obtiene movilidad, protección, información o pequeña recuperación.",
+      "La habilidad entra en cooldown.",
+    ],
+    rules: [
+      "No debe romper el ritmo del combate.",
+      "No debe trivializar errores graves de posicionamiento.",
+      "Su uso debe ser táctico, no automático.",
+    ],
+    affected: "Jugador, aliados o entorno inmediato según variante.",
+    states: "Ready → Utility Active → Cooldown.",
+    vfx: "Dash, pulso de escaneo, brillo de escudo o efecto de curación ligera según personaje.",
+    sfx: "Sonido específico por función: impulso, barrera, ping o restauración.",
+    haptic: "Pulso medio y corto para indicar que se ha activado una herramienta defensiva o de movilidad.",
+    systems: "Se cruza con movimiento, supervivencia, lectura de mapa y enfrentamientos.",
+    scaling: "Puede ajustarse en cooldown, duración o potencia según necesidades de balance.",
+    metric: "Éxito si salva, recoloca o informa sin borrar el error anterior ni romper la presión del juego.",
+  },
+  {
+    id: "x",
+    name: "Habilidad de control (X)",
+    category: "Secundaria",
+    status: "Definida",
+    short: "Control del espacio mediante trampas, zonas ralentizadoras o dispositivos de bloqueo.",
+    definition:
+      "Habilidad orientada a modificar el escenario jugable y condicionar el movimiento del rival.",
+    input: "X.",
+    process: [
+      "Se despliega o activa un objeto / zona de control.",
+      "El sistema registra el área o dispositivo en el escenario.",
+      "Aplica ralentización, bloqueo o castigo cuando se activa.",
+      "Permanece activa hasta agotar duración, usos o ser destruida.",
+    ],
+    rules: [
+      "Está limitada por número máximo desplegado.",
+      "Debe tener contra-juego claro.",
+      "No puede saturar el escenario hasta volverlo ilegible.",
+    ],
+    affected: "Enemigos, rutas, zonas del escenario y ritmo del combate.",
+    states: "Ready → Deployed / Active → Triggered / Expired → Cooldown.",
+    vfx: "Indicadores de zona, trampa o dispositivo visibles para lectura táctica.",
+    sfx: "Sonido de despliegue y activación diferenciable.",
+    haptic: "Pulso de colocación y pulso extra si la habilidad llega a activarse con éxito.",
+    systems: "Se conecta con posicionamiento, flow del mapa, enemigos y habilidades rivales.",
+    scaling: "Puede variar en cantidad máxima, duración o intensidad según balance y dificultad.",
+    metric: "Éxito si condiciona una ruta o fuerza una decisión enemiga reconocible.",
+  },
+  {
+    id: "z",
+    name: "Habilidad definitiva (Z)",
+    category: "Secundaria",
+    status: "Definida",
+    short: "Pico de poder situacional. Impacta mucho, pero no está disponible constantemente ni resuelve el juego sola.",
+    definition:
+      "Habilidad de alto impacto reservada para momentos clave, cargada por participación activa del jugador.",
+    input: "Z.",
+    process: [
+      "La definitiva se carga por daño infligido, objetivos completados o tiempo en combate.",
+      "Cuando está lista, el jugador puede activarla.",
+      "Se ejecuta un efecto de gran impacto con duración o ventana definida.",
+      "Tras su uso, vuelve a estado de carga.",
+    ],
+    rules: [
+      "No está disponible constantemente.",
+      "No elimina jefes automáticamente.",
+      "Puede interrumpirse si el jugador cae o es cortado en el momento adecuado.",
+    ],
+    affected: "Jugador, enemigos, ritmo del enfrentamiento y lectura del clímax.",
+    states: "Charging → Ready → Active → Expired → Charging.",
+    vfx: "Efecto dominante y distintivo, claramente leído como “momento de poder”.",
+    sfx: "Firma sonora propia y muy reconocible.",
+    haptic: "Vibración más intensa y sostenida para marcar el pico de poder.",
+    systems: "Se relaciona con objetivos, daño, flow del combate y momentos de clímax narrativo/jugable.",
+    scaling: "Escala por dificultad en frecuencia de uso, castigo por mal empleo o valor situacional.",
+    metric: "Éxito si altera significativamente un momento de combate sin anular la habilidad del jugador ni del rival.",
+  },
+  {
+    id: "interaccion",
+    name: "Sistema de interacción",
+    category: "Meta-sistema",
+    status: "Definida",
+    short: "Permite abrir puertas, hablar con NPC, recoger objetos y activar mecanismos.",
+    definition:
+      "Sistema universal de entrada al contenido interactivo del mundo mediante una tecla contextual.",
+    input: "F.",
+    process: [
+      "El sistema detecta objetos interactuables cercanos o bajo dirección de cámara.",
+      "Asigna prioridad por proximidad o foco.",
+      "Al pulsar, ejecuta la acción contextual correspondiente.",
+    ],
+    rules: [
+      "La prioridad se resuelve por proximidad o dirección de cámara.",
+      "Debe evitar conflictos entre varios interactuables simultáneos.",
+      "La interacción no puede bloquear progreso narrativo esencial.",
+    ],
+    affected: "Puertas, NPC, objetos, mecanismos, eventos de mundo.",
+    states: "No Target → Available → Interacting → Resolved.",
+    vfx: "Prompt contextual, resaltado sutil o icono de interacción.",
+    sfx: "Sonido breve de confirmación al iniciar la interacción.",
+    haptic: "Pulso ligero de confirmación contextual.",
+    systems: "Conecta mundo, narrativa, inventario, puzles y progresión.",
+    scaling: "Aumenta su valor conforme el mundo contiene más rutas, secretos y eventos.",
+    metric: "Éxito si el jugador entiende rápido con qué puede interactuar y qué ha activado.",
+  },
+  {
+    id: "inventario",
+    name: "Sistema de inventario",
+    category: "Meta-sistema",
+    status: "Definida",
+    short: "Capacidad limitada y separación por categorías: objetos clave, consumibles, materiales y munición.",
+    definition:
+      "Sistema de almacenamiento y consulta de recursos del jugador con separación funcional y límites de capacidad.",
+    input: "Apertura desde menú o tecla dedicada según diseño final.",
+    process: [
+      "El jugador abre el inventario.",
+      "El sistema organiza objetos por categoría.",
+      "Permite consultar, usar o gestionar recursos compatibles.",
+    ],
+    rules: [
+      "Capacidad limitada.",
+      "Separación entre objetos clave, consumibles, materiales y munición.",
+      "No permite soft-lock narrativo.",
+    ],
+    affected: "Recursos del jugador, progresión, misiones y economía interna.",
+    states: "Closed → Open → Selecting → Using / Managing → Closed.",
+    vfx: "Interfaz clara, iconografía limpia y separación visual por categorías.",
+    sfx: "Apertura/cierre de menú y uso de ítems cuando corresponda.",
+    haptic: "No prioritaria en esta fase; puede quedar como vibración suave en navegación por mando.",
+    systems: "Se cruza con interacción, progresión, armas, recursos y narrativa.",
+    scaling: "Puede complejizarse con más objetos, raridades o restricciones, pero sin perder legibilidad.",
+    metric: "Éxito si el jugador encuentra y usa recursos sin fricción innecesaria.",
+  },
+  {
+    id: "progresion",
+    name: "Sistema de progresión",
+    category: "Meta-sistema",
+    status: "Definida",
+    short: "La experiencia se obtiene por misiones, combate y eventos clave; al subir de nivel se desbloquean mejoras.",
+    definition:
+      "Sistema de avance persistente que recompensa la actividad del jugador sin sustituir su habilidad mecánica.",
+    input: "No depende de una tecla única; responde a logros, combate y eventos del juego.",
+    process: [
+      "El jugador obtiene experiencia por misiones, combate y eventos clave.",
+      "El sistema acumula progreso.",
+      "Al subir de nivel, desbloquea mejoras vinculadas a habilidades, manejo o resistencia.",
+    ],
+    rules: [
+      "No sustituye la habilidad mecánica.",
+      "Debe reforzar la sensación de avance sin romper el equilibrio.",
+      "Las mejoras tienen que complementar el dominio del jugador, no reemplazarlo.",
+    ],
+    affected: "Estadísticas del personaje, habilidades, resistencia a la Fisura y manejo.",
+    states: "XP Gain → Threshold Reached → Level Up → Upgrade Available.",
+    vfx: "Indicador de subida de nivel, desbloqueo y confirmación de mejora.",
+    sfx: "Sonido de progreso o ascenso de nivel.",
+    haptic: "Pulso breve al desbloquear una mejora significativa.",
+    systems: "Conecta combate, narrativa, karma, recursos y build del personaje.",
+    scaling: "Escala a través de umbrales de experiencia y tipos de mejora disponibles.",
+    metric: "Éxito si el jugador nota avance real sin sentir que el sistema “juega por él”.",
+  },
+  {
+    id: "karma",
+    name: "Sistema de karma",
+    category: "Meta-sistema",
+    status: "Definida",
+    short: "Las decisiones y la conducta modifican cómo te lee el mundo y condicionan rutas, reacciones y consecuencias.",
+    definition:
+      "Meta-sistema narrativo-jugable que registra la tendencia del jugador y altera la respuesta del mundo a sus acciones.",
+    input: "No se activa manualmente; se alimenta de elecciones, conducta y resolución de situaciones.",
+    process: [
+      "El jugador toma decisiones o ejecuta acciones con lectura moral/social.",
+      "El sistema actualiza su tendencia.",
+      "El mundo reacciona mediante acceso, trato, consecuencias o variaciones en rutas.",
+    ],
+    rules: [
+      "Debe tener impacto visible o al menos deducible.",
+      "No puede reducirse a “barra buena/barra mala” sin contexto.",
+      "Tiene que conectar con finales, relaciones y lectura pública del jugador.",
+    ],
+    affected: "Rutas, NPC, aliados, acceso a contenido, tono de ciertas consecuencias.",
+    states: "Neutral → Tendencia positiva / negativa → Umbrales de consecuencia.",
+    vfx: "Cambios contextuales en UI, mundo o lectura visual según implementación final.",
+    sfx: "No necesariamente un sonido directo; puede apoyarse en ambientación o leitmotivs contextuales.",
+    haptic: "No prioritaria como feedback directo; pesa más el feedback sistémico y narrativo.",
+    systems: "Se cruza con narrativa, progresión, interacción, finales y lectura del mundo.",
+    scaling: "Gana peso según avanza la partida y se alcanzan puntos de no retorno.",
+    metric: "Éxito si el jugador percibe que el mundo responde a su conducta de forma coherente.",
+  },
+  {
+    id: "viaje-rapido",
+    name: "Viaje rápido",
+    category: "Meta-sistema",
+    status: "Definida",
+    short: "Apoyo de ritmo para evitar desplazamientos vacíos una vez revelado el mapa o desbloqueadas zonas clave.",
+    definition:
+      "Sistema de desplazamiento abreviado entre puntos ya descubiertos para mantener el ritmo del juego.",
+    input: "Selección desde mapa, menú o punto de viaje habilitado.",
+    process: [
+      "El jugador accede al sistema de viaje.",
+      "Selecciona un punto disponible.",
+      "El juego valida desbloqueo y condiciones.",
+      "Se realiza la transición al destino.",
+    ],
+    rules: [
+      "Solo entre puntos ya descubiertos o desbloqueados.",
+      "Puede quedar limitado en ciertos momentos narrativos o de peligro.",
+      "No debe romper secuencias críticas del juego.",
+    ],
+    affected: "Posición del jugador, ritmo de exploración, backtracking y progresión.",
+    states: "Unavailable → Available → Selecting Destination → Transition → Arrived.",
+    vfx: "Mapa, selector de nodo y transición visual limpia.",
+    sfx: "Confirmación de viaje y transición.",
+    haptic: "N/A o vibración mínima; no es una mecánica donde el feedback háptico sea prioritario.",
+    systems: "Se relaciona con mundo, exploración, progresión y narrativa contextual.",
+    scaling: "Se vuelve más útil conforme el mapa crece y el jugador ya domina la geografía.",
+    metric: "Éxito si reduce desplazamientos muertos sin destruir la sensación de mundo conectado.",
+  },
+];
+
+const inputs = [
+  ["Click izquierdo", "Disparar", "Solo si hay munición disponible."],
+  ["Click derecho", "Apuntar / ADS", "Depende del arma y del estado actual."],
+  ["R", "Recargar", "Interrumpible según diseño del arma."],
+  ["1 / 2 / 3", "Cambiar arma", "Puede cancelar recarga si se define así."],
+  ["Q", "Habilidad básica", "Solo si está en estado Ready."],
+  ["E", "Habilidad de utilidad", "No debe trivializar errores."],
+  ["X", "Habilidad de control", "Limitada por número máximo desplegado."],
+  ["Z", "Definitiva", "Solo si la carga está completa."],
+  ["F", "Interactuar", "Prioridad por proximidad o dirección de cámara."],
+];
+
+const rewards = [
+  "Feedback visual y sonoro claro al impactar, activar habilidad o completar acción.",
+  "Progresión por experiencia obtenida en combate, misiones y eventos clave.",
+  "Desbloqueo de mejoras de habilidades, resistencia a la Fisura y manejo.",
+];
+
+const penalties = [
+  "Quedarse sin munición o tener que recargar en mal momento.",
+  "Cooldowns y ventanas de vulnerabilidad al usar habilidades mal.",
+  "Rutas peores, reacciones más duras o consecuencias sistémicas derivadas del karma.",
+];
+
+const ux = {
+  emotion: "Tensión, control y recompensa por lectura clara.",
+  why: "Las mecánicas buscan que el jugador entienda por qué ha acertado o fallado, y que cada herramienta tenga una función legible sin saturar el combate.",
+};
+---
+
+<BaseLayout
+  title="Kaelum — Mecánicas"
+  description="Mecánicas de juego de Kaelum: armas, movimiento, habilidades y sistemas transversales."
+>
+  <section class="hero">
+    <p class="kicker">Proyecto · Mecánicas</p>
+    <h1>Mecánicas de juego</h1>
+    <p class="lead">
+      Esta página reúne el bloque de mecánicas como un dossier técnico legible:
+      <strong>12 mecánicas y sistemas identificados</strong>, clasificados y desarrollados con la mayor profundidad posible
+      dentro de la documentación actual.
+    </p>
+
+    <div class="meta">
+      <span class="tag">{summary.total} mecánicas / sistemas</span>
+      <span class="tag">{summary.principal} principales</span>
+      <span class="tag">{summary.secondary} secundarias</span>
+      <span class="tag">{summary.meta} meta-sistemas</span>
+    </div>
+
+    <div class="actions">
+      <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+      <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+      <a class="btn primary" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
+    </div>
+
+    <nav class="subnav" aria-label="Índice de la página">
+      <a class="chip" href="#core">Core loop</a>
+      <a class="chip" href="#clasificacion">Clasificación</a>
+      <a class="chip" href="#inputs">Inputs</a>
+      <a class="chip" href="#fichas">Fichas técnicas</a>
+      <a class="chip" href="#recompensas">Recompensas</a>
+      <a class="chip" href="#ux">UX</a>
+    </nav>
+  </section>
+
+  <section class="gdd-section">
+    <article class="card full" id="core">
+      <div class="label">// CORE LOOP</div>
+      <h2>Bucle principal del juego</h2>
+      <p class="muted">
+        Kaelum se apoya en un ciclo claro: explorar, combatir, interactuar, progresar y decidir.
+        El arma sigue siendo el eje del gameplay, mientras que movimiento y habilidades refuerzan el ritmo sin sustituir la acción directa.
+      </p>
+
+      <div class="core-flex">
+        {coreLoop.map((step, i) => (
+          <div class="core-step">
+            <span class="core-n">{String(i + 1).padStart(2, "0")}</span>
+            <h3>{step}</h3>
+          </div>
+        ))}
+      </div>
+
+      <div class="callout subtle">
+        <strong>Idea central:</strong> Kaelum busca una experiencia “honesta”: si fallas, la causa debe ser identificable; si aciertas, el sistema debe devolverte una lectura clara del porqué.
+      </div>
+    </article>
+
+    <article class="card full" id="clasificacion">
+      <div class="label">// CLASIFICACIÓN</div>
+      <h2>Mapa completo de mecánicas</h2>
+      <p class="muted">
+        Para dejar el bloque lo más completo posible, las mecánicas se presentan agrupadas por función: <strong>principales</strong>, <strong>secundarias</strong> y <strong>meta-sistemas</strong>.
+      </p>
+
+      <div class="group-flex">
+        <div class="group-card">
+          <h3>Principales</h3>
+          <ul class="list compact">
+            <li>Movimiento del jugador</li>
+            <li>Salto del jugador</li>
+            <li>Gunplay</li>
+          </ul>
+        </div>
+
+        <div class="group-card">
+          <h3>Secundarias</h3>
+          <ul class="list compact">
+            <li>Habilidad básica (Q)</li>
+            <li>Habilidad de utilidad (E)</li>
+            <li>Habilidad de control (X)</li>
+            <li>Habilidad definitiva (Z)</li>
+          </ul>
+        </div>
+
+        <div class="group-card">
+          <h3>Meta-sistemas</h3>
+          <ul class="list compact">
+            <li>Sistema de interacción</li>
+            <li>Sistema de inventario</li>
+            <li>Sistema de progresión</li>
+            <li>Sistema de karma</li>
+            <li>Viaje rápido</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full" id="inputs">
+      <div class="label">// INPUTS Y REGLAS</div>
+      <h2>Tabla de acciones base</h2>
+
+      <div class="table-wrap">
+        <table class="mechanic-table">
+          <thead>
+            <tr>
+              <th>Acción</th>
+              <th>Comportamiento</th>
+              <th>Regla / Restricción</th>
+            </tr>
+          </thead>
+          <tbody>
+            {inputs.map((row) => (
+              <tr>
+                <td>{row[0]}</td>
+                <td>{row[1]}</td>
+                <td>{row[2]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="card full" id="fichas">
+      <div class="label">// FICHAS TÉCNICAS</div>
+      <h2>Desarrollo de las 12 mecánicas</h2>
+      <p class="muted">
+        Cada ficha sigue la lógica de la plantilla técnica: definición, input, proceso, límites, estados, feedback e interacción con sistemas.
+      </p>
+
+      <div class="mechanic-stack">
+        {mechanics.map((m, i) => (
+          <section class="mechanic-card" id={m.id} data-cat={m.category}>
+            <div class="mechanic-top">
+              <div>
+                <div class="mechanic-kicker">Mecánica {String(i + 1).padStart(2, "0")}</div>
+                <h3>{m.name}</h3>
+                <p class="muted summary">{m.short}</p>
+              </div>
+
+              <div class="badges">
+                <span class="badge cat">{m.category}</span>
+                <span class={`badge status ${m.status === "Muy avanzada" ? "advanced" : m.status === "Avanzada" ? "good" : "defined"}`}>
+                  {m.status}
+                </span>
+              </div>
+            </div>
+
+            <div class="mechanic-layout">
+              <div class="mechanic-main">
+                <div class="info-grid">
+                  <div class="info-box">
+                    <strong>Definición</strong>
+                    <p>{m.definition}</p>
+                  </div>
+                  <div class="info-box">
+                    <strong>Input</strong>
+                    <p>{m.input}</p>
+                  </div>
+                  <div class="info-box">
+                    <strong>Objetos afectados</strong>
+                    <p>{m.affected}</p>
+                  </div>
+                  <div class="info-box">
+                    <strong>Estados</strong>
+                    <p>{m.states}</p>
+                  </div>
+                </div>
+
+                <div class="process-block">
+                  <h4>Lógica / proceso</h4>
+                  <ol class="list numbered">
+                    {m.process.map((p) => <li>{p}</li>)}
+                  </ol>
+                </div>
+
+                <div class="rules-block">
+                  <h4>Reglas y límites</h4>
+                  <ul class="list compact">
+                    {m.rules.map((r) => <li>{r}</li>)}
+                  </ul>
+                </div>
+              </div>
+
+              <aside class="mechanic-side">
+                <div class="side-box">
+                  <h4>Feedback visual</h4>
+                  <p>{m.vfx}</p>
+                </div>
+
+                <div class="side-box">
+                  <h4>Feedback sonoro</h4>
+                  <p>{m.sfx}</p>
+                </div>
+
+                <div class="side-box">
+                  <h4>Háptica</h4>
+                  <p>{m.haptic}</p>
+                </div>
+
+                <div class="side-box">
+                  <h4>Interacción con sistemas</h4>
+                  <p>{m.systems}</p>
+                </div>
+
+                <div class="side-box">
+                  <h4>Escalabilidad</h4>
+                  <p>{m.scaling}</p>
+                </div>
+
+                <div class="side-box metric">
+                  <h4>Métrica de éxito</h4>
+                  <p>{m.metric}</p>
+                </div>
+              </aside>
+            </div>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card full" id="recompensas">
+      <div class="label">// RECOMPENSAS Y PENALIZACIONES</div>
+      <h2>Cómo responde el sistema al jugador</h2>
+
+      <div class="dual-flex">
+        <div class="mini-card">
+          <h3>Recompensas</h3>
+          <ul class="list compact">
+            {rewards.map((x) => <li>{x}</li>)}
+          </ul>
+        </div>
+
+        <div class="mini-card">
+          <h3>Penalizaciones</h3>
+          <ul class="list compact">
+            {penalties.map((x) => <li>{x}</li>)}
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full" id="ux">
+      <div class="label">// EXPERIENCIA DEL JUGADOR</div>
+      <h2>Emoción objetivo</h2>
+      <p class="muted">
+        <strong>{ux.emotion}</strong>
+      </p>
+      <div class="callout">
+        <strong>Justificación:</strong> {ux.why}
+      </div>
+    </article>
+
+    <div class="actions bottom">
+      <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+      <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+      <a class="btn primary" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
+    </div>
+  </section>
+
+  <style>
+    .kicker{ letter-spacing:.06em; text-transform:uppercase; opacity:.7; font-size:.85rem; }
+.lead{ margin-top:6px; line-height:1.6; opacity:.9; max-width:980px; }
+
+.meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:12px;
+  justify-content:flex-start;
+}
+.tag{
+  display:inline-flex;
+  align-items:center;
+  padding:7px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.16);
+  color: rgba(255,255,255,.82);
+  font-weight:900;
+  letter-spacing:.02em;
+  font-size:.86rem;
+}
+
+.label{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
+  color: var(--muted2);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-size: .72rem;
+  margin-bottom: 8px;
+}
+
+.subnav{
+  margin-top:14px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+.chip{
+  display:inline-flex;
+  align-items:center;
+  text-decoration:none;
+  color: rgba(255,255,255,.82);
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.16);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  font-size: .78rem;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.chip:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.18);
+}
+
+.core-flex, .group-flex, .dual-flex{
+  display:flex;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:14px;
+  align-items:stretch;
+}
+
+.core-step, .group-card, .mini-card{
+  flex:1 1 260px;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(0,0,0,.18);
+  min-width:240px;
+}
+
+.core-n{
+  display:inline-flex;
+  margin-bottom:8px;
+  opacity:.55;
+  font-weight:1000;
+  letter-spacing:.18em;
+}
+
+.table-wrap{
+  margin-top:14px;
+  overflow:auto;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:14px;
+  background:rgba(0,0,0,.18);
+}
+.mechanic-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:760px;
+}
+.mechanic-table th,
+.mechanic-table td{
+  padding:12px 14px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  text-align:left;
+  vertical-align:top;
+}
+.mechanic-table th{
+  background:rgba(255,255,255,.04);
+  font-weight:900;
+}
+
+.mechanic-stack{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  margin-top:14px;
+}
+
+.mechanic-card{
+  position:relative;
+  overflow:hidden;
+  padding:18px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.10);
+  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.16));
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+}
+
+.mechanic-card::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  width:4px;
+  background:rgba(120,160,255,.85);
+}
+
+.mechanic-card[data-cat="Secundaria"]::before{
+  background:rgba(170,120,255,.85);
+}
+
+.mechanic-card[data-cat="Meta-sistema"]::before{
+  background:rgba(255,220,120,.85);
+}
+
+.mechanic-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:16px;
+  flex-wrap:wrap;
+  margin-bottom:14px;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.mechanic-kicker{
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  font-size:.72rem;
+  color:var(--muted2);
+  margin-bottom:6px;
+}
+
+.mechanic-top h3{
+  margin:0;
+  line-height:1.1;
+}
+
+.summary{
+  margin-top:8px;
+  max-width:75ch;
+}
+
+.badges{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.badge{
+  display:inline-flex;
+  align-items:center;
+  padding:6px 10px;
+  border-radius:999px;
+  font-size:.78rem;
+  border:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.03);
+  color:rgba(255,255,255,.85);
+  white-space:nowrap;
+}
+
+.badge.cat{
+  background:rgba(120,160,255,.10);
+  border-color:rgba(120,160,255,.22);
+}
+
+.badge.status.good{
+  background:rgba(120,255,180,.10);
+  border-color:rgba(120,255,180,.22);
+}
+
+.badge.status.advanced{
+  background:rgba(170,120,255,.12);
+  border-color:rgba(170,120,255,.24);
+}
+
+.badge.status.defined{
+  background:rgba(255,220,120,.10);
+  border-color:rgba(255,220,120,.22);
+}
+
+.mechanic-layout{
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+}
+
+.mechanic-main{
+  flex:1 1 68%;
+  min-width:0;
+}
+
+.mechanic-side{
+  flex:0 0 30%;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  min-width:280px;
+}
+
+.info-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-bottom:14px;
+}
+
+.info-box{
+  flex:1 1 calc(50% - 6px);
+  min-width:260px;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(0,0,0,.16);
+}
+
+.info-box strong{
+  display:block;
+  margin-bottom:6px;
+  color:rgba(255,255,255,.96);
+}
+
+.info-box p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.55;
+}
+
+.process-block,
+.rules-block{
+  margin-top:12px;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+}
+
+.process-block h4,
+.rules-block h4,
+.side-box h4{
+  margin:0 0 8px;
+  font-size:1rem;
+}
+
+.side-box{
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(0,0,0,.16);
+}
+
+.side-box p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.5;
+}
+
+.side-box.metric{
+  border-color:rgba(140,120,255,.22);
+  background:rgba(140,120,255,.08);
+}
+
+.list{ padding-left:18px; }
+.list.compact{ margin:0; padding-left:18px; }
+.list.numbered{ margin:0; padding-left:22px; }
+.list li{ margin:6px 0; }
+
+.callout{
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px dashed rgba(255,255,255,.18);
+  background:rgba(0,0,0,.18);
+  color:var(--muted);
+}
+.callout.subtle{
+  border-style:solid;
+  border-color:rgba(255,255,255,.08);
+  background:rgba(255,255,255,.03);
+}
+#astroactualizateporfa
+.actions.bottom{ margin-top:18px; }
   </style>
 </BaseLayout>
 ```
@@ -3547,14 +4902,12 @@ const base = import.meta.env.BASE_URL;
         <div class="actions">
             <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
             <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-            <a class="btn primary" href={`${base}proyecto/personajes/`}
-                >Ver Personajes</a
-            >
-            <a class="btn" href={`${base}proyecto/cinematicas/`}
-                >Ver cinemáticas</a
-            >
+            <a class="btn primary" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+            <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver cinemáticas</a>
             <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
             <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+            <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
+            <a class="btn" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
         </div>
     </section>
 
@@ -3894,14 +5247,12 @@ const base = import.meta.env.BASE_URL;
             <div class="actions">
             <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
             <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-            <a class="btn primary" href={`${base}proyecto/personajes/`}
-                >Ver Personajes</a
-            >
-            <a class="btn" href={`${base}proyecto/cinematicas/`}
-                >Ver cinemáticas</a
-            >
+            <a class="btn primary" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
+            <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver cinemáticas</a>
             <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
             <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+            <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
+            <a class="btn" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
         </div>
         </section>
     </div>
@@ -3982,6 +5333,12 @@ const base = import.meta.env.BASE_URL;
                 >
                 <a class="btn" href={`${base}proyecto/progreso/`}
                     >Ver Progreso</a
+                >
+                <a class="btn" href={`${base}proyecto/mecanicas/`}
+                    >Ver Mecánicas</a
+                >
+                <a class="btn" href={`${base}proyecto/flujo/`}
+                    >Ver Flujo de estados</a
                 >
             </div>
         </header>
@@ -4214,21 +5571,15 @@ const base = import.meta.env.BASE_URL;
         </article>
     </section>
     <div class="actions">
-                <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-                <a class="btn" href={`${base}proyecto/historia/`}
-                    >Ver Historia</a
-                >
-                <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-                <a class="btn primary" href={`${base}proyecto/cinematicas/`}
-                    >Ver cinemáticas</a
-                >
-                <a class="btn" href={`${base}proyecto/enemigos/`}
-                    >Ver Enemigos</a
-                >
-                <a class="btn" href={`${base}proyecto/progreso/`}
-                    >Ver Progreso</a
-                >
-            </div>
+        <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
+        <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
+        <a class="btn primary" href={`${base}proyecto/cinematicas/`}
+            >Ver cinemáticas</a
+        >
+        <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+        <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+    </div>
 </BaseLayout>
 
 <style>
@@ -4471,12 +5822,14 @@ const endings = [
     </p>
 
     <div class="actions">
-      <a class="btn primary" href={`${base}proyecto/`}>Volver a Proyecto</a>
+      <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
       <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
       <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
       <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
       <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
       <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+      <a class="btn primary" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
+      <a class="btn" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
     </div>
   </section>
 
