@@ -1,399 +1,148 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
-
-const blocks = [
-  {
-    number: "01",
-    title: "Tu opinión",
-    desc:
-      "Espacio pensado para recoger feedback, impresiones o respuestas de quien visita la web y quiere dejar una valoración del proyecto.",
-    href: `${base}contacto/opinion/`,
-    tag: "Feedback",
-  },
-  {
-    number: "02",
-    title: "Redes y presencia digital",
-    desc:
-      "Enlaces a perfiles, canales y espacios donde seguir el proyecto o conocer mejor al autor y su trabajo.",
-    href: `${base}contacto/redes/`,
-    tag: "Presencia",
-  },
-];
-
-const strengths = [
-  {
-    title: "Cierre natural del portfolio",
-    desc:
-      "Después de revisar el juego, la parte visual, la documentación y el desarrollo, aquí se concentra la conexión humana y profesional del proyecto.",
-  },
-  {
-    title: "Apoyo a la evaluación",
-    desc:
-      "Esta sección ayuda a cubrir contacto, feedback, redes, autoría y parte de la presentación general exigida por la rúbrica.",
-  },
-  {
-    title: "Puerta a la continuidad",
-    desc:
-      "Sirve para que quien llegue hasta el final pueda seguir el proyecto, contactar contigo o dejar una impresión útil.",
-  },
-];
-
-const contactWays = [
-  "Presentación del autor o del proyecto",
-  "Acceso a redes y perfiles",
-  "Formulario o vía de feedback",
-  "Espacio para presencia digital y localización",
-];
 ---
 
 <BaseLayout
   title="Kaelum — Contacto"
-  description="Bloque final de Kaelum: autor, feedback, redes y presencia digital del proyecto."
+  description="Contacto, feedback y presencia digital del proyecto Kaelum."
 >
-  <section class="hero hero-contact">
-    <div class="hero-copy">
-      <p class="kicker">Cierre del recorrido</p>
-      <h1>Contacto</h1>
+  <section class="hero contact-hero">
+    <p class="kicker">Contacto</p>
+    <h1>¿Te interesa Kaelum?</h1>
+    <p class="lead">
+      Puedes dejar tu opinión sobre el proyecto o seguir su evolución desde aquí.
+    </p>
 
-      <p class="lead">
-        Esta sección funciona como el <strong>punto final natural</strong> del portfolio. Aquí
-        se concentra la parte más humana y externa del proyecto: quién está detrás de Kaelum,
-        cómo se puede seguir su evolución, dónde dejar feedback y qué vías existen para conectar
-        con el trabajo presentado en la web.
-      </p>
+    <div class="actions">
+      <a class="btn primary" href={`${base}contacto/opinion/`}>Dejar opinión</a>
+      <a class="btn" href={`${base}contacto/redes/`}>Ver redes</a>
+    </div>
+  </section>
 
-      <div class="actions">
-        <a class="btn primary" href={`${base}contacto/opinion/`}>Dejar opinión</a>
-        <a class="btn" href={`${base}contacto/redes/`}>Ver redes</a>
+  <section class="contact-grid">
+    <a class="contact-card opinion" href={`${base}contacto/opinion/`}>
+      <span class="contact-number">01</span>
+      <div class="contact-copy">
+        <p class="kicker">Feedback</p>
+        <h2>Tu opinión</h2>
+        <p>
+          Cuéntame qué te transmite la web, qué funciona y qué mejorarías.
+        </p>
+        <span class="contact-cta">Abrir apartado →</span>
       </div>
-    </div>
+    </a>
 
-    <aside class="hero-panel">
-      <p class="panel-kicker">Qué reúne este bloque</p>
-      <h2>Autor, feedback y presencia digital</h2>
-      <p>
-        Contacto no se plantea solo como una ficha de datos, sino como una sección que remata la
-        web con una lectura más completa del proyecto: autoría, conexión externa, participación y
-        posibilidades de seguimiento.
-      </p>
-
-      <ul class="panel-list">
-        {contactWays.map((item) => <li>{item}</li>)}
-      </ul>
-    </aside>
-  </section>
-
-  <section class="section split">
-    <article class="profile-card">
-      <p class="kicker">Sobre el proyecto</p>
-      <h2>Quién está detrás de Kaelum</h2>
-      <p>
-        Kaelum se presenta aquí como un juego de portfolio y documentación jugable centrado en
-        explicar el videojuego de forma clara, estructurada y visual. Esta parte puede funcionar
-        tanto como presentación del autor como del equipo responsable, según cómo quieras rematarla
-        más adelante.
-      </p>
-      <p class="spaced">
-        Aquí puedes incluir una presentación breve más personal o profesional: nombre, perfil,
-        rol principal en el proyecto, intereses o incluso una pequeña nota sobre el objetivo de la web.
-      </p>
-    </article>
-
-    <article class="profile-card accent">
-      <p class="kicker">Utilidad de esta sección</p>
-      <h2>No solo cerrar, también conectar</h2>
-      <p>
-        Esta parte ayuda a que la web no termine en seco. En vez de acabar simplemente con documentos
-        o devlogs, ofrece un espacio para seguir el proyecto, contactar contigo y recoger impresiones
-        de quien lo visita.
-      </p>
-      <div class="actions">
-        <a class="btn" href={`${base}contacto/opinion/`}>Ir a opinión</a>
-        <a class="btn primary" href={`${base}contacto/redes/`}>Ir a redes</a>
+    <a class="contact-card redes" href={`${base}contacto/redes/`}>
+      <span class="contact-number">02</span>
+      <div class="contact-copy">
+        <p class="kicker">Presencia digital</p>
+        <h2>Redes y contacto</h2>
+        <p>
+          Accede a perfiles, plataformas y vías para seguir el proyecto.
+        </p>
+        <span class="contact-cta">Abrir apartado →</span>
       </div>
-    </article>
+    </a>
   </section>
 
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Subapartados</p>
-      <h2>Qué puedes encontrar aquí</h2>
-      <p class="section-lead">
-        Contacto se divide en bloques sencillos para que la parte final de la web siga siendo clara y útil.
-      </p>
-    </header>
-
-    <div class="blocks-grid">
-      {blocks.map((item) => (
-        <a class="block-card" href={item.href}>
-          <div class="block-top">
-            <span class="block-number">{item.number}</span>
-            <span class="block-tag">{item.tag}</span>
-          </div>
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-          <span class="block-link">Abrir apartado</span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Por qué encaja aquí</p>
-      <h2>Una sección pequeña pero importante</h2>
-      <p class="section-lead">
-        Aunque no sea el bloque más extenso, Contacto ayuda a completar la web como portfolio real y no solo como contenedor de páginas.
-      </p>
-    </header>
-
-    <div class="value-grid">
-      {strengths.map((item) => (
-        <article class="value-card">
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section cta-section">
-    <div class="cta-card">
-      <p class="kicker">Recorrido completo</p>
-      <h2>Con esto quedan cerrados los bloques principales del sitio</h2>
-      <p>
-        Desde aquí ya tendrías consolidada la estructura general de la web: <strong>Inicio</strong>,
-        <strong> Juego</strong>, <strong>Media</strong>, <strong>Documentación</strong>,
-        <strong> Desarrollo</strong> y <strong>Contacto</strong>. Lo siguiente es rematar
-        subpáginas concretas para cubrir todos los puntos de la rúbrica y pulir la consistencia final.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={base}>Volver al inicio</a>
-      </div>
-    </div>
+  <section class="contact-footer-note">
+    <p class="muted">
+      Si has llegado hasta aquí, ya conoces bastante bien Kaelum. El siguiente paso es conectar.
+    </p>
   </section>
 
   <style>
-    .hero-contact{
-      display:grid;
-      grid-template-columns: 1.35fr .95fr;
-      gap:24px;
-      align-items:stretch;
+    .contact-hero{
+      text-align:center;
+      padding:28px 22px;
     }
 
-    .hero-copy,
-    .hero-panel,
-    .profile-card,
-    .block-card,
-    .value-card,
-    .cta-card{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:18px;
-      backdrop-filter: blur(8px);
+    .contact-hero .lead{
+      margin-inline:auto;
+      max-width:60ch;
     }
 
-    .hero-copy{
-      padding:28px;
-    }
-
-    .hero-panel{
-      padding:24px;
-      background:
-        linear-gradient(180deg, rgba(255, 111, 163, .12), rgba(255,255,255,.03));
-    }
-
-    .kicker,
-    .panel-kicker{
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.75;
-      margin:0 0 8px;
-      font-size:.82rem;
-    }
-
-    h1{
-      margin:0 0 12px;
-      font-size:clamp(2.6rem, 6vw, 4.2rem);
-      line-height:.95;
-    }
-
-    h2{
-      margin:0 0 10px;
-      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
-      line-height:1.05;
-    }
-
-    h3{
-      margin:0 0 10px;
-      font-size:1.12rem;
-    }
-
-    .lead,
-    .section-lead,
-    .hero-panel p,
-    .profile-card p,
-    .block-card p,
-    .value-card p,
-    .cta-card p{
-      line-height:1.6;
-      opacity:.94;
-      margin:0;
-      text-align:justify;
-    }
-
-    .spaced{
-      margin-top:14px;
-    }
-
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
+    .contact-grid{
       margin-top:18px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:inherit;
-      text-decoration:none;
-      transition:.18s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .btn.primary{
-      background:linear-gradient(180deg, rgba(255, 111, 163, .30), rgba(255, 111, 163, .14));
-      border-color:rgba(255, 165, 198, .34);
-      box-shadow:0 10px 24px rgba(120,20,68,.18);
-    }
-
-    .panel-list{
-      margin:16px 0 0;
-      padding-left:18px;
-      display:grid;
-      gap:10px;
-      line-height:1.5;
-    }
-
-    .section{
-      margin-top:28px;
-    }
-
-    .section-head{
-      margin-bottom:14px;
-    }
-
-    .split{
       display:grid;
       grid-template-columns:repeat(2, minmax(0,1fr));
       gap:14px;
     }
 
-    .profile-card,
-    .value-card,
-    .cta-card{
-      padding:22px;
-    }
-
-    .profile-card.accent,
-    .cta-card{
-      background:
-        linear-gradient(180deg, rgba(255, 111, 163, .14), rgba(255,255,255,.03));
-    }
-
-    .blocks-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .block-card{
-      padding:18px;
-      text-decoration:none;
-      color:inherit;
-      transition:.18s ease;
+    .contact-card{
       display:flex;
-      flex-direction:column;
-      gap:10px;
+      gap:16px;
+      align-items:flex-start;
+      text-decoration:none;
+      color:var(--text);
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:0 16px 40px rgba(0,0,0,.22);
+      transition:transform .14s ease, background .14s ease, border-color .14s ease;
     }
 
-    .block-card:hover{
+    .contact-card:hover{
       transform:translateY(-2px);
       background:rgba(255,255,255,.06);
+      border-color:rgba(255,255,255,.16);
     }
 
-    .block-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
+    .contact-card.opinion{
+      background:
+        linear-gradient(180deg, rgba(139,92,246,.12), rgba(255,255,255,.03));
     }
 
-    .block-number{
-      width:42px;
-      height:42px;
-      border-radius:12px;
+    .contact-card.redes{
+      background:
+        linear-gradient(180deg, rgba(34,211,238,.10), rgba(255,255,255,.03));
+    }
+
+    .contact-number{
+      width:44px;
+      height:44px;
+      flex:0 0 auto;
+      border-radius:14px;
       display:grid;
       place-items:center;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255, 111, 163, .16);
+      font-weight:900;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      color:var(--text);
     }
 
-    .block-tag{
-      border-radius:999px;
-      padding:6px 10px;
-      font-size:.8rem;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.05);
-      opacity:.9;
+    .contact-copy h2{
+      margin:2px 0 8px;
+      font-size:1.45rem;
     }
 
-    .block-link{
-      margin-top:auto;
-      opacity:.86;
-      font-size:.95rem;
+    .contact-copy p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.55;
     }
 
-    .value-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
+    .contact-cta{
+      display:inline-block;
+      margin-top:14px;
+      font-weight:800;
+      color:var(--text);
     }
 
-    @media (max-width: 980px){
-      .hero-contact,
-      .split,
-      .blocks-grid,
-      .value-grid{
+    .contact-footer-note{
+      margin-top:18px;
+      text-align:center;
+    }
+
+    @media (max-width: 860px){
+      .contact-grid{
         grid-template-columns:1fr;
       }
-    }
 
-    @media (max-width: 640px){
-      .hero-copy,
-      .hero-panel,
-      .profile-card,
-      .block-card,
-      .value-card,
-      .cta-card{
+      .contact-card{
         padding:18px;
-      }
-
-      h1{
-        font-size:2.35rem;
       }
     }
   </style>

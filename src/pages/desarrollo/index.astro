@@ -1,432 +1,96 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
-
-const blocks = [
-  {
-    number: "01",
-    title: "Devlog",
-    desc:
-      "Registro progresivo del desarrollo del juego, organizado por semanas para mostrar evolución, cambios de enfoque y trabajo realizado.",
-    href: `${base}desarrollo/devlog/`,
-    tag: "Seguimiento",
-  },
-  {
-    number: "02",
-    title: "Hitos",
-    desc:
-      "Calendario o lectura de momentos clave del juego: entregas, objetivos parciales, cierres importantes y fases destacadas.",
-    href: `${base}desarrollo/hitos/`,
-    tag: "Plan temporal",
-  },
-  {
-    number: "03",
-    title: "Roadmap",
-    desc:
-      "Visión general del recorrido del juego, sus prioridades y lo que falta por cerrar para rematar la web y el portfolio.",
-    href: `${base}desarrollo/roadmap/`,
-    tag: "Hoja de ruta",
-  },
-];
-
-const weeks = [
-  { title: "Semana 1", href: `${base}desarrollo/devlog/semana-1/` },
-  { title: "Semana 2", href: `${base}desarrollo/devlog/semana-2/` },
-  { title: "Semana 3", href: `${base}desarrollo/devlog/semana-3/` },
-  { title: "Semana 4", href: `${base}desarrollo/devlog/semana-4/` },
-  { title: "Semana 5", href: `${base}desarrollo/devlog/semana-5/` },
-  { title: "Semana 6", href: `${base}desarrollo/devlog/semana-6/` },
-];
-
-const valuePoints = [
-  {
-    title: "Hace visible el trabajo real",
-    desc:
-      "Permite ver que Kaelum no es una idea aislada, sino un juego que ha ido creciendo, corrigiéndose y organizándose con el tiempo.",
-  },
-  {
-    title: "Conecta planificación y ejecución",
-    desc:
-      "Sirve para enlazar la parte más formal de la documentación con la realidad del proceso y las decisiones tomadas.",
-  },
-  {
-    title: "Refuerza la evaluación",
-    desc:
-      "Ayuda a demostrar continuidad, seguimiento y trazabilidad del proyecto, algo muy útil de cara a defensa y revisión.",
-  },
-];
 ---
 
-<BaseLayout
-  title="Kaelum — Desarrollo"
-  description="Sección de desarrollo de Kaelum: devlog, hitos y roadmap para mostrar la evolución real del proyecto."
->
-  <section class="hero hero-dev">
-    <div class="hero-copy">
-      <p class="kicker">Proceso real</p>
-      <h1>Desarrollo</h1>
+<BaseLayout title="Desarrollo — Kaelum" description="Seguimiento y evolución real del proyecto Kaelum.">
+  <section class="hero desarrollo-hero">
+    <p class="kicker">Desarrollo</p>
+    <h1>El rastro del proceso</h1>
+    <p class="lead">
+      Kaelum no aparece terminado: se construye con pruebas, correcciones, decisiones y avances.
+      Aquí queda registrado ese recorrido.
+    </p>
+  </section>
 
-      <p class="lead">
-        Esta sección reúne la parte más ligada al <strong>seguimiento, evolución y
-        construcción real</strong> del juego. Aquí no solo se ve qué es Kaelum, sino
-        <strong>cómo ha ido creciendo</strong>, qué se ha trabajado en cada etapa y cómo
-        se ha organizado el recorrido hasta llegar al estado actual.
-      </p>
-
-      <div class="actions">
-        <a class="btn primary" href={`${base}desarrollo/devlog/`}>Abrir Devlog</a>
-        <a class="btn" href={`${base}desarrollo/hitos/`}>Ver Hitos</a>
-        <a class="btn" href={`${base}desarrollo/roadmap/`}>Consultar Roadmap</a>
+  <section class="hub-grid">
+    <a class="hub-card devlog full" href={`${base}desarrollo/devlog/`}>
+      <span class="hub-number">01</span>
+      <div class="hub-copy">
+        <p class="kicker">Seguimiento</p>
+        <h2>Devlog</h2>
+        <p>Un registro del progreso real del proyecto y de cómo ha ido tomando forma.</p>
+        <span class="hub-cta">Abrir apartado →</span>
       </div>
-    </div>
-
-    <aside class="hero-panel">
-      <p class="panel-kicker">Qué muestra este bloque</p>
-      <h2>La evolución del proyecto en el tiempo</h2>
-      <p>
-        Después de revisar el juego, la parte visual y la documentación formal, aquí aparece
-        la capa que demuestra que el proyecto tiene recorrido real: semanas de trabajo,
-        decisiones, hitos y objetivos que ayudan a entender el estado actual de Kaelum.
-      </p>
-
-      <ul class="panel-list">
-        <li><strong>Devlog:</strong> seguimiento por semanas.</li>
-        <li><strong>Hitos:</strong> momentos importantes del juego.</li>
-        <li><strong>Roadmap:</strong> lectura del camino hecho y lo que queda.</li>
-      </ul>
-    </aside>
-  </section>
-
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Bloques principales</p>
-      <h2>Cómo se organiza el desarrollo</h2>
-      <p class="section-lead">
-        Esta sección no está pensada como un archivo muerto, sino como una forma clara de
-        enseñar el progreso y darle contexto al trabajo realizado.
-      </p>
-    </header>
-
-    <div class="blocks-grid">
-      {blocks.map((item) => (
-        <a class="block-card" href={item.href}>
-          <div class="block-top">
-            <span class="block-number">{item.number}</span>
-            <span class="block-tag">{item.tag}</span>
-          </div>
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-          <span class="block-link">Abrir apartado</span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Acceso rápido</p>
-      <h2>Semanas ya publicadas</h2>
-      <p class="section-lead">
-        El devlog permite revisar el avance del juego de forma progresiva. Estas son las
-        semanas que ya forman parte del recorrido.
-      </p>
-    </header>
-
-    <div class="weeks-grid">
-      {weeks.map((week) => (
-        <a class="week-pill" href={week.href}>{week.title}</a>
-      ))}
-    </div>
-  </section>
-
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Por qué importa</p>
-      <h2>Una sección útil, no solo decorativa</h2>
-      <p class="section-lead">
-        Desarrollo refuerza la sensación de juego vivo y conecta muy bien con la defensa del trabajo.
-      </p>
-    </header>
-
-    <div class="value-grid">
-      {valuePoints.map((item) => (
-        <article class="value-card">
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section split">
-    <article class="info-card">
-      <p class="kicker">Orden recomendado</p>
-      <h2>Primero devlog, luego hitos y cierre con roadmap</h2>
-      <p>
-        La forma más natural de leer esta sección es empezar por el <strong>Devlog</strong>
-        para ver el recorrido semanal, después pasar por <strong>Hitos</strong> para localizar
-        los momentos clave y terminar en <strong>Roadmap</strong> para tener una visión más
-        global del camino hecho y del cierre pendiente.
-      </p>
-      <div class="actions">
-        <a class="btn" href={`${base}desarrollo/devlog/`}>Seguir ese orden</a>
-      </div>
-    </article>
-
-    <article class="info-card accent">
-      <p class="kicker">Último bloque del recorrido</p>
-      <h2>Después de Desarrollo, toca Contacto</h2>
-      <p>
-        Una vez visto el juego desde dentro, su presentación visual, su respaldo formal y
-        su evolución real, el cierre natural del recorrido es <strong>Contacto</strong>, donde
-        se concentra la parte del autor, redes, feedback y conexión externa.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}contacto/`}>Ir a Contacto</a>
-      </div>
-    </article>
+    </a>
   </section>
 
   <style>
-    .hero-dev{
-      display:grid;
-      grid-template-columns: 1.35fr .95fr;
-      gap:24px;
-      align-items:stretch;
+    .desarrollo-hero{
+      padding:30px 24px;
     }
 
-    .hero-copy,
-    .hero-panel,
-    .block-card,
-    .value-card,
-    .info-card,
-    .week-pill{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:18px;
-      backdrop-filter: blur(8px);
-    }
-
-    .hero-copy{
-      padding:28px;
-    }
-
-    .hero-panel{
-      padding:24px;
-      background:
-        linear-gradient(180deg, rgba(90, 214, 176, .12), rgba(255,255,255,.03));
-    }
-
-    .kicker,
-    .panel-kicker{
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.75;
-      margin:0 0 8px;
-      font-size:.82rem;
-    }
-
-    h1{
-      margin:0 0 12px;
-      font-size:clamp(2.6rem, 6vw, 4.2rem);
-      line-height:.95;
-    }
-
-    h2{
-      margin:0 0 10px;
-      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
-      line-height:1.05;
-    }
-
-    h3{
-      margin:0 0 10px;
-      font-size:1.12rem;
-    }
-
-    .lead,
-    .section-lead,
-    .hero-panel p,
-    .block-card p,
-    .value-card p,
-    .info-card p{
-      line-height:1.6;
-      opacity:.94;
-      margin:0;
-      text-align:justify;
-    }
-
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
+    .hub-grid{
       margin-top:18px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:inherit;
-      text-decoration:none;
-      transition:.18s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .btn.primary{
-      background:linear-gradient(180deg, rgba(80, 205, 165, .30), rgba(80, 205, 165, .14));
-      border-color:rgba(126, 231, 198, .34);
-      box-shadow:0 10px 24px rgba(20,120,88,.18);
-    }
-
-    .panel-list{
-      margin:16px 0 0;
-      padding-left:18px;
       display:grid;
-      gap:10px;
-      line-height:1.5;
-    }
-
-    .section{
-      margin-top:28px;
-    }
-
-    .section-head{
-      margin-bottom:14px;
-    }
-
-    .blocks-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
+      grid-template-columns:1fr;
       gap:14px;
     }
 
-    .block-card{
-      padding:18px;
+    .hub-card{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
       text-decoration:none;
-      color:inherit;
-      transition:.18s ease;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
+      color:var(--text);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:0 16px 40px rgba(0,0,0,.22);
+      transition:transform .14s ease, background .14s ease, border-color .14s ease;
+      background:linear-gradient(180deg, rgba(120,210,150,.10), rgba(255,255,255,.03));
     }
 
-    .block-card:hover{
+    .hub-card:hover{
       transform:translateY(-2px);
-      background:rgba(255,255,255,.06);
+      border-color:rgba(255,255,255,.16);
+      background:linear-gradient(180deg, rgba(120,210,150,.14), rgba(255,255,255,.04));
     }
 
-    .block-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-
-    .block-number{
-      width:42px;
-      height:42px;
-      border-radius:12px;
+    .hub-number{
+      width:44px;
+      height:44px;
+      flex:0 0 auto;
+      border-radius:14px;
       display:grid;
       place-items:center;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(80, 205, 165, .16);
+      font-weight:900;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      color:var(--text);
     }
 
-    .block-tag{
-      border-radius:999px;
-      padding:6px 10px;
-      font-size:.8rem;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.05);
-      opacity:.9;
+    .hub-copy h2{
+      margin:2px 0 8px;
+      font-size:1.45rem;
     }
 
-    .block-link{
-      margin-top:auto;
-      opacity:.86;
-      font-size:.95rem;
+    .hub-copy p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.55;
     }
 
-    .weeks-grid{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
+    .hub-cta{
+      display:inline-block;
+      margin-top:14px;
+      font-weight:800;
+      color:var(--text);
     }
 
-    .week-pill{
-      padding:12px 16px;
-      border-radius:999px;
-      text-decoration:none;
-      color:inherit;
-      transition:.18s ease;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:46px;
-    }
-
-    .week-pill:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .value-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .value-card,
-    .info-card{
-      padding:22px;
-    }
-
-    .split{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .info-card.accent{
-      background:
-        linear-gradient(180deg, rgba(80, 205, 165, .14), rgba(255,255,255,.03));
-    }
-
-    @media (max-width: 1080px){
-      .blocks-grid,
-      .value-grid{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 900px){
-      .hero-dev,
-      .split{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 640px){
-      .hero-copy,
-      .hero-panel,
-      .block-card,
-      .value-card,
-      .info-card{
+    @media (max-width: 860px){
+      .hub-card{
         padding:18px;
-      }
-
-      h1{
-        font-size:2.35rem;
       }
     }
   </style>

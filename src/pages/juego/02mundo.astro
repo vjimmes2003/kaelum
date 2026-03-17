@@ -1,0 +1,724 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Kaelum — Mundo"
+  description="Mundo y ambientación de Kaelum: zonas, reglas, facciones, La Fisura y lectura visual aplicada a gameplay."
+>
+  <section class="hero world-hero">
+    <p class="kicker">Juego</p>
+    <h1>Mundo</h1>
+    <p class="lead">
+      Kaelum no es un decorado: es un sistema que empuja al jugador a leer el
+      entorno, entender el rechazo social y tomar decisiones que dejan huella.
+      Medieval y rural en apariencia, pero con tecnología arcana y armas de
+      fuego lo bastante presentes como para que el mundo se sienta funcional.
+    </p>
+
+    <div class="actions hero-actions">
+      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+      <a class="btn primary" href={`${base}juego/03personajes/`}
+        >Ver Personajes</a
+      >
+      <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+      <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+      <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+    </div>
+  </section>
+
+  <div class="grid world-grid">
+    <section class="card full featured-card">
+      <div class="label">// IDENTIDAD</div>
+      <h2>Medieval funcional + tecnología arcana</h2>
+      <p class="muted">
+        La estética base es rural/medieval, pero el mundo está atravesado por
+        una lógica moderna: control, jerarquía, rutas, permisos y protocolos. Lo
+        que la gente no entiende lo llama maldición, pero lo que la Orden no
+        explica… lo administra.
+      </p>
+
+      <div class="chips">
+        <span class="chip">Arquitectura robusta</span>
+        <span class="chip">Rutas de control</span>
+        <span class="chip">Armas comunes</span>
+        <span class="chip">Energía rara</span>
+        <span class="chip">Miedo social</span>
+        <span class="chip">Bruma violeta</span>
+      </div>
+
+      <div class="callout">
+        <strong>Idea clave:</strong> Kaelum se entiende por contraste: lo cotidiano
+        busca calma, pero La Fisura y la Orden convierten esa calma en una estabilidad
+        vigilada.
+      </div>
+    </section>
+
+    <section class="card tone-card">
+      <div class="label">// LA FISURA</div>
+      <h2>Qué es para la gente</h2>
+      <p class="muted">
+        La mayoría no sabe qué es La Fisura. Lo que sí conoce: grietas que se
+        abren, anomalías que salen, y temporadas donde el bosque se vuelve
+        territorio hostil. La explicación popular es simple y peligrosa:
+        <strong>una maldición</strong>, el reflejo de que el mundo no está en
+        balance.
+      </p>
+
+      <ul class="list">
+        <li>
+          <strong>Señales:</strong> bruma violeta, distorsión sutil y cicatrices en
+          el terreno.
+        </li>
+        <li>
+          <strong>Consecuencia:</strong> aparición de anomalías en rutas y eventos
+          de grieta.
+        </li>
+        <li>
+          <strong>Lectura jugable:</strong> el jugador aprende a identificar zonas
+          enfermas sin HUD invasivo.
+        </li>
+      </ul>
+    </section>
+
+    <section class="card tone-card">
+      <div class="label">// SOCIEDAD</div>
+      <h2>Rechazo como sistema</h2>
+      <p class="muted">
+        Kael no es rechazado por un rumor cualquiera: el pueblo lo asocia con un
+        accidente real —magia violeta fuera de control durante un ataque— que
+        dejó civiles muertos y otros marcados. Aunque intente hacer el bien, el
+        mundo responde con miedo.
+      </p>
+
+      <ul class="list">
+        <li>
+          <strong>El miedo se contagia:</strong> primero miradas, luego rumores, luego
+          persecución.
+        </li>
+        <li>
+          <strong>El tabú se hereda:</strong> lo diferente se trata como amenaza.
+        </li>
+        <li>
+          <strong>El jugador lo vive:</strong> cambia la reacción de NPCs, el acceso
+          a rutas y el apoyo social.
+        </li>
+      </ul>
+    </section>
+
+    <section class="card full">
+      <div class="label">// ZONAS</div>
+      <h2>Mapa mental del mundo</h2>
+      <p class="muted">
+        El viaje se apoya en transiciones claras de tono y color:
+        <strong>cálido cotidiano</strong> →
+        <strong>violeta frío</strong> →
+        <strong>oscuridad</strong> →
+        <strong>rural apagado</strong>. No es solo cinemática: guía la
+        progresión por biomas y tensión.
+      </p>
+
+      <div class="zones-grid">
+        <article class="zone-card">
+          <h3>1) Casa de Kael</h3>
+          <p class="muted">
+            Inicio y choque de identidad. Espacio seguro narrativo por
+            intimidad, no por ausencia de peligro.
+          </p>
+          <ul class="list compact">
+            <li>Tutorial + lectura de entorno</li>
+            <li>Transición del mundo real a Kaelum</li>
+            <li>Primeras pistas de La Fisura</li>
+          </ul>
+        </article>
+
+        <article class="zone-card">
+          <h3>2) Vesperia</h3>
+          <p class="muted">
+            Núcleo social y político. Misiones, comercio, propaganda, jerarquía
+            visible y control de la Orden.
+          </p>
+          <ul class="list compact">
+            <li>Misiones principales y secundarias</li>
+            <li>Facciones, reputación y rumores</li>
+            <li>Control, permisos y vigilancia</li>
+          </ul>
+        </article>
+
+        <article class="zone-card">
+          <h3>3) Bosques exteriores</h3>
+          <p class="muted">
+            Zona intermedia recurrente. Camino de paso y termómetro de amenaza.
+          </p>
+          <ul class="list compact">
+            <li>Rutas, patrullas y eventos</li>
+            <li>Primeras grietas serias</li>
+            <li>Lectura clara del peligro</li>
+          </ul>
+        </article>
+
+        <article class="zone-card">
+          <h3>4) Ruinas antiguas</h3>
+          <p class="muted">
+            Altares, runas y llaves de progreso. El lore aquí se cuenta con
+            símbolos, mecánicas y memorias.
+          </p>
+          <ul class="list compact">
+            <li>Runas, llaves y gating</li>
+            <li>Lore breve y significativo</li>
+            <li>Piezas del sistema de Guardianes</li>
+          </ul>
+        </article>
+
+        <article class="zone-card">
+          <h3>5) Cuevas</h3>
+          <p class="muted">
+            Atajos y secretos. Funcionan como tuberías del mundo: conectan zonas
+            y recompensan exploración.
+          </p>
+          <ul class="list compact">
+            <li>Atajos entre biomas</li>
+            <li>Loot, notas y coleccionables</li>
+            <li>Acceso alternativo y secretos</li>
+          </ul>
+        </article>
+
+        <article class="zone-card">
+          <h3>6) Nocturn</h3>
+          <p class="muted">
+            Identidad propia. El lugar donde el precio del conflicto se vuelve
+            humano.
+          </p>
+          <ul class="list compact">
+            <li>Misiones y microhistorias</li>
+            <li>Reacción fuerte al karma</li>
+            <li>Espacios de calma que se rompen rápido</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">// REGLAS</div>
+      <h2>Cómo debe leerse el mundo</h2>
+      <p class="muted">
+        Kaelum busca coherencia jugable antes que complejidad gratuita. El mundo
+        debe ser lo bastante claro como para entenderlo y lo bastante extraño
+        como para seguir tirando de ti.
+      </p>
+
+      <div class="mini-panel">
+        <h4>Principios</h4>
+        <ul class="list compact">
+          <li>La acción y la narrativa se refuerzan mutuamente</li>
+          <li>La ambientación guía sin sobreexplicar</li>
+          <li>El jugador aprende leyendo entorno, no solo menús</li>
+          <li>La extrañeza se administra en capas</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">// FUNCIÓN</div>
+      <h2>Qué debe sentir el jugador</h2>
+      <div class="feel-grid">
+        <div class="feel-box">
+          <h4>Curiosidad</h4>
+          <p>Que siempre haya algo que mirar más de cerca.</p>
+        </div>
+        <div class="feel-box">
+          <h4>Tensión</h4>
+          <p>Que el entorno no sea neutral ni completamente seguro.</p>
+        </div>
+        <div class="feel-box">
+          <h4>Coherencia</h4>
+          <p>Que el universo tenga identidad y reglas claras.</p>
+        </div>
+        <div class="feel-box metric">
+          <h4>Lectura rápida</h4>
+          <p>Que cada zona se entienda visualmente en pocos segundos.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card full">
+      <div class="label">// FACCIONES</div>
+      <h2>Quién controla, quién sufre y quién resiste</h2>
+      <p class="muted">
+        El mundo también se entiende por quién lo gobierna, quién lo padece y
+        quién intenta sobrevivir dentro de él.
+      </p>
+
+      <div class="info-grid">
+        <div class="info-box">
+          <strong>La Orden</strong>
+          <p>
+            Poder, control, estabilidad y secretos. No es solo antagonismo:
+            también representa un sistema que funciona… hasta que descubres a
+            qué precio.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <strong>Pueblo llano y extremistas</strong>
+          <p>
+            El rechazo social no es abstracto. Se vuelve rostro, rumor, miedo y
+            violencia.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <strong>Guardianes y ruinas</strong>
+          <p>
+            Una capa más antigua del mundo, ligada al pasado profundo de Kaelum
+            y a las piezas que explican su estructura real.
+          </p>
+        </div>
+
+        <div class="info-box">
+          <strong>Kael en medio</strong>
+          <p>
+            No entra como héroe reconocido, sino como una figura incómoda:
+            alguien que lleva poder, peligro y sospecha al mismo tiempo.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout subtle">
+        Kaelum no necesita contarte constantemente qué está pasando. Su mundo
+        tiene que dejarte sentirlo.
+      </div>
+    </section>
+  </div>
+
+  <div class="actions bottom">
+    <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+    <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+    <a class="btn primary" href={`${base}juego/03personajes/`}>Ver Personajes</a
+    >
+    <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+    <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+    <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+    <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+    <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+    <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+  </div>
+
+  <style>
+    .world-hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .world-hero::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          900px 280px at 18% 0%,
+          rgba(34, 211, 238, 0.08),
+          transparent 65%
+        ),
+        radial-gradient(
+          760px 280px at 90% 12%,
+          rgba(139, 92, 246, 0.08),
+          transparent 60%
+        );
+      opacity: 0.9;
+    }
+
+    .world-hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      margin-top: 16px;
+    }
+
+    .world-grid {
+      margin-top: 18px;
+    }
+
+    .featured-card {
+      border-color: rgba(34, 211, 238, 0.16);
+      background: linear-gradient(
+        180deg,
+        rgba(34, 211, 238, 0.08),
+        rgba(139, 92, 246, 0.04)
+      );
+    }
+
+    .tone-card {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .label {
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      margin-bottom: 8px;
+    }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    .zones-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .zone-card {
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .zone-card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .mini-panel {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .mini-panel h4,
+    .feel-box h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .feel-grid,
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .feel-box,
+    .info-box {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .feel-box p,
+    .info-box p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .info-box strong {
+      display: block;
+      margin-bottom: 6px;
+      color: rgba(255, 255, 255, 0.96);
+    }
+
+    .metric {
+      border-color: rgba(139, 92, 246, 0.22);
+      background: rgba(139, 92, 246, 0.08);
+    }
+
+    .callout {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.18);
+      color: var(--muted);
+    }
+
+    .callout.subtle {
+      border-style: solid;
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .list.compact {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .actions.bottom {
+      margin-top: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .zones-grid,
+      .feel-grid,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .page-hero {
+      padding: 30px 24px;
+    }
+
+    .header {
+      margin-bottom: 0;
+    }
+
+    .lead {
+      text-align: justify;
+      opacity: 0.92;
+      line-height: 1.6;
+      max-width: 78ch;
+    }
+
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
+    }
+    .hero-actions a {
+      flex: 1 1 200px;
+    }
+
+    .family-nav {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .family-pill {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+    }
+
+    .family-pill:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .family-pill.active {
+      color: var(--text);
+      background: linear-gradient(
+        90deg,
+        rgba(139, 92, 246, 0.4),
+        rgba(34, 211, 238, 0.32)
+      );
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .gdd-section {
+      margin-top: 18px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .content-card {
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      background: linear-gradient(
+        180deg,
+        rgba(139, 92, 246, 0.08),
+        rgba(255, 255, 255, 0.03)
+      );
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+    }
+
+    .content-card > p {
+      text-align: justify;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .subcard {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.18);
+    }
+
+    .subcard h3 {
+      margin: 0 0 8px;
+      font-size: 1.06rem;
+    }
+
+    .subcard p {
+      margin: 0;
+      text-align: justify;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .bullets {
+      margin: 12px 0 0;
+      padding-left: 22px;
+      color: var(--muted);
+    }
+
+    .bullets li {
+      margin: 8px 0;
+    }
+
+    .quote {
+      margin: 16px 0 0;
+      padding: 14px;
+      border-left: 4px solid rgba(170, 120, 255, 0.65);
+      background: rgba(170, 120, 255, 0.08);
+      border-radius: 12px;
+    }
+
+    .quote p {
+      margin: 0 0 6px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .quote cite {
+      opacity: 0.8;
+      font-style: normal;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .pill h3 {
+      margin: 0 0 8px;
+    }
+
+    .pill p {
+      margin: 0;
+      opacity: 0.92;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .ending.good {
+      background: linear-gradient(
+        180deg,
+        rgba(120, 210, 150, 0.12),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+
+    .ending.neutral {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 190, 90, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+
+    .ending.bad {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 110, 170, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+
+    .timeline {
+      margin-top: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .tblock {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.14);
+    }
+
+    .tblock h3 {
+      margin: 0 0 10px;
+      font-size: 1.18rem;
+    }
+
+    .tblock ol {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .tblock li {
+      margin: 8px 0;
+      line-height: 1.5;
+    }
+
+    .page-end {
+      margin-top: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .grid3 {
+        grid-template-columns: 1fr;
+      }
+
+      .content-card,
+      .subcard,
+      .pill,
+      .tblock {
+        padding: 18px;
+      }
+
+      .family-nav {
+        gap: 8px;
+      }
+    }
+  </style>
+</BaseLayout>
