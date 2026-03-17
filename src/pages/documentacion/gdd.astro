@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL; // "/" en local, "/juego/" en GitHub Pages
+const pdfUrl = `${base}documentacion/GDD_KAELUM.pdf`;
+---
+
+<BaseLayout title="Kaelum – GDD (PDF)" description="GDD completo de Kaelum en visor embebido.">
+  <section class="hero">
+    <p class="kicker">Documento</p>
+    <h1>GDD completo (PDF)</h1>
+    <p class="lead">
+      Visor embebido para lectura rápida. Si el navegador no lo soporta, tienes alternativas debajo.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href={pdfUrl} target="_blank" rel="noreferrer">Abrir en pestaña nueva</a>
+      <a class="btn" href={pdfUrl} download>Descargar PDF</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}documentacion/`}>Volver a Documentación</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <div class="card full">
+      <h3>Visor</h3>
+      <div class="pdf-shell">
+        <object data={pdfUrl} type="application/pdf" class="pdf-object">
+          <div class="pdf-fallback">
+            <p class="muted" style="margin:0 0 10px">
+              Tu navegador no pudo mostrar el PDF embebido.
+            </p>
+            <div class="actions">
+              <a class="btn primary" href={pdfUrl} target="_blank" rel="noreferrer">Abrir PDF</a>
+              <a class="btn" href={pdfUrl} download>Descargar</a>
+            </div>
+          </div>
+        </object>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

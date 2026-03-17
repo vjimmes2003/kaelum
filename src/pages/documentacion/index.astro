@@ -1,0 +1,447 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const documentacion = [
+  {
+    number: "01",
+    title: "GDD",
+    desc:
+      "Documento central del proyecto. Reúne la visión global de Kaelum desde la narrativa, el diseño, los sistemas y la propuesta general del videojuego.",
+    href: `${base}documentacion/gdd/`,
+    tag: "Base del proyecto",
+  },
+  {
+    number: "02",
+    title: "Folleto",
+    desc:
+      "Versión más resumida, visual y rápida de consultar para presentar el proyecto sin entrar todavía en tanto detalle.",
+    href: `${base}documentacion/folleto/`,
+    tag: "Resumen visual",
+  },
+  {
+    number: "03",
+    title: "Análisis",
+    desc:
+      "Apartado estratégico con DAFO, CAME y otras lecturas que ayudan a justificar decisiones, enfoque y posicionamiento del proyecto.",
+    href: `${base}documentacion/analisis/`,
+    tag: "Análisis",
+  },
+  {
+    number: "04",
+    title: "Presupuesto",
+    desc:
+      "Estimación de costes de producción y marketing, planteada como parte de la viabilidad y defensa formal del proyecto.",
+    href: `${base}documentacion/presupuesto/`,
+    tag: "Viabilidad",
+  },
+  {
+    number: "05",
+    title: "Planificación",
+    desc:
+      "Hitos, tiempos, roadmap y orden de trabajo del proyecto para mostrar cómo se organiza el desarrollo.",
+    href: `${base}documentacion/planificacion/`,
+    tag: "Organización",
+  },
+  {
+    number: "06",
+    title: "Métricas y diagramas",
+    desc:
+      "Gráficos, flujos, esquemas y elementos visuales que ayudan a sintetizar información técnica o estratégica.",
+    href: `${base}documentacion/metricas/`,
+    tag: "Apoyo visual",
+  },
+  {
+    number: "07",
+    title: "Equipo",
+    desc:
+      "Sección dedicada a quién está detrás del proyecto, roles, reparto de funciones y lectura más profesional del trabajo realizado.",
+    href: `${base}documentacion/equipo/`,
+    tag: "Roles",
+  },
+];
+
+const useCases = [
+  {
+    title: "Si vienes a evaluar la web",
+    desc:
+      "Empieza por GDD, sigue con Presupuesto y Planificación, y termina con Métricas. Así ves lo conceptual, lo viable y lo justificable.",
+  },
+  {
+    title: "Si quieres una lectura rápida",
+    desc:
+      "Lo mejor es entrar por Folleto y luego abrir solo los apartados que te interesen más.",
+  },
+  {
+    title: "Si buscas estrategia y defensa",
+    desc:
+      "Análisis y Métricas son los bloques más útiles para entender por qué se tomaron ciertas decisiones.",
+  },
+];
+
+const rubricItems = [
+  "Enlace o resumen del GDD",
+  "Presupuesto de producción y marketing",
+  "Gráficos, diagramas y métricas",
+  "Sección de equipo y roles",
+  "Apoyo formal a la evaluación del proyecto",
+];
+---
+
+<BaseLayout
+  title="Kaelum — Documentación"
+  description="Bloque de documentación formal de Kaelum: GDD, folleto, análisis, presupuesto, planificación, métricas y equipo."
+>
+  <section class="hero hero-documentacion">
+    <div class="hero-copy">
+      <p class="kicker">Respaldo formal</p>
+      <h1>Documentación</h1>
+
+      <p class="lead">
+        Esta sección concentra la parte más <strong>formal, justificable y evaluable</strong>
+        del proyecto. Aquí no solo se guarda información: se organiza el material que permite
+        entender, defender y revisar Kaelum desde una perspectiva más técnica, estratégica y
+        profesional.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/gdd/`}>Abrir GDD</a>
+        <a class="btn" href={`${base}documentacion/folleto/`}>Ver Folleto</a>
+        <a class="btn" href={`${base}documentacion/planificacion/`}>Ir a Planificación</a>
+      </div>
+    </div>
+
+    <aside class="hero-panel">
+      <p class="panel-kicker">Qué aporta este bloque</p>
+      <h2>La parte que sostiene el proyecto por dentro</h2>
+      <p>
+        Después de entender el juego y su presentación visual, aquí aparece la capa que lo
+        respalda: documentos, análisis, planificación, métricas y estructura de defensa.
+        Es el apartado que más ayuda cuando alguien necesita revisar Kaelum con criterio y no
+        solo de forma superficial.
+      </p>
+
+      <div class="rubric-box">
+        <p class="rubric-title">Puntos de rúbrica que cubre especialmente</p>
+        <ul>
+          {rubricItems.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </aside>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Apartados principales</p>
+      <h2>Qué incluye Documentación</h2>
+      <p class="section-lead">
+        Esta sección está dividida para que cada tipo de lector encuentre rápido lo que busca,
+        sin tener que navegar entre materiales mezclados.
+      </p>
+    </header>
+
+    <div class="documentacion-grid">
+      {documentacion.map((item) => (
+        <a class="doc-card" href={item.href}>
+          <div class="doc-top">
+            <span class="doc-number">{item.number}</span>
+            <span class="doc-tag">{item.tag}</span>
+          </div>
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+          <span class="doc-link">Abrir apartado</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Cómo consultar esta parte</p>
+      <h2>Distintas formas de entrar según lo que busques</h2>
+      <p class="section-lead">
+        No todo el mundo entra en Documentación con el mismo objetivo, así que esta parte también
+        está pensada para facilitar recorridos distintos.
+      </p>
+    </header>
+
+    <div class="use-grid">
+      {useCases.map((item) => (
+        <article class="use-card">
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section split">
+    <article class="info-card">
+      <p class="kicker">Orden recomendado</p>
+      <h2>Primero GDD, luego análisis y cierre con planificación</h2>
+      <p>
+        Si quieres seguir un orden lógico, lo mejor es empezar por el <strong>GDD</strong> como
+        documento base, continuar con <strong>Análisis</strong> para entender el enfoque y cerrar
+        con <strong>Presupuesto</strong>, <strong>Planificación</strong> y
+        <strong> Métricas</strong> para ver la parte más defendible y organizativa.
+      </p>
+      <div class="actions">
+        <a class="btn" href={`${base}documentacion/gdd/`}>Seguir ese orden</a>
+      </div>
+    </article>
+
+    <article class="info-card accent">
+      <p class="kicker">Continuidad del recorrido</p>
+      <h2>Después de Documentación, toca Desarrollo</h2>
+      <p>
+        Una vez revisada la base formal del proyecto, el siguiente paso natural es
+        <strong> Desarrollo</strong>, donde se ve la evolución real del trabajo, los devlogs,
+        los hitos y cómo Kaelum ha ido creciendo con el tiempo.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}desarrollo/`}>Ir a Desarrollo</a>
+      </div>
+    </article>
+  </section>
+
+  <style>
+    .hero-documentacion{
+      display:grid;
+      grid-template-columns: 1.35fr .95fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .doc-card,
+    .use-card,
+    .info-card{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-copy{
+      padding:28px;
+    }
+
+    .hero-panel{
+      padding:24px;
+      background:
+        linear-gradient(180deg, rgba(255, 170, 90, .12), rgba(255,255,255,.03));
+    }
+
+    .kicker,
+    .panel-kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0 0 8px;
+      font-size:.82rem;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(2.6rem, 6vw, 4.2rem);
+      line-height:.95;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
+      line-height:1.05;
+    }
+
+    h3{
+      margin:0 0 10px;
+      font-size:1.12rem;
+    }
+
+    .lead,
+    .section-lead,
+    .hero-panel p,
+    .doc-card p,
+    .use-card p,
+    .info-card p{
+      line-height:1.6;
+      opacity:.94;
+      margin:0;
+      text-align:justify;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      text-decoration:none;
+      transition:.18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(255, 162, 72, .30), rgba(255, 162, 72, .14));
+      border-color:rgba(255, 191, 132, .34);
+      box-shadow:0 10px 24px rgba(120,60,20,.18);
+    }
+
+    .rubric-box{
+      margin-top:18px;
+      padding:16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+    }
+
+    .rubric-title{
+      margin:0 0 10px;
+      font-weight:600;
+      opacity:.95;
+    }
+
+    .rubric-box ul{
+      margin:0;
+      padding-left:18px;
+      display:grid;
+      gap:8px;
+      line-height:1.5;
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:14px;
+    }
+
+    .documentacion-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .doc-card{
+      padding:18px;
+      text-decoration:none;
+      color:inherit;
+      transition:.18s ease;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .doc-card:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.06);
+    }
+
+    .doc-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .doc-number{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255, 162, 72, .16);
+    }
+
+    .doc-tag{
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:.8rem;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      opacity:.9;
+    }
+
+    .doc-link{
+      margin-top:auto;
+      opacity:.86;
+      font-size:.95rem;
+    }
+
+    .use-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .use-card,
+    .info-card{
+      padding:22px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .info-card.accent{
+      background:
+        linear-gradient(180deg, rgba(255, 162, 72, .14), rgba(255,255,255,.03));
+    }
+
+    @media (max-width: 1080px){
+      .documentacion-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+
+      .use-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 900px){
+      .hero-documentacion,
+      .split{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .documentacion-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-copy,
+      .hero-panel,
+      .doc-card,
+      .use-card,
+      .info-card{
+        padding:18px;
+      }
+
+      h1{
+        font-size:2.35rem;
+      }
+    }
+  </style>
+</BaseLayout>

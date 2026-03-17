@@ -1,0 +1,483 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const pillars = [
+  {
+    title: "Narrativa y mundo",
+    desc:
+      "Kaelum combina conflicto, identidad y progresión narrativa dentro de un universo con tensión entre facciones, símbolos y fuerzas que condicionan al protagonista.",
+  },
+  {
+    title: "Combate y habilidades",
+    desc:
+      "La experiencia jugable gira alrededor del gunplay, el movimiento y el uso de habilidades que añaden control, utilidad, presión y profundidad al combate.",
+  },
+  {
+    title: "Progreso y decisión",
+    desc:
+      "El recorrido del jugador no es solo avanzar por niveles, sino atravesar actos, decisiones, rutas, consecuencias y una lectura del mundo que va cambiando.",
+  },
+  {
+    title: "Flujo e interfaz",
+    desc:
+      "La estructura de estados, pantallas y feedback visual forma parte del diseño jugable y ayuda a que la experiencia se entienda y se sienta coherente.",
+  },
+];
+
+const pages = [
+  {
+    number: "01",
+    title: "Historia",
+    desc:
+      "Premisa, conflicto, protagonista y dirección narrativa general del juego.",
+    href: `${base}juego/historia/`,
+    group: "Narrativa",
+  },
+  {
+    number: "02",
+    title: "Mundo",
+    desc:
+      "Ambientación, tono, reglas del universo y referencias que construyen la identidad de Kaelum.",
+    href: `${base}juego/mundo/`,
+    group: "Narrativa",
+  },
+  {
+    number: "03",
+    title: "Personajes",
+    desc:
+      "Protagonista, aliados y figuras relevantes explicadas desde su rol narrativo y jugable.",
+    href: `${base}juego/personajes/`,
+    group: "Narrativa",
+  },
+  {
+    number: "04",
+    title: "Enemigos",
+    desc:
+      "Roles de combate, facciones, color-code y fantasías de enfrentamiento del juego.",
+    href: `${base}juego/enemigos/`,
+    group: "Combate",
+  },
+  {
+    number: "05",
+    title: "Mecánicas",
+    desc:
+      "Core loop, inputs, sistemas principales, habilidades, progresión, interacción e inventario.",
+    href: `${base}juego/mecanicas/`,
+    group: "Combate",
+  },
+  {
+    number: "06",
+    title: "Progreso",
+    desc:
+      "Estructura narrativa del juego: prólogo, actos, rutas, decisiones y tipos de final.",
+    href: `${base}juego/progreso/`,
+    group: "Estructura",
+  },
+  {
+    number: "07",
+    title: "Flujo",
+    desc:
+      "Estados del juego, navegación, menús, victoria, derrota y lectura global de la experiencia.",
+    href: `${base}juego/flujo/`,
+    group: "Estructura",
+  },
+  {
+    number: "08",
+    title: "Cinemáticas",
+    desc:
+      "Momentos clave, función audiovisual y escenas que refuerzan el ritmo del proyecto.",
+    href: `${base}juego/cinematicas/`,
+    group: "Presentación",
+  },
+  {
+    number: "09",
+    title: "Interfaz",
+    desc:
+      "HUD, diario, pausa, victoria y otras pantallas como parte de la experiencia jugable.",
+    href: `${base}juego/interfaz/`,
+    group: "Presentación",
+  },
+];
+
+const pathFlow = [
+  "Historia",
+  "Mundo",
+  "Personajes",
+  "Enemigos",
+  "Mecánicas",
+  "Progreso",
+  "Flujo",
+  "Cinemáticas",
+  "Interfaz",
+];
+---
+
+<BaseLayout
+  title="Kaelum — Juego"
+  description="Sección principal de Kaelum: narrativa, mundo, personajes, enemigos, mecánicas, progreso, flujo, cinemáticas e interfaz."
+>
+  <section class="hero hero-game">
+    <div class="hero-copy">
+      <p class="kicker">Sección central</p>
+      <h1>Juego</h1>
+
+      <p class="lead">
+        Este bloque funciona como el <strong>núcleo principal del portfolio</strong>. Aquí
+        Kaelum se presenta como videojuego: qué propone, cómo se estructura, qué sistemas
+        lo sostienen y cómo se relacionan la narrativa, el combate, el progreso y la
+        interfaz dentro de una misma experiencia.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}juego/historia/`}>Empezar por Historia</a>
+        <a class="btn" href={`${base}juego/mecanicas/`}>Ir a Mecánicas</a>
+        <a class="btn" href={`${base}juego/interfaz/`}>Ver Interfaz</a>
+      </div>
+    </div>
+
+    <aside class="hero-panel">
+      <p class="panel-kicker">Qué explica esta sección</p>
+      <h2>Un GDD web más fácil de leer</h2>
+      <p>
+        En lugar de obligar al visitante a navegar por documentos largos o apartados sueltos,
+        esta parte reorganiza el proyecto como un recorrido claro: primero entiendes el mundo,
+        luego el conflicto, después el combate y finalmente cómo se articula todo en la
+        experiencia del jugador.
+      </p>
+
+      <div class="flow-pills">
+        {pathFlow.map((item) => <span>{item}</span>)}
+      </div>
+    </aside>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Pilares del bloque</p>
+      <h2>Cómo se ordena Kaelum aquí dentro</h2>
+      <p class="section-lead">
+        Esta sección no está pensada como un simple listado de páginas, sino como un sistema
+        de lectura donde cada parte cumple una función concreta.
+      </p>
+    </header>
+
+    <div class="pillars-grid">
+      {pillars.map((pillar) => (
+        <article class="pillar-card">
+          <h3>{pillar.title}</h3>
+          <p>{pillar.desc}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Recorrido principal</p>
+      <h2>Subpáginas de Juego</h2>
+      <p class="section-lead">
+        Este es el orden recomendado para entender Kaelum sin saltar entre bloques desconectados.
+      </p>
+    </header>
+
+    <div class="pages-grid">
+      {pages.map((page) => (
+        <a class="page-card" href={page.href}>
+          <div class="page-top">
+            <span class="page-number">{page.number}</span>
+            <span class="page-group">{page.group}</span>
+          </div>
+          <h3>{page.title}</h3>
+          <p>{page.desc}</p>
+          <span class="page-link">Abrir apartado</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section split">
+    <article class="info-card">
+      <p class="kicker">Orden sugerido</p>
+      <h2>Primero contexto, luego sistemas</h2>
+      <p>
+        Lo más natural es arrancar por <strong>Historia</strong>, <strong>Mundo</strong> y
+        <strong> Personajes</strong> para entender la base del juego. Después tiene sentido
+        pasar a <strong>Enemigos</strong> y <strong>Mecánicas</strong>, y cerrar con
+        <strong> Progreso</strong>, <strong>Flujo</strong>, <strong>Cinemáticas</strong> e
+        <strong> Interfaz</strong>.
+      </p>
+      <div class="actions">
+        <a class="btn" href={`${base}juego/historia/`}>Seguir el orden recomendado</a>
+      </div>
+    </article>
+
+    <article class="info-card accent">
+      <p class="kicker">Lectura alternativa</p>
+      <h2>Si vienes por lo jugable</h2>
+      <p>
+        Si tu foco está más en sistemas y diseño, puedes entrar directamente por
+        <strong> Mecánicas</strong>, continuar con <strong>Enemigos</strong> y
+        <strong> Flujo</strong>, y luego revisar <strong>Interfaz</strong> para ver cómo se
+        traduce todo eso en pantalla y feedback al jugador.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}juego/mecanicas/`}>Entrar por mecánicas</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="section cta-section">
+    <div class="cta-card">
+      <p class="kicker">Siguiente salto natural</p>
+      <h2>Después de Juego, lo que más sentido tiene es Media</h2>
+      <p>
+        Una vez entendido el proyecto como videojuego, la siguiente parada ideal es la sección
+        de <strong>Media</strong>, donde se concentra el tono visual, las capturas, el
+        moodboard y el material más directo para enseñar cómo se ve Kaelum.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}media/`}>Ir a Media</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .hero-game{
+      display:grid;
+      grid-template-columns: 1.35fr .95fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .pillar-card,
+    .page-card,
+    .info-card,
+    .cta-card{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-copy{
+      padding:28px;
+    }
+
+    .hero-panel{
+      padding:24px;
+      background:
+        linear-gradient(180deg, rgba(103, 150, 255, .12), rgba(255,255,255,.03));
+    }
+
+    .kicker,
+    .panel-kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0 0 8px;
+      font-size:.82rem;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(2.6rem, 6vw, 4.2rem);
+      line-height:.95;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
+      line-height:1.05;
+    }
+
+    h3{
+      margin:0 0 10px;
+      font-size:1.12rem;
+    }
+
+    .lead,
+    .section-lead,
+    .hero-panel p,
+    .pillar-card p,
+    .page-card p,
+    .info-card p,
+    .cta-card p{
+      line-height:1.6;
+      opacity:.94;
+      margin:0;
+      text-align:justify;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      text-decoration:none;
+      transition:.18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(94, 139, 255, .28), rgba(94, 139, 255, .14));
+      border-color:rgba(136, 175, 255, .34);
+      box-shadow:0 10px 24px rgba(20,44,120,.18);
+    }
+
+    .flow-pills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .flow-pills span{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      font-size:.92rem;
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:14px;
+    }
+
+    .pillars-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .pillar-card{
+      padding:20px;
+    }
+
+    .pages-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .page-card{
+      padding:18px;
+      text-decoration:none;
+      color:inherit;
+      transition:.18s ease;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .page-card:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.06);
+    }
+
+    .page-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .page-number{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(94, 139, 255, .16);
+    }
+
+    .page-group{
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:.8rem;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      opacity:.9;
+    }
+
+    .page-link{
+      margin-top:auto;
+      opacity:.86;
+      font-size:.95rem;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .info-card,
+    .cta-card{
+      padding:22px;
+    }
+
+    .info-card.accent,
+    .cta-card{
+      background:
+        linear-gradient(180deg, rgba(94, 139, 255, .14), rgba(255,255,255,.03));
+    }
+
+    @media (max-width: 1080px){
+      .pages-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 900px){
+      .hero-game,
+      .pillars-grid,
+      .split{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .pages-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-copy,
+      .hero-panel,
+      .pillar-card,
+      .page-card,
+      .info-card,
+      .cta-card{
+        padding:18px;
+      }
+
+      h1{
+        font-size:2.35rem;
+      }
+    }
+  </style>
+</BaseLayout>

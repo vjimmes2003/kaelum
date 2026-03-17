@@ -1,0 +1,383 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const sections = [
+  {
+    number: "01",
+    title: "Moodboard",
+    desc:
+      "La base visual del proyecto: atmósfera, referencias, tono, materiales, colores e intención artística general de Kaelum.",
+    href: `${base}media/moodboard/`,
+    tag: "Dirección visual",
+  },
+  {
+    number: "02",
+    title: "Galería",
+    desc:
+      "Capturas, composiciones y material gráfico que ayudan a enseñar el proyecto de forma más directa y rápida.",
+    href: `${base}media/galeria/`,
+    tag: "Screenshots",
+  },
+  {
+    number: "03",
+    title: "Tráiler",
+    desc:
+      "Pieza audiovisual para presentar Kaelum de manera breve, visual y más atractiva para evaluación o portfolio.",
+    href: `${base}media/trailer/`,
+    tag: "Vídeo",
+  },
+];
+
+const values = [
+  {
+    title: "Tono antes que saturación",
+    desc:
+      "La parte visual no se plantea como un escaparate vacío, sino como una forma de transmitir identidad, atmósfera y coherencia con el juego.",
+  },
+  {
+    title: "Primera impresión clara",
+    desc:
+      "Media debe permitir que alguien entienda el estilo de Kaelum casi de un vistazo, incluso antes de entrar en documentación extensa.",
+  },
+  {
+    title: "Apoyo real a la rúbrica",
+    desc:
+      "Esta sección ayuda a cubrir screenshots, tráiler y elementos creativos extra sin mezclarlo con apartados narrativos o técnicos.",
+  },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Media"
+  description="Sección visual de Kaelum: moodboard, galería y tráiler para enseñar el tono, la identidad y la presencia del proyecto."
+>
+  <section class="hero hero-media">
+    <div class="hero-copy">
+      <p class="kicker">Presentación visual</p>
+      <h1>Media</h1>
+
+      <p class="lead">
+        Esta sección reúne la parte más <strong>directa, visual y presentable</strong> del
+        proyecto. Su función no es explicar cómo funciona Kaelum por dentro, sino enseñar
+        <strong> cómo se ve</strong>, qué atmósfera transmite y qué identidad visual sostiene
+        la propuesta.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}media/moodboard/`}>Ver Moodboard</a>
+        <a class="btn" href={`${base}media/galeria/`}>Abrir Galería</a>
+        <a class="btn" href={`${base}media/trailer/`}>Ver Tráiler</a>
+      </div>
+    </div>
+
+    <aside class="hero-panel">
+      <p class="panel-kicker">Qué entra aquí y qué no</p>
+      <h2>Escaparate visual del proyecto</h2>
+      <p>
+        Media se centra en la lectura estética y promocional de Kaelum: referencias,
+        capturas y vídeo. La explicación funcional del juego, sus sistemas y su interfaz
+        se mantiene en <strong>Juego</strong>, para no mezclar bloques que responden a
+        preguntas distintas.
+      </p>
+
+      <ul class="panel-list">
+        <li><strong>Sí:</strong> moodboard, screenshots, vídeo, presencia visual.</li>
+        <li><strong>No:</strong> mecánicas, flujo de estados, HUD como sistema, progreso narrativo.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Bloques visuales</p>
+      <h2>Qué puedes ver aquí</h2>
+      <p class="section-lead">
+        Esta sección está pensada para enseñar Kaelum de forma más inmediata y atractiva,
+        sin obligar a entrar todavía en apartados largos o técnicos.
+      </p>
+    </header>
+
+    <div class="media-grid">
+      {sections.map((item) => (
+        <a class="media-card" href={item.href}>
+          <div class="media-top">
+            <span class="media-number">{item.number}</span>
+            <span class="media-tag">{item.tag}</span>
+          </div>
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+          <span class="media-link">Abrir apartado</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Por qué existe esta sección</p>
+      <h2>Una parte visual con función real</h2>
+      <p class="section-lead">
+        Media no está aquí solo para adornar la web, sino para reforzar la comprensión y la presentación del proyecto.
+      </p>
+    </header>
+
+    <div class="values-grid">
+      {values.map((item) => (
+        <article class="value-card">
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section split">
+    <article class="info-card">
+      <p class="kicker">Orden recomendado</p>
+      <h2>Primero moodboard, después galería y tráiler</h2>
+      <p>
+        La lectura más natural dentro de esta sección es empezar por el
+        <strong> Moodboard</strong>, porque fija el tono y la intención visual. Después,
+        la <strong>Galería</strong> permite aterrizar esa dirección en imágenes más concretas,
+        y el <strong>Tráiler</strong> remata la presentación de una forma más dinámica.
+      </p>
+      <div class="actions">
+        <a class="btn" href={`${base}media/moodboard/`}>Seguir ese orden</a>
+      </div>
+    </article>
+
+    <article class="info-card accent">
+      <p class="kicker">Continuidad del recorrido</p>
+      <h2>Después de Media, toca Documentación</h2>
+      <p>
+        Una vez que el visitante ya tiene una idea clara de cómo se ve Kaelum, el siguiente
+        paso más lógico es pasar a <strong>Documentación</strong>, donde se encuentra el
+        respaldo formal del proyecto: GDD, análisis, planificación, presupuesto y métricas.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/`}>Ir a Documentación</a>
+      </div>
+    </article>
+  </section>
+
+  <style>
+    .hero-media{
+      display:grid;
+      grid-template-columns: 1.35fr .95fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .media-card,
+    .value-card,
+    .info-card{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-copy{
+      padding:28px;
+    }
+
+    .hero-panel{
+      padding:24px;
+      background:
+        linear-gradient(180deg, rgba(184, 120, 255, .13), rgba(255,255,255,.03));
+    }
+
+    .kicker,
+    .panel-kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0 0 8px;
+      font-size:.82rem;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(2.6rem, 6vw, 4.2rem);
+      line-height:.95;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
+      line-height:1.05;
+    }
+
+    h3{
+      margin:0 0 10px;
+      font-size:1.12rem;
+    }
+
+    .lead,
+    .section-lead,
+    .hero-panel p,
+    .media-card p,
+    .value-card p,
+    .info-card p{
+      line-height:1.6;
+      opacity:.94;
+      margin:0;
+      text-align:justify;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      text-decoration:none;
+      transition:.18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(174, 102, 255, .30), rgba(174, 102, 255, .14));
+      border-color:rgba(208, 156, 255, .34);
+      box-shadow:0 10px 24px rgba(88,20,120,.18);
+    }
+
+    .panel-list{
+      margin:16px 0 0;
+      padding-left:18px;
+      display:grid;
+      gap:10px;
+      line-height:1.5;
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:14px;
+    }
+
+    .media-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .media-card{
+      padding:18px;
+      text-decoration:none;
+      color:inherit;
+      transition:.18s ease;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .media-card:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.06);
+    }
+
+    .media-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .media-number{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(174, 102, 255, .16);
+    }
+
+    .media-tag{
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:.8rem;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      opacity:.9;
+    }
+
+    .media-link{
+      margin-top:auto;
+      opacity:.86;
+      font-size:.95rem;
+    }
+
+    .values-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .value-card,
+    .info-card{
+      padding:22px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .info-card.accent{
+      background:
+        linear-gradient(180deg, rgba(174, 102, 255, .14), rgba(255,255,255,.03));
+    }
+
+    @media (max-width: 1020px){
+      .media-grid,
+      .values-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 900px){
+      .hero-media,
+      .split{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero-copy,
+      .hero-panel,
+      .media-card,
+      .value-card,
+      .info-card{
+        padding:18px;
+      }
+
+      h1{
+        font-size:2.35rem;
+      }
+    }
+  </style>
+</BaseLayout>

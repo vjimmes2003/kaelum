@@ -1,7 +1,7 @@
 # Dump completo de archivos .astro
 
 - Carpeta escaneada: `src`
-- Archivos encontrados: **28**
+- Archivos encontrados: **41**
 
 
 ---
@@ -12,11 +12,17 @@
 ---
 const {
   title = "Kaelum",
-  description = "Portfolio & devlog del proyecto Kaelum.",
+  description = "Portfolio y documentación jugable del proyecto Kaelum.",
 } = Astro.props;
-const base = import.meta.env.BASE_URL;                 // "/kaelum/" en prod, "/" en local
-const path = Astro.url.pathname;                       // "/kaelum/devlog/..." en prod
-const rel = path.startsWith(base) ? path.slice(base.length - 1) : path; // "/devlog/..." o "/"
+
+const base = import.meta.env.BASE_URL; // "/juego/" en prod, "/" en local
+const path = Astro.url.pathname;
+
+// Normaliza la ruta para que funcione bien tanto en local como en GitHub Pages
+const rel = path.startsWith(base)
+  ? `/${path.slice(base.length).replace(/^\/+/, "")}`
+  : path;
+
 const is = (p: string) => rel === p || rel.startsWith(p + "/");
 
 const pitchPdf = `${base}pitch/kaelum-pitch.pdf`;
@@ -30,28 +36,36 @@ const pitchPdf = `${base}pitch/kaelum-pitch.pdf`;
     <meta name="description" content={description} />
     <title>{title}</title>
 
-    <link rel="stylesheet" href={`${import.meta.env.BASE_URL}styles/global.css`} />
-    <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.ico`} />
+    <link rel="stylesheet" href={`${base}styles/global.css`} />
+    <link rel="icon" href={`${base}favicon.png`} />
   </head>
 
   <body>
     <header class="topbar">
       <div class="topbar-inner">
-        <a class="brand" href="/">
-          <span class="brand-dot" aria-hidden="true"></span>
-          <span class="brand-name">Kaelum</span>
+        <a class="brand" href={base} aria-label="Ir al inicio de Kaelum">
+          <img src={`${base}favicon.png`} alt="Logo de Kaelum" class="brand-logo" />
+          <span class="brand-copy">
+            <span class="brand-name">Kaelum</span>
+            <span class="brand-subtitle">Portfolio del videojuego</span>
+          </span>
         </a>
 
-        <nav class="nav">
+        <nav class="nav" aria-label="Navegación principal">
           <a class={rel === "/" ? "pill active" : "pill"} href={base}>Inicio</a>
-          <a class={is("/kaelum") ? "pill active" : "pill"} href={`${base}kaelum/`}>Resumen</a>
-          <a class={is("/proyecto") ? "pill active" : "pill"} href={`${base}proyecto/`}>Proyecto</a>
-          <a class={is("/vision") ? "pill active" : "pill"} href={`${base}vision/`}>Visión</a>
-          <a class={is("/analisis") ? "pill active" : "pill"} href={`${base}analisis/`}>Análisis</a>
-          <a class={is("/devlog") ? "pill active" : "pill"} href={`${base}devlog/`}>Devlog</a>
-          <a class={is("/docs") ? "pill active" : "pill"} href={`${base}docs/`}>Docs</a>
-          <a class={is("/sobre-mi") ? "pill active" : "pill"} href={`${base}sobre-mi/`}>Sobre mí</a>
-          <a class="pill" href={pitchPdf} download="Kaelum_Pitch.pdf" title="Descargar Pitch (PDF)"> Pitch</a>
+          <a class={is("/juego") ? "pill active" : "pill"} href={`${base}juego/`}>Juego</a>
+          <a class={is("/media") ? "pill active" : "pill"} href={`${base}media/`}>Media</a>
+          <a class={is("/documentacion") ? "pill active" : "pill"} href={`${base}documentacion/`}>Documentación</a>
+          <a class={is("/desarrollo") ? "pill active" : "pill"} href={`${base}desarrollo/`}>Desarrollo</a>
+          <a class={is("/contacto") ? "pill active" : "pill"} href={`${base}contacto/`}>Contacto</a>
+          <a
+            class="pill pitch-pill"
+            href={pitchPdf}
+            download="Kaelum_Pitch.pdf"
+            title="Descargar pitch en PDF"
+          >
+            Pitch
+          </a>
         </nav>
       </div>
     </header>
@@ -62,8 +76,27 @@ const pitchPdf = `${base}pitch/kaelum-pitch.pdf`;
 
     <footer class="footer">
       <div class="footer-inner">
-        <span>© {new Date().getFullYear()} · Kaelum</span>
-        <span class="muted">Implementación general (pendiente de cambios)</span>
+        <div class="footer-block">
+          <p class="footer-title">Kaelum</p>
+          <p class="footer-text">
+            Portfolio jugable, documentación y evolución del proyecto en una estructura
+            pensada para entender el videojuego sin perderse.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <a href={base}>Inicio</a>
+          <a href={`${base}juego/`}>Juego</a>
+          <a href={`${base}media/`}>Media</a>
+          <a href={`${base}documentacion/`}>Documentación</a>
+          <a href={`${base}desarrollo/`}>Desarrollo</a>
+          <a href={`${base}contacto/`}>Contacto</a>
+        </div>
+
+        <div class="footer-meta">
+          <span>© {new Date().getFullYear()} · Kaelum</span>
+          <span class="muted">Web portfolio del proyecto</span>
+        </div>
       </div>
     </footer>
   </body>
@@ -71,386 +104,1172 @@ const pitchPdf = `${base}pitch/kaelum-pitch.pdf`;
 ```
 
 ---
-## FILE: src/pages/analisis/came.astro
+## FILE: src/pages/contacto/index.astro
 ---
 
 ```astro
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
-const imgUrl = `${base}images/vision/came.png`;
+
+const blocks = [
+  {
+    number: "01",
+    title: "Tu opinión",
+    desc:
+      "Espacio pensado para recoger feedback, impresiones o respuestas de quien visita la web y quiere dejar una valoración del proyecto.",
+    href: `${base}contacto/opinion/`,
+    tag: "Feedback",
+  },
+  {
+    number: "02",
+    title: "Redes y presencia digital",
+    desc:
+      "Enlaces a perfiles, canales y espacios donde seguir el proyecto o conocer mejor al autor y su trabajo.",
+    href: `${base}contacto/redes/`,
+    tag: "Presencia",
+  },
+];
+
+const strengths = [
+  {
+    title: "Cierre natural del portfolio",
+    desc:
+      "Después de revisar el juego, la parte visual, la documentación y el desarrollo, aquí se concentra la conexión humana y profesional del proyecto.",
+  },
+  {
+    title: "Apoyo a la evaluación",
+    desc:
+      "Esta sección ayuda a cubrir contacto, feedback, redes, autoría y parte de la presentación general exigida por la rúbrica.",
+  },
+  {
+    title: "Puerta a la continuidad",
+    desc:
+      "Sirve para que quien llegue hasta el final pueda seguir el proyecto, contactar contigo o dejar una impresión útil.",
+  },
+];
+
+const contactWays = [
+  "Presentación del autor o del proyecto",
+  "Acceso a redes y perfiles",
+  "Formulario o vía de feedback",
+  "Espacio para presencia digital y localización",
+];
 ---
 
 <BaseLayout
-  title="Kaelum — Análisis CAME"
-  description="Análisis CAME del proyecto Kaelum: qué corregimos, mantenemos, afrontamos y explotamos."
+  title="Kaelum — Contacto"
+  description="Bloque final de Kaelum: autor, feedback, redes y presencia digital del proyecto."
 >
-  <section class="hero">
-    <p class="kicker">Análisis</p>
-    <h1>CAME</h1>
-    <p class="lead">
-      El CAME convierte el diagnóstico en decisiones: qué se ajusta, qué se mantiene, qué se afronta y qué se explota.
-    </p>
+  <section class="hero hero-contact">
+    <div class="hero-copy">
+      <p class="kicker">Cierre del recorrido</p>
+      <h1>Contacto</h1>
 
-    <div class="actions">
-      <a class="btn" href={`${base}analisis/`}>Volver al índice</a>
-      <a class="btn" href={`${base}analisis/dafo/`}>Ver DAFO</a>
-      <button class="btn primary" id="toggleView" type="button">Ver texto</button>
-    </div>
-  </section>
-
-  {/* IMAGEN */}
-  <section id="imageView" class="grid">
-    <div class="card full">
-      <img
-        src={imgUrl}
-        alt="Análisis CAME de Kaelum"
-        style="width:100%; border-radius: var(--radius); display:block;"
-        loading="eager"
-      />
-
-      <div class="actions" style="margin-top:12px">
-        <a class="btn" href={imgUrl} download>Descargar imagen</a>
-        <a class="btn" href={`${base}analisis/`}>Volver al índice</a>
-      </div>
-    </div>
-  </section>
-
-  {/* TEXTO */}
-  <section id="textView" class="grid hidden">
-    <section class="card">
-      <h2>Corregir</h2>
-      <p class="muted">Ajustes para evitar errores de scope y producción.</p>
-      <ul class="list">
-        <li><strong>Reducir alcance inicial:</strong> menos personajes/sistemas, más solidez.</li>
-        <li><strong>Arte funcional primero:</strong> claridad jugable antes que espectacular.</li>
-        <li><strong>Priorizar sistemas base:</strong> movimiento, disparo y feedback antes de contenido.</li>
-        <li><strong>Escalonar producción artística:</strong> subir calidad cuando el core aguante.</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>Mantener</h2>
-      <p class="muted">Lo que define la identidad y no se negocia.</p>
-      <ul class="list">
-        <li><strong>Gunplay + movimiento</strong> como núcleo absoluto.</li>
-        <li><strong>Identidad del universo y de Kael:</strong> tono, coherencia y carácter.</li>
-        <li><strong>Diseño honesto:</strong> si fallas, lo sabes; si ganas, te lo curras.</li>
-        <li><strong>Monetización justa:</strong> sin pay to win ni sistemas abusivos.</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>Afrontar</h2>
-      <p class="muted">Riesgos inevitables y cómo se encaran.</p>
-      <ul class="list">
-        <li><strong>No competir por realismo extremo:</strong> legibilidad antes que simulación.</li>
-        <li><strong>Equilibrio accesible/profundo</strong> sin volverse caótico.</li>
-        <li><strong>Escuchar a testers y comunidad</strong> desde pronto.</li>
-        <li><strong>Iteración constante:</strong> fallar rápido, corregir rápido.</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>Explotar</h2>
-      <p class="muted">Oportunidades claras para diferenciar Kaelum.</p>
-      <ul class="list">
-        <li><strong>Posicionarse como shooter “honesto”.</strong></li>
-        <li><strong>Disfrutable en solo y en grupo.</strong></li>
-        <li><strong>Personajes con peso emocional:</strong> conexión real.</li>
-        <li><strong>Historia + shooter</strong> como combo diferenciador (sin chapa).</li>
-      </ul>
-    </section>
-
-    <section class="card full">
-      <h2>Conclusión</h2>
       <p class="lead">
-        Menos promesas, más coherencia: sólido primero, bonito después. Kaelum no quiere ser el más grande,
-        quiere ser el más honesto y disfrutable.
+        Esta sección funciona como el <strong>punto final natural</strong> del portfolio. Aquí
+        se concentra la parte más humana y externa del proyecto: quién está detrás de Kaelum,
+        cómo se puede seguir su evolución, dónde dejar feedback y qué vías existen para conectar
+        con el trabajo presentado en la web.
       </p>
 
-      <div class="actions" style="margin-top:12px">
-        <a class="btn" href={`${base}analisis/`}>Volver al índice</a>
-        <button class="btn primary" id="toggleView2" type="button">Ver imagen</button>
+      <div class="actions">
+        <a class="btn primary" href={`${base}contacto/opinion/`}>Dejar opinión</a>
+        <a class="btn" href={`${base}contacto/redes/`}>Ver redes</a>
       </div>
-    </section>
+    </div>
+
+    <aside class="hero-panel">
+      <p class="panel-kicker">Qué reúne este bloque</p>
+      <h2>Autor, feedback y presencia digital</h2>
+      <p>
+        Contacto no se plantea solo como una ficha de datos, sino como una sección que remata la
+        web con una lectura más completa del proyecto: autoría, conexión externa, participación y
+        posibilidades de seguimiento.
+      </p>
+
+      <ul class="panel-list">
+        {contactWays.map((item) => <li>{item}</li>)}
+      </ul>
+    </aside>
   </section>
 
-  <script is:inline>
-    document.addEventListener("DOMContentLoaded", () => {
-      // @ts-check
-      /** @type {HTMLButtonElement|null} */
-      const toggleBtn = document.getElementById("toggleView");
-      /** @type {HTMLButtonElement|null} */
-      const toggleBtn2 = document.getElementById("toggleView2");
-      /** @type {HTMLElement|null} */
-      const imageView = document.getElementById("imageView");
-      /** @type {HTMLElement|null} */
-      const textView = document.getElementById("textView");
+  <section class="section split">
+    <article class="profile-card">
+      <p class="kicker">Sobre el proyecto</p>
+      <h2>Quién está detrás de Kaelum</h2>
+      <p>
+        Kaelum se presenta aquí como un juego de portfolio y documentación jugable centrado en
+        explicar el videojuego de forma clara, estructurada y visual. Esta parte puede funcionar
+        tanto como presentación del autor como del equipo responsable, según cómo quieras rematarla
+        más adelante.
+      </p>
+      <p class="spaced">
+        Aquí puedes incluir una presentación breve más personal o profesional: nombre, perfil,
+        rol principal en el proyecto, intereses o incluso una pequeña nota sobre el objetivo de la web.
+      </p>
+    </article>
 
-      if (!toggleBtn || !imageView || !textView) return;
+    <article class="profile-card accent">
+      <p class="kicker">Utilidad de esta sección</p>
+      <h2>No solo cerrar, también conectar</h2>
+      <p>
+        Esta parte ayuda a que la web no termine en seco. En vez de acabar simplemente con documentos
+        o devlogs, ofrece un espacio para seguir el proyecto, contactar contigo y recoger impresiones
+        de quien lo visita.
+      </p>
+      <div class="actions">
+        <a class="btn" href={`${base}contacto/opinion/`}>Ir a opinión</a>
+        <a class="btn primary" href={`${base}contacto/redes/`}>Ir a redes</a>
+      </div>
+    </article>
+  </section>
 
-      let showingImage = true;
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Subapartados</p>
+      <h2>Qué puedes encontrar aquí</h2>
+      <p class="section-lead">
+        Contacto se divide en bloques sencillos para que la parte final de la web siga siendo clara y útil.
+      </p>
+    </header>
 
-      const render = () => {
-        imageView.classList.toggle("hidden", !showingImage);
-        textView.classList.toggle("hidden", showingImage);
-        toggleBtn.textContent = showingImage ? "Ver texto" : "Ver imagen";
-        if (toggleBtn2) toggleBtn2.textContent = showingImage ? "Ver imagen" : "Ver imagen";
-      };
+    <div class="blocks-grid">
+      {blocks.map((item) => (
+        <a class="block-card" href={item.href}>
+          <div class="block-top">
+            <span class="block-number">{item.number}</span>
+            <span class="block-tag">{item.tag}</span>
+          </div>
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+          <span class="block-link">Abrir apartado</span>
+        </a>
+      ))}
+    </div>
+  </section>
 
-      toggleBtn.addEventListener("click", () => {
-        showingImage = !showingImage;
-        render();
-      });
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Por qué encaja aquí</p>
+      <h2>Una sección pequeña pero importante</h2>
+      <p class="section-lead">
+        Aunque no sea el bloque más extenso, Contacto ayuda a completar la web como portfolio real y no solo como contenedor de páginas.
+      </p>
+    </header>
 
-      if (toggleBtn2) {
-        toggleBtn2.addEventListener("click", () => {
-          showingImage = true;
-          render();
-        });
-      }
+    <div class="value-grid">
+      {strengths.map((item) => (
+        <article class="value-card">
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+        </article>
+      ))}
+    </div>
+  </section>
 
-      render();
-    });
-  </script>
+  <section class="section cta-section">
+    <div class="cta-card">
+      <p class="kicker">Recorrido completo</p>
+      <h2>Con esto quedan cerrados los bloques principales del sitio</h2>
+      <p>
+        Desde aquí ya tendrías consolidada la estructura general de la web: <strong>Inicio</strong>,
+        <strong> Juego</strong>, <strong>Media</strong>, <strong>Documentación</strong>,
+        <strong> Desarrollo</strong> y <strong>Contacto</strong>. Lo siguiente es rematar
+        subpáginas concretas para cubrir todos los puntos de la rúbrica y pulir la consistencia final.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={base}>Volver al inicio</a>
+      </div>
+    </div>
+  </section>
 
   <style>
-    .hidden { display: none !important; }
+    .hero-contact{
+      display:grid;
+      grid-template-columns: 1.35fr .95fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .profile-card,
+    .block-card,
+    .value-card,
+    .cta-card{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-copy{
+      padding:28px;
+    }
+
+    .hero-panel{
+      padding:24px;
+      background:
+        linear-gradient(180deg, rgba(255, 111, 163, .12), rgba(255,255,255,.03));
+    }
+
+    .kicker,
+    .panel-kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0 0 8px;
+      font-size:.82rem;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(2.6rem, 6vw, 4.2rem);
+      line-height:.95;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
+      line-height:1.05;
+    }
+
+    h3{
+      margin:0 0 10px;
+      font-size:1.12rem;
+    }
+
+    .lead,
+    .section-lead,
+    .hero-panel p,
+    .profile-card p,
+    .block-card p,
+    .value-card p,
+    .cta-card p{
+      line-height:1.6;
+      opacity:.94;
+      margin:0;
+      text-align:justify;
+    }
+
+    .spaced{
+      margin-top:14px;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      text-decoration:none;
+      transition:.18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(255, 111, 163, .30), rgba(255, 111, 163, .14));
+      border-color:rgba(255, 165, 198, .34);
+      box-shadow:0 10px 24px rgba(120,20,68,.18);
+    }
+
+    .panel-list{
+      margin:16px 0 0;
+      padding-left:18px;
+      display:grid;
+      gap:10px;
+      line-height:1.5;
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:14px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .profile-card,
+    .value-card,
+    .cta-card{
+      padding:22px;
+    }
+
+    .profile-card.accent,
+    .cta-card{
+      background:
+        linear-gradient(180deg, rgba(255, 111, 163, .14), rgba(255,255,255,.03));
+    }
+
+    .blocks-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .block-card{
+      padding:18px;
+      text-decoration:none;
+      color:inherit;
+      transition:.18s ease;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .block-card:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.06);
+    }
+
+    .block-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .block-number{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255, 111, 163, .16);
+    }
+
+    .block-tag{
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:.8rem;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      opacity:.9;
+    }
+
+    .block-link{
+      margin-top:auto;
+      opacity:.86;
+      font-size:.95rem;
+    }
+
+    .value-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    @media (max-width: 980px){
+      .hero-contact,
+      .split,
+      .blocks-grid,
+      .value-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero-copy,
+      .hero-panel,
+      .profile-card,
+      .block-card,
+      .value-card,
+      .cta-card{
+        padding:18px;
+      }
+
+      h1{
+        font-size:2.35rem;
+      }
+    }
   </style>
 </BaseLayout>
 ```
 
 ---
-## FILE: src/pages/analisis/dafo.astro
+## FILE: src/pages/contacto/opinion.astro
 ---
 
 ```astro
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
-const imgUrl = `${base}images/vision/dafo.png`;
 ---
 
 <BaseLayout
-  title="Kaelum — Análisis DAFO"
-  description="Análisis DAFO del proyecto Kaelum: fortalezas, debilidades, oportunidades y amenazas."
+  title="Kaelum — Tu opinión"
+  description="Espacio de opinión y feedback sobre Kaelum: formulario para recoger impresiones, sugerencias y valoración del proyecto."
 >
-  <section class="hero">
-    <p class="kicker">Análisis</p>
-    <h1>DAFO</h1>
-    <p class="lead">
-      Evaluación estratégica honesta: lo que suma, lo que limita, lo que puede pasar y lo que se puede aprovechar.
-    </p>
+  <section class="hero hero-opinion">
+    <div class="hero-copy">
+      <p class="kicker">Feedback del proyecto</p>
+      <h1>Tu opinión</h1>
 
-    <div class="actions">
-      <a class="btn" href={`${base}analisis/`}>Volver al índice</a>
-      <a class="btn" href={`${base}analisis/came/`}>Ver CAME</a>
-      <button class="btn primary" id="toggleView" type="button">Ver texto</button>
-    </div>
-  </section>
-
-  {/* IMAGEN */}
-  <section id="imageView" class="grid">
-    <div class="card full">
-      <img
-        src={imgUrl}
-        alt="Análisis DAFO de Kaelum"
-        style="width:100%; border-radius: var(--radius); display:block;"
-        loading="eager"
-      />
-
-      <div class="actions" style="margin-top:12px">
-        <a class="btn" href={imgUrl} download>Descargar imagen</a>
-        <a class="btn" href={`${base}analisis/`}>Volver al índice</a>
-      </div>
-    </div>
-  </section>
-
-  {/* TEXTO */}
-  <section id="textView" class="grid hidden">
-    <section class="card">
-      <h2>Fortalezas</h2>
-      <ul class="list">
-        <li>Experiencia como jugador para detectar buenas/malas mecánicas.</li>
-        <li>Capacidad para diseñar sistemas comprensibles y explicables.</li>
-        <li>Enfoque en código limpio y trabajo colaborativo.</li>
-        <li>Identidad del proyecto definida desde temprano (Kael + universo).</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>Debilidades</h2>
-      <ul class="list">
-        <li>Experiencia limitada en proyectos de esta escala.</li>
-        <li>Desarrollo narrativo exigente si se descontrola.</li>
-        <li>Carga alta en arte/animación si se intenta “demasiado pronto”.</li>
-        <li>Riesgo de bloqueos técnicos durante el desarrollo.</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>Oportunidades</h2>
-      <ul class="list">
-        <li>Interés creciente por shooters accesibles pero profundos.</li>
-        <li>Jugadores cansados de inconsistencias y sistemas injustos.</li>
-        <li>Historia + shooter como diferenciador sin romper ritmo.</li>
-        <li>Potencial de comunidad y crecimiento del multijugador.</li>
-      </ul>
-    </section>
-
-    <section class="card">
-      <h2>Amenazas</h2>
-      <ul class="list">
-        <li>Mercado saturado.</li>
-        <li>Competencia con lanzamientos grandes.</li>
-        <li>Proyectos similares con más recursos.</li>
-        <li>Dificultad para destacar sin propuesta clara.</li>
-      </ul>
-    </section>
-
-    <section class="card full">
-      <h2>Notas</h2>
-      <p class="muted">
-        El DAFO no es “un trabajo de clase bonito”: es el mapa de riesgos para tomar decisiones con cabeza.
-        El siguiente paso lógico es el CAME (acciones concretas).
+      <p class="lead">
+        Esta sección está pensada para recoger impresiones, sugerencias y valoraciones sobre
+        <strong> Kaelum</strong>. Más allá de enseñar el proyecto, también interesa saber cómo
+        se percibe desde fuera: qué funciona, qué llama la atención y qué podría mejorar.
       </p>
 
-      <div class="actions" style="margin-top:12px">
-        <a class="btn" href={`${base}analisis/`}>Volver al índice</a>
-        <button class="btn primary" id="toggleView2" type="button">Ver imagen</button>
+      <div class="actions">
+        <a class="btn primary" href="#formulario">Ir al formulario</a>
+        <a class="btn" href={`${base}contacto/`}>Volver a Contacto</a>
+        <a class="btn" href={`${base}contacto/redes/`}>Ver redes</a>
       </div>
-    </section>
+    </div>
+
+    <aside class="hero-panel">
+      <p class="panel-kicker">Qué aporta este bloque</p>
+      <h2>Una forma útil de recoger feedback real</h2>
+      <p>
+        La idea no es solo cumplir con una parte de la web, sino crear un espacio donde se puedan
+        recoger comentarios útiles sobre la presentación, el enfoque del juego, la parte visual o
+        la claridad general del proyecto.
+      </p>
+
+      <ul class="panel-list">
+        <li><strong>Valoración:</strong> impresión general del proyecto.</li>
+        <li><strong>Mejoras:</strong> puntos débiles o sugerencias.</li>
+        <li><strong>Utilidad:</strong> feedback para seguir refinando la web.</li>
+      </ul>
+    </aside>
   </section>
 
-  <script is:inline>
-    document.addEventListener("DOMContentLoaded", () => {
-      // @ts-check
-      /** @type {HTMLButtonElement|null} */
-      const toggleBtn = document.getElementById("toggleView");
-      /** @type {HTMLButtonElement|null} */
-      const toggleBtn2 = document.getElementById("toggleView2");
-      /** @type {HTMLElement|null} */
-      const imageView = document.getElementById("imageView");
-      /** @type {HTMLElement|null} */
-      const textView = document.getElementById("textView");
+  <section class="section split">
+    <article class="info-card">
+      <p class="kicker">Antes de enviar</p>
+      <h2>Qué tipo de opinión interesa aquí</h2>
+      <p>
+        Este formulario está pensado para recoger una lectura útil del proyecto: claridad del sitio,
+        fuerza visual, interés del juego, estructura de la documentación o cualquier comentario que
+        ayude a mejorar Kaelum como portfolio y como propuesta jugable.
+      </p>
+    </article>
 
-      if (!toggleBtn || !imageView || !textView) return;
+    <article class="info-card accent">
+      <p class="kicker">Importante</p>
+      <h2>Se puede conectar después a un sistema real</h2>
+      <p>
+        Aunque esta versión del formulario puede usarse ya como bloque funcional y evaluable dentro
+        de la web, más adelante se puede conectar fácilmente con una herramienta externa de recogida
+        de respuestas.
+      </p>
+    </article>
+  </section>
 
-      let showingImage = true;
+  <section class="section" id="formulario">
+    <header class="section-head">
+      <p class="kicker">Formulario</p>
+      <h2>Deja tu valoración</h2>
+      <p class="section-lead">
+        Puedes usar este formulario como base visual del feedback del proyecto y después conectarlo a un sistema real si lo necesitas.
+      </p>
+    </header>
 
-      const render = () => {
-        imageView.classList.toggle("hidden", !showingImage);
-        textView.classList.toggle("hidden", showingImage);
-        toggleBtn.textContent = showingImage ? "Ver texto" : "Ver imagen";
-      };
+    <form class="feedback-form" action="mailto:tu_correo@ejemplo.com" method="post" enctype="text/plain">
+      <div class="form-grid">
+        <label class="field">
+          <span>Nombre</span>
+          <input type="text" name="nombre" placeholder="Tu nombre" />
+        </label>
 
-      toggleBtn.addEventListener("click", () => {
-        showingImage = !showingImage;
-        render();
-      });
+        <label class="field">
+          <span>Correo electrónico</span>
+          <input type="email" name="email" placeholder="tu_correo@ejemplo.com" />
+        </label>
 
-      if (toggleBtn2) {
-        toggleBtn2.addEventListener("click", () => {
-          showingImage = true;
-          render();
-        });
-      }
+        <label class="field">
+          <span>Perfil</span>
+          <select name="perfil">
+            <option value="">Selecciona una opción</option>
+            <option>Profesor / evaluador</option>
+            <option>Jugador</option>
+            <option>Compañero / equipo</option>
+            <option>Profesional del sector</option>
+            <option>Otro</option>
+          </select>
+        </label>
 
-      render();
-    });
-  </script>
+        <label class="field">
+          <span>Valoración general</span>
+          <select name="valoracion">
+            <option value="">Selecciona una puntuación</option>
+            <option>5 - Muy buena</option>
+            <option>4 - Buena</option>
+            <option>3 - Correcta</option>
+            <option>2 - Mejorable</option>
+            <option>1 - Floja</option>
+          </select>
+        </label>
+
+        <label class="field full">
+          <span>Qué es lo que más te ha gustado</span>
+          <textarea
+            name="gustado"
+            rows="4"
+            placeholder="Por ejemplo: la estructura, la parte visual, la claridad del proyecto, la idea del juego..."
+          ></textarea>
+        </label>
+
+        <label class="field full">
+          <span>Qué mejorarías</span>
+          <textarea
+            name="mejoraria"
+            rows="4"
+            placeholder="Aquí puedes dejar sugerencias, puntos débiles o elementos que reforzarías."
+          ></textarea>
+        </label>
+
+        <label class="field full">
+          <span>Comentario adicional</span>
+          <textarea
+            name="mensaje"
+            rows="5"
+            placeholder="Cualquier impresión extra sobre Kaelum o sobre la web."
+          ></textarea>
+        </label>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn primary" type="submit">Enviar opinión</button>
+        <button class="btn" type="reset">Limpiar formulario</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="section cta-section">
+    <div class="cta-card">
+      <p class="kicker">Siguiente paso</p>
+      <h2>Con esto, Contacto ya queda bastante más completo</h2>
+      <p>
+        Una vez cerradas <strong>Redes</strong> y <strong>Tu opinión</strong>, la sección de
+        Contacto ya cubre bastante bien la parte de presencia digital, feedback y cierre del
+        recorrido del portfolio.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}contacto/`}>Volver a Contacto</a>
+      </div>
+    </div>
+  </section>
 
   <style>
-    .hidden { display: none !important; }
+    .hero-opinion{
+      display:grid;
+      grid-template-columns:1.35fr .95fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .info-card,
+    .feedback-form,
+    .cta-card{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      backdrop-filter:blur(8px);
+    }
+
+    .hero-copy{
+      padding:28px;
+    }
+
+    .hero-panel{
+      padding:24px;
+      background:linear-gradient(180deg, rgba(120,210,150,.12), rgba(255,255,255,.03));
+    }
+
+    .kicker,
+    .panel-kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0 0 8px;
+      font-size:.82rem;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(2.6rem, 6vw, 4.2rem);
+      line-height:.95;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
+      line-height:1.05;
+    }
+
+    .lead,
+    .section-lead,
+    .hero-panel p,
+    .info-card p,
+    .cta-card p{
+      line-height:1.6;
+      opacity:.94;
+      margin:0;
+      text-align:justify;
+    }
+
+    .panel-list{
+      margin:16px 0 0;
+      padding-left:18px;
+      display:grid;
+      gap:10px;
+      line-height:1.5;
+    }
+
+    .actions,
+    .form-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      text-decoration:none;
+      transition:.18s ease;
+      cursor:pointer;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(120,210,150,.28), rgba(120,210,150,.14));
+      border-color:rgba(160,232,182,.34);
+      box-shadow:0 10px 24px rgba(20,120,60,.18);
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:14px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .info-card,
+    .cta-card,
+    .feedback-form{
+      padding:22px;
+    }
+
+    .info-card.accent,
+    .cta-card{
+      background:linear-gradient(180deg, rgba(120,210,150,.12), rgba(255,255,255,.03));
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .field.full{
+      grid-column:1 / -1;
+    }
+
+    .field span{
+      font-size:.95rem;
+      opacity:.9;
+    }
+
+    .field input,
+    .field select,
+    .field textarea{
+      width:100%;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(0,0,0,.18);
+      color:inherit;
+      padding:12px 14px;
+      font:inherit;
+      resize:vertical;
+      box-sizing:border-box;
+    }
+
+    .field input::placeholder,
+    .field textarea::placeholder{
+      color:rgba(255,255,255,.45);
+    }
+
+    @media (max-width: 980px){
+      .hero-opinion,
+      .split,
+      .form-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero-copy,
+      .hero-panel,
+      .info-card,
+      .feedback-form,
+      .cta-card{
+        padding:18px;
+      }
+
+      h1{
+        font-size:2.35rem;
+      }
+    }
   </style>
 </BaseLayout>
 ```
 
 ---
-## FILE: src/pages/analisis/index.astro
+## FILE: src/pages/contacto/redes.astro
 ---
 
 ```astro
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
+
+const networks = [
+  {
+    name: "GitHub",
+    handle: "Repositorio / portfolio técnico",
+    href: "https://github.com/",
+    short: "GH",
+    desc:
+      "Espacio ideal para alojar código, documentación técnica, estructura web y evolución del proyecto.",
+  },
+  {
+    name: "LinkedIn",
+    handle: "Perfil profesional",
+    href: "https://www.linkedin.com/",
+    short: "in",
+    desc:
+      "Canal enfocado a visibilidad profesional, portfolio, proyecto y presentación formal del trabajo.",
+  },
+  {
+    name: "YouTube",
+    handle: "Vídeos y tráileres",
+    href: "https://www.youtube.com/",
+    short: "YT",
+    desc:
+      "Lugar recomendado para alojar el tráiler, devlogs en vídeo o material audiovisual del proyecto.",
+  },
+  {
+    name: "Itch.io",
+    handle: "Página del juego",
+    href: "https://itch.io/",
+    short: "Itch",
+    desc:
+      "Muy útil si más adelante quieres mostrar builds, material promocional o una ficha pública del juego.",
+  },
+  {
+    name: "Correo",
+    handle: "Contacto directo",
+    href: "mailto:tu_correo@ejemplo.com",
+    short: "@",
+    desc:
+      "Vía directa para contacto académico, profesional o feedback más formal sobre el proyecto.",
+  },
+];
+
+const ideas = [
+  {
+    title: "Seguir la evolución",
+    desc:
+      "Las redes permiten que el proyecto no se quede encerrado en la web y tenga una continuidad fuera del portfolio.",
+  },
+  {
+    title: "Conectar con el autor",
+    desc:
+      "También funcionan como puente entre quien visita Kaelum y la persona o equipo que está detrás del trabajo.",
+  },
+  {
+    title: "Reforzar presencia digital",
+    desc:
+      "Ayudan a que la web se sienta más completa y más cercana a un portfolio real y no solo a una entrega cerrada.",
+  },
+];
 ---
 
 <BaseLayout
-  title="Kaelum — Análisis"
-  description="Análisis del proyecto Kaelum: DAFO y CAME. Riesgos, fortalezas, oportunidades y acciones."
+  title="Kaelum — Redes y presencia digital"
+  description="Redes y presencia digital del proyecto Kaelum: enlaces, plataformas y vías de seguimiento del portfolio."
 >
-  <section class="hero">
-    <p class="kicker">Análisis</p>
-    <h1>DAFO + CAME</h1>
-    <p class="lead">
-      Aquí está la parte “seria” del proyecto: <strong>por qué Kaelum tiene sentido</strong>, qué riesgos reales tiene,
-      qué oportunidades aprovecha, y <strong>qué acciones concretas</strong> se toman para no morir por scope.
-    </p>
+  <section class="hero hero-networks">
+    <div class="hero-copy">
+      <p class="kicker">Presencia digital</p>
+      <h1>Redes y presencia digital</h1>
 
-    <div class="meta">
-      <span class="tag">DAFO</span>
-      <span class="tag">CAME</span>
-      <span class="tag">Decisiones</span>
-      <span class="tag">Scope control</span>
+      <p class="lead">
+        Esta sección reúne las principales vías externas desde las que se puede seguir el proyecto,
+        conocer mejor al autor o ampliar la presencia de <strong>Kaelum</strong> fuera de la propia web.
+        Sirve como punto de salida profesional, portfolio complementario y conexión directa.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}contacto/`}>Volver a Contacto</a>
+        <a class="btn" href={`${base}contacto/opinion/`}>Ir a Tu opinión</a>
+      </div>
     </div>
 
-    <div class="actions">
-      <a class="btn primary" href={`${base}analisis/dafo/`}>Ver DAFO</a>
-      <a class="btn" href={`${base}analisis/came/`}>Ver CAME</a>
-      <a class="btn" href={`${base}vision/`}>Ir a Visión</a>
-      <a class="btn" href={`${base}docs/`}>Ir a Docs</a>
+    <aside class="hero-panel">
+      <p class="panel-kicker">Qué cubre este bloque</p>
+      <h2>Presencia más allá de la web</h2>
+      <p>
+        No todo el proyecto tiene por qué vivirse dentro de esta página. Las redes y plataformas
+        externas ayudan a dar continuidad al portfolio, reforzar la imagen profesional y facilitar
+        el seguimiento del trabajo presentado.
+      </p>
+
+      <ul class="panel-list">
+        <li><strong>Portfolio técnico:</strong> código y estructura.</li>
+        <li><strong>Perfil profesional:</strong> presentación del autor.</li>
+        <li><strong>Vídeo:</strong> tráiler y piezas audiovisuales.</li>
+        <li><strong>Contacto:</strong> vía directa y seguimiento.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Enlaces principales</p>
+      <h2>Dónde seguir o ampliar el proyecto</h2>
+      <p class="section-lead">
+        Aquí puedes colocar los enlaces reales del autor o del proyecto. La estructura ya queda preparada
+        para enseñar plataformas profesionales, técnicas y audiovisuales.
+      </p>
+    </header>
+
+    <div class="network-grid">
+      {networks.map((item) => (
+        <a class="network-card" href={item.href} target="_blank" rel="noreferrer">
+          <div class="network-top">
+            <span class="network-badge">{item.short}</span>
+            <div class="network-copy">
+              <h3>{item.name}</h3>
+              <p class="network-handle">{item.handle}</p>
+            </div>
+          </div>
+
+          <p>{item.desc}</p>
+          <span class="network-link">Abrir enlace</span>
+        </a>
+      ))}
     </div>
   </section>
 
-  <div class="grid">
-    <article class="card">
-      <h2>📌 DAFO</h2>
-      <p class="muted">
-        Foto clara del proyecto: <strong>Fortalezas</strong>, <strong>Debilidades</strong>,
-        <strong>Oportunidades</strong> y <strong>Amenazas</strong>.
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Por qué importa</p>
+      <h2>Una sección pequeña con bastante peso</h2>
+      <p class="section-lead">
+        Tener redes y enlaces bien planteados ayuda a que la web se sienta más completa y más cercana a un portfolio real.
       </p>
-      <p class="small">Ideal para evaluación y coherencia.</p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}analisis/dafo/`}>Abrir DAFO</a>
-      </div>
+    </header>
+
+    <div class="ideas-grid">
+      {ideas.map((item) => (
+        <article class="idea-card">
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section split">
+    <article class="info-card">
+      <p class="kicker">Consejo práctico</p>
+      <h2>Deja aquí solo enlaces que de verdad aporten</h2>
+      <p>
+        No hace falta llenar esta sección con todas las redes posibles. Lo ideal es dejar solo
+        aquellas que refuercen el proyecto: repositorio, perfil profesional, vídeo y una vía clara
+        de contacto o seguimiento.
+      </p>
     </article>
 
-    <article class="card">
-      <h2>🧭 CAME</h2>
-      <p class="muted">
-        Traducción del DAFO a acción: <strong>Corregir</strong>, <strong>Afrontar</strong>,
-        <strong>Mantener</strong> y <strong>Explotar</strong>.
+    <article class="info-card accent">
+      <p class="kicker">Siguiente paso</p>
+      <h2>Después de redes, toca opinión</h2>
+      <p>
+        Una vez preparada la parte de presencia digital, el siguiente apartado lógico es
+        <strong> Tu opinión</strong>, para recoger feedback del proyecto y cubrir la parte de
+        formulario o interacción con quien visita la web.
       </p>
-      <p class="small">Esto es lo que evita que se quede en “un análisis bonito”.</p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}analisis/came/`}>Abrir CAME</a>
-      </div>
-    </article>
 
-    <article class="card full">
-      <h2>Cómo leer esta sección</h2>
-      <p class="muted">
-        Si vienes por primera vez: empieza por <strong>Visión</strong> (moodboard) y luego pásate por aquí.
-        Si vienes a evaluar: aquí tienes la justificación y el plan de acción en 2 clics.
-      </p>
-      <div class="actions" style="margin-top:10px">
-        <a class="btn" href={`${base}vision/`}>Abrir Visión</a>
-        <a class="btn" href={`${base}kaelum/`}>Volver a Proyecto</a>
+      <div class="actions">
+        <a class="btn primary" href={`${base}contacto/opinion/`}>Ir a Tu opinión</a>
       </div>
     </article>
-  </div>
+  </section>
+
+  <style>
+    .hero-networks{
+      display:grid;
+      grid-template-columns:1.35fr .95fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .network-card,
+    .idea-card,
+    .info-card{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      backdrop-filter:blur(8px);
+    }
+
+    .hero-copy{
+      padding:28px;
+    }
+
+    .hero-panel{
+      padding:24px;
+      background:linear-gradient(180deg, rgba(80,140,255,.12), rgba(255,255,255,.03));
+    }
+
+    .kicker,
+    .panel-kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0 0 8px;
+      font-size:.82rem;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(2.6rem, 6vw, 4.2rem);
+      line-height:.95;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
+      line-height:1.05;
+    }
+
+    h3{
+      margin:0 0 6px;
+      font-size:1.06rem;
+    }
+
+    .lead,
+    .section-lead,
+    .hero-panel p,
+    .network-card p,
+    .idea-card p,
+    .info-card p{
+      line-height:1.6;
+      opacity:.94;
+      margin:0;
+      text-align:justify;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      text-decoration:none;
+      transition:.18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(80,140,255,.28), rgba(80,140,255,.14));
+      border-color:rgba(128,176,255,.34);
+      box-shadow:0 10px 24px rgba(20,44,120,.18);
+    }
+
+    .panel-list{
+      margin:16px 0 0;
+      padding-left:18px;
+      display:grid;
+      gap:10px;
+      line-height:1.5;
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:14px;
+    }
+
+    .network-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .network-card{
+      padding:18px;
+      text-decoration:none;
+      color:inherit;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      transition:.18s ease;
+    }
+
+    .network-card:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.06);
+    }
+
+    .network-top{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+
+    .network-badge{
+      width:50px;
+      height:50px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+      font-weight:800;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(80,140,255,.16);
+    }
+
+    .network-handle{
+      opacity:.75;
+      font-size:.92rem;
+    }
+
+    .network-link{
+      margin-top:auto;
+      opacity:.86;
+      font-size:.95rem;
+    }
+
+    .ideas-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .idea-card,
+    .info-card{
+      padding:22px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .info-card.accent{
+      background:linear-gradient(180deg, rgba(80,140,255,.12), rgba(255,255,255,.03));
+    }
+
+    @media (max-width: 980px){
+      .hero-networks,
+      .network-grid,
+      .ideas-grid,
+      .split{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero-copy,
+      .hero-panel,
+      .network-card,
+      .idea-card,
+      .info-card{
+        padding:18px;
+      }
+
+      h1{
+        font-size:2.35rem;
+      }
+    }
+  </style>
 </BaseLayout>
 ```
 
 ---
-## FILE: src/pages/devlog/index.astro
+## FILE: src/pages/desarrollo/devlog/index.astro
 ---
 
 ```astro
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Kaelum – Devlog" description="Entradas semanales del desarrollo de Kaelum.">
@@ -459,7 +1278,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     <h1>Progreso semanal</h1>
     <p class="lead">
       Entradas cortas y directas: qué se decidió, por qué, y qué viene después.
-      El resumen oficial del proyecto está en <a href={`${import.meta.env.BASE_URL}kaelum/`}><strong>/kaelum</strong></a>.
+      El resumen oficial del proyecto está en <a href={`${import.meta.env.BASE_URL}juego/`}><strong>/juego</strong></a>.
     </p>
   </section>
 
@@ -468,7 +1287,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <h3>Semana 1 · Concepto y enfoque</h3>
       <p class="muted">Definición del rumbo: armas primero, habilidades como extra, y alcance realista.</p>
       <div class="actions">
-        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-1/`}>Leer</a>
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}desarrollo/devlog/semana-1/`}>Leer</a>
       </div>
     </article>
 
@@ -476,7 +1295,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <h3>Semana 2 · Mundo y Kael</h3>
       <p class="muted">Tono, ambientación y cómo encajar narrativa contextual sin frenar el gameplay.</p>
       <div class="actions">
-        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-2/`}>Leer</a>
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}desarrollo/devlog/semana-2/`}>Leer</a>
       </div>
     </article>
 
@@ -484,7 +1303,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <h3>Semana 3 · Prototipo del core</h3>
       <p class="muted">Movimiento + arma base + primeras pruebas reales para validar sensaciones.</p>
       <div class="actions">
-        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-3/`}>Leer</a>
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}desarrollo/devlog/semana-3/`}>Leer</a>
       </div>
     </article>
 
@@ -492,7 +1311,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <h3>Semana 4 · Feedback y greybox</h3>
       <p class="muted">Pulido de impacto, claridad y primer mapa de pruebas para medir flow.</p>
       <div class="actions">
-        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-4/`}>Leer</a>
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}desarrollo/devlog/semana-4/`}>Leer</a>
       </div>
     </article>
 
@@ -500,7 +1319,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <h3>Semana 5 · Progresión narrativa</h3>
       <p class="muted">Prólogo + 3 actos: identidad → verdad → decisión. Kael, el Eclipse y el Orbe como motor real.</p>
       <div class="actions">
-        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-5/`}>Leer</a>
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}desarrollo/devlog/semana-5/`}>Leer</a>
       </div>
     </article>
 
@@ -508,7 +1327,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <h3>Semana 6 · Rutas, karma y finales</h3>
       <p class="muted">Puntos de no retorno, rutas bueno/neutral/malo y cómo el mundo te “sentencia” por conducta.</p>
       <div class="actions">
-        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-6/`}>Leer</a>
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}desarrollo/devlog/semana-6/`}>Leer</a>
       </div>
     </article>
   </div>
@@ -516,12 +1335,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ```
 
 ---
-## FILE: src/pages/devlog/semana-1.astro
+## FILE: src/pages/desarrollo/devlog/semana-1.astro
 ---
 
 ```astro
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
@@ -537,9 +1356,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </p>
 
     <div class="actions">
-      <a class="btn" href={`${import.meta.env.BASE_URL}kaelum/`}>Resumen del proyecto</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}docs/folleto/`}>Folleto (A4)</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}docs/gdd/`}>GDD (PDF)</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}juego/`}>Resumen del proyecto</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}documentacion/folleto/`}>Folleto (A4)</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}documentacion/gdd/`}>GDD (PDF)</a>
     </div>
   </section>
 
@@ -679,8 +1498,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       </p>
 
       <div class="actions">
-        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-2/`}>Ir a Semana 2</a>
-        <a class="btn" href={`${import.meta.env.BASE_URL}devlog/`}>Volver al índice</a>
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}desarrollo/devlog/semana-2/`}>Ir a Semana 2</a>
+        <a class="btn" href={`${import.meta.env.BASE_URL}desarrollo/devlog/`}>Volver al índice</a>
       </div>
     </section>
   </div>
@@ -688,12 +1507,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ```
 
 ---
-## FILE: src/pages/devlog/semana-2.astro
+## FILE: src/pages/desarrollo/devlog/semana-2.astro
 ---
 
 ```astro
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
@@ -709,9 +1528,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </p>
 
     <div class="actions">
-      <a class="btn" href={`${import.meta.env.BASE_URL}kaelum/`}>Resumen del proyecto</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}docs/folleto/`}>Folleto (A4)</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}docs/gdd/`}>GDD (PDF)</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}juego/`}>Resumen del proyecto</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}documentacion/folleto/`}>Folleto (A4)</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}documentacion/gdd/`}>GDD (PDF)</a>
     </div>
   </section>
 
@@ -836,8 +1655,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       </p>
 
       <div class="actions">
-        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-3/`}>Ir a Semana 3</a>
-        <a class="btn" href={`${import.meta.env.BASE_URL}devlog/`}>Volver al índice</a>
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}desarrollo/devlog/semana-3/`}>Ir a Semana 3</a>
+        <a class="btn" href={`${import.meta.env.BASE_URL}desarrollo/devlog/`}>Volver al índice</a>
       </div>
     </section>
   </div>
@@ -845,12 +1664,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ```
 
 ---
-## FILE: src/pages/devlog/semana-3.astro
+## FILE: src/pages/desarrollo/devlog/semana-3.astro
 ---
 
 ```astro
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
@@ -866,9 +1685,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </p>
 
     <div class="actions">
-      <a class="btn" href={`${import.meta.env.BASE_URL}kaelum/`}>Resumen del proyecto</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}docs/gdd/`}>GDD (PDF)</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}devlog/`}>Volver al índice</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}juego/`}>Resumen del proyecto</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}documentacion/gdd/`}>GDD (PDF)</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}desarrollo/devlog/`}>Volver al índice</a>
     </div>
   </section>
 
@@ -946,8 +1765,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       </p>
 
       <div class="actions">
-        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-4/`}>Ir a Semana 4</a>
-        <a class="btn" href={`${import.meta.env.BASE_URL}devlog/`}>Volver al índice</a>
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}desarrollo/devlog/semana-4/`}>Ir a Semana 4</a>
+        <a class="btn" href={`${import.meta.env.BASE_URL}desarrollo/devlog/`}>Volver al índice</a>
       </div>
     </section>
   </div>
@@ -955,12 +1774,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ```
 
 ---
-## FILE: src/pages/devlog/semana-4.astro
+## FILE: src/pages/desarrollo/devlog/semana-4.astro
 ---
 
 ```astro
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
@@ -976,9 +1795,9 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
     </p>
 
     <div class="actions">
-      <a class="btn" href={`${import.meta.env.BASE_URL}devlog/semana-3/`}>Volver a Semana 3</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}kaelum/`}>Resumen del proyecto</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}devlog/`}>Índice</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}desarrollo/devlog/semana-3/`}>Volver a Semana 3</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}juego/`}>Resumen del proyecto</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}desarrollo/devlog/`}>Índice</a>
     </div>
   </section>
 
@@ -1059,8 +1878,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       </p>
 
       <div class="actions">
-        <a class="btn primary" href={`${import.meta.env.BASE_URL}devlog/semana-5/`}>Ir a Semana 5</a>
-        <a class="btn" href={`${import.meta.env.BASE_URL}devlog/`}>Volver al índice</a>
+        <a class="btn primary" href={`${import.meta.env.BASE_URL}desarrollo/devlog/semana-5/`}>Ir a Semana 5</a>
+        <a class="btn" href={`${import.meta.env.BASE_URL}desarrollo/devlog/`}>Volver al índice</a>
       </div>
     </section>
   </div>
@@ -1068,12 +1887,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 ```
 
 ---
-## FILE: src/pages/devlog/semana-5.astro
+## FILE: src/pages/desarrollo/devlog/semana-5.astro
 ---
 
 ```astro
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -1088,9 +1907,9 @@ const base = import.meta.env.BASE_URL;
     </p>
 
     <div class="actions">
-      <a class="btn" href={`${base}devlog/`}>Volver al Devlog</a>
-      <a class="btn" href={`${base}devlog/semana-4/`}>Semana anterior</a>
-      <a class="btn primary" href={`${base}devlog/semana-6/`}>Siguiente semana</a>
+      <a class="btn" href={`${base}desarrollo/devlog/`}>Volver al Devlog</a>
+      <a class="btn" href={`${base}desarrollo/devlog/semana-4/`}>Semana anterior</a>
+      <a class="btn primary" href={`${base}desarrollo/devlog/semana-6/`}>Siguiente semana</a>
     </div>
   </section>
 
@@ -1195,8 +2014,8 @@ const base = import.meta.env.BASE_URL;
       </p>
 
       <div class="actions">
-        <a class="btn" href={`${base}devlog/`}>Volver al Devlog</a>
-        <a class="btn primary" href={`${base}devlog/semana-6/`}>Ir a Semana 6</a>
+        <a class="btn" href={`${base}desarrollo/devlog/`}>Volver al Devlog</a>
+        <a class="btn primary" href={`${base}desarrollo/devlog/semana-6/`}>Ir a Semana 6</a>
       </div>
     </article>
   </section>
@@ -1204,12 +2023,12 @@ const base = import.meta.env.BASE_URL;
 ```
 
 ---
-## FILE: src/pages/devlog/semana-6.astro
+## FILE: src/pages/desarrollo/devlog/semana-6.astro
 ---
 
 ```astro
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 ---
 
@@ -1224,9 +2043,9 @@ const base = import.meta.env.BASE_URL;
     </p>
 
     <div class="actions">
-      <a class="btn" href={`${base}devlog/`}>Volver al Devlog</a>
-      <a class="btn" href={`${base}devlog/semana-5/`}>Semana anterior</a>
-      <a class="btn primary" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}desarrollo/devlog/`}>Volver al Devlog</a>
+      <a class="btn" href={`${base}desarrollo/devlog/semana-5/`}>Semana anterior</a>
+      <a class="btn primary" href={`${base}juego/progreso/`}>Ver Progreso</a>
     </div>
   </section>
 
@@ -1326,8 +2145,8 @@ const base = import.meta.env.BASE_URL;
       </p>
 
       <div class="actions">
-        <a class="btn primary" href={`${base}devlog/`}>Volver al Devlog</a>
-        <a class="btn" href={`${base}devlog/semana-5/`}>Volver a Semana 5</a>
+        <a class="btn primary" href={`${base}desarrollo/devlog/`}>Volver al Devlog</a>
+        <a class="btn" href={`${base}desarrollo/devlog/semana-5/`}>Volver a Semana 5</a>
       </div>
     </article>
   </section>
@@ -1335,7 +2154,845 @@ const base = import.meta.env.BASE_URL;
 ```
 
 ---
-## FILE: src/pages/docs/folleto.astro
+## FILE: src/pages/desarrollo/hitos.astro
+---
+
+```astro
+
+```
+
+---
+## FILE: src/pages/desarrollo/index.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const blocks = [
+  {
+    number: "01",
+    title: "Devlog",
+    desc:
+      "Registro progresivo del desarrollo del juego, organizado por semanas para mostrar evolución, cambios de enfoque y trabajo realizado.",
+    href: `${base}desarrollo/devlog/`,
+    tag: "Seguimiento",
+  },
+  {
+    number: "02",
+    title: "Hitos",
+    desc:
+      "Calendario o lectura de momentos clave del juego: entregas, objetivos parciales, cierres importantes y fases destacadas.",
+    href: `${base}desarrollo/hitos/`,
+    tag: "Plan temporal",
+  },
+  {
+    number: "03",
+    title: "Roadmap",
+    desc:
+      "Visión general del recorrido del juego, sus prioridades y lo que falta por cerrar para rematar la web y el portfolio.",
+    href: `${base}desarrollo/roadmap/`,
+    tag: "Hoja de ruta",
+  },
+];
+
+const weeks = [
+  { title: "Semana 1", href: `${base}desarrollo/devlog/semana-1/` },
+  { title: "Semana 2", href: `${base}desarrollo/devlog/semana-2/` },
+  { title: "Semana 3", href: `${base}desarrollo/devlog/semana-3/` },
+  { title: "Semana 4", href: `${base}desarrollo/devlog/semana-4/` },
+  { title: "Semana 5", href: `${base}desarrollo/devlog/semana-5/` },
+  { title: "Semana 6", href: `${base}desarrollo/devlog/semana-6/` },
+];
+
+const valuePoints = [
+  {
+    title: "Hace visible el trabajo real",
+    desc:
+      "Permite ver que Kaelum no es una idea aislada, sino un juego que ha ido creciendo, corrigiéndose y organizándose con el tiempo.",
+  },
+  {
+    title: "Conecta planificación y ejecución",
+    desc:
+      "Sirve para enlazar la parte más formal de la documentación con la realidad del proceso y las decisiones tomadas.",
+  },
+  {
+    title: "Refuerza la evaluación",
+    desc:
+      "Ayuda a demostrar continuidad, seguimiento y trazabilidad del proyecto, algo muy útil de cara a defensa y revisión.",
+  },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Desarrollo"
+  description="Sección de desarrollo de Kaelum: devlog, hitos y roadmap para mostrar la evolución real del proyecto."
+>
+  <section class="hero hero-dev">
+    <div class="hero-copy">
+      <p class="kicker">Proceso real</p>
+      <h1>Desarrollo</h1>
+
+      <p class="lead">
+        Esta sección reúne la parte más ligada al <strong>seguimiento, evolución y
+        construcción real</strong> del juego. Aquí no solo se ve qué es Kaelum, sino
+        <strong>cómo ha ido creciendo</strong>, qué se ha trabajado en cada etapa y cómo
+        se ha organizado el recorrido hasta llegar al estado actual.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}desarrollo/devlog/`}>Abrir Devlog</a>
+        <a class="btn" href={`${base}desarrollo/hitos/`}>Ver Hitos</a>
+        <a class="btn" href={`${base}desarrollo/roadmap/`}>Consultar Roadmap</a>
+      </div>
+    </div>
+
+    <aside class="hero-panel">
+      <p class="panel-kicker">Qué muestra este bloque</p>
+      <h2>La evolución del proyecto en el tiempo</h2>
+      <p>
+        Después de revisar el juego, la parte visual y la documentación formal, aquí aparece
+        la capa que demuestra que el proyecto tiene recorrido real: semanas de trabajo,
+        decisiones, hitos y objetivos que ayudan a entender el estado actual de Kaelum.
+      </p>
+
+      <ul class="panel-list">
+        <li><strong>Devlog:</strong> seguimiento por semanas.</li>
+        <li><strong>Hitos:</strong> momentos importantes del juego.</li>
+        <li><strong>Roadmap:</strong> lectura del camino hecho y lo que queda.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Bloques principales</p>
+      <h2>Cómo se organiza el desarrollo</h2>
+      <p class="section-lead">
+        Esta sección no está pensada como un archivo muerto, sino como una forma clara de
+        enseñar el progreso y darle contexto al trabajo realizado.
+      </p>
+    </header>
+
+    <div class="blocks-grid">
+      {blocks.map((item) => (
+        <a class="block-card" href={item.href}>
+          <div class="block-top">
+            <span class="block-number">{item.number}</span>
+            <span class="block-tag">{item.tag}</span>
+          </div>
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+          <span class="block-link">Abrir apartado</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Acceso rápido</p>
+      <h2>Semanas ya publicadas</h2>
+      <p class="section-lead">
+        El devlog permite revisar el avance del juego de forma progresiva. Estas son las
+        semanas que ya forman parte del recorrido.
+      </p>
+    </header>
+
+    <div class="weeks-grid">
+      {weeks.map((week) => (
+        <a class="week-pill" href={week.href}>{week.title}</a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Por qué importa</p>
+      <h2>Una sección útil, no solo decorativa</h2>
+      <p class="section-lead">
+        Desarrollo refuerza la sensación de juego vivo y conecta muy bien con la defensa del trabajo.
+      </p>
+    </header>
+
+    <div class="value-grid">
+      {valuePoints.map((item) => (
+        <article class="value-card">
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section split">
+    <article class="info-card">
+      <p class="kicker">Orden recomendado</p>
+      <h2>Primero devlog, luego hitos y cierre con roadmap</h2>
+      <p>
+        La forma más natural de leer esta sección es empezar por el <strong>Devlog</strong>
+        para ver el recorrido semanal, después pasar por <strong>Hitos</strong> para localizar
+        los momentos clave y terminar en <strong>Roadmap</strong> para tener una visión más
+        global del camino hecho y del cierre pendiente.
+      </p>
+      <div class="actions">
+        <a class="btn" href={`${base}desarrollo/devlog/`}>Seguir ese orden</a>
+      </div>
+    </article>
+
+    <article class="info-card accent">
+      <p class="kicker">Último bloque del recorrido</p>
+      <h2>Después de Desarrollo, toca Contacto</h2>
+      <p>
+        Una vez visto el juego desde dentro, su presentación visual, su respaldo formal y
+        su evolución real, el cierre natural del recorrido es <strong>Contacto</strong>, donde
+        se concentra la parte del autor, redes, feedback y conexión externa.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}contacto/`}>Ir a Contacto</a>
+      </div>
+    </article>
+  </section>
+
+  <style>
+    .hero-dev{
+      display:grid;
+      grid-template-columns: 1.35fr .95fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .block-card,
+    .value-card,
+    .info-card,
+    .week-pill{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-copy{
+      padding:28px;
+    }
+
+    .hero-panel{
+      padding:24px;
+      background:
+        linear-gradient(180deg, rgba(90, 214, 176, .12), rgba(255,255,255,.03));
+    }
+
+    .kicker,
+    .panel-kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0 0 8px;
+      font-size:.82rem;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(2.6rem, 6vw, 4.2rem);
+      line-height:.95;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
+      line-height:1.05;
+    }
+
+    h3{
+      margin:0 0 10px;
+      font-size:1.12rem;
+    }
+
+    .lead,
+    .section-lead,
+    .hero-panel p,
+    .block-card p,
+    .value-card p,
+    .info-card p{
+      line-height:1.6;
+      opacity:.94;
+      margin:0;
+      text-align:justify;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      text-decoration:none;
+      transition:.18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(80, 205, 165, .30), rgba(80, 205, 165, .14));
+      border-color:rgba(126, 231, 198, .34);
+      box-shadow:0 10px 24px rgba(20,120,88,.18);
+    }
+
+    .panel-list{
+      margin:16px 0 0;
+      padding-left:18px;
+      display:grid;
+      gap:10px;
+      line-height:1.5;
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:14px;
+    }
+
+    .blocks-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .block-card{
+      padding:18px;
+      text-decoration:none;
+      color:inherit;
+      transition:.18s ease;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .block-card:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.06);
+    }
+
+    .block-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .block-number{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(80, 205, 165, .16);
+    }
+
+    .block-tag{
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:.8rem;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      opacity:.9;
+    }
+
+    .block-link{
+      margin-top:auto;
+      opacity:.86;
+      font-size:.95rem;
+    }
+
+    .weeks-grid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .week-pill{
+      padding:12px 16px;
+      border-radius:999px;
+      text-decoration:none;
+      color:inherit;
+      transition:.18s ease;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:46px;
+    }
+
+    .week-pill:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .value-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .value-card,
+    .info-card{
+      padding:22px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .info-card.accent{
+      background:
+        linear-gradient(180deg, rgba(80, 205, 165, .14), rgba(255,255,255,.03));
+    }
+
+    @media (max-width: 1080px){
+      .blocks-grid,
+      .value-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 900px){
+      .hero-dev,
+      .split{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero-copy,
+      .hero-panel,
+      .block-card,
+      .value-card,
+      .info-card{
+        padding:18px;
+      }
+
+      h1{
+        font-size:2.35rem;
+      }
+    }
+  </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/desarrollo/roadmap.astro
+---
+
+```astro
+
+```
+
+---
+## FILE: src/pages/documentacion/analisis/came.astro
+---
+
+```astro
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+const imgUrl = `${base}images/media/came.png`;
+---
+
+<BaseLayout
+  title="Kaelum — Análisis CAME"
+  description="Análisis CAME del proyecto Kaelum: qué corregimos, mantenemos, afrontamos y explotamos."
+>
+  <section class="hero">
+    <p class="kicker">Análisis</p>
+    <h1>CAME</h1>
+    <p class="lead">
+      El CAME convierte el diagnóstico en decisiones: qué se ajusta, qué se mantiene, qué se afronta y qué se explota.
+    </p>
+
+    <div class="actions">
+      <a class="btn" href={`${base}documentacion/analisis/`}>Volver al índice</a>
+      <a class="btn" href={`${base}documentacion/analisis/dafo/`}>Ver DAFO</a>
+      <button class="btn primary" id="toggleView" type="button">Ver texto</button>
+    </div>
+  </section>
+
+  {/* IMAGEN */}
+  <section id="imageView" class="grid">
+    <div class="card full">
+      <img
+        src={imgUrl}
+        alt="Análisis CAME de Kaelum"
+        style="width:100%; border-radius: var(--radius); display:block;"
+        loading="eager"
+      />
+
+      <div class="actions" style="margin-top:12px">
+        <a class="btn" href={imgUrl} download>Descargar imagen</a>
+        <a class="btn" href={`${base}documentacion/`}>Volver al índice</a>
+      </div>
+    </div>
+  </section>
+
+  {/* TEXTO */}
+  <section id="textView" class="grid hidden">
+    <section class="card">
+      <h2>Corregir</h2>
+      <p class="muted">Ajustes para evitar errores de scope y producción.</p>
+      <ul class="list">
+        <li><strong>Reducir alcance inicial:</strong> menos personajes/sistemas, más solidez.</li>
+        <li><strong>Arte funcional primero:</strong> claridad jugable antes que espectacular.</li>
+        <li><strong>Priorizar sistemas base:</strong> movimiento, disparo y feedback antes de contenido.</li>
+        <li><strong>Escalonar producción artística:</strong> subir calidad cuando el core aguante.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Mantener</h2>
+      <p class="muted">Lo que define la identidad y no se negocia.</p>
+      <ul class="list">
+        <li><strong>Gunplay + movimiento</strong> como núcleo absoluto.</li>
+        <li><strong>Identidad del universo y de Kael:</strong> tono, coherencia y carácter.</li>
+        <li><strong>Diseño honesto:</strong> si fallas, lo sabes; si ganas, te lo curras.</li>
+        <li><strong>Monetización justa:</strong> sin pay to win ni sistemas abusivos.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Afrontar</h2>
+      <p class="muted">Riesgos inevitables y cómo se encaran.</p>
+      <ul class="list">
+        <li><strong>No competir por realismo extremo:</strong> legibilidad antes que simulación.</li>
+        <li><strong>Equilibrio accesible/profundo</strong> sin volverse caótico.</li>
+        <li><strong>Escuchar a testers y comunidad</strong> desde pronto.</li>
+        <li><strong>Iteración constante:</strong> fallar rápido, corregir rápido.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Explotar</h2>
+      <p class="muted">Oportunidades claras para diferenciar Kaelum.</p>
+      <ul class="list">
+        <li><strong>Posicionarse como shooter “honesto”.</strong></li>
+        <li><strong>Disfrutable en solo y en grupo.</strong></li>
+        <li><strong>Personajes con peso emocional:</strong> conexión real.</li>
+        <li><strong>Historia + shooter</strong> como combo diferenciador (sin chapa).</li>
+      </ul>
+    </section>
+
+    <section class="card full">
+      <h2>Conclusión</h2>
+      <p class="lead">
+        Menos promesas, más coherencia: sólido primero, bonito después. Kaelum no quiere ser el más grande,
+        quiere ser el más honesto y disfrutable.
+      </p>
+
+      <div class="actions" style="margin-top:12px">
+        <a class="btn" href={`${base}documentacion/analisis/`}>Volver al índice</a>
+        <button class="btn primary" id="toggleView2" type="button">Ver imagen</button>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      // @ts-check
+      /** @type {HTMLButtonElement|null} */
+      const toggleBtn = document.getElementById("toggleView");
+      /** @type {HTMLButtonElement|null} */
+      const toggleBtn2 = document.getElementById("toggleView2");
+      /** @type {HTMLElement|null} */
+      const imageView = document.getElementById("imageView");
+      /** @type {HTMLElement|null} */
+      const textView = document.getElementById("textView");
+
+      if (!toggleBtn || !imageView || !textView) return;
+
+      let showingImage = true;
+
+      const render = () => {
+        imageView.classList.toggle("hidden", !showingImage);
+        textView.classList.toggle("hidden", showingImage);
+        toggleBtn.textContent = showingImage ? "Ver texto" : "Ver imagen";
+        if (toggleBtn2) toggleBtn2.textContent = showingImage ? "Ver imagen" : "Ver imagen";
+      };
+
+      toggleBtn.addEventListener("click", () => {
+        showingImage = !showingImage;
+        render();
+      });
+
+      if (toggleBtn2) {
+        toggleBtn2.addEventListener("click", () => {
+          showingImage = true;
+          render();
+        });
+      }
+
+      render();
+    });
+  </script>
+
+  <style>
+    .hidden { display: none !important; }
+  </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/documentacion/analisis/dafo.astro
+---
+
+```astro
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+const imgUrl = `${base}images/media/dafo.png`;
+---
+
+<BaseLayout
+  title="Kaelum — Análisis DAFO"
+  description="Análisis DAFO del proyecto Kaelum: fortalezas, debilidades, oportunidades y amenazas."
+>
+  <section class="hero">
+    <p class="kicker">Análisis</p>
+    <h1>DAFO</h1>
+    <p class="lead">
+      Evaluación estratégica honesta: lo que suma, lo que limita, lo que puede pasar y lo que se puede aprovechar.
+    </p>
+
+    <div class="actions">
+      <a class="btn" href={`${base}documentacion/`}>Volver al índice</a>
+      <a class="btn" href={`${base}documentacion/analisis/came/`}>Ver CAME</a>
+      <button class="btn primary" id="toggleView" type="button">Ver texto</button>
+    </div>
+  </section>
+
+  {/* IMAGEN */}
+  <section id="imageView" class="grid">
+    <div class="card full">
+      <img
+        src={imgUrl}
+        alt="Análisis DAFO de Kaelum"
+        style="width:100%; border-radius: var(--radius); display:block;"
+        loading="eager"
+      />
+
+      <div class="actions" style="margin-top:12px">
+        <a class="btn" href={imgUrl} download>Descargar imagen</a>
+        <a class="btn" href={`${base}documentacion/analisis/`}>Volver al índice</a>
+      </div>
+    </div>
+  </section>
+
+  {/* TEXTO */}
+  <section id="textView" class="grid hidden">
+    <section class="card">
+      <h2>Fortalezas</h2>
+      <ul class="list">
+        <li>Experiencia como jugador para detectar buenas/malas mecánicas.</li>
+        <li>Capacidad para diseñar sistemas comprensibles y explicables.</li>
+        <li>Enfoque en código limpio y trabajo colaborativo.</li>
+        <li>Identidad del proyecto definida desde temprano (Kael + universo).</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Debilidades</h2>
+      <ul class="list">
+        <li>Experiencia limitada en proyectos de esta escala.</li>
+        <li>Desarrollo narrativo exigente si se descontrola.</li>
+        <li>Carga alta en arte/animación si se intenta “demasiado pronto”.</li>
+        <li>Riesgo de bloqueos técnicos durante el desarrollo.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Oportunidades</h2>
+      <ul class="list">
+        <li>Interés creciente por shooters accesibles pero profundos.</li>
+        <li>Jugadores cansados de inconsistencias y sistemas injustos.</li>
+        <li>Historia + shooter como diferenciador sin romper ritmo.</li>
+        <li>Potencial de comunidad y crecimiento del multijugador.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Amenazas</h2>
+      <ul class="list">
+        <li>Mercado saturado.</li>
+        <li>Competencia con lanzamientos grandes.</li>
+        <li>Proyectos similares con más recursos.</li>
+        <li>Dificultad para destacar sin propuesta clara.</li>
+      </ul>
+    </section>
+
+    <section class="card full">
+      <h2>Notas</h2>
+      <p class="muted">
+        El DAFO no es “un trabajo de clase bonito”: es el mapa de riesgos para tomar decisiones con cabeza.
+        El siguiente paso lógico es el CAME (acciones concretas).
+      </p>
+
+      <div class="actions" style="margin-top:12px">
+        <a class="btn" href={`${base}documentacion/analisis/`}>Volver al índice</a>
+        <button class="btn primary" id="toggleView2" type="button">Ver imagen</button>
+      </div>
+    </section>
+  </section>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      // @ts-check
+      /** @type {HTMLButtonElement|null} */
+      const toggleBtn = document.getElementById("toggleView");
+      /** @type {HTMLButtonElement|null} */
+      const toggleBtn2 = document.getElementById("toggleView2");
+      /** @type {HTMLElement|null} */
+      const imageView = document.getElementById("imageView");
+      /** @type {HTMLElement|null} */
+      const textView = document.getElementById("textView");
+
+      if (!toggleBtn || !imageView || !textView) return;
+
+      let showingImage = true;
+
+      const render = () => {
+        imageView.classList.toggle("hidden", !showingImage);
+        textView.classList.toggle("hidden", showingImage);
+        toggleBtn.textContent = showingImage ? "Ver texto" : "Ver imagen";
+      };
+
+      toggleBtn.addEventListener("click", () => {
+        showingImage = !showingImage;
+        render();
+      });
+
+      if (toggleBtn2) {
+        toggleBtn2.addEventListener("click", () => {
+          showingImage = true;
+          render();
+        });
+      }
+
+      render();
+    });
+  </script>
+
+  <style>
+    .hidden { display: none !important; }
+  </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/documentacion/analisis/index.astro
+---
+
+```astro
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Kaelum — Análisis"
+  description="Análisis del proyecto Kaelum: DAFO y CAME. Riesgos, fortalezas, oportunidades y acciones."
+>
+  <section class="hero">
+    <p class="kicker">Análisis</p>
+    <h1>DAFO + CAME</h1>
+    <p class="lead">
+      Aquí está la parte “seria” del proyecto: <strong>por qué Kaelum tiene sentido</strong>, qué riesgos reales tiene,
+      qué oportunidades aprovecha, y <strong>qué acciones concretas</strong> se toman para no morir por scope.
+    </p>
+
+    <div class="meta">
+      <span class="tag">DAFO</span>
+      <span class="tag">CAME</span>
+      <span class="tag">Decisiones</span>
+      <span class="tag">Scope control</span>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}documentacion/analisis/dafo/`}>Ver DAFO</a>
+      <a class="btn" href={`${base}documentacion/analisis/came/`}>Ver CAME</a>
+      <a class="btn" href={`${base}media/`}>Ir a Media</a>
+      <a class="btn" href={`${base}documentacion/`}>Ir a documentacion</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card">
+      <h2>📌 DAFO</h2>
+      <p class="muted">
+        Foto clara del proyecto: <strong>Fortalezas</strong>, <strong>Debilidades</strong>,
+        <strong>Oportunidades</strong> y <strong>Amenazas</strong>.
+      </p>
+      <p class="small">Ideal para evaluación y coherencia.</p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/analisis/dafo/`}>Abrir DAFO</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>🧭 CAME</h2>
+      <p class="muted">
+        Traducción del DAFO a acción: <strong>Corregir</strong>, <strong>Afrontar</strong>,
+        <strong>Mantener</strong> y <strong>Explotar</strong>.
+      </p>
+      <p class="small">Esto es lo que evita que se quede en “un análisis bonito”.</p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/analisis/came/`}>Abrir CAME</a>
+      </div>
+    </article>
+
+    <article class="card full">
+      <h2>Cómo leer esta sección</h2>
+      <p class="muted">
+        Si vienes por primera vez: empieza por <strong>Media</strong> (moodboard) y luego pásate por aquí.
+        Si vienes a evaluar: aquí tienes la justificación y el plan de acción en 2 clics.
+      </p>
+      <div class="actions" style="margin-top:10px">
+        <a class="btn" href={`${base}media/`}>Abrir Media</a>
+        <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+      </div>
+    </article>
+  </div>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/documentacion/equipo.astro
+---
+
+```astro
+
+```
+
+---
+## FILE: src/pages/documentacion/folleto.astro
 ---
 
 ```astro
@@ -1360,8 +3017,8 @@ const logoUrl = `${base}images/NyxtaleStudios.svg`;
 
     <div class="actions noprint" id="imprimir">
       <a class="btn primary" href="#" onclick="window.print(); return false;">Imprimir (A4)</a>
-      <a class="btn" href={`${base}docs/`}>Volver a Docs</a>
-      <a class="btn" href={`${base}kaelum/`}>Ver proyecto</a>
+      <a class="btn" href={`${base}documentacion/`}>Volver a Documentación</a>
+      <a class="btn" href={`${base}juego/`}>Ver Juego</a>
     </div>
   </section>
 
@@ -1462,9 +3119,9 @@ const logoUrl = `${base}images/NyxtaleStudios.svg`;
         <h3>Enlaces</h3>
         <p class="small muted">Para el detalle completo:</p>
         <ul>
-          <li><a href={`${base}kaelum/`}>Resumen del proyecto</a></li>
-          <li><a href={`${base}docs/gdd/`}>GDD (PDF)</a></li>
-          <li><a href={`${base}devlog/`}>Devlog</a></li>
+          <li><a href={`${base}juego/`}>Resumen del proyecto</a></li>
+          <li><a href={`${base}documentacion/gdd/`}>GDD (PDF)</a></li>
+          <li><a href={`${base}desarrollo/devlog/`}>Devlog</a></li>
         </ul>
       </section>
     </div>
@@ -1510,7 +3167,7 @@ const logoUrl = `${base}images/NyxtaleStudios.svg`;
 
     /* SVG más grande */
     .brand-logo{
-      display: none;
+      display: block;
       width: auto;
       height: 300px;
       object-fit: contain;
@@ -1666,14 +3323,14 @@ const logoUrl = `${base}images/NyxtaleStudios.svg`;
 ```
 
 ---
-## FILE: src/pages/docs/gdd.astro
+## FILE: src/pages/documentacion/gdd.astro
 ---
 
 ```astro
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-const base = import.meta.env.BASE_URL; // "/" en local, "/kaelum/" en GitHub Pages
-const pdfUrl = `${base}docs/GDD_KAELUM.pdf`;
+const base = import.meta.env.BASE_URL; // "/" en local, "/juego/" en GitHub Pages
+const pdfUrl = `${base}documentacion/GDD_KAELUM.pdf`;
 ---
 
 <BaseLayout title="Kaelum – GDD (PDF)" description="GDD completo de Kaelum en visor embebido.">
@@ -1687,7 +3344,7 @@ const pdfUrl = `${base}docs/GDD_KAELUM.pdf`;
     <div class="actions">
       <a class="btn primary" href={pdfUrl} target="_blank" rel="noreferrer">Abrir en pestaña nueva</a>
       <a class="btn" href={pdfUrl} download>Descargar PDF</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}docs/`}>Volver a Docs</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}documentacion/`}>Volver a Documentación</a>
     </div>
   </section>
 
@@ -1713,60 +3370,481 @@ const pdfUrl = `${base}docs/GDD_KAELUM.pdf`;
 ```
 
 ---
-## FILE: src/pages/docs/index.astro
+## FILE: src/pages/documentacion/index.astro
 ---
 
 ```astro
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const documentacion = [
+  {
+    number: "01",
+    title: "GDD",
+    desc:
+      "Documento central del proyecto. Reúne la visión global de Kaelum desde la narrativa, el diseño, los sistemas y la propuesta general del videojuego.",
+    href: `${base}documentacion/gdd/`,
+    tag: "Base del proyecto",
+  },
+  {
+    number: "02",
+    title: "Folleto",
+    desc:
+      "Versión más resumida, visual y rápida de consultar para presentar el proyecto sin entrar todavía en tanto detalle.",
+    href: `${base}documentacion/folleto/`,
+    tag: "Resumen visual",
+  },
+  {
+    number: "03",
+    title: "Análisis",
+    desc:
+      "Apartado estratégico con DAFO, CAME y otras lecturas que ayudan a justificar decisiones, enfoque y posicionamiento del proyecto.",
+    href: `${base}documentacion/analisis/`,
+    tag: "Análisis",
+  },
+  {
+    number: "04",
+    title: "Presupuesto",
+    desc:
+      "Estimación de costes de producción y marketing, planteada como parte de la viabilidad y defensa formal del proyecto.",
+    href: `${base}documentacion/presupuesto/`,
+    tag: "Viabilidad",
+  },
+  {
+    number: "05",
+    title: "Planificación",
+    desc:
+      "Hitos, tiempos, roadmap y orden de trabajo del proyecto para mostrar cómo se organiza el desarrollo.",
+    href: `${base}documentacion/planificacion/`,
+    tag: "Organización",
+  },
+  {
+    number: "06",
+    title: "Métricas y diagramas",
+    desc:
+      "Gráficos, flujos, esquemas y elementos visuales que ayudan a sintetizar información técnica o estratégica.",
+    href: `${base}documentacion/metricas/`,
+    tag: "Apoyo visual",
+  },
+  {
+    number: "07",
+    title: "Equipo",
+    desc:
+      "Sección dedicada a quién está detrás del proyecto, roles, reparto de funciones y lectura más profesional del trabajo realizado.",
+    href: `${base}documentacion/equipo/`,
+    tag: "Roles",
+  },
+];
+
+const useCases = [
+  {
+    title: "Si vienes a evaluar la web",
+    desc:
+      "Empieza por GDD, sigue con Presupuesto y Planificación, y termina con Métricas. Así ves lo conceptual, lo viable y lo justificable.",
+  },
+  {
+    title: "Si quieres una lectura rápida",
+    desc:
+      "Lo mejor es entrar por Folleto y luego abrir solo los apartados que te interesen más.",
+  },
+  {
+    title: "Si buscas estrategia y defensa",
+    desc:
+      "Análisis y Métricas son los bloques más útiles para entender por qué se tomaron ciertas decisiones.",
+  },
+];
+
+const rubricItems = [
+  "Enlace o resumen del GDD",
+  "Presupuesto de producción y marketing",
+  "Gráficos, diagramas y métricas",
+  "Sección de equipo y roles",
+  "Apoyo formal a la evaluación del proyecto",
+];
 ---
 
-<BaseLayout title="Kaelum – Docs" description="Documentación del proyecto: GDD completo (técnico) y folleto imprimible (A4).">
-  <section class="hero">
-    <p class="kicker">Documentación</p>
-    <h1>Docs</h1>
-    <p class="lead">
-      Aquí está la documentación <strong>técnica</strong> y el material <strong>imprimible</strong>.
-      La presentación visual principal (moodboard / visión) se añadirá como página separada.
-    </p>
+<BaseLayout
+  title="Kaelum — Documentación"
+  description="Bloque de documentación formal de Kaelum: GDD, folleto, análisis, presupuesto, planificación, métricas y equipo."
+>
+  <section class="hero hero-documentacion">
+    <div class="hero-copy">
+      <p class="kicker">Respaldo formal</p>
+      <h1>Documentación</h1>
 
-    <div class="actions">
-      <a class="btn" href={`${import.meta.env.BASE_URL}kaelum/`}>Volver al proyecto</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}devlog/`}>Ver devlog</a>
+      <p class="lead">
+        Esta sección concentra la parte más <strong>formal, justificable y evaluable</strong>
+        del proyecto. Aquí no solo se guarda información: se organiza el material que permite
+        entender, defender y revisar Kaelum desde una perspectiva más técnica, estratégica y
+        profesional.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/gdd/`}>Abrir GDD</a>
+        <a class="btn" href={`${base}documentacion/folleto/`}>Ver Folleto</a>
+        <a class="btn" href={`${base}documentacion/planificacion/`}>Ir a Planificación</a>
+      </div>
+    </div>
+
+    <aside class="hero-panel">
+      <p class="panel-kicker">Qué aporta este bloque</p>
+      <h2>La parte que sostiene el proyecto por dentro</h2>
+      <p>
+        Después de entender el juego y su presentación visual, aquí aparece la capa que lo
+        respalda: documentos, análisis, planificación, métricas y estructura de defensa.
+        Es el apartado que más ayuda cuando alguien necesita revisar Kaelum con criterio y no
+        solo de forma superficial.
+      </p>
+
+      <div class="rubric-box">
+        <p class="rubric-title">Puntos de rúbrica que cubre especialmente</p>
+        <ul>
+          {rubricItems.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </aside>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Apartados principales</p>
+      <h2>Qué incluye Documentación</h2>
+      <p class="section-lead">
+        Esta sección está dividida para que cada tipo de lector encuentre rápido lo que busca,
+        sin tener que navegar entre materiales mezclados.
+      </p>
+    </header>
+
+    <div class="documentacion-grid">
+      {documentacion.map((item) => (
+        <a class="doc-card" href={item.href}>
+          <div class="doc-top">
+            <span class="doc-number">{item.number}</span>
+            <span class="doc-tag">{item.tag}</span>
+          </div>
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+          <span class="doc-link">Abrir apartado</span>
+        </a>
+      ))}
     </div>
   </section>
 
-  <div class="grid">
-    <article class="card">
-      <h3>GDD completo (PDF)</h3>
-      <p class="muted">
-        Documento detallado del juego. Útil para revisión completa y criterios de diseño.
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Cómo consultar esta parte</p>
+      <h2>Distintas formas de entrar según lo que busques</h2>
+      <p class="section-lead">
+        No todo el mundo entra en Documentación con el mismo objetivo, así que esta parte también
+        está pensada para facilitar recorridos distintos.
+      </p>
+    </header>
+
+    <div class="use-grid">
+      {useCases.map((item) => (
+        <article class="use-card">
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section split">
+    <article class="info-card">
+      <p class="kicker">Orden recomendado</p>
+      <h2>Primero GDD, luego análisis y cierre con planificación</h2>
+      <p>
+        Si quieres seguir un orden lógico, lo mejor es empezar por el <strong>GDD</strong> como
+        documento base, continuar con <strong>Análisis</strong> para entender el enfoque y cerrar
+        con <strong>Presupuesto</strong>, <strong>Planificación</strong> y
+        <strong> Métricas</strong> para ver la parte más defendible y organizativa.
       </p>
       <div class="actions">
-        <a class="btn primary" href={`${import.meta.env.BASE_URL}docs/gdd/`}>Abrir visor</a>
-        <a class="btn" href={`${import.meta.env.BASE_URL}docs/GDD_KAELUM.pdf`} target="_blank" rel="noreferrer">Abrir PDF</a>
+        <a class="btn" href={`${base}documentacion/gdd/`}>Seguir ese orden</a>
       </div>
     </article>
 
-    <article class="card">
-      <h3>Folleto imprimible (A4)</h3>
-      <p class="muted">
-        Resumen tipo brochure, pensado para presentarlo rápido y poder imprimirlo en una sola página.
+    <article class="info-card accent">
+      <p class="kicker">Continuidad del recorrido</p>
+      <h2>Después de Documentación, toca Desarrollo</h2>
+      <p>
+        Una vez revisada la base formal del proyecto, el siguiente paso natural es
+        <strong> Desarrollo</strong>, donde se ve la evolución real del trabajo, los devlogs,
+        los hitos y cómo Kaelum ha ido creciendo con el tiempo.
       </p>
       <div class="actions">
-        <a class="btn primary" href={`${import.meta.env.BASE_URL}docs/folleto/`}>Ver folleto</a>
-        <a class="btn" href={`${import.meta.env.BASE_URL}docs/folleto#imprimir`}>Imprimir</a>
+        <a class="btn primary" href={`${base}desarrollo/`}>Ir a Desarrollo</a>
       </div>
     </article>
+  </section>
 
-    <article class="card full">
-      <h3>Recomendación de lectura</h3>
-      <p class="muted">
-        Si vienes a evaluar el proyecto: empieza por el folleto (rápido) y después usa el GDD como respaldo técnico.
-      </p>
-    </article>
-  </div>
+  <style>
+    .hero-documentacion{
+      display:grid;
+      grid-template-columns: 1.35fr .95fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .doc-card,
+    .use-card,
+    .info-card{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-copy{
+      padding:28px;
+    }
+
+    .hero-panel{
+      padding:24px;
+      background:
+        linear-gradient(180deg, rgba(255, 170, 90, .12), rgba(255,255,255,.03));
+    }
+
+    .kicker,
+    .panel-kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0 0 8px;
+      font-size:.82rem;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(2.6rem, 6vw, 4.2rem);
+      line-height:.95;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
+      line-height:1.05;
+    }
+
+    h3{
+      margin:0 0 10px;
+      font-size:1.12rem;
+    }
+
+    .lead,
+    .section-lead,
+    .hero-panel p,
+    .doc-card p,
+    .use-card p,
+    .info-card p{
+      line-height:1.6;
+      opacity:.94;
+      margin:0;
+      text-align:justify;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      text-decoration:none;
+      transition:.18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(255, 162, 72, .30), rgba(255, 162, 72, .14));
+      border-color:rgba(255, 191, 132, .34);
+      box-shadow:0 10px 24px rgba(120,60,20,.18);
+    }
+
+    .rubric-box{
+      margin-top:18px;
+      padding:16px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+    }
+
+    .rubric-title{
+      margin:0 0 10px;
+      font-weight:600;
+      opacity:.95;
+    }
+
+    .rubric-box ul{
+      margin:0;
+      padding-left:18px;
+      display:grid;
+      gap:8px;
+      line-height:1.5;
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:14px;
+    }
+
+    .documentacion-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .doc-card{
+      padding:18px;
+      text-decoration:none;
+      color:inherit;
+      transition:.18s ease;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .doc-card:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.06);
+    }
+
+    .doc-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .doc-number{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255, 162, 72, .16);
+    }
+
+    .doc-tag{
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:.8rem;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      opacity:.9;
+    }
+
+    .doc-link{
+      margin-top:auto;
+      opacity:.86;
+      font-size:.95rem;
+    }
+
+    .use-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .use-card,
+    .info-card{
+      padding:22px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .info-card.accent{
+      background:
+        linear-gradient(180deg, rgba(255, 162, 72, .14), rgba(255,255,255,.03));
+    }
+
+    @media (max-width: 1080px){
+      .documentacion-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+
+      .use-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 900px){
+      .hero-documentacion,
+      .split{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .documentacion-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-copy,
+      .hero-panel,
+      .doc-card,
+      .use-card,
+      .info-card{
+        padding:18px;
+      }
+
+      h1{
+        font-size:2.35rem;
+      }
+    }
+  </style>
 </BaseLayout>
+```
+
+---
+## FILE: src/pages/documentacion/metricas.astro
+---
+
+```astro
+
+```
+
+---
+## FILE: src/pages/documentacion/planificacion.astro
+---
+
+```astro
+
+```
+
+---
+## FILE: src/pages/documentacion/presupuesto.astro
+---
+
+```astro
+
 ```
 
 ---
@@ -1778,234 +3856,431 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
-const cards = [
+const sections = [
   {
-    title: "🎮 Proyecto (dossier jugable)",
+    kicker: "Núcleo jugable",
+    title: "Juego",
     desc:
-      "Guion, mundo y contenido con intención: historia, personajes, enemigos, cinemáticas y progreso. Todo existe porque empuja gameplay.",
-    hint: "Si quieres entender el juego rápido, entra aquí.",
-    href: `${base}proyecto/`,
+      "La parte central del portfolio. Aquí se explica Kaelum como videojuego: historia, mundo, personajes, enemigos, mecánicas, flujo, interfaz y progreso narrativo.",
+    href: `${base}juego/`,
+    btn: "Entrar en Juego",
     primary: true,
-    btn: "Abrir proyecto",
   },
   {
-    title: "🎨 Visión del proyecto",
+    kicker: "Presentación visual",
+    title: "Media",
     desc:
-      "Moodboard y dirección visual. Tono, intención, estilo y promesa del juego. La referencia principal para coherencia estética.",
-    hint: "Recomendado si entras por primera vez.",
-    href: `${base}vision/`,
-    primary: false,
-    btn: "Abrir visión",
+      "Moodboard, galería, tráiler y material visual del proyecto. La forma más rápida de captar el tono, la identidad estética y la dirección artística.",
+    href: `${base}media/`,
+    btn: "Ver Media",
   },
   {
-    title: "📊 Análisis y decisiones",
+    kicker: "Respaldo formal",
+    title: "Documentación",
     desc:
-      "DAFO + CAME. Riesgos, fortalezas y acciones concretas para mantener el proyecto realista, defendible y con foco.",
-    hint: "Ideal para evaluación y criterio.",
-    href: `${base}analisis/`,
-    primary: false,
-    btn: "Abrir análisis",
+      "GDD, folleto, análisis, presupuesto, planificación, métricas y apartados evaluables. Todo lo que sostiene el proyecto desde una perspectiva técnica y defendible.",
+    href: `${base}documentacion/`,
+    btn: "Abrir Documentación",
   },
   {
-    title: "📄 Documentación técnica",
+    kicker: "Proceso real",
+    title: "Desarrollo",
     desc:
-      "GDD completo + folleto imprimible (A4). Documentación formal para entrega y revisión del detalle completo del proyecto.",
-    hint: "Para leerlo como documento.",
-    href: `${base}docs/`,
-    primary: false,
-    btn: "Abrir docs",
+      "Devlog, hitos y evolución del proyecto. Sirve para ver cómo ha crecido Kaelum, qué decisiones se han tomado y cómo se ha refinado el enfoque.",
+    href: `${base}desarrollo/`,
+    btn: "Ver Desarrollo",
   },
   {
-    title: "🛠 Proceso de desarrollo",
+    kicker: "Autor y feedback",
+    title: "Contacto",
     desc:
-      "Devlog semanal con decisiones, iteraciones y progreso real. El “cómo” del proyecto: recortes, cambios y porqués.",
-    hint: "Para ver evolución y metodología.",
-    href: `${base}devlog/`,
-    primary: false,
-    btn: "Abrir devlog",
+      "Información del creador, vías de contacto, redes y espacio para opinión o feedback. El cierre natural del recorrido y el punto de conexión externa.",
+    href: `${base}contacto/`,
+    btn: "Ir a Contacto",
+  },
+];
+
+const highlights = [
+  "FPS con habilidades",
+  "Singleplayer narrativo",
+  "Multijugador independiente",
+  "PC",
+  "Unity",
+  "Portfolio + documentación",
+];
+
+const route = [
+  {
+    step: "01",
+    title: "Empieza por Juego",
+    desc: "Si quieres entender Kaelum de verdad, aquí está su base: propuesta, sistemas, mundo y recorrido del jugador.",
+    href: `${base}juego/`,
+  },
+  {
+    step: "02",
+    title: "Pasa por Media",
+    desc: "Después toca ver su tono visual: moodboard, capturas, tráiler y presencia estética del proyecto.",
+    href: `${base}media/`,
+  },
+  {
+    step: "03",
+    title: "Consulta la Documentación",
+    desc: "Si vienes a evaluar o revisar el proyecto a fondo, aquí tienes la parte más formal y justificable.",
+    href: `${base}documentacion/`,
+  },
+  {
+    step: "04",
+    title: "Cierra con Desarrollo y Contacto",
+    desc: "Devlog, hitos, evolución del trabajo y formas de seguir el proyecto o dejar feedback.",
+    href: `${base}desarrollo/`,
   },
 ];
 ---
 
-<BaseLayout title="Kaelum — Inicio">
+<BaseLayout
+  title="Kaelum — Inicio"
+  description="Web portfolio de Kaelum: juego, media, documentación, desarrollo y contacto en un recorrido claro y navegable."
+>
   <section class="hero hero-home">
-    <p class="kicker">Portfolio · Documentación</p>
-    <h1>Kaelum</h1>
+    <div class="hero-copy">
+      <p class="kicker">Portfolio · Videojuego · Documentación</p>
+      <h1>Kaelum</h1>
 
-    <p class="lead">
-      Proyecto personal de videojuego FPS con habilidades. Aquí no enseño solo el resultado:
-      enseño la visión, el análisis y la documentación que justifican cada decisión.
-      <strong>Y sobre todo: el “Proyecto” como dossier jugable.</strong>
-    </p>
+      <p class="lead">
+        Kaelum es un juego de videojuego <strong>FPS con habilidades</strong> que combina
+        acción, identidad visual y una parte narrativa centrada en Kael. Esta web no funciona
+        solo como portada: está pensada como un <strong>dossier navegable</strong> para entender
+        el juego, su mundo, sus sistemas y la evolución real del proyecto.
+      </p>
 
-    <div class="meta">
-      <span class="tag">Shooter</span>
-      <span class="tag">Habilidades</span>
-      <span class="tag">Historia contextual</span>
-      <span class="tag">PC</span>
+      <div class="tags" aria-label="Etiquetas principales">
+        {highlights.map((item) => <span class="tag">{item}</span>)}
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}juego/`}>Ver el juego</a>
+        <a class="btn" href={`${base}media/`}>Ver media</a>
+        <a class="btn" href={`${base}documentacion/`}>Ir a documentación</a>
+      </div>
     </div>
 
-    <div class="actions">
-      <a class="btn primary" href={`${base}proyecto/`}>Ver proyecto</a>
-      <a class="btn" href={`${base}vision/`}>Ver visión</a>
-      <a class="btn" href={`${base}analisis/`}>Ver análisis</a>
-      <a class="btn" href={`${base}docs/`}>Ver docs</a>
-      <a class="btn" href={`${base}devlog/`}>Ver devlog</a>
+    <aside class="hero-panel">
+      <p class="panel-kicker">Qué vas a encontrar aquí</p>
+      <h2>Una web pensada para entender el proyecto sin perderse</h2>
+      <p>
+        El recorrido está reorganizado para separar claramente la parte del juego, la presentación
+        visual, la documentación formal, el desarrollo y el contacto.
+      </p>
+
+      <ul class="panel-list">
+        <li><strong>Juego:</strong> núcleo del proyecto y GDD web navegable.</li>
+        <li><strong>Media:</strong> tono visual, galería y tráiler.</li>
+        <li><strong>Documentación:</strong> respaldo técnico, análisis y planificación.</li>
+        <li><strong>Desarrollo:</strong> devlog, hitos y evolución.</li>
+        <li><strong>Contacto:</strong> autor, redes y feedback.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Mapa del sitio</p>
+      <h2>Bloques principales</h2>
+      <p class="section-lead">
+        Esta portada ya no actúa como un índice caótico, sino como una puerta de entrada clara.
+        Cada bloque responde a una pregunta distinta sobre Kaelum.
+      </p>
+    </header>
+
+    <div class="grid">
+      {sections.map((card) => (
+        <article class:list={["card", card.primary && "card-primary"]}>
+          <p class="mini-kicker">{card.kicker}</p>
+          <h3>{card.title}</h3>
+          <p>{card.desc}</p>
+          <div class="actions">
+            <a class:list={["btn", card.primary ? "primary" : ""]} href={card.href}>
+              {card.btn}
+            </a>
+          </div>
+        </article>
+      ))}
     </div>
   </section>
 
-  <section class="grid" aria-label="Mapa del proyecto">
-    {cards.map((c) => (
-      <article class={`card ${c.primary ? "featured" : ""}`}>
-        <h2>{c.title}</h2>
-        <p class="muted">{c.desc}</p>
-        <p class="small">{c.hint}</p>
-        <div class="actions">
-          <a class={c.primary ? "btn primary" : "btn"} href={c.href}>{c.btn}</a>
-        </div>
-      </article>
-    ))}
-    <article class="card full">
-      <h2>Estado actual</h2>
-      <p class="muted">
-        Kaelum está en fase de prototipo: visión y análisis cerrados, documentación lista para presentar,
-        y el dossier de “Proyecto” ya maquetado para lectura rápida. El desarrollo ahora se centra en validar
-        sensaciones de gameplay, estructura narrativa y núcleo jugable.
+  <section class="section route-section">
+    <header class="section-head">
+      <p class="kicker">Ruta recomendada</p>
+      <h2>Por dónde empezar</h2>
+      <p class="section-lead">
+        Si alguien entra sin contexto, este es el recorrido más natural para entender el proyecto.
       </p>
-      <div class="callout subtle" style="margin-top:12px">
-        <strong>Orden recomendado si eres nuevo:</strong> Proyecto → Visión → Análisis → Docs → Devlog.
+    </header>
+
+    <div class="route-grid">
+      {route.map((item) => (
+        <a class="route-card" href={item.href}>
+          <span class="route-step">{item.step}</span>
+          <div class="route-copy">
+            <h3>{item.title}</h3>
+            <p>{item.desc}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section split">
+    <article class="info-card">
+      <p class="kicker">Estado actual</p>
+      <h2>Una base ya bastante sólida</h2>
+      <p>
+        La web ya tiene una parte importante construida: estructura general, dossier del juego,
+        devlog, documentación y varias páginas clave del proyecto. El trabajo ahora está en
+        ordenar mejor el recorrido, cubrir los huecos de la rúbrica y dejar todo más consistente.
+      </p>
+      <div class="actions">
+        <a class="btn" href={`${base}desarrollo/`}>Ver estado del desarrollo</a>
+      </div>
+    </article>
+
+    <article class="info-card accent">
+      <p class="kicker">Siguiente gran objetivo</p>
+      <h2>Rematar la experiencia evaluable</h2>
+      <p>
+        Lo que más pesa ahora es terminar de encajar galería, tráiler, presupuesto, planificación,
+        métricas, contacto y feedback dentro de una estructura que se lea fácil y no obligue al
+        visitante a adivinar dónde está cada cosa.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/`}>Revisar documentación</a>
       </div>
     </article>
   </section>
 
   <style>
-    /* Hero un pelín más “main page” sin romper tu sistema */
-    .hero-home{ position:relative; overflow:hidden; }
-    .hero-home:after{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      pointer-events:none;
-      background:
-        radial-gradient(900px 340px at 18% 0%, rgba(70,255,150,.10), transparent 65%),
-        radial-gradient(760px 320px at 92% 12%, rgba(120,160,255,.12), transparent 60%);
-      opacity:.9;
+    .hero-home{
+      display:grid;
+      grid-template-columns: 1.4fr .95fr;
+      gap:24px;
+      align-items:stretch;
     }
-    .hero-home > *{ position:relative; z-index:1; }
 
-    .kicker{ letter-spacing:.08em; text-transform:uppercase; opacity:.75; font-size:.82rem; margin-bottom:6px; }
-    .lead{ margin-top:8px; line-height:1.6; opacity:.92; max-width: 980px; }
+    .hero-copy,
+    .hero-panel,
+    .card,
+    .info-card,
+    .route-card{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      backdrop-filter: blur(8px);
+    }
 
-    .meta{
+    .hero-copy{
+      padding:28px;
+    }
+
+    .hero-panel{
+      padding:24px;
+      background:
+        linear-gradient(180deg, rgba(140,92,255,.12), rgba(255,255,255,.03));
+    }
+
+    .kicker,
+    .mini-kicker,
+    .panel-kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0 0 8px;
+      font-size:.82rem;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(2.8rem, 7vw, 4.8rem);
+      line-height:.95;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(1.6rem, 2.8vw, 2.2rem);
+      line-height:1.05;
+    }
+
+    h3{
+      margin:0 0 10px;
+      font-size:1.18rem;
+    }
+
+    .lead,
+    .section-lead,
+    .card p,
+    .info-card p,
+    .route-copy p,
+    .hero-panel p{
+      line-height:1.6;
+      opacity:.94;
+      margin:0;
+      text-align:justify;
+    }
+
+    .tags{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
-      margin-top:12px;
-      justify-content:flex-start;
-    }
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      padding:7px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.16);
-      color: rgba(255,255,255,.82);
-      font-weight:900;
-      letter-spacing:.02em;
-      font-size:.86rem;
+      margin-top:18px;
     }
 
-    /* Featured card (Proyecto) */
-    .featured{
-      border-color: rgba(140,120,255,.28);
-      background: linear-gradient(180deg, rgba(140,120,255,.10), rgba(0,0,0,.18));
-      box-shadow: 0 18px 60px rgba(140,120,255,.10);
+    .tag{
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:.92rem;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      text-decoration:none;
+      transition:.18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(146, 101, 255, .30), rgba(146, 101, 255, .16));
+      border-color:rgba(176, 141, 255, .34);
+      box-shadow:0 10px 24px rgba(64,20,120,.18);
+    }
+
+    .panel-list{
+      margin:16px 0 0;
+      padding-left:18px;
+      display:grid;
+      gap:10px;
+      line-height:1.5;
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:14px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .card{
+      padding:20px;
+    }
+
+    .card-primary{
+      background:
+        linear-gradient(180deg, rgba(120,80,255,.16), rgba(255,255,255,.04));
+      border-color:rgba(174, 137, 255, .22);
+    }
+
+    .route-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .route-card{
+      display:flex;
+      gap:14px;
+      padding:18px;
+      text-decoration:none;
+      color:inherit;
+      transition:.18s ease;
+    }
+
+    .route-card:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.06);
+    }
+
+    .route-step{
+      width:48px;
+      height:48px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      flex:0 0 auto;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(140,92,255,.16);
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .info-card{
+      padding:22px;
+    }
+
+    .info-card.accent{
+      background:
+        linear-gradient(180deg, rgba(140,92,255,.14), rgba(255,255,255,.03));
+    }
+
+    @media (max-width: 980px){
+      .hero-home,
+      .grid,
+      .route-grid,
+      .split{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero-copy,
+      .hero-panel,
+      .card,
+      .route-card,
+      .info-card{
+        padding:18px;
+      }
+
+      h1{
+        font-size:2.5rem;
+      }
     }
   </style>
 </BaseLayout>
 ```
 
 ---
-## FILE: src/pages/kaelum.astro
----
-
-```astro
----
-import BaseLayout from "../layouts/BaseLayout.astro";
----
-
-<BaseLayout
-  title="Kaelum — Proyecto"
-  description="Resumen general del proyecto Kaelum: enfoque, género y estructura del videojuego."
->
-  <section class="hero">
-    <p class="kicker">Proyecto</p>
-    <h1>Kaelum</h1>
-
-    <p class="lead">
-      Kaelum es un shooter en primera persona con habilidades diseñadas como complemento,
-      no como eje central. El proyecto prioriza un gunplay consistente, movimiento fluido
-      y decisiones de diseño justificadas, con un alcance controlado.
-    </p>
-
-    <div class="meta">
-      <span class="tag">FPS</span>
-      <span class="tag">Armas primero</span>
-      <span class="tag">Movimiento fluido</span>
-      <span class="tag">Narrativa contextual</span>
-      <span class="tag">PC</span>
-    </div>
-
-    <div class="actions">
-      <a class="btn primary" href={`${import.meta.env.BASE_URL}vision/`}>Ver visión</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}analisis/`}>Ver análisis</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}docs/`}>Ver documentación</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}devlog/`}>Ver devlog</a>
-    </div>
-  </section>
-
-  <div class="grid">
-    <div class="card">
-      <h3>¿Qué tipo de juego es?</h3>
-      <p class="muted">
-        Kaelum combina acción directa con narrativa ambiental. El jugador descubre el mundo
-        a través del entorno, textos opcionales y encuentros breves, sin interrumpir el ritmo
-        de juego con exposiciones largas.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Dos experiencias complementarias</h3>
-      <p class="muted">
-        El proyecto se estructura en dos vertientes diferenciadas pero coherentes dentro
-        del mismo universo.
-      </p>
-      <ul class="list">
-        <li><strong>Historia (Singleplayer)</strong>: narrativa contextual con Kael como eje.</li>
-        <li><strong>Multijugador</strong>: partidas rápidas y competitivas con personajes propios.</li>
-      </ul>
-    </div>
-
-    <div class="card full">
-      <h3>Cómo está organizado el proyecto</h3>
-      <p class="muted">
-        Kaelum se presenta como un proyecto completo de diseño y documentación.
-        Cada apartado cumple una función concreta dentro del proceso.
-      </p>
-      <ul class="list">
-        <li><strong>Visión</strong>: moodboard y one-pager como presentación principal.</li>
-        <li><strong>Análisis</strong>: DAFO y CAME para justificar decisiones y alcance.</li>
-        <li><strong>Documentación</strong>: GDD completo y folleto imprimible.</li>
-        <li><strong>Devlog</strong>: seguimiento del desarrollo y evolución del proyecto.</li>
-      </ul>
-    </div>
-  </div>
-</BaseLayout>
-```
-
----
-## FILE: src/pages/proyecto/cinematicas.astro
+## FILE: src/pages/juego/cinematicas.astro
 ---
 
 ```astro
@@ -2029,24 +4304,24 @@ const base = import.meta.env.BASE_URL;
             </p>
 
             <div class="actions">
-                <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-                <a class="btn" href={`${base}proyecto/historia/`}
+                <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+                <a class="btn" href={`${base}juego/historia/`}
                     >Ver Historia</a
                 >
-                <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-                <a class="btn" href={`${base}proyecto/personajes/`}
+                <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
+                <a class="btn" href={`${base}juego/personajes/`}
                     >Ver Personajes</a
                 >
-                <a class="btn primary" href={`${base}proyecto/enemigos/`}
+                <a class="btn primary" href={`${base}juego/enemigos/`}
                     >Ver Enemigos</a
                 >
-                <a class="btn" href={`${base}proyecto/progreso/`}
+                <a class="btn" href={`${base}juego/progreso/`}
                     >Ver Progreso</a
                 >
-                <a class="btn" href={`${base}proyecto/mecanicas/`}
+                <a class="btn" href={`${base}juego/mecanicas/`}
                     >Ver Mecánicas</a
                 >
-                <a class="btn" href={`${base}proyecto/flujo/`}
+                <a class="btn" href={`${base}juego/flujo/`}
                     >Ver Flujo de estados</a
                 >
             </div>
@@ -2193,18 +4468,18 @@ const base = import.meta.env.BASE_URL;
             </div>
         </article>
         <div class="actions">
-            <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-            <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-            <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-            <a class="btn" href={`${base}proyecto/personajes/`}
+            <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+            <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
+            <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
+            <a class="btn" href={`${base}juego/personajes/`}
                 >Ver Personajes</a
             >
-            <a class="btn primary" href={`${base}proyecto/enemigos/`}
+            <a class="btn primary" href={`${base}juego/enemigos/`}
                 >Ver Enemigos</a
             >
-            <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
-            <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
-            <a class="btn" href={`${base}proyecto/flujo/`}
+            <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
+            <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
+            <a class="btn" href={`${base}juego/flujo/`}
                 >Ver Flujo de estados</a
             >
         </div>
@@ -2292,7 +4567,7 @@ const base = import.meta.env.BASE_URL;
 ```
 
 ---
-## FILE: src/pages/proyecto/enemigos.astro
+## FILE: src/pages/juego/enemigos.astro
 ---
 
 ```astro
@@ -2627,14 +4902,14 @@ const bosses = [
       </p>
 
       <div class="actions">
-        <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-        <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-        <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-        <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-        <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
-        <a class="btn primary" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
-        <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
-        <a class="btn" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
+        <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+        <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn primary" href={`${base}juego/progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
+        <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
       </div>
         <nav class="subnav" aria-label="Índice de enemigos">
           <a class="chip" href="#roles">Roles</a>
@@ -2765,14 +5040,14 @@ const bosses = [
     </article>
 
     <div class="actions bottom">
-        <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-        <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-        <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-        <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-        <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
-        <a class="btn primary" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
-        <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
-        <a class="btn" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
+        <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+        <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn primary" href={`${base}juego/progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
+        <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
     </div>
 
   </section>
@@ -3112,7 +5387,7 @@ const bosses = [
 ```
 
 ---
-## FILE: src/pages/proyecto/flujo.astro
+## FILE: src/pages/juego/flujo.astro
 ---
 
 ```astro
@@ -3157,7 +5432,7 @@ const states = [
   description="Flujo de estados del juego: inicio, menú, gameplay, pausa, game over, victoria y resultados."
 >
   <section class="hero">
-    <p class="kicker">Proyecto · Flujo</p>
+    <p class="kicker">Juego · Flujo</p>
     <h1>Flujo de estados del juego</h1>
     <p class="lead">
       Esta sección resume cómo se organiza la experiencia del jugador desde que inicia el juego
@@ -3165,14 +5440,14 @@ const states = [
     </p>
 
     <div class="actions">
-      <a class="btn primary" href={`${base}proyecto/`}>Volver a Proyecto</a>
-      <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
-      <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
+      <a class="btn primary" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
     </div>
 
     <nav class="subnav" aria-label="Índice de la página">
@@ -3300,7 +5575,7 @@ const states = [
 
       <div class="diagram-wrap">
         <img
-          src={`${base}images/proyecto/diagrama_de_flujo.webp`}
+          src={`${base}images/juego/diagrama_de_flujo.webp`}
           alt="Diagrama de flujo de estados del juego Kaelum"
           class="diagram"
         />
@@ -3312,14 +5587,14 @@ const states = [
     </article>
 
     <div class="actions bottom">
-      <a class="btn primary" href={`${base}proyecto/`}>Volver a Proyecto</a>
-      <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
-      <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
+      <a class="btn primary" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
     </div>
   </section>
 
@@ -3424,7 +5699,7 @@ const states = [
 ```
 
 ---
-## FILE: src/pages/proyecto/historia.astro
+## FILE: src/pages/juego/historia.astro
 ---
 
 ```astro
@@ -3447,14 +5722,14 @@ const base = import.meta.env.BASE_URL;
       No vienes a que te aplaudan. Vienes a sobrevivir… y a decidir qué tipo de persona vas a ser cuando tengas poder de verdad.
     </p>
     <div class="actions">
-      <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-      <a class="btn primary" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-      <a class="btn " href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver cinemáticas</a>
-      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
-      <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
-      <a class="btn" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
+      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn primary" href={`${base}juego/mundo/`}>Ver Mundo</a>
+      <a class="btn " href={`${base}juego/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/cinematicas/`}>Ver cinemáticas</a>
+      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
+      <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
     </div>
   </header>
 </section>
@@ -3595,14 +5870,14 @@ const base = import.meta.env.BASE_URL;
     </div>
   </article>
   <div class="actions">
-      <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-      <a class="btn primary" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-      <a class="btn " href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver cinemáticas</a>
-      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
-      <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
-      <a class="btn" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
+      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn primary" href={`${base}juego/mundo/`}>Ver Mundo</a>
+      <a class="btn " href={`${base}juego/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/cinematicas/`}>Ver cinemáticas</a>
+      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
+      <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
     </div>
 </section>
 
@@ -3684,7 +5959,497 @@ const base = import.meta.env.BASE_URL;
 ```
 
 ---
-## FILE: src/pages/proyecto/index.astro
+## FILE: src/pages/juego/index.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const pillars = [
+  {
+    title: "Narrativa y mundo",
+    desc:
+      "Kaelum combina conflicto, identidad y progresión narrativa dentro de un universo con tensión entre facciones, símbolos y fuerzas que condicionan al protagonista.",
+  },
+  {
+    title: "Combate y habilidades",
+    desc:
+      "La experiencia jugable gira alrededor del gunplay, el movimiento y el uso de habilidades que añaden control, utilidad, presión y profundidad al combate.",
+  },
+  {
+    title: "Progreso y decisión",
+    desc:
+      "El recorrido del jugador no es solo avanzar por niveles, sino atravesar actos, decisiones, rutas, consecuencias y una lectura del mundo que va cambiando.",
+  },
+  {
+    title: "Flujo e interfaz",
+    desc:
+      "La estructura de estados, pantallas y feedback visual forma parte del diseño jugable y ayuda a que la experiencia se entienda y se sienta coherente.",
+  },
+];
+
+const pages = [
+  {
+    number: "01",
+    title: "Historia",
+    desc:
+      "Premisa, conflicto, protagonista y dirección narrativa general del juego.",
+    href: `${base}juego/historia/`,
+    group: "Narrativa",
+  },
+  {
+    number: "02",
+    title: "Mundo",
+    desc:
+      "Ambientación, tono, reglas del universo y referencias que construyen la identidad de Kaelum.",
+    href: `${base}juego/mundo/`,
+    group: "Narrativa",
+  },
+  {
+    number: "03",
+    title: "Personajes",
+    desc:
+      "Protagonista, aliados y figuras relevantes explicadas desde su rol narrativo y jugable.",
+    href: `${base}juego/personajes/`,
+    group: "Narrativa",
+  },
+  {
+    number: "04",
+    title: "Enemigos",
+    desc:
+      "Roles de combate, facciones, color-code y fantasías de enfrentamiento del juego.",
+    href: `${base}juego/enemigos/`,
+    group: "Combate",
+  },
+  {
+    number: "05",
+    title: "Mecánicas",
+    desc:
+      "Core loop, inputs, sistemas principales, habilidades, progresión, interacción e inventario.",
+    href: `${base}juego/mecanicas/`,
+    group: "Combate",
+  },
+  {
+    number: "06",
+    title: "Progreso",
+    desc:
+      "Estructura narrativa del juego: prólogo, actos, rutas, decisiones y tipos de final.",
+    href: `${base}juego/progreso/`,
+    group: "Estructura",
+  },
+  {
+    number: "07",
+    title: "Flujo",
+    desc:
+      "Estados del juego, navegación, menús, victoria, derrota y lectura global de la experiencia.",
+    href: `${base}juego/flujo/`,
+    group: "Estructura",
+  },
+  {
+    number: "08",
+    title: "Cinemáticas",
+    desc:
+      "Momentos clave, función audiovisual y escenas que refuerzan el ritmo del proyecto.",
+    href: `${base}juego/cinematicas/`,
+    group: "Presentación",
+  },
+  {
+    number: "09",
+    title: "Interfaz",
+    desc:
+      "HUD, diario, pausa, victoria y otras pantallas como parte de la experiencia jugable.",
+    href: `${base}juego/interfaz/`,
+    group: "Presentación",
+  },
+];
+
+const pathFlow = [
+  "Historia",
+  "Mundo",
+  "Personajes",
+  "Enemigos",
+  "Mecánicas",
+  "Progreso",
+  "Flujo",
+  "Cinemáticas",
+  "Interfaz",
+];
+---
+
+<BaseLayout
+  title="Kaelum — Juego"
+  description="Sección principal de Kaelum: narrativa, mundo, personajes, enemigos, mecánicas, progreso, flujo, cinemáticas e interfaz."
+>
+  <section class="hero hero-game">
+    <div class="hero-copy">
+      <p class="kicker">Sección central</p>
+      <h1>Juego</h1>
+
+      <p class="lead">
+        Este bloque funciona como el <strong>núcleo principal del portfolio</strong>. Aquí
+        Kaelum se presenta como videojuego: qué propone, cómo se estructura, qué sistemas
+        lo sostienen y cómo se relacionan la narrativa, el combate, el progreso y la
+        interfaz dentro de una misma experiencia.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}juego/historia/`}>Empezar por Historia</a>
+        <a class="btn" href={`${base}juego/mecanicas/`}>Ir a Mecánicas</a>
+        <a class="btn" href={`${base}juego/interfaz/`}>Ver Interfaz</a>
+      </div>
+    </div>
+
+    <aside class="hero-panel">
+      <p class="panel-kicker">Qué explica esta sección</p>
+      <h2>Un GDD web más fácil de leer</h2>
+      <p>
+        En lugar de obligar al visitante a navegar por documentos largos o apartados sueltos,
+        esta parte reorganiza el proyecto como un recorrido claro: primero entiendes el mundo,
+        luego el conflicto, después el combate y finalmente cómo se articula todo en la
+        experiencia del jugador.
+      </p>
+
+      <div class="flow-pills">
+        {pathFlow.map((item) => <span>{item}</span>)}
+      </div>
+    </aside>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Pilares del bloque</p>
+      <h2>Cómo se ordena Kaelum aquí dentro</h2>
+      <p class="section-lead">
+        Esta sección no está pensada como un simple listado de páginas, sino como un sistema
+        de lectura donde cada parte cumple una función concreta.
+      </p>
+    </header>
+
+    <div class="pillars-grid">
+      {pillars.map((pillar) => (
+        <article class="pillar-card">
+          <h3>{pillar.title}</h3>
+          <p>{pillar.desc}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Recorrido principal</p>
+      <h2>Subpáginas de Juego</h2>
+      <p class="section-lead">
+        Este es el orden recomendado para entender Kaelum sin saltar entre bloques desconectados.
+      </p>
+    </header>
+
+    <div class="pages-grid">
+      {pages.map((page) => (
+        <a class="page-card" href={page.href}>
+          <div class="page-top">
+            <span class="page-number">{page.number}</span>
+            <span class="page-group">{page.group}</span>
+          </div>
+          <h3>{page.title}</h3>
+          <p>{page.desc}</p>
+          <span class="page-link">Abrir apartado</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section split">
+    <article class="info-card">
+      <p class="kicker">Orden sugerido</p>
+      <h2>Primero contexto, luego sistemas</h2>
+      <p>
+        Lo más natural es arrancar por <strong>Historia</strong>, <strong>Mundo</strong> y
+        <strong> Personajes</strong> para entender la base del juego. Después tiene sentido
+        pasar a <strong>Enemigos</strong> y <strong>Mecánicas</strong>, y cerrar con
+        <strong> Progreso</strong>, <strong>Flujo</strong>, <strong>Cinemáticas</strong> e
+        <strong> Interfaz</strong>.
+      </p>
+      <div class="actions">
+        <a class="btn" href={`${base}juego/historia/`}>Seguir el orden recomendado</a>
+      </div>
+    </article>
+
+    <article class="info-card accent">
+      <p class="kicker">Lectura alternativa</p>
+      <h2>Si vienes por lo jugable</h2>
+      <p>
+        Si tu foco está más en sistemas y diseño, puedes entrar directamente por
+        <strong> Mecánicas</strong>, continuar con <strong>Enemigos</strong> y
+        <strong> Flujo</strong>, y luego revisar <strong>Interfaz</strong> para ver cómo se
+        traduce todo eso en pantalla y feedback al jugador.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}juego/mecanicas/`}>Entrar por mecánicas</a>
+      </div>
+    </article>
+  </section>
+
+  <section class="section cta-section">
+    <div class="cta-card">
+      <p class="kicker">Siguiente salto natural</p>
+      <h2>Después de Juego, lo que más sentido tiene es Media</h2>
+      <p>
+        Una vez entendido el proyecto como videojuego, la siguiente parada ideal es la sección
+        de <strong>Media</strong>, donde se concentra el tono visual, las capturas, el
+        moodboard y el material más directo para enseñar cómo se ve Kaelum.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}media/`}>Ir a Media</a>
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .hero-game{
+      display:grid;
+      grid-template-columns: 1.35fr .95fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .pillar-card,
+    .page-card,
+    .info-card,
+    .cta-card{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-copy{
+      padding:28px;
+    }
+
+    .hero-panel{
+      padding:24px;
+      background:
+        linear-gradient(180deg, rgba(103, 150, 255, .12), rgba(255,255,255,.03));
+    }
+
+    .kicker,
+    .panel-kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0 0 8px;
+      font-size:.82rem;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(2.6rem, 6vw, 4.2rem);
+      line-height:.95;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
+      line-height:1.05;
+    }
+
+    h3{
+      margin:0 0 10px;
+      font-size:1.12rem;
+    }
+
+    .lead,
+    .section-lead,
+    .hero-panel p,
+    .pillar-card p,
+    .page-card p,
+    .info-card p,
+    .cta-card p{
+      line-height:1.6;
+      opacity:.94;
+      margin:0;
+      text-align:justify;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      text-decoration:none;
+      transition:.18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(94, 139, 255, .28), rgba(94, 139, 255, .14));
+      border-color:rgba(136, 175, 255, .34);
+      box-shadow:0 10px 24px rgba(20,44,120,.18);
+    }
+
+    .flow-pills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .flow-pills span{
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.05);
+      font-size:.92rem;
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:14px;
+    }
+
+    .pillars-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .pillar-card{
+      padding:20px;
+    }
+
+    .pages-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .page-card{
+      padding:18px;
+      text-decoration:none;
+      color:inherit;
+      transition:.18s ease;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .page-card:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.06);
+    }
+
+    .page-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .page-number{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(94, 139, 255, .16);
+    }
+
+    .page-group{
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:.8rem;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      opacity:.9;
+    }
+
+    .page-link{
+      margin-top:auto;
+      opacity:.86;
+      font-size:.95rem;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .info-card,
+    .cta-card{
+      padding:22px;
+    }
+
+    .info-card.accent,
+    .cta-card{
+      background:
+        linear-gradient(180deg, rgba(94, 139, 255, .14), rgba(255,255,255,.03));
+    }
+
+    @media (max-width: 1080px){
+      .pages-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 900px){
+      .hero-game,
+      .pillars-grid,
+      .split{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .pages-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-copy,
+      .hero-panel,
+      .pillar-card,
+      .page-card,
+      .info-card,
+      .cta-card{
+        padding:18px;
+      }
+
+      h1{
+        font-size:2.35rem;
+      }
+    }
+  </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/juego/index_copy.astro
 ---
 
 ```astro
@@ -3747,11 +6512,11 @@ const dossier = [
 ---
 
 <BaseLayout
-  title="Kaelum — Proyecto"
-  description="Sección de proyecto: historia, mundo, personajes, enemigos, mecánicas, flujo de estados, cinemáticas y progreso."
+  title="Kaelum — Juego"
+  description="Sección de juego: historia, mundo, personajes, enemigos, mecánicas, flujo de estados, cinemáticas y progreso."
 >
   <section class="hero hero-pro">
-    <p class="kicker">Proyecto</p>
+    <p class="kicker">Juego</p>
     <h1>Guion, mundo, sistemas y estructura</h1>
     <p class="lead">
       Esto se lee como un dossier: titulares claros, bloques visuales y decisiones defendibles.
@@ -3804,7 +6569,7 @@ const dossier = [
         Todo queda separado por bloques, pero conectado como un único GDD navegable.
       </p>
       <div class="actions" style="margin-top:10px">
-        <a class="btn" href={`${base}kaelum/`}>Volver a Resumen</a>
+        <a class="btn" href={`${base}juego/`}>Volver a Resumen</a>
         <a class="btn" href={`${base}vision/`}>Ir a Visión</a>
       </div>
     </article>
@@ -3882,7 +6647,15 @@ const dossier = [
 ```
 
 ---
-## FILE: src/pages/proyecto/mecanicas.astro
+## FILE: src/pages/juego/interfaz.astro
+---
+
+```astro
+
+```
+
+---
+## FILE: src/pages/juego/mecanicas.astro
 ---
 
 ```astro
@@ -4290,7 +7063,7 @@ const ux = {
   description="Mecánicas de juego de Kaelum: armas, movimiento, habilidades y sistemas transversales."
 >
   <section class="hero">
-    <p class="kicker">Proyecto · Mecánicas</p>
+    <p class="kicker">Juego · Mecánicas</p>
     <h1>Mecánicas de juego</h1>
     <p class="lead">
       Esta página reúne el bloque de mecánicas como un dossier técnico legible:
@@ -4306,14 +7079,14 @@ const ux = {
     </div>
 
     <div class="actions">
-      <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-      <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
-      <a class="btn primary" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
+      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
+      <a class="btn primary" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
     </div>
 
     <nav class="subnav" aria-label="Índice de la página">
@@ -4546,14 +7319,14 @@ const ux = {
     </article>
 
     <div class="actions bottom">
-      <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-      <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
-      <a class="btn primary" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
+      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
+      <a class="btn primary" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
     </div>
   </section>
 
@@ -4875,7 +7648,7 @@ const ux = {
 ```
 
 ---
-## FILE: src/pages/proyecto/mundo.astro
+## FILE: src/pages/juego/mundo.astro
 ---
 
 ```astro
@@ -4889,7 +7662,7 @@ const base = import.meta.env.BASE_URL;
     description="Mundo y ambientación de Kaelum: zonas, reglas, facciones, La Fisura y lectura visual aplicada a gameplay."
 >
     <section class="hero">
-        <p class="kicker">Proyecto</p>
+        <p class="kicker">Juego</p>
         <h1>Mundo</h1>
         <p class="lead">
             Kaelum no es un decorado: es un sistema que empuja al jugador a leer
@@ -4900,14 +7673,14 @@ const base = import.meta.env.BASE_URL;
         </p>
 
         <div class="actions">
-            <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-            <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-            <a class="btn primary" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-            <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver cinemáticas</a>
-            <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
-            <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
-            <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
-            <a class="btn" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
+            <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+            <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
+            <a class="btn primary" href={`${base}juego/personajes/`}>Ver Personajes</a>
+            <a class="btn" href={`${base}juego/cinematicas/`}>Ver cinemáticas</a>
+            <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
+            <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
+            <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
+            <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
         </div>
     </section>
 
@@ -5245,14 +8018,14 @@ const base = import.meta.env.BASE_URL;
             </div>
 
             <div class="actions">
-            <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-            <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-            <a class="btn primary" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-            <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver cinemáticas</a>
-            <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
-            <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
-            <a class="btn" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
-            <a class="btn" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
+            <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+            <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
+            <a class="btn primary" href={`${base}juego/personajes/`}>Ver Personajes</a>
+            <a class="btn" href={`${base}juego/cinematicas/`}>Ver cinemáticas</a>
+            <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
+            <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
+            <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
+            <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
         </div>
         </section>
     </div>
@@ -5295,7 +8068,7 @@ const base = import.meta.env.BASE_URL;
 ```
 
 ---
-## FILE: src/pages/proyecto/personajes.astro
+## FILE: src/pages/juego/personajes.astro
 ---
 
 ```astro
@@ -5320,24 +8093,24 @@ const base = import.meta.env.BASE_URL;
             </p>
 
             <div class="actions">
-                <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-                <a class="btn" href={`${base}proyecto/historia/`}
+                <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+                <a class="btn" href={`${base}juego/historia/`}
                     >Ver Historia</a
                 >
-                <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-                <a class="btn primary" href={`${base}proyecto/cinematicas/`}
+                <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
+                <a class="btn primary" href={`${base}juego/cinematicas/`}
                     >Ver cinemáticas</a
                 >
-                <a class="btn" href={`${base}proyecto/enemigos/`}
+                <a class="btn" href={`${base}juego/enemigos/`}
                     >Ver Enemigos</a
                 >
-                <a class="btn" href={`${base}proyecto/progreso/`}
+                <a class="btn" href={`${base}juego/progreso/`}
                     >Ver Progreso</a
                 >
-                <a class="btn" href={`${base}proyecto/mecanicas/`}
+                <a class="btn" href={`${base}juego/mecanicas/`}
                     >Ver Mecánicas</a
                 >
-                <a class="btn" href={`${base}proyecto/flujo/`}
+                <a class="btn" href={`${base}juego/flujo/`}
                     >Ver Flujo de estados</a
                 >
             </div>
@@ -5571,14 +8344,14 @@ const base = import.meta.env.BASE_URL;
         </article>
     </section>
     <div class="actions">
-        <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-        <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-        <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-        <a class="btn primary" href={`${base}proyecto/cinematicas/`}
+        <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+        <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
+        <a class="btn primary" href={`${base}juego/cinematicas/`}
             >Ver cinemáticas</a
         >
-        <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
-        <a class="btn" href={`${base}proyecto/progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
+        <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
     </div>
 </BaseLayout>
 
@@ -5718,7 +8491,7 @@ const base = import.meta.env.BASE_URL;
 ```
 
 ---
-## FILE: src/pages/proyecto/progreso.astro
+## FILE: src/pages/juego/progreso.astro
 ---
 
 ```astro
@@ -5812,7 +8585,7 @@ const endings = [
   description="Progreso del juego (historia): prólogo, actos, giros y finales por decisiones."
 >
   <section class="hero">
-    <p class="kicker">Proyecto</p>
+    <p class="kicker">Juego</p>
     <h1>Progreso</h1>
     <p class="lead">
       Aquí “progreso” no es el estado del portfolio: es <strong
@@ -5822,14 +8595,14 @@ const endings = [
     </p>
 
     <div class="actions">
-      <a class="btn" href={`${base}proyecto/`}>Volver a Proyecto</a>
-      <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
-      <a class="btn primary" href={`${base}proyecto/mecanicas/`}>Ver Mecánicas</a>
-      <a class="btn" href={`${base}proyecto/flujo/`}>Ver Flujo de estados</a>
+      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
+      <a class="btn primary" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
+      <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
     </div>
   </section>
 
@@ -5984,12 +8757,12 @@ const endings = [
     </section>
   </div>
   <div class="actions">
-      <a class="btn primary" href={`${base}proyecto/`}>Volver a Proyecto</a>
-      <a class="btn" href={`${base}proyecto/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}proyecto/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}proyecto/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}proyecto/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}proyecto/enemigos/`}>Ver Enemigos</a>
+      <a class="btn primary" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
   </div>
 </BaseLayout>
 
@@ -6098,154 +8871,7 @@ const endings = [
 ```
 
 ---
-## FILE: src/pages/sobre-mi.astro
----
-
-```astro
----
-import BaseLayout from "../layouts/BaseLayout.astro";
----
-
-<BaseLayout
-  title="Sobre mí"
-  description="Quién soy y cómo enfoco el desarrollo de proyectos y videojuegos."
->
-  <section class="hero">
-    <p class="kicker">Sobre mí</p>
-    <h1>Portfolio vivo</h1>
-    <p class="lead">
-      Me interesa que se vea el proceso real: decisiones, problemas y cómo se aterriza una idea
-      hasta convertirla en algo jugable. Kaelum es el proyecto principal en el que aplico este enfoque.
-    </p>
-
-    <div class="meta">
-      <span class="tag">Game dev</span>
-      <span class="tag">Diseño</span>
-      <span class="tag">Prototipado</span>
-      <span class="tag">Documentación</span>
-    </div>
-
-    <div class="actions">
-      <a class="btn primary" href={`${import.meta.env.BASE_URL}kaelum/`}>Ver Kaelum</a>
-      <a class="btn" href={`${import.meta.env.BASE_URL}docs/`}>Ver documentación</a>
-    </div>
-  </section>
-
-  <div class="grid">
-    <div class="card">
-      <h3>Lo que hago</h3>
-      <ul class="list">
-        <li>Diseño de mecánicas con alcance realista</li>
-        <li>Prototipos jugables (primero divertido, luego bonito)</li>
-        <li>Devlog y documentación clara</li>
-        <li>Iteración constante a partir de feedback</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>Herramientas</h3>
-      <ul class="list">
-        <li>Unity</li>
-        <li>Git y GitHub</li>
-        <li>Documentación estructurada</li>
-        <li>Blender / Aseprite (según necesidad)</li>
-      </ul>
-    </div>
-
-    <div class="card full">
-      <h3>Enlaces</h3>
-      <p class="muted">Perfiles y proyectos externos.</p>
-      <div class="actions">
-        <a class="btn" href="#" aria-disabled="true">GitHub</a>
-        <a class="btn" href="#" aria-disabled="true">itch.io</a>
-        <a class="btn" href="#" aria-disabled="true">LinkedIn</a>
-      </div>
-    </div>
-  </div>
-</BaseLayout>
-```
-
----
-## FILE: src/pages/vision/index.astro
----
-
-```astro
----
-import BaseLayout from "../../layouts/BaseLayout.astro";
-const base = import.meta.env.BASE_URL;
----
-
-<BaseLayout
-  title="Kaelum — Visión"
-  description="Visión del proyecto Kaelum: moodboard principal y presentación visual del enfoque."
->
-  <section class="hero">
-    <p class="kicker">Visión</p>
-    <h1>Moodboard</h1>
-    <p class="lead">
-      Esta es la <strong>presentación principal</strong> del proyecto: tono, intención, promesa y dirección visual.
-      Si quieres entender Kaelum en 30 segundos, es aquí.
-    </p>
-
-    <div class="meta">
-      <span class="tag">Presentación</span>
-      <span class="tag">Tono</span>
-      <span class="tag">Arte</span>
-      <span class="tag">Universo</span>
-    </div>
-
-    <div class="actions">
-      <a class="btn primary" href={`${base}vision/moodboard/`}>Ver moodboard</a>
-      <a class="btn" href={`${base}analisis/`}>Ver análisis</a>
-      <a class="btn" href={`${base}docs/`}>Ver docs</a>
-      <a class="btn" href={`${base}devlog/`}>Ver devlog</a>
-    </div>
-  </section>
-
-  <div class="grid">
-    <article class="card">
-      <h2>🎨 Moodboard (principal)</h2>
-      <p class="muted">
-        One-pager visual con el mensaje central, tono, experiencia de juego y personalidad del proyecto.
-      </p>
-      <p class="small">Recomendado si entras por primera vez.</p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}vision/moodboard/`}>Abrir moodboard</a>
-      </div>
-    </article>
-
-    <article class="card">
-      <h2>🧩 Futuro de esta sección</h2>
-      <p class="muted">
-        Esta carpeta está pensada para crecer con material visual sin ensuciar la parte técnica.
-      </p>
-      <ul class="list">
-        <li>Ambientación de escenarios / referencias</li>
-        <li>Dirección de arte (paletas, UI, lectura visual)</li>
-        <li>Diseño de personajes / identidad de Kael</li>
-        <li>Capturas del prototipo y evolución visual</li>
-      </ul>
-      <p class="small" style="margin-top:10px">
-        O sea: <strong>la “cara” del proyecto</strong>.
-      </p>
-    </article>
-
-    <article class="card full">
-      <h2>Ruta recomendada</h2>
-      <p class="muted">
-        1) Visión (moodboard) → 2) Análisis (DAFO/CAME) → 3) Docs (GDD/Folleto) → 4) Devlog (proceso).
-      </p>
-      <div class="actions" style="margin-top:10px">
-        <a class="btn" href={`${base}analisis/`}>Siguiente: Análisis</a>
-        <a class="btn" href={`${base}kaelum/`}>Volver a Proyecto</a>
-      </div>
-    </article>
-  </div>
-</BaseLayout>
-```
-
----
-## FILE: src/pages/vision/moodboard.astro
+## FILE: src/pages/media/galeria.astro
 ---
 
 ```astro
@@ -6253,15 +8879,997 @@ const base = import.meta.env.BASE_URL;
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
-//const imgUrl = `${base}images/vision/moodboard.jpg`;
-const imgUrl = `${base}images/vision/Moodboard_QR.png`;
+type GalleryItem = {
+  title: string;
+  src: string;
+  category: "ui" | "media" | "juego" | "personajes" | "branding";
+  description?: string;
+};
+
+const items: GalleryItem[] = [
+  {
+    title: "Kael",
+    src: `${base}assets/personajes/kael.webp`,
+    category: "personajes",
+    description: "Imagen principal del protagonista.",
+  },
+
+  {
+    title: "Pantalla de inicio",
+    src: `${base}images/ui/UI_PantallaDeInicio.webp`,
+    category: "ui",
+    description: "Pantalla inicial del juego.",
+  },
+  {
+    title: "Menú principal",
+    src: `${base}images/ui/UI_MenuPrincipal.webp`,
+    category: "ui",
+    description: "Acceso principal a modos y opciones.",
+  },
+  {
+    title: "HUD gameplay",
+    src: `${base}images/ui/UI_HUD-Gameplay.webp`,
+    category: "ui",
+    description: "Interfaz principal durante la partida.",
+  },
+  {
+    title: "Menú de pausa",
+    src: `${base}images/ui/UI_MenuPausa.webp`,
+    category: "ui",
+    description: "Pantalla de pausa durante el juego.",
+  },
+  {
+    title: "Diario de viaje",
+    src: `${base}images/ui/UI_DiarioViaje.webp`,
+    category: "ui",
+    description: "Diseño del diario o registro del jugador.",
+  },
+  {
+    title: "Pantalla de victoria",
+    src: `${base}images/ui/UI_PantallaVictoria.webp`,
+    category: "ui",
+    description: "Resumen visual al completar una misión o partida.",
+  },
+  {
+    title: "Pantalla de game over",
+    src: `${base}images/ui/UI_GameOver.webp`,
+    category: "ui",
+    description: "Pantalla de derrota o fin de intento.",
+  },
+
+  {
+    title: "Moodboard principal",
+    src: `${base}images/media/moodboard.jpg`,
+    category: "media",
+    description: "Base visual y tono artístico del proyecto.",
+  },
+  {
+    title: "Moodboard QR",
+    src: `${base}images/media/Moodboard_QR.png`,
+    category: "media",
+    description: "Versión complementaria del moodboard.",
+  },
+  {
+    title: "DAFO",
+    src: `${base}images/media/dafo.png`,
+    category: "media",
+    description: "Análisis DAFO del proyecto.",
+  },
+  {
+    title: "CAME",
+    src: `${base}images/media/came.png`,
+    category: "media",
+    description: "Análisis CAME del proyecto.",
+  },
+
+  {
+    title: "Diagrama de flujo",
+    src: `${base}images/juego/diagrama_de_flujo.webp`,
+    category: "juego",
+    description: "Flujo de estados y navegación del juego.",
+  },
+
+  {
+    title: "Logo Nyxtale Studios",
+    src: `${base}images/NyxtaleStudios.svg`,
+    category: "branding",
+    description: "Identidad visual del estudio/proyecto.",
+  },
+  {
+    title: "Favicon",
+    src: `${base}favicon.png`,
+    category: "branding",
+    description: "Icono de la web.",
+  },
+];
+
+const categories = [
+  { key: "all", label: "Todo" },
+  { key: "ui", label: "UI" },
+  { key: "media", label: "Media" },
+  { key: "juego", label: "Juego" },
+  { key: "personajes", label: "Personajes" },
+  { key: "branding", label: "Branding" },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Galería"
+  description="Galería visual centralizada del proyecto Kaelum: interfaz, moodboard, diagramas, branding y arte disponible."
+>
+  <section class="hero hero-gallery">
+    <div class="hero-copy">
+      <p class="kicker">Archivo visual del proyecto</p>
+      <h1>Galería</h1>
+
+      <p class="lead">
+        Esta galería centraliza el material visual actualmente disponible de
+        <strong> Kaelum</strong>: interfaz, moodboard, diagramas, branding y arte ya incorporado
+        al proyecto. La idea es que todo lo gráfico importante esté reunido aquí para poder
+        revisarlo de forma cómoda, clara y más profesional.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}media/`}>Volver a Media</a>
+        <a class="btn" href="#galeria-completa">Ir a la galería</a>
+      </div>
+    </div>
+
+    <aside class="hero-panel">
+      <p class="panel-kicker">Qué vas a encontrar</p>
+      <h2>Todo lo visual, en un único sitio</h2>
+      <p>
+        En lugar de repartir imágenes por toda la web, esta sección funciona como repositorio
+        visual del proyecto. Más adelante se podrán añadir enemigos, bosses, arte conceptual,
+        capturas de gameplay y cualquier pieza nueva sin romper la estructura.
+      </p>
+
+      <ul class="panel-list">
+        <li><strong>UI:</strong> pantallas e interfaz del juego.</li>
+        <li><strong>Visión:</strong> moodboard y análisis visual.</li>
+        <li><strong>Proyecto:</strong> diagramas y material estructural.</li>
+        <li><strong>Personajes:</strong> arte o representación de personajes.</li>
+        <li><strong>Branding:</strong> logo e identidad visual.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="section" id="galeria-completa">
+    <header class="section-head">
+      <p class="kicker">Exploración visual</p>
+      <h2>Galería completa</h2>
+      <p class="section-lead">
+        Puedes filtrar por categoría y abrir cada imagen en grande sin salir de la página.
+      </p>
+    </header>
+
+    <div class="filters" id="gallery-filters">
+      {categories.map((cat) => (
+        <button
+          class:list={["filter-btn", cat.key === "all" && "active"]}
+          type="button"
+          data-filter={cat.key}
+        >
+          {cat.label}
+        </button>
+      ))}
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid">
+      {items.map((item, index) => (
+        <button
+          class="gallery-card"
+          type="button"
+          data-category={item.category}
+          data-src={item.src}
+          data-title={item.title}
+          data-description={item.description ?? ""}
+          aria-label={`Abrir ${item.title}`}
+        >
+          <div class="gallery-media">
+            <img
+              src={item.src}
+              alt={item.title}
+              loading={index < 4 ? "eager" : "lazy"}
+            />
+          </div>
+
+          <div class="gallery-info">
+            <span class="gallery-tag">{item.category}</span>
+            <h3>{item.title}</h3>
+            {item.description && <p>{item.description}</p>}
+          </div>
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <div class="lightbox hidden" id="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop" id="lightbox-close"></div>
+
+    <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+      <button class="lightbox-x" id="lightbox-x" type="button" aria-label="Cerrar imagen">
+        ×
+      </button>
+
+      <div class="lightbox-image-wrap">
+        <img id="lightbox-image" src="" alt="" />
+      </div>
+
+      <div class="lightbox-copy">
+        <p class="lightbox-kicker">Vista ampliada</p>
+        <h2 id="lightbox-title">Imagen</h2>
+        <p id="lightbox-description"></p>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const cards = document.querySelectorAll(".gallery-card");
+
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightbox-image");
+      const lightboxTitle = document.getElementById("lightbox-title");
+      const lightboxDescription = document.getElementById("lightbox-description");
+      const lightboxClose = document.getElementById("lightbox-close");
+      const lightboxX = document.getElementById("lightbox-x");
+
+      filterButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const filter = btn.dataset.filter;
+
+          filterButtons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          cards.forEach((card) => {
+            const category = card.dataset.category;
+            const show = filter === "all" || category === filter;
+            card.classList.toggle("hidden-by-filter", !show);
+          });
+        });
+      });
+
+      cards.forEach((card) => {
+        card.addEventListener("click", () => {
+          const src = card.dataset.src || "";
+          const title = card.dataset.title || "Imagen";
+          const description = card.dataset.description || "";
+
+          lightboxImage.setAttribute("src", src);
+          lightboxImage.setAttribute("alt", title);
+          lightboxTitle.textContent = title;
+          lightboxDescription.textContent = description;
+
+          lightbox.classList.remove("hidden");
+          lightbox.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      const closeLightbox = () => {
+        lightbox.classList.add("hidden");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxImage.setAttribute("src", "");
+        document.body.style.overflow = "";
+      };
+
+      lightboxClose?.addEventListener("click", closeLightbox);
+      lightboxX?.addEventListener("click", closeLightbox);
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !lightbox.classList.contains("hidden")) {
+          closeLightbox();
+        }
+      });
+    });
+  </script>
+
+  <style>
+    .hero-gallery{
+      display:grid;
+      grid-template-columns:1.35fr .95fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .gallery-card,
+    .lightbox-dialog{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      backdrop-filter:blur(8px);
+    }
+
+    .hero-copy{
+      padding:28px;
+    }
+
+    .hero-panel{
+      padding:24px;
+      background:linear-gradient(180deg, rgba(174,102,255,.13), rgba(255,255,255,.03));
+    }
+
+    .kicker,
+    .panel-kicker,
+    .lightbox-kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0 0 8px;
+      font-size:.82rem;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(2.6rem, 6vw, 4.2rem);
+      line-height:.95;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
+      line-height:1.05;
+    }
+
+    h3{
+      margin:0 0 8px;
+      font-size:1.06rem;
+    }
+
+    .lead,
+    .section-lead,
+    .hero-panel p,
+    .gallery-info p,
+    .lightbox-copy p{
+      line-height:1.6;
+      opacity:.94;
+      margin:0;
+      text-align:justify;
+    }
+
+    .panel-list{
+      margin:16px 0 0;
+      padding-left:18px;
+      display:grid;
+      gap:10px;
+      line-height:1.5;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      text-decoration:none;
+      transition:.18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(174,102,255,.30), rgba(174,102,255,.14));
+      border-color:rgba(208,156,255,.34);
+      box-shadow:0 10px 24px rgba(88,20,120,.18);
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:14px;
+    }
+
+    .filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .filter-btn{
+      min-height:40px;
+      padding:0 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active{
+      background:rgba(255,255,255,.09);
+      transform:translateY(-1px);
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .gallery-card{
+      padding:0;
+      overflow:hidden;
+      text-align:left;
+      cursor:pointer;
+      transition:.18s ease;
+      color:inherit;
+    }
+
+    .gallery-card:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.06);
+    }
+
+    .gallery-media{
+      aspect-ratio: 16 / 10;
+      background:rgba(0,0,0,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .gallery-media img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    .gallery-info{
+      padding:14px;
+    }
+
+    .gallery-tag{
+      display:inline-flex;
+      margin-bottom:8px;
+      padding:5px 10px;
+      border-radius:999px;
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      opacity:.9;
+    }
+
+    .hidden-by-filter{
+      display:none !important;
+    }
+
+    .lightbox.hidden{
+      display:none;
+    }
+
+    .lightbox{
+      position:fixed;
+      inset:0;
+      z-index:999;
+    }
+
+    .lightbox-backdrop{
+      position:absolute;
+      inset:0;
+      background:rgba(4,6,12,.82);
+      backdrop-filter:blur(8px);
+    }
+
+    .lightbox-dialog{
+      position:relative;
+      z-index:2;
+      width:min(1100px, calc(100vw - 32px));
+      margin:40px auto;
+      padding:18px;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:18px;
+      max-height:calc(100vh - 80px);
+      overflow:auto;
+    }
+
+    .lightbox-image-wrap{
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,.22);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:420px;
+    }
+
+    .lightbox-image-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    .lightbox-copy{
+      padding:8px 4px 8px 4px;
+      align-self:start;
+    }
+
+    .lightbox-x{
+      position:absolute;
+      top:10px;
+      right:10px;
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:inherit;
+      font-size:1.4rem;
+      cursor:pointer;
+    }
+
+    @media (max-width: 1080px){
+      .gallery-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 920px){
+      .hero-gallery,
+      .lightbox-dialog{
+        grid-template-columns:1fr;
+      }
+
+      .lightbox-image-wrap{
+        min-height:280px;
+      }
+    }
+
+    @media (max-width: 640px){
+      .gallery-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-copy,
+      .hero-panel,
+      .lightbox-dialog{
+        padding:18px;
+      }
+
+      h1{
+        font-size:2.35rem;
+      }
+    }
+  </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/media/index.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const sections = [
+  {
+    number: "01",
+    title: "Moodboard",
+    desc:
+      "La base visual del proyecto: atmósfera, referencias, tono, materiales, colores e intención artística general de Kaelum.",
+    href: `${base}media/moodboard/`,
+    tag: "Dirección visual",
+  },
+  {
+    number: "02",
+    title: "Galería",
+    desc:
+      "Capturas, composiciones y material gráfico que ayudan a enseñar el proyecto de forma más directa y rápida.",
+    href: `${base}media/galeria/`,
+    tag: "Screenshots",
+  },
+  {
+    number: "03",
+    title: "Tráiler",
+    desc:
+      "Pieza audiovisual para presentar Kaelum de manera breve, visual y más atractiva para evaluación o portfolio.",
+    href: `${base}media/trailer/`,
+    tag: "Vídeo",
+  },
+];
+
+const values = [
+  {
+    title: "Tono antes que saturación",
+    desc:
+      "La parte visual no se plantea como un escaparate vacío, sino como una forma de transmitir identidad, atmósfera y coherencia con el juego.",
+  },
+  {
+    title: "Primera impresión clara",
+    desc:
+      "Media debe permitir que alguien entienda el estilo de Kaelum casi de un vistazo, incluso antes de entrar en documentación extensa.",
+  },
+  {
+    title: "Apoyo real a la rúbrica",
+    desc:
+      "Esta sección ayuda a cubrir screenshots, tráiler y elementos creativos extra sin mezclarlo con apartados narrativos o técnicos.",
+  },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Media"
+  description="Sección visual de Kaelum: moodboard, galería y tráiler para enseñar el tono, la identidad y la presencia del proyecto."
+>
+  <section class="hero hero-media">
+    <div class="hero-copy">
+      <p class="kicker">Presentación visual</p>
+      <h1>Media</h1>
+
+      <p class="lead">
+        Esta sección reúne la parte más <strong>directa, visual y presentable</strong> del
+        proyecto. Su función no es explicar cómo funciona Kaelum por dentro, sino enseñar
+        <strong> cómo se ve</strong>, qué atmósfera transmite y qué identidad visual sostiene
+        la propuesta.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}media/moodboard/`}>Ver Moodboard</a>
+        <a class="btn" href={`${base}media/galeria/`}>Abrir Galería</a>
+        <a class="btn" href={`${base}media/trailer/`}>Ver Tráiler</a>
+      </div>
+    </div>
+
+    <aside class="hero-panel">
+      <p class="panel-kicker">Qué entra aquí y qué no</p>
+      <h2>Escaparate visual del proyecto</h2>
+      <p>
+        Media se centra en la lectura estética y promocional de Kaelum: referencias,
+        capturas y vídeo. La explicación funcional del juego, sus sistemas y su interfaz
+        se mantiene en <strong>Juego</strong>, para no mezclar bloques que responden a
+        preguntas distintas.
+      </p>
+
+      <ul class="panel-list">
+        <li><strong>Sí:</strong> moodboard, screenshots, vídeo, presencia visual.</li>
+        <li><strong>No:</strong> mecánicas, flujo de estados, HUD como sistema, progreso narrativo.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Bloques visuales</p>
+      <h2>Qué puedes ver aquí</h2>
+      <p class="section-lead">
+        Esta sección está pensada para enseñar Kaelum de forma más inmediata y atractiva,
+        sin obligar a entrar todavía en apartados largos o técnicos.
+      </p>
+    </header>
+
+    <div class="media-grid">
+      {sections.map((item) => (
+        <a class="media-card" href={item.href}>
+          <div class="media-top">
+            <span class="media-number">{item.number}</span>
+            <span class="media-tag">{item.tag}</span>
+          </div>
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+          <span class="media-link">Abrir apartado</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Por qué existe esta sección</p>
+      <h2>Una parte visual con función real</h2>
+      <p class="section-lead">
+        Media no está aquí solo para adornar la web, sino para reforzar la comprensión y la presentación del proyecto.
+      </p>
+    </header>
+
+    <div class="values-grid">
+      {values.map((item) => (
+        <article class="value-card">
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section split">
+    <article class="info-card">
+      <p class="kicker">Orden recomendado</p>
+      <h2>Primero moodboard, después galería y tráiler</h2>
+      <p>
+        La lectura más natural dentro de esta sección es empezar por el
+        <strong> Moodboard</strong>, porque fija el tono y la intención visual. Después,
+        la <strong>Galería</strong> permite aterrizar esa dirección en imágenes más concretas,
+        y el <strong>Tráiler</strong> remata la presentación de una forma más dinámica.
+      </p>
+      <div class="actions">
+        <a class="btn" href={`${base}media/moodboard/`}>Seguir ese orden</a>
+      </div>
+    </article>
+
+    <article class="info-card accent">
+      <p class="kicker">Continuidad del recorrido</p>
+      <h2>Después de Media, toca Documentación</h2>
+      <p>
+        Una vez que el visitante ya tiene una idea clara de cómo se ve Kaelum, el siguiente
+        paso más lógico es pasar a <strong>Documentación</strong>, donde se encuentra el
+        respaldo formal del proyecto: GDD, análisis, planificación, presupuesto y métricas.
+      </p>
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/`}>Ir a Documentación</a>
+      </div>
+    </article>
+  </section>
+
+  <style>
+    .hero-media{
+      display:grid;
+      grid-template-columns: 1.35fr .95fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .media-card,
+    .value-card,
+    .info-card{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-copy{
+      padding:28px;
+    }
+
+    .hero-panel{
+      padding:24px;
+      background:
+        linear-gradient(180deg, rgba(184, 120, 255, .13), rgba(255,255,255,.03));
+    }
+
+    .kicker,
+    .panel-kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0 0 8px;
+      font-size:.82rem;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(2.6rem, 6vw, 4.2rem);
+      line-height:.95;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
+      line-height:1.05;
+    }
+
+    h3{
+      margin:0 0 10px;
+      font-size:1.12rem;
+    }
+
+    .lead,
+    .section-lead,
+    .hero-panel p,
+    .media-card p,
+    .value-card p,
+    .info-card p{
+      line-height:1.6;
+      opacity:.94;
+      margin:0;
+      text-align:justify;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      text-decoration:none;
+      transition:.18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(174, 102, 255, .30), rgba(174, 102, 255, .14));
+      border-color:rgba(208, 156, 255, .34);
+      box-shadow:0 10px 24px rgba(88,20,120,.18);
+    }
+
+    .panel-list{
+      margin:16px 0 0;
+      padding-left:18px;
+      display:grid;
+      gap:10px;
+      line-height:1.5;
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:14px;
+    }
+
+    .media-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .media-card{
+      padding:18px;
+      text-decoration:none;
+      color:inherit;
+      transition:.18s ease;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    .media-card:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.06);
+    }
+
+    .media-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .media-number{
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      font-weight:700;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(174, 102, 255, .16);
+    }
+
+    .media-tag{
+      border-radius:999px;
+      padding:6px 10px;
+      font-size:.8rem;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      opacity:.9;
+    }
+
+    .media-link{
+      margin-top:auto;
+      opacity:.86;
+      font-size:.95rem;
+    }
+
+    .values-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .value-card,
+    .info-card{
+      padding:22px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .info-card.accent{
+      background:
+        linear-gradient(180deg, rgba(174, 102, 255, .14), rgba(255,255,255,.03));
+    }
+
+    @media (max-width: 1020px){
+      .media-grid,
+      .values-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 900px){
+      .hero-media,
+      .split{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero-copy,
+      .hero-panel,
+      .media-card,
+      .value-card,
+      .info-card{
+        padding:18px;
+      }
+
+      h1{
+        font-size:2.35rem;
+      }
+    }
+  </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/media/moodboard.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+//const imgUrl = `${base}images/media/moodboard.jpg`;
+const imgUrl = `${base}images/media/Moodboard_QR.png`;
 
 ---
 
 <BaseLayout
   title="Kaelum — Moodboard"
-  description="Tono, arte, universo y promesa de Kaelum."
->
+  description="Tono, arte, universo y promesa de Kaelum.">
   <section class="hero">
     <p class="kicker">Visión</p>
     <h1>Moodboard</h1>
@@ -6271,7 +9879,7 @@ const imgUrl = `${base}images/vision/Moodboard_QR.png`;
     </p>
 
     <div class="actions noprint">
-      <a class="btn" href={`${base}vision/`}>Volver a Visión</a>
+      <a class="btn" href={`${base}media/`}>Volver a Visión</a>
       <a class="btn primary" href={imgUrl} download>Descargar imagen</a>
     </div>
   </section>
@@ -6309,6 +9917,420 @@ const imgUrl = `${base}images/vision/Moodboard_QR.png`;
         El arte no satura: acompaña.
         El mundo se descubre jugando, no mirando cinemáticas.
       </p>
+    </div>
+  </div>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/media/trailer.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+// Sustituye esta URL por la real cuando la tengas
+const trailerUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ";
+
+const highlights = [
+  {
+    title: "Presentación del tono",
+    desc:
+      "El tráiler debe transmitir la identidad de Kaelum desde el primer momento: atmósfera, tensión, mundo y presencia del protagonista.",
+  },
+  {
+    title: "Lectura rápida del gameplay",
+    desc:
+      "Además de vender visualmente el proyecto, la pieza tiene que dejar entrever combate, exploración, interfaz y ritmo general del juego.",
+  },
+  {
+    title: "Función de portfolio",
+    desc:
+      "Este vídeo no solo promociona el juego: también ayuda a que cualquier evaluador o visitante entienda el proyecto en muy poco tiempo.",
+  },
+];
+
+const structure = [
+  "Apertura con identidad visual y tono general",
+  "Muestra breve del mundo y del protagonista",
+  "Momentos de gameplay y combate",
+  "Cierre con nombre, branding y llamada a la acción",
+];
+---
+
+<BaseLayout
+  title="Kaelum — Tráiler"
+  description="Tráiler del proyecto Kaelum: pieza audiovisual para presentar el tono, el mundo y el gameplay del videojuego."
+>
+  <section class="hero hero-trailer">
+    <div class="hero-copy">
+      <p class="kicker">Pieza audiovisual</p>
+      <h1>Tráiler</h1>
+
+      <p class="lead">
+        Esta sección reúne la pieza de vídeo principal del proyecto. Su objetivo es enseñar
+        <strong> Kaelum de forma rápida, visual y atractiva</strong>, condensando en pocos segundos
+        la identidad del mundo, el tono del juego y una lectura general de la experiencia.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href="#video">Ver tráiler</a>
+        <a class="btn" href={`${base}media/galeria/`}>Ir a Galería</a>
+        <a class="btn" href={`${base}juego/`}>Ver Juego</a>
+      </div>
+    </div>
+
+    <aside class="hero-panel">
+      <p class="panel-kicker">Qué aporta este bloque</p>
+      <h2>Una forma directa de enseñar el proyecto</h2>
+      <p>
+        Frente a páginas más largas o explicativas, el tráiler permite que cualquier persona
+        capte muy rápido la esencia visual y jugable de Kaelum. Funciona como resumen, carta
+        de presentación y apoyo a la evaluación del portfolio.
+      </p>
+
+      <ul class="panel-list">
+        <li><strong>Tono:</strong> atmósfera e identidad visual.</li>
+        <li><strong>Gameplay:</strong> lectura rápida del juego en movimiento.</li>
+        <li><strong>Presentación:</strong> pieza clara para portfolio y defensa.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="section" id="video">
+    <header class="section-head">
+      <p class="kicker">Vídeo embebido</p>
+      <h2>Visualización del tráiler</h2>
+      <p class="section-lead">
+        Aquí se incrusta la pieza audiovisual principal del proyecto. Cuando tengas la versión final,
+        solo tendrás que cambiar la URL del vídeo.
+      </p>
+    </header>
+
+    <div class="video-card">
+      <div class="video-shell">
+        <iframe
+          src={trailerUrl}
+          title="Tráiler de Kaelum"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+
+      <div class="video-actions">
+        <a class="btn primary" href={trailerUrl.replace("/embed/", "/watch?v=")} target="_blank" rel="noreferrer">
+          Abrir en YouTube
+        </a>
+        <a class="btn" href={`${base}media/`}>Volver a Media</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <header class="section-head">
+      <p class="kicker">Qué debe enseñar</p>
+      <h2>Objetivos del tráiler</h2>
+      <p class="section-lead">
+        El vídeo no debería limitarse a ser bonito: tiene que enseñar lo justo y dejar clara la propuesta del juego.
+      </p>
+    </header>
+
+    <div class="highlights-grid">
+      {highlights.map((item) => (
+        <article class="highlight-card">
+          <h3>{item.title}</h3>
+          <p>{item.desc}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section split">
+    <article class="info-card">
+      <p class="kicker">Estructura sugerida</p>
+      <h2>Cómo debería construirse la pieza</h2>
+      <ul class="structure-list">
+        {structure.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+
+    <article class="info-card accent">
+      <p class="kicker">Continuidad del recorrido</p>
+      <h2>Después del tráiler, toca explorar la galería</h2>
+      <p>
+        Una vez vista la pieza audiovisual, lo más natural es pasar a la
+        <strong> Galería</strong>, donde se concentra el resto del material gráfico del proyecto:
+        UI, moodboard, branding, diagramas y arte ya incorporado.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}media/galeria/`}>Ir a la Galería</a>
+      </div>
+    </article>
+  </section>
+
+  <style>
+    .hero-trailer{
+      display:grid;
+      grid-template-columns:1.35fr .95fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .video-card,
+    .highlight-card,
+    .info-card{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      backdrop-filter:blur(8px);
+    }
+
+    .hero-copy{
+      padding:28px;
+    }
+
+    .hero-panel{
+      padding:24px;
+      background:linear-gradient(180deg, rgba(255,95,95,.12), rgba(255,255,255,.03));
+    }
+
+    .kicker,
+    .panel-kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0 0 8px;
+      font-size:.82rem;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(2.6rem, 6vw, 4.2rem);
+      line-height:.95;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
+      line-height:1.05;
+    }
+
+    h3{
+      margin:0 0 10px;
+      font-size:1.12rem;
+    }
+
+    .lead,
+    .section-lead,
+    .hero-panel p,
+    .highlight-card p,
+    .info-card p{
+      line-height:1.6;
+      opacity:.94;
+      margin:0;
+      text-align:justify;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      text-decoration:none;
+      transition:.18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(255,95,95,.28), rgba(255,95,95,.14));
+      border-color:rgba(255,145,145,.34);
+      box-shadow:0 10px 24px rgba(120,20,20,.18);
+    }
+
+    .panel-list{
+      margin:16px 0 0;
+      padding-left:18px;
+      display:grid;
+      gap:10px;
+      line-height:1.5;
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:14px;
+    }
+
+    .video-card{
+      padding:18px;
+    }
+
+    .video-shell{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .video-shell iframe{
+      position:absolute;
+      inset:0;
+      width:100%;
+      height:100%;
+      border:0;
+    }
+
+    .video-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    .highlights-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .highlight-card,
+    .info-card{
+      padding:22px;
+    }
+
+    .split{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .info-card.accent{
+      background:linear-gradient(180deg, rgba(255,95,95,.12), rgba(255,255,255,.03));
+    }
+
+    .structure-list{
+      margin:0;
+      padding-left:18px;
+      display:grid;
+      gap:10px;
+      line-height:1.55;
+    }
+
+    @media (max-width: 980px){
+      .hero-trailer,
+      .highlights-grid,
+      .split{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media (max-width: 640px){
+      .hero-copy,
+      .hero-panel,
+      .video-card,
+      .highlight-card,
+      .info-card{
+        padding:18px;
+      }
+
+      h1{
+        font-size:2.35rem;
+      }
+    }
+  </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/sobre-mi.astro
+---
+
+```astro
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Sobre mí"
+  description="Quién soy y cómo enfoco el desarrollo de proyectos y videojuegos."
+>
+  <section class="hero">
+    <p class="kicker">Sobre mí</p>
+    <h1>Portfolio vivo</h1>
+    <p class="lead">
+      Me interesa que se vea el proceso real: decisiones, problemas y cómo se aterriza una idea
+      hasta convertirla en algo jugable. Kaelum es el proyecto principal en el que aplico este enfoque.
+    </p>
+
+    <div class="meta">
+      <span class="tag">Game dev</span>
+      <span class="tag">Diseño</span>
+      <span class="tag">Prototipado</span>
+      <span class="tag">Documentación</span>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary" href={`${import.meta.env.BASE_URL}juego/`}>Ver Kaelum</a>
+      <a class="btn" href={`${import.meta.env.BASE_URL}documentacion/`}>Ver documentación</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <div class="card">
+      <h3>Lo que hago</h3>
+      <ul class="list">
+        <li>Diseño de mecánicas con alcance realista</li>
+        <li>Prototipos jugables (primero divertido, luego bonito)</li>
+        <li>Devlog y documentación clara</li>
+        <li>Iteración constante a partir de feedback</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>Herramientas</h3>
+      <ul class="list">
+        <li>Unity</li>
+        <li>Git y GitHub</li>
+        <li>Documentación estructurada</li>
+        <li>Blender / Aseprite (según necesidad)</li>
+      </ul>
+    </div>
+
+    <div class="card full">
+      <h3>Enlaces</h3>
+      <p class="muted">Perfiles y proyectos externos.</p>
+      <div class="actions">
+        <a class="btn" href="#" aria-disabled="true">GitHub</a>
+        <a class="btn" href="#" aria-disabled="true">itch.io</a>
+        <a class="btn" href="#" aria-disabled="true">LinkedIn</a>
+      </div>
     </div>
   </div>
 </BaseLayout>

@@ -1,0 +1,586 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+type GalleryItem = {
+  title: string;
+  src: string;
+  category: "ui" | "media" | "juego" | "personajes" | "branding";
+  description?: string;
+};
+
+const items: GalleryItem[] = [
+  {
+    title: "Kael",
+    src: `${base}assets/personajes/kael.webp`,
+    category: "personajes",
+    description: "Imagen principal del protagonista.",
+  },
+
+  {
+    title: "Pantalla de inicio",
+    src: `${base}images/ui/UI_PantallaDeInicio.webp`,
+    category: "ui",
+    description: "Pantalla inicial del juego.",
+  },
+  {
+    title: "Menú principal",
+    src: `${base}images/ui/UI_MenuPrincipal.webp`,
+    category: "ui",
+    description: "Acceso principal a modos y opciones.",
+  },
+  {
+    title: "HUD gameplay",
+    src: `${base}images/ui/UI_HUD-Gameplay.webp`,
+    category: "ui",
+    description: "Interfaz principal durante la partida.",
+  },
+  {
+    title: "Menú de pausa",
+    src: `${base}images/ui/UI_MenuPausa.webp`,
+    category: "ui",
+    description: "Pantalla de pausa durante el juego.",
+  },
+  {
+    title: "Diario de viaje",
+    src: `${base}images/ui/UI_DiarioViaje.webp`,
+    category: "ui",
+    description: "Diseño del diario o registro del jugador.",
+  },
+  {
+    title: "Pantalla de victoria",
+    src: `${base}images/ui/UI_PantallaVictoria.webp`,
+    category: "ui",
+    description: "Resumen visual al completar una misión o partida.",
+  },
+  {
+    title: "Pantalla de game over",
+    src: `${base}images/ui/UI_GameOver.webp`,
+    category: "ui",
+    description: "Pantalla de derrota o fin de intento.",
+  },
+
+  {
+    title: "Moodboard principal",
+    src: `${base}images/media/moodboard.jpg`,
+    category: "media",
+    description: "Base visual y tono artístico del proyecto.",
+  },
+  {
+    title: "Moodboard QR",
+    src: `${base}images/media/Moodboard_QR.png`,
+    category: "media",
+    description: "Versión complementaria del moodboard.",
+  },
+  {
+    title: "DAFO",
+    src: `${base}images/media/dafo.png`,
+    category: "media",
+    description: "Análisis DAFO del proyecto.",
+  },
+  {
+    title: "CAME",
+    src: `${base}images/media/came.png`,
+    category: "media",
+    description: "Análisis CAME del proyecto.",
+  },
+
+  {
+    title: "Diagrama de flujo",
+    src: `${base}images/juego/diagrama_de_flujo.webp`,
+    category: "juego",
+    description: "Flujo de estados y navegación del juego.",
+  },
+
+  {
+    title: "Logo Nyxtale Studios",
+    src: `${base}images/NyxtaleStudios.svg`,
+    category: "branding",
+    description: "Identidad visual del estudio/proyecto.",
+  },
+  {
+    title: "Favicon",
+    src: `${base}favicon.png`,
+    category: "branding",
+    description: "Icono de la web.",
+  },
+];
+
+const categories = [
+  { key: "all", label: "Todo" },
+  { key: "ui", label: "UI" },
+  { key: "media", label: "Media" },
+  { key: "juego", label: "Juego" },
+  { key: "personajes", label: "Personajes" },
+  { key: "branding", label: "Branding" },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Galería"
+  description="Galería visual centralizada del proyecto Kaelum: interfaz, moodboard, diagramas, branding y arte disponible."
+>
+  <section class="hero hero-gallery">
+    <div class="hero-copy">
+      <p class="kicker">Archivo visual del proyecto</p>
+      <h1>Galería</h1>
+
+      <p class="lead">
+        Esta galería centraliza el material visual actualmente disponible de
+        <strong> Kaelum</strong>: interfaz, moodboard, diagramas, branding y arte ya incorporado
+        al proyecto. La idea es que todo lo gráfico importante esté reunido aquí para poder
+        revisarlo de forma cómoda, clara y más profesional.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}media/`}>Volver a Media</a>
+        <a class="btn" href="#galeria-completa">Ir a la galería</a>
+      </div>
+    </div>
+
+    <aside class="hero-panel">
+      <p class="panel-kicker">Qué vas a encontrar</p>
+      <h2>Todo lo visual, en un único sitio</h2>
+      <p>
+        En lugar de repartir imágenes por toda la web, esta sección funciona como repositorio
+        visual del proyecto. Más adelante se podrán añadir enemigos, bosses, arte conceptual,
+        capturas de gameplay y cualquier pieza nueva sin romper la estructura.
+      </p>
+
+      <ul class="panel-list">
+        <li><strong>UI:</strong> pantallas e interfaz del juego.</li>
+        <li><strong>Visión:</strong> moodboard y análisis visual.</li>
+        <li><strong>Proyecto:</strong> diagramas y material estructural.</li>
+        <li><strong>Personajes:</strong> arte o representación de personajes.</li>
+        <li><strong>Branding:</strong> logo e identidad visual.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="section" id="galeria-completa">
+    <header class="section-head">
+      <p class="kicker">Exploración visual</p>
+      <h2>Galería completa</h2>
+      <p class="section-lead">
+        Puedes filtrar por categoría y abrir cada imagen en grande sin salir de la página.
+      </p>
+    </header>
+
+    <div class="filters" id="gallery-filters">
+      {categories.map((cat) => (
+        <button
+          class:list={["filter-btn", cat.key === "all" && "active"]}
+          type="button"
+          data-filter={cat.key}
+        >
+          {cat.label}
+        </button>
+      ))}
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid">
+      {items.map((item, index) => (
+        <button
+          class="gallery-card"
+          type="button"
+          data-category={item.category}
+          data-src={item.src}
+          data-title={item.title}
+          data-description={item.description ?? ""}
+          aria-label={`Abrir ${item.title}`}
+        >
+          <div class="gallery-media">
+            <img
+              src={item.src}
+              alt={item.title}
+              loading={index < 4 ? "eager" : "lazy"}
+            />
+          </div>
+
+          <div class="gallery-info">
+            <span class="gallery-tag">{item.category}</span>
+            <h3>{item.title}</h3>
+            {item.description && <p>{item.description}</p>}
+          </div>
+        </button>
+      ))}
+    </div>
+  </section>
+
+  <div class="lightbox hidden" id="lightbox" aria-hidden="true">
+    <div class="lightbox-backdrop" id="lightbox-close"></div>
+
+    <div class="lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+      <button class="lightbox-x" id="lightbox-x" type="button" aria-label="Cerrar imagen">
+        ×
+      </button>
+
+      <div class="lightbox-image-wrap">
+        <img id="lightbox-image" src="" alt="" />
+      </div>
+
+      <div class="lightbox-copy">
+        <p class="lightbox-kicker">Vista ampliada</p>
+        <h2 id="lightbox-title">Imagen</h2>
+        <p id="lightbox-description"></p>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const cards = document.querySelectorAll(".gallery-card");
+
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImage = document.getElementById("lightbox-image");
+      const lightboxTitle = document.getElementById("lightbox-title");
+      const lightboxDescription = document.getElementById("lightbox-description");
+      const lightboxClose = document.getElementById("lightbox-close");
+      const lightboxX = document.getElementById("lightbox-x");
+
+      filterButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const filter = btn.dataset.filter;
+
+          filterButtons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          cards.forEach((card) => {
+            const category = card.dataset.category;
+            const show = filter === "all" || category === filter;
+            card.classList.toggle("hidden-by-filter", !show);
+          });
+        });
+      });
+
+      cards.forEach((card) => {
+        card.addEventListener("click", () => {
+          const src = card.dataset.src || "";
+          const title = card.dataset.title || "Imagen";
+          const description = card.dataset.description || "";
+
+          lightboxImage.setAttribute("src", src);
+          lightboxImage.setAttribute("alt", title);
+          lightboxTitle.textContent = title;
+          lightboxDescription.textContent = description;
+
+          lightbox.classList.remove("hidden");
+          lightbox.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+        });
+      });
+
+      const closeLightbox = () => {
+        lightbox.classList.add("hidden");
+        lightbox.setAttribute("aria-hidden", "true");
+        lightboxImage.setAttribute("src", "");
+        document.body.style.overflow = "";
+      };
+
+      lightboxClose?.addEventListener("click", closeLightbox);
+      lightboxX?.addEventListener("click", closeLightbox);
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !lightbox.classList.contains("hidden")) {
+          closeLightbox();
+        }
+      });
+    });
+  </script>
+
+  <style>
+    .hero-gallery{
+      display:grid;
+      grid-template-columns:1.35fr .95fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .hero-copy,
+    .hero-panel,
+    .gallery-card,
+    .lightbox-dialog{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.04);
+      border-radius:18px;
+      backdrop-filter:blur(8px);
+    }
+
+    .hero-copy{
+      padding:28px;
+    }
+
+    .hero-panel{
+      padding:24px;
+      background:linear-gradient(180deg, rgba(174,102,255,.13), rgba(255,255,255,.03));
+    }
+
+    .kicker,
+    .panel-kicker,
+    .lightbox-kicker{
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      opacity:.75;
+      margin:0 0 8px;
+      font-size:.82rem;
+    }
+
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(2.6rem, 6vw, 4.2rem);
+      line-height:.95;
+    }
+
+    h2{
+      margin:0 0 10px;
+      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
+      line-height:1.05;
+    }
+
+    h3{
+      margin:0 0 8px;
+      font-size:1.06rem;
+    }
+
+    .lead,
+    .section-lead,
+    .hero-panel p,
+    .gallery-info p,
+    .lightbox-copy p{
+      line-height:1.6;
+      opacity:.94;
+      margin:0;
+      text-align:justify;
+    }
+
+    .panel-list{
+      margin:16px 0 0;
+      padding-left:18px;
+      display:grid;
+      gap:10px;
+      line-height:1.5;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      padding:0 16px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      text-decoration:none;
+      transition:.18s ease;
+    }
+
+    .btn:hover{
+      transform:translateY(-1px);
+      background:rgba(255,255,255,.08);
+    }
+
+    .btn.primary{
+      background:linear-gradient(180deg, rgba(174,102,255,.30), rgba(174,102,255,.14));
+      border-color:rgba(208,156,255,.34);
+      box-shadow:0 10px 24px rgba(88,20,120,.18);
+    }
+
+    .section{
+      margin-top:28px;
+    }
+
+    .section-head{
+      margin-bottom:14px;
+    }
+
+    .filters{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-bottom:18px;
+    }
+
+    .filter-btn{
+      min-height:40px;
+      padding:0 14px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      background:rgba(255,255,255,.04);
+      color:inherit;
+      cursor:pointer;
+      transition:.18s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active{
+      background:rgba(255,255,255,.09);
+      transform:translateY(-1px);
+    }
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .gallery-card{
+      padding:0;
+      overflow:hidden;
+      text-align:left;
+      cursor:pointer;
+      transition:.18s ease;
+      color:inherit;
+    }
+
+    .gallery-card:hover{
+      transform:translateY(-2px);
+      background:rgba(255,255,255,.06);
+    }
+
+    .gallery-media{
+      aspect-ratio: 16 / 10;
+      background:rgba(0,0,0,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+
+    .gallery-media img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    .gallery-info{
+      padding:14px;
+    }
+
+    .gallery-tag{
+      display:inline-flex;
+      margin-bottom:8px;
+      padding:5px 10px;
+      border-radius:999px;
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.04em;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.05);
+      opacity:.9;
+    }
+
+    .hidden-by-filter{
+      display:none !important;
+    }
+
+    .lightbox.hidden{
+      display:none;
+    }
+
+    .lightbox{
+      position:fixed;
+      inset:0;
+      z-index:999;
+    }
+
+    .lightbox-backdrop{
+      position:absolute;
+      inset:0;
+      background:rgba(4,6,12,.82);
+      backdrop-filter:blur(8px);
+    }
+
+    .lightbox-dialog{
+      position:relative;
+      z-index:2;
+      width:min(1100px, calc(100vw - 32px));
+      margin:40px auto;
+      padding:18px;
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:18px;
+      max-height:calc(100vh - 80px);
+      overflow:auto;
+    }
+
+    .lightbox-image-wrap{
+      border-radius:14px;
+      overflow:hidden;
+      background:rgba(0,0,0,.22);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:420px;
+    }
+
+    .lightbox-image-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      display:block;
+    }
+
+    .lightbox-copy{
+      padding:8px 4px 8px 4px;
+      align-self:start;
+    }
+
+    .lightbox-x{
+      position:absolute;
+      top:10px;
+      right:10px;
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background:rgba(255,255,255,.06);
+      color:inherit;
+      font-size:1.4rem;
+      cursor:pointer;
+    }
+
+    @media (max-width: 1080px){
+      .gallery-grid{
+        grid-template-columns:repeat(2, minmax(0,1fr));
+      }
+    }
+
+    @media (max-width: 920px){
+      .hero-gallery,
+      .lightbox-dialog{
+        grid-template-columns:1fr;
+      }
+
+      .lightbox-image-wrap{
+        min-height:280px;
+      }
+    }
+
+    @media (max-width: 640px){
+      .gallery-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hero-copy,
+      .hero-panel,
+      .lightbox-dialog{
+        padding:18px;
+      }
+
+      h1{
+        font-size:2.35rem;
+      }
+    }
+  </style>
+</BaseLayout>
