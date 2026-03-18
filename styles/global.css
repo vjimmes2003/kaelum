@@ -291,7 +291,7 @@ h3{ margin: 0 0 8px; font-size: 1.05rem; }
    Ajuste general de altura
    ========================= */
 .wrap{
-  min-height: calc(100vh - 180px);
+  min-height: calc(100vh - 325px);
   padding-top: 10px;
   padding-bottom: 26px;
 }
@@ -440,7 +440,7 @@ a.card .small{
 
 @media (max-width: 640px){
   .wrap{
-    min-height: calc(100vh - 150px);
+    min-height: calc(100vh - 250px);
     padding-bottom: 18px;
   }
 
