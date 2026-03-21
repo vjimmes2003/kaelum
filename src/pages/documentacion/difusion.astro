@@ -1,0 +1,334 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const launchPhases = [
+  {
+    phase: "Pre-lanzamiento · 2 meses antes",
+    points: [
+      "Publicación del teaser oficial en redes sociales",
+      "Creación de la página oficial del juego en Steam para acumular wishlists",
+      "Inicio de publicaciones semanales con clips de gameplay, arte conceptual, mecánicas y avances",
+    ],
+  },
+  {
+    phase: "Pre-lanzamiento · 1 mes antes",
+    points: [
+      "Publicación de una demo jugable",
+      "Lanzamiento del tráiler oficial",
+      "Contacto con creadores de contenido independientes en YouTube y Twitch",
+    ],
+  },
+  {
+    phase: "Pre-lanzamiento · 2 semanas antes",
+    points: [
+      "Publicación frecuente de clips de gameplay",
+      "Cuenta atrás para el lanzamiento",
+      "Envío del juego a pequeños influencers y prensa indie",
+      "Encuestas y contenido interactivo para involucrar a la comunidad",
+    ],
+  },
+  {
+    phase: "Día de lanzamiento",
+    points: [
+      "Publicación del juego en Steam e itch.io",
+      "Anuncio oficial en todas las redes del proyecto",
+      "Directo mostrando el juego y sus principales mecánicas",
+      "Respuesta activa a comentarios, valoraciones y feedback",
+    ],
+  },
+  {
+    phase: "Post-lanzamiento",
+    points: [
+      "Publicación de actualizaciones y parches",
+      "Implementación de mejoras basadas en el feedback",
+      "Retos, encuestas y votaciones sobre contenido futuro",
+    ],
+  },
+];
+
+const kpis = [
+  "Número de descargas o ventas del juego",
+  "Número de wishlists en Steam",
+  "Nivel de interacción en redes sociales",
+  "Retención de jugadores tras el lanzamiento",
+];
+
+const channels = [
+  {
+    name: "Twitter / X",
+    desc: "Comunicación rápida y contenido breve.",
+    content: ["GIFs de gameplay", "Clips cortos de mecánicas", "Noticias y actualizaciones"],
+  },
+  {
+    name: "Reddit",
+    desc: "Contacto con comunidades interesadas en desarrollo y shooters.",
+    content: ["Devlogs", "Solicitud de feedback", "Participación en debates de diseño"],
+  },
+  {
+    name: "Discord",
+    desc: "Servidor oficial para comunidad y comunicación directa.",
+    content: ["Feedback de jugadores", "Reporte de bugs", "Comunidad general", "Encuestas"],
+  },
+  {
+    name: "Instagram",
+    desc: "Contenido visual del proyecto.",
+    content: ["Arte conceptual", "Diseño de personajes", "Escenarios", "Promoción"],
+  },
+];
+
+const events = [
+  {
+    name: "Steam Next Fest",
+    desc: "Evento online de Steam para demos de juegos independientes.",
+    meta: ["Requisitos: demo jugable + página activa en Steam", "Coste: gratuito"],
+    goals: [
+      "Aumentar la visibilidad internacional",
+      "Incrementar el número de wishlists",
+      "Obtener feedback masivo de jugadores",
+    ],
+  },
+  {
+    name: "Indie Dev Day",
+    desc: "Evento presencial centrado en desarrolladores independientes.",
+    meta: [
+      "Fechas: generalmente entre septiembre y octubre",
+      "Requisitos: inscripción previa, demo jugable y material promocional",
+      "Coste estimado: entrada 50–100 € + transporte y estancia 150–300 €",
+    ],
+    goals: [
+      "Mostrar el juego al público",
+      "Obtener feedback directo",
+      "Dar visibilidad al proyecto",
+    ],
+  },
+];
+
+const moderation = [
+  "Responder activamente a comentarios y críticas",
+  "Escuchar el feedback de los jugadores",
+  "Utilizar sugerencias para mejorar el juego",
+  "Establecer normas claras en Discord",
+  "Eliminar contenido ofensivo o inapropiado",
+  "Promover un ambiente respetuoso",
+];
+
+const ugc = [
+  "Fanarts",
+  "Clips de gameplay",
+  "Publicaciones de jugadores",
+];
+
+const networking = [
+  "Preparar un pitch breve del juego",
+  "Intercambiar contactos con otros desarrolladores",
+  "Promocionar las redes sociales y la web del proyecto",
+];
+---
+
+<BaseLayout
+  title="Kaelum — Difusión y lanzamiento"
+  description="Plan de difusión, lanzamiento, comunidad y festivales del proyecto Kaelum."
+>
+  <section class="hero diffusion-hero">
+    <p class="kicker">Documentación</p>
+    <h1>Difusión, lanzamiento y comunidad</h1>
+    <p class="lead">
+      Kaelum no solo se plantea como videojuego, sino también como proyecto que necesita
+      visibilidad, comunidad y una presentación clara. Esta sección resume cómo se movería
+      el juego antes, durante y después de su lanzamiento.
+    </p>
+
+    <div class="meta">
+      <span class="tag">Lanzamiento</span>
+      <span class="tag">KPIs</span>
+      <span class="tag">Comunidad</span>
+      <span class="tag">Festivales</span>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}documentacion/`}>Volver a Documentación</a>
+      <a class="btn" href={`${base}contacto/redes/`}>Ver contacto y redes</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card full">
+      <h2>Estrategia general</h2>
+      <p class="muted">
+        La difusión de Kaelum se basa en una comunicación progresiva y transparente,
+        centrada en mostrar el desarrollo del proyecto y su identidad, priorizando
+        la confianza del jugador sobre campañas agresivas.
+      </p>
+    </article>
+
+    <article class="card full">
+      <h2>Fases del lanzamiento</h2>
+      <div class="phase-list">
+        {launchPhases.map((item, i) => (
+          <section class="phase-card">
+            <span class="phase-number">{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              <h3>{item.phase}</h3>
+              <ul class="list">
+                {item.points.map((point) => <li>{point}</li>)}
+              </ul>
+            </div>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>KPIs</h2>
+      <ul class="list">
+        {kpis.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>Presupuesto estimado de marketing</h2>
+      <ul class="list">
+        <li><strong>Publicidad en redes sociales:</strong> 200 €</li>
+        <li><strong>Material promocional (imágenes y vídeos):</strong> 100 €</li>
+        <li><strong>Total estimado:</strong> 300 €</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Canales sociales y comunidad</h2>
+      <div class="channel-grid">
+        {channels.map((channel) => (
+          <section class="channel-card">
+            <h3>{channel.name}</h3>
+            <p class="muted">{channel.desc}</p>
+            <ul class="list">
+              {channel.content.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Gestión de comunidad y moderación</h2>
+      <ul class="list">
+        {moderation.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>Contenido generado por usuarios</h2>
+      <p class="muted">
+        Se fomenta la participación de la comunidad para aumentar visibilidad e implicación.
+      </p>
+      <ul class="list">
+        {ugc.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Eventos y festivales</h2>
+      <div class="events-grid">
+        {events.map((event) => (
+          <section class="event-card">
+            <h3>{event.name}</h3>
+            <p class="muted">{event.desc}</p>
+            <ul class="list">
+              {event.meta.map((item) => <li>{item}</li>)}
+            </ul>
+            <p class="small"><strong>Objetivos:</strong></p>
+            <ul class="list">
+              {event.goals.map((goal) => <li>{goal}</li>)}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Plan de networking</h2>
+      <ul class="list">
+        {networking.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>Justificación de eventos</h2>
+      <ul class="list">
+        <li>Enfoque en videojuegos independientes.</li>
+        <li>Alcance tanto online como presencial.</li>
+        <li>Capacidad para generar visibilidad y contactos dentro de la industria.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Conclusión</h2>
+      <p class="muted">
+        Esta parte del proyecto convierte Kaelum en algo más que una propuesta jugable:
+        lo sitúa como un videojuego que puede comunicarse, presentarse y crecer con una comunidad alrededor.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/`}>Volver a Documentación</a>
+        <a class="btn" href={`${base}desarrollo/roadmap/`}>Ver roadmap</a>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    .diffusion-hero{
+      padding:28px 24px;
+    }
+
+    .phase-list,
+    .events-grid,
+    .channel-grid{
+      display:grid;
+      gap:14px;
+      margin-top:12px;
+    }
+
+    .phase-card{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    .phase-number{
+      width:44px;
+      height:44px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      font-weight:900;
+    }
+
+    .events-grid,
+    .channel-grid{
+      grid-template-columns:repeat(2, minmax(0,1fr));
+    }
+
+    .event-card,
+    .channel-card{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    @media (max-width: 920px){
+      .events-grid,
+      .channel-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</BaseLayout>
