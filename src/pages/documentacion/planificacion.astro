@@ -1,0 +1,225 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const scenarioA = [
+  {
+    phase: "Mes 1",
+    items: [
+      "Concepto general del videojuego.",
+      "Definición de pilares y objetivos.",
+      "Análisis DAFO / CAME / referentes.",
+      "Base documental inicial.",
+    ],
+  },
+  {
+    phase: "Mes 2",
+    items: [
+      "Desarrollo del núcleo jugable.",
+      "Sistema de armas, movimiento y habilidades.",
+      "Primer entorno o nivel de prueba.",
+      "Pruebas internas de sensaciones.",
+    ],
+  },
+  {
+    phase: "Mes 3",
+    items: [
+      "Integración narrativa contextual.",
+      "Corrección de errores y pulido.",
+      "Cierre de documentación.",
+      "Preparación de presentación académica.",
+    ],
+  },
+];
+
+const scenarioB = [
+  {
+    phase: "Meses 1–2",
+    title: "Preproducción",
+    items: ["GDD completo", "análisis de mercado", "alcance", "prototipos técnicos iniciales"],
+  },
+  {
+    phase: "Meses 3–4",
+    title: "Núcleo jugable",
+    items: ["armas", "movimiento", "habilidades", "primer equilibrio"],
+  },
+  {
+    phase: "Meses 5–6",
+    title: "Modo historia",
+    items: ["niveles narrativos", "ritmo", "integración de historia"],
+  },
+  {
+    phase: "Meses 7–8",
+    title: "Multijugador",
+    items: ["implementación", "selección de personajes", "pruebas de equilibrio"],
+  },
+  {
+    phase: "Meses 9–10",
+    title: "Pulido y pruebas",
+    items: ["optimización", "bugs", "pruebas de usuario", "ajustes finales"],
+  },
+  {
+    phase: "Meses 11–12",
+    title: "Publicación y difusión",
+    items: ["material promocional", "devlogs", "estrategia de lanzamiento"],
+  },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Planificación"
+  description="Planificación del proyecto Kaelum: organización temporal, escenarios de desarrollo y lectura de alcance."
+>
+  <section class="hero planning-hero">
+    <p class="kicker">Documentación</p>
+    <h1>Planificación del proyecto</h1>
+    <p class="lead">
+      La planificación de Kaelum está pensada para demostrar que el proyecto no solo tiene ideas,
+      sino también <strong>orden, fases y prioridades</strong>. Esta página resume el ritmo de trabajo
+      del escenario académico y del escenario ampliado.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}desarrollo/hitos/`}>Ver hitos</a>
+      <a class="btn" href={`${base}documentacion/presupuesto/`}>Ver presupuesto</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card full">
+      <h2>Qué busca esta planificación</h2>
+      <ul class="list">
+        <li>Evitar el caos y el crecimiento descontrolado del alcance.</li>
+        <li>Priorizar sistemas base antes de añadir capas de complejidad.</li>
+        <li>Separar con claridad lo académico de lo que sería una producción indie real.</li>
+        <li>Convertir el GDD en un proyecto defendible también en tiempos y fases.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Escenario A · Planificación reducida (3 meses)</h2>
+      <p class="muted">
+        Esta versión representa el enfoque académico: validar el concepto, cerrar el core y entregar
+        una base sólida del proyecto sin perderse en una producción imposible.
+      </p>
+
+      <div class="months-grid">
+        {scenarioA.map((month) => (
+          <section class="month-card">
+            <h3>{month.phase}</h3>
+            <ul class="list">
+              {month.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card full">
+      <h2>Escenario B · Planificación ampliada (12 meses)</h2>
+      <p class="muted">
+        Este escenario plantea una lectura más cercana a un desarrollo independiente real, donde la
+        identidad visual, la profundidad narrativa y la difusión tienen más peso.
+      </p>
+
+      <div class="timeline">
+        {scenarioB.map((item) => (
+          <section class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <p class="small">{item.phase}</p>
+              <h3>{item.title}</h3>
+              <ul class="list">
+                {item.items.map((sub) => <li>{sub}</li>)}
+              </ul>
+            </div>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Lógica de prioridades</h2>
+      <ul class="list">
+        <li><strong>Primero:</strong> que el juego se sostenga.</li>
+        <li><strong>Después:</strong> que tenga identidad fuerte.</li>
+        <li><strong>Luego:</strong> que se presente y se difunda mejor.</li>
+      </ul>
+      <p class="small">
+        Esta jerarquía evita dedicar tiempo a capas secundarias antes de cerrar la base.
+      </p>
+    </article>
+
+    <article class="card">
+      <h2>Qué evita esta planificación</h2>
+      <ul class="list">
+        <li>Scope creep.</li>
+        <li>Dependencia de contenido “bonito” sin base jugable.</li>
+        <li>Una entrega visualmente grande pero vacía por dentro.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Conclusión</h2>
+      <p class="muted">
+        La planificación de Kaelum traduce la ambición del proyecto a una estructura comprensible.
+        No se trata solo de decir “quiero hacer esto”, sino de demostrar
+        <strong>cuándo, en qué orden y con qué prioridad</strong>.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}desarrollo/roadmap/`}>Abrir roadmap</a>
+        <a class="btn" href={`${base}documentacion/`}>Volver a Documentación</a>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    .planning-hero{
+      padding:28px 24px;
+    }
+
+    .months-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+      margin-top:14px;
+    }
+
+    .month-card,
+    .timeline-content{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    .timeline{
+      display:grid;
+      gap:16px;
+      margin-top:14px;
+    }
+
+    .timeline-item{
+      display:grid;
+      grid-template-columns:20px 1fr;
+      gap:14px;
+      align-items:start;
+    }
+
+    .timeline-dot{
+      width:14px;
+      height:14px;
+      border-radius:999px;
+      margin-top:16px;
+      background:linear-gradient(135deg, rgba(139,92,246,.95), rgba(34,211,238,.75));
+      box-shadow:0 0 0 6px rgba(255,255,255,.04);
+    }
+
+    @media (max-width: 980px){
+      .months-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</BaseLayout>

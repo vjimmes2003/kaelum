@@ -1,0 +1,210 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const reduced = [
+  { label: "Programación y diseño principal", value: "Base del desarrollo" },
+  { label: "Arte provisional / recursos reutilizados", value: "Coste reducido" },
+  { label: "Pruebas y ajustes internos", value: "Incluido en producción" },
+  { label: "Comunicación y presentación académica", value: "Difusión mínima" },
+];
+
+const expanded = [
+  { label: "Programador principal", value: "Desarrollo del core y sistemas" },
+  { label: "Artista interno o externo", value: "Identidad visual y assets" },
+  { label: "Animación / sonido externalizado", value: "Apoyo selectivo" },
+  { label: "Marketing y visibilidad", value: "Difusión, tráiler y presencia" },
+];
+
+const principles = [
+  "El proyecto se plantea con dos escenarios: uno académico reducido y otro indie ampliado.",
+  "No se busca dar una cifra cerrada falsa, sino justificar cómo se reparte el coste.",
+  "La prioridad económica está en sostener el núcleo jugable antes que inflar el contenido.",
+  "El marketing no es un extra opcional: se contempla como multiplicador del presupuesto base.",
+];
+---
+
+<BaseLayout
+  title="Kaelum — Presupuesto"
+  description="Resumen del presupuesto del proyecto Kaelum: escenarios de desarrollo, estructura de costes y lógica de viabilidad."
+>
+  <section class="hero budget-hero">
+    <p class="kicker">Documentación</p>
+    <h1>Presupuesto del proyecto</h1>
+    <p class="lead">
+      Kaelum no presenta un presupuesto cerrado como si ya fuera una producción comercial real,
+      sino una <strong>estimación estructurada</strong> para justificar el alcance, la viabilidad
+      y la relación entre desarrollo y difusión.
+    </p>
+
+    <div class="meta">
+      <span class="tag">Escenario A · 3 meses</span>
+      <span class="tag">Escenario B · 12 meses</span>
+      <span class="tag">Producción + marketing</span>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}documentacion/gdd/`}>Ver GDD</a>
+      <a class="btn" href={`${base}documentacion/planificacion/`}>Ver planificación</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card full">
+      <h2>Cómo se entiende este presupuesto</h2>
+      <p class="muted">
+        El objetivo no es aparentar una cifra exacta inventada, sino demostrar que el proyecto
+        tiene una lógica de producción. El presupuesto se usa aquí como herramienta de
+        <strong>decisión de alcance</strong>: qué entra, qué se prioriza y qué tendría sentido externalizar.
+      </p>
+
+      <ul class="list">
+        {principles.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>Escenario A · Desarrollo reducido</h2>
+      <p class="muted">
+        Enfoque académico de <strong>3 meses</strong>, orientado a validar el concepto,
+        el gunplay, el movimiento y una base funcional del modo historia.
+      </p>
+
+      <ul class="list">
+        {reduced.map((item) => (
+          <li><strong>{item.label}:</strong> {item.value}</li>
+        ))}
+      </ul>
+
+      <p class="small">
+        Este escenario prioriza demostrar que el proyecto se puede sostener con un alcance realista.
+      </p>
+    </article>
+
+    <article class="card">
+      <h2>Escenario B · Desarrollo ampliado</h2>
+      <p class="muted">
+        Versión independiente más cercana a una producción real de <strong>12 meses</strong>,
+        con identidad visual más definida, historia más profunda y opción multijugador mejor resuelta.
+      </p>
+
+      <ul class="list">
+        {expanded.map((item) => (
+          <li><strong>{item.label}:</strong> {item.value}</li>
+        ))}
+      </ul>
+
+      <p class="small">
+        Aquí el presupuesto se entiende como soporte para convertir la idea en un producto más completo.
+      </p>
+    </article>
+
+    <article class="card full">
+      <h2>Estructura general de costes</h2>
+
+      <div class="budget-split">
+        <section class="budget-block">
+          <h3>1. Costes de desarrollo</h3>
+          <p class="muted">
+            Incluyen programación, diseño del juego, herramientas, pruebas y todos los recursos
+            necesarios para construir el núcleo jugable.
+          </p>
+          <ul class="list">
+            <li>Programación del gameplay y estructura general.</li>
+            <li>Diseño de sistemas, equilibrio y documentación.</li>
+            <li>Herramientas, recursos y materiales artísticos.</li>
+          </ul>
+        </section>
+
+        <section class="budget-block">
+          <h3>2. Costes de producción externa</h3>
+          <p class="muted">
+            Se contemplan cuando compensa acelerar partes concretas del proyecto o elevar su calidad visual/sonora.
+          </p>
+          <ul class="list">
+            <li>Arte final o apoyo visual puntual.</li>
+            <li>Animaciones específicas.</li>
+            <li>Diseño sonoro o música.</li>
+          </ul>
+        </section>
+
+        <section class="budget-block">
+          <h3>3. Costes de marketing y difusión</h3>
+          <p class="muted">
+            Se consideran desde el principio porque un juego no solo tiene que existir: también tiene que
+            poder presentarse, explicarse y hacerse visible.
+          </p>
+          <ul class="list">
+            <li>Tráiler, piezas visuales y presencia digital.</li>
+            <li>Material promocional y press kit.</li>
+            <li>Comunicación, festivales y visibilidad.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Relación entre producción y marketing</h2>
+      <p class="muted">
+        En el GDD se plantea que la difusión puede llegar a requerir un esfuerzo aproximado de
+        <strong>x2 sobre el presupuesto base</strong> si se quisiera promocionar el proyecto de forma seria.
+      </p>
+      <p class="small">
+        Esto refuerza una idea importante: no basta con desarrollar, también hay que saber presentar.
+      </p>
+    </article>
+
+    <article class="card">
+      <h2>Qué demuestra esta página</h2>
+      <ul class="list">
+        <li>Que el alcance de Kaelum está pensado con cabeza.</li>
+        <li>Que hay conciencia de costes aunque el proyecto sea ficticio.</li>
+        <li>Que la parte de difusión no se deja fuera del análisis.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Conclusión</h2>
+      <p class="muted">
+        El presupuesto de Kaelum no pretende fingir una producción cerrada, sino mostrar que el
+        proyecto ha sido diseñado con una lógica viable. La lectura correcta no es “cuánto cuesta
+        exactamente”, sino <strong>qué prioriza, por qué y cómo escalaría</strong> si el desarrollo creciera.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/metricas/`}>Ver métricas</a>
+        <a class="btn" href={`${base}documentacion/`}>Volver a Documentación</a>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    .budget-hero{
+      padding: 28px 24px;
+    }
+
+    .budget-split{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+      margin-top:14px;
+    }
+
+    .budget-block{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    .budget-block h3{
+      margin-bottom:8px;
+    }
+
+    @media (max-width: 980px){
+      .budget-split{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</BaseLayout>

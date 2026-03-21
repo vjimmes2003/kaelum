@@ -1,0 +1,165 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const roadmap = [
+  {
+    title: "Fase 1 · Concepto y base",
+    desc: "Cerrar dirección del proyecto, propuesta única, pilares del gameplay y estructura documental.",
+    status: "Base ya definida",
+  },
+  {
+    title: "Fase 2 · Núcleo jugable",
+    desc: "Validar armas, movimiento, habilidades y sensación general del core loop.",
+    status: "Prioridad principal",
+  },
+  {
+    title: "Fase 3 · Mundo y narrativa",
+    desc: "Integrar pr\u00f3logo, actos, sistema de karma, misiones y contexto del universo.",
+    status: "En consolidación",
+  },
+  {
+    title: "Fase 4 · Presentación pública",
+    desc: "Web, galer\u00eda, tráiler, devlog, documentaci\u00f3n y presencia digital.",
+    status: "En cierre",
+  },
+  {
+    title: "Fase 5 · Difusión y proyección",
+    desc: "Eventos, roadmap de lanzamiento, materiales promocionales y estrategia de visibilidad.",
+    status: "Siguiente capa",
+  },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Roadmap"
+  description="Roadmap del proyecto Kaelum: fases de desarrollo, prioridades y evolución general del portfolio."
+>
+  <section class="hero roadmap-hero">
+    <p class="kicker">Desarrollo</p>
+    <h1>Roadmap del proyecto</h1>
+    <p class="lead">
+      Este roadmap organiza Kaelum por <strong>fases lógicas de crecimiento</strong>. No se centra
+      en “añadir cosas porque sí”, sino en ordenar qué debe quedar sólido antes de pasar al siguiente nivel.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}desarrollo/hitos/`}>Ver hitos</a>
+      <a class="btn" href={`${base}desarrollo/devlog/`}>Abrir devlog</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card full">
+      <h2>Cómo leer este roadmap</h2>
+      <p class="muted">
+        El roadmap no es una promesa cerrada de fechas exactas, sino una estructura de prioridades.
+        Sirve para explicar en qué orden crece Kaelum y por qué unas capas dependen de otras.
+      </p>
+    </article>
+
+    <article class="card full">
+      <h2>Fases del proyecto</h2>
+
+      <div class="roadmap-list">
+        {roadmap.map((item, index) => (
+          <section class="roadmap-item">
+            <span class="roadmap-number">{String(index + 1).padStart(2, "0")}</span>
+            <div class="roadmap-copy">
+              <h3>{item.title}</h3>
+              <p class="muted">{item.desc}</p>
+              <span class="tag">{item.status}</span>
+            </div>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Prioridad actual</h2>
+      <p class="muted">
+        La prioridad sigue siendo cerrar lo que da solidez al proyecto:
+        documentación clara, web coherente, narrativa bien presentada y lectura profesional del portfolio.
+      </p>
+    </article>
+
+    <article class="card">
+      <h2>Qué no hace este roadmap</h2>
+      <ul class="list">
+        <li>No infla el alcance artificialmente.</li>
+        <li>No mezcla tareas base con mejoras secundarias.</li>
+        <li>No sacrifica claridad por parecer más grande.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Relación con el resto de la web</h2>
+      <div class="grid" style="margin-top:10px">
+        <div class="card" style="grid-column: span 4;">
+          <h3>Juego</h3>
+          <p class="muted">Define el contenido conceptual y jugable.</p>
+        </div>
+        <div class="card" style="grid-column: span 4;">
+          <h3>Documentación</h3>
+          <p class="muted">Justifica por qué el roadmap tiene ese orden.</p>
+        </div>
+        <div class="card" style="grid-column: span 4;">
+          <h3>Devlog</h3>
+          <p class="muted">Muestra cómo se mueve realmente el proyecto semana a semana.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full">
+      <h2>Conclusión</h2>
+      <p class="muted">
+        El roadmap de Kaelum organiza el proyecto desde una idea simple:
+        <strong>primero sostener, luego ampliar, después presentar y por último difundir</strong>.
+        Eso permite que la evolución del portfolio tenga sentido y no se vea como una suma caótica de apartados.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}desarrollo/hitos/`}>Ir a hitos</a>
+        <a class="btn" href={`${base}desarrollo/`}>Volver a Desarrollo</a>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    .roadmap-hero{
+      padding:28px 24px;
+    }
+
+    .roadmap-list{
+      display:grid;
+      gap:14px;
+      margin-top:12px;
+    }
+
+    .roadmap-item{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    .roadmap-number{
+      width:46px;
+      height:46px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      font-weight:900;
+    }
+
+    .roadmap-copy h3{
+      margin-bottom:8px;
+    }
+  </style>
+</BaseLayout>

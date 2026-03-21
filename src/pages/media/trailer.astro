@@ -2,338 +2,214 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
-// Sustituye esta URL por la real cuando la tengas
-const trailerUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ";
-
-const highlights = [
-  {
-    title: "Presentación del tono",
-    desc:
-      "El tráiler debe transmitir la identidad de Kaelum desde el primer momento: atmósfera, tensión, mundo y presencia del protagonista.",
-  },
-  {
-    title: "Lectura rápida del gameplay",
-    desc:
-      "Además de vender visualmente el proyecto, la pieza tiene que dejar entrever combate, exploración, interfaz y ritmo general del juego.",
-  },
-  {
-    title: "Función de portfolio",
-    desc:
-      "Este vídeo no solo promociona el juego: también ayuda a que cualquier evaluador o visitante entienda el proyecto en muy poco tiempo.",
-  },
-];
-
-const structure = [
-  "Apertura con identidad visual y tono general",
-  "Muestra breve del mundo y del protagonista",
-  "Momentos de gameplay y combate",
-  "Cierre con nombre, branding y llamada a la acción",
-];
+const trailerId = "78rj5zVb8pQ"; // cambia esto
+const youtubeUrl = `https://www.youtube.com/watch?v=${trailerId}`;
+const embedUrl = `https://www.youtube.com/embed/${trailerId}`;
 ---
 
 <BaseLayout
-  title="Kaelum — Tráiler"
-  description="Tráiler del proyecto Kaelum: pieza audiovisual para presentar el tono, el mundo y el gameplay del videojuego."
+  title="Kaelum — Trailer"
+  description="Trailer oficial del proyecto Kaelum. Una mirada al tono, el mundo y la experiencia del juego."
 >
-  <section class="hero hero-trailer">
-    <div class="hero-copy">
-      <p class="kicker">Pieza audiovisual</p>
-      <h1>Tráiler</h1>
 
-      <p class="lead">
-        Esta sección reúne la pieza de vídeo principal del proyecto. Su objetivo es enseñar
-        <strong> Kaelum de forma rápida, visual y atractiva</strong>, condensando en pocos segundos
-        la identidad del mundo, el tono del juego y una lectura general de la experiencia.
-      </p>
+<section class="hero hero-trailer">
 
-      <div class="actions">
-        <a class="btn primary" href="#video">Ver tráiler</a>
-        <a class="btn" href={`${base}media/galeria/`}>Ir a Galería</a>
-        <a class="btn" href={`${base}juego/`}>Ver Juego</a>
-      </div>
+  <div class="hero-copy">
+
+    <p class="kicker">Media · Video</p>
+    <h1>Trailer</h1>
+
+    <p class="lead">
+      Esta pieza audiovisual resume la atmósfera, el tono narrativo y la identidad
+      visual del proyecto <strong>Kaelum</strong>. Más que un simple vídeo, funciona
+      como una primera puerta de entrada al mundo del juego.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href={youtubeUrl} target="_blank">
+        Ver en YouTube
+      </a>
+
+      <a class="btn" href={`${base}media/`}>
+        Volver a Media
+      </a>
     </div>
 
-    <aside class="hero-panel">
-      <p class="panel-kicker">Qué aporta este bloque</p>
-      <h2>Una forma directa de enseñar el proyecto</h2>
-      <p>
-        Frente a páginas más largas o explicativas, el tráiler permite que cualquier persona
-        capte muy rápido la esencia visual y jugable de Kaelum. Funciona como resumen, carta
-        de presentación y apoyo a la evaluación del portfolio.
-      </p>
+  </div>
 
-      <ul class="panel-list">
-        <li><strong>Tono:</strong> atmósfera e identidad visual.</li>
-        <li><strong>Gameplay:</strong> lectura rápida del juego en movimiento.</li>
-        <li><strong>Presentación:</strong> pieza clara para portfolio y defensa.</li>
-      </ul>
-    </aside>
-  </section>
+  <aside class="hero-panel">
 
-  <section class="section" id="video">
-    <header class="section-head">
-      <p class="kicker">Vídeo embebido</p>
-      <h2>Visualización del tráiler</h2>
-      <p class="section-lead">
-        Aquí se incrusta la pieza audiovisual principal del proyecto. Cuando tengas la versión final,
-        solo tendrás que cambiar la URL del vídeo.
-      </p>
-    </header>
+    <p class="panel-kicker">Sobre este vídeo</p>
+    <h2>Presentación del proyecto</h2>
 
-    <div class="video-card">
-      <div class="video-shell">
-        <iframe
-          src={trailerUrl}
-          title="Tráiler de Kaelum"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-          loading="lazy"
-        ></iframe>
-      </div>
+    <p>
+      El tráiler presenta de forma condensada el estilo visual,
+      la ambientación y algunas ideas clave del universo de Kaelum.
+      Su objetivo es transmitir rápidamente qué tipo de experiencia
+      propone el juego.
+    </p>
 
-      <div class="video-actions">
-        <a class="btn primary" href={trailerUrl.replace("/embed/", "/watch?v=")} target="_blank" rel="noreferrer">
-          Abrir en YouTube
-        </a>
-        <a class="btn" href={`${base}media/`}>Volver a Media</a>
-      </div>
-    </div>
-  </section>
+    <ul class="panel-list">
+      <li><strong>Atmosfera:</strong> tono visual y ambientación.</li>
+      <li><strong>Identidad:</strong> estilo artístico del proyecto.</li>
+      <li><strong>Dirección:</strong> narrativa y ritmo.</li>
+      <li><strong>Presentación:</strong> introducción al universo Kaelum.</li>
+    </ul>
 
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Qué debe enseñar</p>
-      <h2>Objetivos del tráiler</h2>
-      <p class="section-lead">
-        El vídeo no debería limitarse a ser bonito: tiene que enseñar lo justo y dejar clara la propuesta del juego.
-      </p>
-    </header>
+  </aside>
 
-    <div class="highlights-grid">
-      {highlights.map((item) => (
-        <article class="highlight-card">
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-        </article>
-      ))}
-    </div>
-  </section>
+</section>
 
-  <section class="section split">
-    <article class="info-card">
-      <p class="kicker">Estructura sugerida</p>
-      <h2>Cómo debería construirse la pieza</h2>
-      <ul class="structure-list">
-        {structure.map((item) => <li>{item}</li>)}
-      </ul>
-    </article>
 
-    <article class="info-card accent">
-      <p class="kicker">Continuidad del recorrido</p>
-      <h2>Después del tráiler, toca explorar la galería</h2>
-      <p>
-        Una vez vista la pieza audiovisual, lo más natural es pasar a la
-        <strong> Galería</strong>, donde se concentra el resto del material gráfico del proyecto:
-        UI, moodboard, branding, diagramas y arte ya incorporado.
-      </p>
+<section class="section section-video">
 
-      <div class="actions">
-        <a class="btn primary" href={`${base}media/galeria/`}>Ir a la Galería</a>
-      </div>
-    </article>
-  </section>
+  <header class="section-head">
+    <p class="kicker">Visualización</p>
+    <h2>Trailer del proyecto</h2>
+  </header>
 
-  <style>
-    .hero-trailer{
-      display:grid;
-      grid-template-columns:1.35fr .95fr;
-      gap:24px;
-      align-items:stretch;
-    }
+  <div class="video-container">
 
-    .hero-copy,
-    .hero-panel,
-    .video-card,
-    .highlight-card,
-    .info-card{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:18px;
-      backdrop-filter:blur(8px);
-    }
+    <iframe
+      src={embedUrl}
+      title="Trailer Kaelum"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy"
+    ></iframe>
 
-    .hero-copy{
-      padding:28px;
-    }
+  </div>
 
-    .hero-panel{
-      padding:24px;
-      background:linear-gradient(180deg, rgba(255,95,95,.12), rgba(255,255,255,.03));
-    }
+</section>
 
-    .kicker,
-    .panel-kicker{
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.75;
-      margin:0 0 8px;
-      font-size:.82rem;
-    }
 
-    h1{
-      margin:0 0 12px;
-      font-size:clamp(2.6rem, 6vw, 4.2rem);
-      line-height:.95;
-    }
+<style>
 
-    h2{
-      margin:0 0 10px;
-      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
-      line-height:1.05;
-    }
+.hero-trailer{
+display:grid;
+grid-template-columns:1.35fr .95fr;
+gap:24px;
+align-items:stretch;
+}
 
-    h3{
-      margin:0 0 10px;
-      font-size:1.12rem;
-    }
+.hero-copy,
+.hero-panel{
+border:1px solid rgba(255,255,255,.10);
+background:rgba(255,255,255,.04);
+border-radius:18px;
+padding:28px;
+backdrop-filter:blur(8px);
+}
 
-    .lead,
-    .section-lead,
-    .hero-panel p,
-    .highlight-card p,
-    .info-card p{
-      line-height:1.6;
-      opacity:.94;
-      margin:0;
-      text-align:justify;
-    }
+.hero-panel{
+background:linear-gradient(
+180deg,
+rgba(120,140,255,.12),
+rgba(255,255,255,.02)
+);
+}
 
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:18px;
-    }
+.kicker,
+.panel-kicker{
+letter-spacing:.08em;
+text-transform:uppercase;
+opacity:.7;
+font-size:.82rem;
+margin:0 0 8px;
+}
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:inherit;
-      text-decoration:none;
-      transition:.18s ease;
-    }
+h1{
+margin:0 0 12px;
+font-size:clamp(2.5rem,6vw,4rem);
+line-height:.95;
+}
 
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
+h2{
+margin:0 0 10px;
+font-size:clamp(1.5rem,2.8vw,2.1rem);
+}
 
-    .btn.primary{
-      background:linear-gradient(180deg, rgba(255,95,95,.28), rgba(255,95,95,.14));
-      border-color:rgba(255,145,145,.34);
-      box-shadow:0 10px 24px rgba(120,20,20,.18);
-    }
+.lead{
+line-height:1.6;
+opacity:.95;
+max-width:720px;
+}
 
-    .panel-list{
-      margin:16px 0 0;
-      padding-left:18px;
-      display:grid;
-      gap:10px;
-      line-height:1.5;
-    }
+.panel-list{
+margin-top:16px;
+padding-left:18px;
+display:grid;
+gap:10px;
+}
 
-    .section{
-      margin-top:28px;
-    }
+.actions{
+margin-top:18px;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
 
-    .section-head{
-      margin-bottom:14px;
-    }
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-height:42px;
+padding:0 16px;
+border-radius:999px;
+border:1px solid rgba(255,255,255,.14);
+background:rgba(255,255,255,.04);
+text-decoration:none;
+color:inherit;
+transition:.18s ease;
+}
 
-    .video-card{
-      padding:18px;
-    }
+.btn:hover{
+transform:translateY(-1px);
+background:rgba(255,255,255,.08);
+}
 
-    .video-shell{
-      position:relative;
-      width:100%;
-      padding-top:56.25%;
-      border-radius:14px;
-      overflow:hidden;
-      background:rgba(0,0,0,.22);
-      border:1px solid rgba(255,255,255,.08);
-    }
+.btn.primary{
+background:linear-gradient(
+180deg,
+rgba(174,102,255,.30),
+rgba(174,102,255,.14)
+);
+border-color:rgba(208,156,255,.34);
+box-shadow:0 10px 24px rgba(88,20,120,.18);
+}
 
-    .video-shell iframe{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      border:0;
-    }
+.section{
+margin-top:28px;
+}
 
-    .video-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:14px;
-    }
+.section-head{
+margin-bottom:16px;
+}
 
-    .highlights-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
+.video-container{
+position:relative;
+aspect-ratio:16/9;
+border-radius:18px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.10);
+background:rgba(0,0,0,.2);
+}
 
-    .highlight-card,
-    .info-card{
-      padding:22px;
-    }
+.video-container iframe{
+width:100%;
+height:100%;
+display:block;
+}
 
-    .split{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
+@media (max-width:900px){
 
-    .info-card.accent{
-      background:linear-gradient(180deg, rgba(255,95,95,.12), rgba(255,255,255,.03));
-    }
+.hero-trailer{
+grid-template-columns:1fr;
+}
 
-    .structure-list{
-      margin:0;
-      padding-left:18px;
-      display:grid;
-      gap:10px;
-      line-height:1.55;
-    }
+}
 
-    @media (max-width: 980px){
-      .hero-trailer,
-      .highlights-grid,
-      .split{
-        grid-template-columns:1fr;
-      }
-    }
+</style>
 
-    @media (max-width: 640px){
-      .hero-copy,
-      .hero-panel,
-      .video-card,
-      .highlight-card,
-      .info-card{
-        padding:18px;
-      }
-
-      h1{
-        font-size:2.35rem;
-      }
-    }
-  </style>
 </BaseLayout>

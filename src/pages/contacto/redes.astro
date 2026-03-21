@@ -2,385 +2,139 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
-const networks = [
+const socials = [
   {
     name: "GitHub",
-    handle: "Repositorio / portfolio técnico",
-    href: "https://github.com/",
-    short: "GH",
-    desc:
-      "Espacio ideal para alojar código, documentación técnica, estructura web y evolución del proyecto.",
-  },
-  {
-    name: "LinkedIn",
-    handle: "Perfil profesional",
-    href: "https://www.linkedin.com/",
-    short: "in",
-    desc:
-      "Canal enfocado a visibilidad profesional, portfolio, proyecto y presentación formal del trabajo.",
+    url: "https://github.com/vjimmes2003/kaelum",
+    desc: "Repositorio del proyecto y desarrollo.",
   },
   {
     name: "YouTube",
-    handle: "Vídeos y tráileres",
-    href: "https://www.youtube.com/",
-    short: "YT",
-    desc:
-      "Lugar recomendado para alojar el tráiler, devlogs en vídeo o material audiovisual del proyecto.",
+    url: "https://youtube.com/",
+    desc: "Tráileres y contenido audiovisual.",
   },
   {
     name: "Itch.io",
-    handle: "Página del juego",
-    href: "https://itch.io/",
-    short: "Itch",
-    desc:
-      "Muy útil si más adelante quieres mostrar builds, material promocional o una ficha pública del juego.",
+    url: "https://itch.io/",
+    desc: "Plataforma habitual para proyectos indie.",
   },
   {
-    name: "Correo",
-    handle: "Contacto directo",
-    href: "mailto:tu_correo@ejemplo.com",
-    short: "@",
-    desc:
-      "Vía directa para contacto académico, profesional o feedback más formal sobre el proyecto.",
-  },
-];
-
-const ideas = [
-  {
-    title: "Seguir la evolución",
-    desc:
-      "Las redes permiten que el proyecto no se quede encerrado en la web y tenga una continuidad fuera del portfolio.",
-  },
-  {
-    title: "Conectar con el autor",
-    desc:
-      "También funcionan como puente entre quien visita Kaelum y la persona o equipo que está detrás del trabajo.",
-  },
-  {
-    title: "Reforzar presencia digital",
-    desc:
-      "Ayudan a que la web se sienta más completa y más cercana a un portfolio real y no solo a una entrega cerrada.",
+    name: "LinkedIn",
+    url: "https://linkedin.com/",
+    desc: "Perfil profesional y contacto.",
   },
 ];
 ---
 
 <BaseLayout
-  title="Kaelum — Redes y presencia digital"
-  description="Redes y presencia digital del proyecto Kaelum: enlaces, plataformas y vías de seguimiento del portfolio."
+  title="Kaelum — Redes y contacto"
+  description="Redes sociales y presencia digital del proyecto Kaelum."
 >
-  <section class="hero hero-networks">
-    <div class="hero-copy">
-      <p class="kicker">Presencia digital</p>
-      <h1>Redes y presencia digital</h1>
+  <section class="hero contact-hero">
+    <p class="kicker">Contacto</p>
+    <h1>Redes y presencia digital</h1>
+    <p class="lead">
+      Si quieres seguir el desarrollo de Kaelum o contactar directamente, puedes
+      hacerlo a través de estos canales.
+    </p>
+    <div class="actions">
+      <a class="btn" href={`${base}contacto/opinion/`}>Dejar opinión</a>
+      <a class="btn primary" href={`${base}contacto/`} >Volver a contacto</a>
+    </div>
+  </section>
 
-      <p class="lead">
-        Esta sección reúne las principales vías externas desde las que se puede seguir el proyecto,
-        conocer mejor al autor o ampliar la presencia de <strong>Kaelum</strong> fuera de la propia web.
-        Sirve como punto de salida profesional, portfolio complementario y conexión directa.
-      </p>
+  <div class="grid">
+    <article class="card full">
+      <h2>Redes del proyecto</h2>
 
-      <div class="actions">
-        <a class="btn primary" href={`${base}contacto/`}>Volver a Contacto</a>
-        <a class="btn" href={`${base}contacto/opinion/`}>Ir a Tu opinión</a>
+      <div class="social-grid">
+        {
+          socials.map((s) => (
+            <a href={s.url} target="_blank" class="social-card">
+              <h3>{s.name}</h3>
+              <p class="muted">{s.desc}</p>
+            </a>
+          ))
+        }
       </div>
-    </div>
+    </article>
 
-    <aside class="hero-panel">
-      <p class="panel-kicker">Qué cubre este bloque</p>
-      <h2>Presencia más allá de la web</h2>
-      <p>
-        No todo el proyecto tiene por qué vivirse dentro de esta página. Las redes y plataformas
-        externas ayudan a dar continuidad al portfolio, reforzar la imagen profesional y facilitar
-        el seguimiento del trabajo presentado.
-      </p>
+    <article class="card">
+      <h2>Email</h2>
+      <p class="muted">Para contacto directo puedes escribir a:</p>
 
-      <ul class="panel-list">
-        <li><strong>Portfolio técnico:</strong> código y estructura.</li>
-        <li><strong>Perfil profesional:</strong> presentación del autor.</li>
-        <li><strong>Vídeo:</strong> tráiler y piezas audiovisuales.</li>
-        <li><strong>Contacto:</strong> vía directa y seguimiento.</li>
-      </ul>
-    </aside>
-  </section>
+      <a class="btn primary" href="mailto:victorhugojimenezmeseguer@gmail.com">
+        victorhugojimenezmeseguer@gmail.com
+      </a>
+    </article>
 
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Enlaces principales</p>
-      <h2>Dónde seguir o ampliar el proyecto</h2>
-      <p class="section-lead">
-        Aquí puedes colocar los enlaces reales del autor o del proyecto. La estructura ya queda preparada
-        para enseñar plataformas profesionales, técnicas y audiovisuales.
-      </p>
-    </header>
-
-    <div class="network-grid">
-      {networks.map((item) => (
-        <a class="network-card" href={item.href} target="_blank" rel="noreferrer">
-          <div class="network-top">
-            <span class="network-badge">{item.short}</span>
-            <div class="network-copy">
-              <h3>{item.name}</h3>
-              <p class="network-handle">{item.handle}</p>
-            </div>
-          </div>
-
-          <p>{item.desc}</p>
-          <span class="network-link">Abrir enlace</span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Por qué importa</p>
-      <h2>Una sección pequeña con bastante peso</h2>
-      <p class="section-lead">
-        Tener redes y enlaces bien planteados ayuda a que la web se sienta más completa y más cercana a un portfolio real.
-      </p>
-    </header>
-
-    <div class="ideas-grid">
-      {ideas.map((item) => (
-        <article class="idea-card">
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section split">
-    <article class="info-card">
-      <p class="kicker">Consejo práctico</p>
-      <h2>Deja aquí solo enlaces que de verdad aporten</h2>
-      <p>
-        No hace falta llenar esta sección con todas las redes posibles. Lo ideal es dejar solo
-        aquellas que refuercen el proyecto: repositorio, perfil profesional, vídeo y una vía clara
-        de contacto o seguimiento.
+    <article class="card">
+      <h2>Ubicación</h2>
+      <p class="muted">
+        El juego se desarrolla desde Jaén como parte de un portfolio
+        académico.
       </p>
     </article>
 
-    <article class="info-card accent">
-      <p class="kicker">Siguiente paso</p>
-      <h2>Después de redes, toca opinión</h2>
-      <p>
-        Una vez preparada la parte de presencia digital, el siguiente apartado lógico es
-        <strong> Tu opinión</strong>, para recoger feedback del proyecto y cubrir la parte de
-        formulario o interacción con quien visita la web.
-      </p>
+    <article class="card full">
+      <h2>Localización</h2>
 
-      <div class="actions">
-        <a class="btn primary" href={`${base}contacto/opinion/`}>Ir a Tu opinión</a>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d94672.91281954884!2d-3.8649675513672306!3d37.776590999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6dd70ed2af04d9%3A0xc83edecb2ba4e0ed!2sIES%20Virgen%20del%20Carmen!5e1!3m2!1ses!2ses!4v1773795201510!5m2!1ses!2ses"
+          width="600"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </article>
-  </section>
+  </div>
 
   <style>
-    .hero-networks{
-      display:grid;
-      grid-template-columns:1.35fr .95fr;
-      gap:24px;
-      align-items:stretch;
+    .contact-hero {
+      padding: 28px 24px;
     }
 
-    .hero-copy,
-    .hero-panel,
-    .network-card,
-    .idea-card,
-    .info-card{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:18px;
-      backdrop-filter:blur(8px);
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 14px;
     }
 
-    .hero-copy{
-      padding:28px;
+    .social-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s ease;
     }
 
-    .hero-panel{
-      padding:24px;
-      background:linear-gradient(180deg, rgba(80,140,255,.12), rgba(255,255,255,.03));
+    .social-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
     }
 
-    .kicker,
-    .panel-kicker{
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.75;
-      margin:0 0 8px;
-      font-size:.82rem;
+    .map-container {
+      margin-top: 12px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
     }
 
-    h1{
-      margin:0 0 12px;
-      font-size:clamp(2.6rem, 6vw, 4.2rem);
-      line-height:.95;
+    .map-container iframe {
+      width: 100%;
+      height: 380px;
+      border: 0;
     }
 
-    h2{
-      margin:0 0 10px;
-      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
-      line-height:1.05;
-    }
-
-    h3{
-      margin:0 0 6px;
-      font-size:1.06rem;
-    }
-
-    .lead,
-    .section-lead,
-    .hero-panel p,
-    .network-card p,
-    .idea-card p,
-    .info-card p{
-      line-height:1.6;
-      opacity:.94;
-      margin:0;
-      text-align:justify;
-    }
-
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:18px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:inherit;
-      text-decoration:none;
-      transition:.18s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .btn.primary{
-      background:linear-gradient(180deg, rgba(80,140,255,.28), rgba(80,140,255,.14));
-      border-color:rgba(128,176,255,.34);
-      box-shadow:0 10px 24px rgba(20,44,120,.18);
-    }
-
-    .panel-list{
-      margin:16px 0 0;
-      padding-left:18px;
-      display:grid;
-      gap:10px;
-      line-height:1.5;
-    }
-
-    .section{
-      margin-top:28px;
-    }
-
-    .section-head{
-      margin-bottom:14px;
-    }
-
-    .network-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .network-card{
-      padding:18px;
-      text-decoration:none;
-      color:inherit;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      transition:.18s ease;
-    }
-
-    .network-card:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.06);
-    }
-
-    .network-top{
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
-
-    .network-badge{
-      width:50px;
-      height:50px;
-      border-radius:14px;
-      display:grid;
-      place-items:center;
-      flex:0 0 auto;
-      font-weight:800;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(80,140,255,.16);
-    }
-
-    .network-handle{
-      opacity:.75;
-      font-size:.92rem;
-    }
-
-    .network-link{
-      margin-top:auto;
-      opacity:.86;
-      font-size:.95rem;
-    }
-
-    .ideas-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .idea-card,
-    .info-card{
-      padding:22px;
-    }
-
-    .split{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .info-card.accent{
-      background:linear-gradient(180deg, rgba(80,140,255,.12), rgba(255,255,255,.03));
-    }
-
-    @media (max-width: 980px){
-      .hero-networks,
-      .network-grid,
-      .ideas-grid,
-      .split{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 640px){
-      .hero-copy,
-      .hero-panel,
-      .network-card,
-      .idea-card,
-      .info-card{
-        padding:18px;
-      }
-
-      h1{
-        font-size:2.35rem;
+    @media (max-width: 800px) {
+      .social-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>

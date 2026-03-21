@@ -8,8 +8,8 @@ const base = import.meta.env.BASE_URL;
     <p class="kicker">Documentación</p>
     <h1>La estructura que sostiene Kaelum</h1>
     <p class="lead">
-      Detrás de lo visual y de lo jugable hay una capa de diseño, análisis y planificación
-      que ordena el proyecto desde dentro.
+      Detrás de lo visual y de lo jugable hay una capa de diseño, análisis, planificación y justificación
+      que ordena el proyecto desde dentro. Esta sección reúne esa parte más técnica y estratégica.
     </p>
   </section>
 
@@ -19,7 +19,7 @@ const base = import.meta.env.BASE_URL;
       <div class="hub-copy">
         <p class="kicker">Documento central</p>
         <h2>GDD</h2>
-        <p>La base donde Kaelum se define como videojuego.</p>
+        <p>La base donde Kaelum se define como videojuego: concepto, narrativa, sistemas, interfaz y estructura general.</p>
         <span class="hub-cta">Abrir apartado →</span>
       </div>
     </a>
@@ -29,7 +29,7 @@ const base = import.meta.env.BASE_URL;
       <div class="hub-copy">
         <p class="kicker">Lectura estratégica</p>
         <h2>Análisis</h2>
-        <p>DAFO, CAME y enfoques que ayudan a entender el proyecto.</p>
+        <p>DAFO y CAME para entender fortalezas, riesgos, oportunidades y decisiones reales del proyecto.</p>
         <span class="hub-cta">Abrir apartado →</span>
       </div>
     </a>
@@ -39,7 +39,7 @@ const base = import.meta.env.BASE_URL;
       <div class="hub-copy">
         <p class="kicker">Orden y tiempos</p>
         <h2>Planificación</h2>
-        <p>Roadmap, hitos y estructura del desarrollo.</p>
+        <p>Organización del trabajo, escenarios de desarrollo y lectura temporal del proyecto.</p>
         <span class="hub-cta">Abrir apartado →</span>
       </div>
     </a>
@@ -49,7 +49,37 @@ const base = import.meta.env.BASE_URL;
       <div class="hub-copy">
         <p class="kicker">Lectura visual</p>
         <h2>Métricas</h2>
-        <p>Diagramas y recursos que permiten entender Kaelum de un vistazo.</p>
+        <p>Diagramas, reparto jugable y recursos para entender Kaelum de un vistazo más técnico.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card presupuesto" href={`${base}documentacion/presupuesto/`}>
+      <span class="hub-number">05</span>
+      <div class="hub-copy">
+        <p class="kicker">Viabilidad</p>
+        <h2>Presupuesto</h2>
+        <p>Escenarios de desarrollo, estructura de costes y relación entre producción y difusión.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card equipo" href={`${base}documentacion/equipo/`}>
+      <span class="hub-number">06</span>
+      <div class="hub-copy">
+        <p class="kicker">Autoría y enfoque</p>
+        <h2>Equipo y visión</h2>
+        <p>Quién impulsa el proyecto, qué roles se asumen y desde qué visión creativa se construye Kaelum.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card folleto full" href={`${base}documentacion/folleto/`}>
+      <span class="hub-number">07</span>
+      <div class="hub-copy">
+        <p class="kicker">Resumen visual</p>
+        <h2>Folleto</h2>
+        <p>Versión condensada y presentable del proyecto, pensada como apoyo rápido para lectura o impresión.</p>
         <span class="hub-cta">Abrir apartado →</span>
       </div>
     </a>
@@ -101,6 +131,22 @@ const base = import.meta.env.BASE_URL;
       background:linear-gradient(180deg, rgba(34,211,238,.08), rgba(255,255,255,.03));
     }
 
+    .hub-card.presupuesto{
+      background:linear-gradient(180deg, rgba(139,92,246,.08), rgba(255,255,255,.03));
+    }
+
+    .hub-card.equipo{
+      background:linear-gradient(180deg, rgba(90,160,255,.08), rgba(255,255,255,.03));
+    }
+
+    .hub-card.folleto{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    }
+
+    .hub-card.full{
+      grid-column:1 / -1;
+    }
+
     .hub-number{
       width:44px;
       height:44px;
@@ -135,6 +181,10 @@ const base = import.meta.env.BASE_URL;
     @media (max-width: 860px){
       .hub-grid{
         grid-template-columns:1fr;
+      }
+
+      .hub-card.full{
+        grid-column:auto;
       }
 
       .hub-card{

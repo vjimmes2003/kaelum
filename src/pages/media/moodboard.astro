@@ -2,61 +2,102 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
-//const imgUrl = `${base}images/media/moodboard.jpg`;
-const imgUrl = `${base}images/media/Moodboard_QR.png`;
-
+const moodboard = `${base}images/media/Moodboard_QR.png`;
 ---
 
-<BaseLayout
-  title="Kaelum — Moodboard"
-  description="Tono, arte, universo y promesa de Kaelum.">
+<BaseLayout title="Kaelum — Moodboard">
   <section class="hero">
     <p class="kicker">Visión</p>
     <h1>Moodboard</h1>
     <p class="lead">
-      Cada disparo cuenta. Cada decisión pesa.
-      Kaelum no busca ser complaciente: busca ser honesto.
+      Cada disparo cuenta. Cada decisión pesa. Kaelum no busca ser complaciente:
+      busca ser honesto.
     </p>
 
     <div class="actions noprint">
-      <a class="btn" href={`${base}media/`}>Volver a Visión</a>
-      <a class="btn primary" href={imgUrl} download>Descargar imagen</a>
+      <a class="btn" href={`${base}media/`}>Volver a Media</a>
+      <a class="btn primary" href={moodboard} download>Descargar imagen</a>
     </div>
   </section>
 
-  <section class="card full">
-    <img
-      src={imgUrl}
-      alt="Moodboard de Kaelum"
-      style="width:100%; border-radius: var(--radius);"
-      loading="eager"
-    />
+  <section class="moodboard-wrap">
+    <img src={moodboard} class="moodboard-img" />
   </section>
 
-  <div class="grid">
-    <div class="card">
-      <h3>Qué es Kaelum</h3>
-      <p class="muted">
-        Shooter en primera persona donde juegas tú, no el sistema.
-        Combate claro, decisiones reales y aprendizaje constante.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Por qué es diferente</h3>
-      <p class="muted">
-        Sin progreso artificial.
-        Sin héroes invencibles.
-        Si fallas, lo sabes. Si ganas, te lo has ganado.
-      </p>
-    </div>
-
-    <div class="card full">
-      <h3>Tono, arte y universo</h3>
-      <p class="muted">
-        El arte no satura: acompaña.
-        El mundo se descubre jugando, no mirando cinemáticas.
-      </p>
-    </div>
+  <div id="lightbox" class="lightbox">
+    <img id="lightbox-img" />
   </div>
+
+  <style>
+    .moodboard-wrap {
+      margin-top: 28px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: transparent;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .moodboard-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s;
+      z-index: 999;
+    }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      border-radius: 12px;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const images = document.querySelectorAll<HTMLImageElement>("img");
+
+      const lightbox = document.getElementById("lightbox");
+
+      const lightboxImg = document.getElementById(
+        "lightbox-img",
+      ) as HTMLImageElement;
+
+      if (!lightbox || !lightboxImg) {
+        console.warn(
+          "No se encontraron los elementos del lightbox en el HTML.",
+        );
+        return;
+      }
+
+      images.forEach((img) => {
+        img.addEventListener("click", () => {
+          lightbox.classList.add("open");
+
+          lightboxImg.src = img.src;
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("open");
+      });
+    });
+  </script>
 </BaseLayout>

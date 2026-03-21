@@ -1,7 +1,7 @@
 # Dump completo de archivos .astro
 
 - Carpeta escaneada: `src`
-- Archivos encontrados: **41**
+- Archivos encontrados: **40**
 
 
 ---
@@ -111,399 +111,148 @@ const pitchPdf = `${base}pitch/kaelum-pitch.pdf`;
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
-
-const blocks = [
-  {
-    number: "01",
-    title: "Tu opinión",
-    desc:
-      "Espacio pensado para recoger feedback, impresiones o respuestas de quien visita la web y quiere dejar una valoración del proyecto.",
-    href: `${base}contacto/opinion/`,
-    tag: "Feedback",
-  },
-  {
-    number: "02",
-    title: "Redes y presencia digital",
-    desc:
-      "Enlaces a perfiles, canales y espacios donde seguir el proyecto o conocer mejor al autor y su trabajo.",
-    href: `${base}contacto/redes/`,
-    tag: "Presencia",
-  },
-];
-
-const strengths = [
-  {
-    title: "Cierre natural del portfolio",
-    desc:
-      "Después de revisar el juego, la parte visual, la documentación y el desarrollo, aquí se concentra la conexión humana y profesional del proyecto.",
-  },
-  {
-    title: "Apoyo a la evaluación",
-    desc:
-      "Esta sección ayuda a cubrir contacto, feedback, redes, autoría y parte de la presentación general exigida por la rúbrica.",
-  },
-  {
-    title: "Puerta a la continuidad",
-    desc:
-      "Sirve para que quien llegue hasta el final pueda seguir el proyecto, contactar contigo o dejar una impresión útil.",
-  },
-];
-
-const contactWays = [
-  "Presentación del autor o del proyecto",
-  "Acceso a redes y perfiles",
-  "Formulario o vía de feedback",
-  "Espacio para presencia digital y localización",
-];
 ---
 
 <BaseLayout
   title="Kaelum — Contacto"
-  description="Bloque final de Kaelum: autor, feedback, redes y presencia digital del proyecto."
+  description="Contacto, feedback y presencia digital del proyecto Kaelum."
 >
-  <section class="hero hero-contact">
-    <div class="hero-copy">
-      <p class="kicker">Cierre del recorrido</p>
-      <h1>Contacto</h1>
+  <section class="hero contact-hero">
+    <p class="kicker">Contacto</p>
+    <h1>¿Te interesa Kaelum?</h1>
+    <p class="lead">
+      Puedes dejar tu opinión sobre el proyecto o seguir su evolución desde aquí.
+    </p>
 
-      <p class="lead">
-        Esta sección funciona como el <strong>punto final natural</strong> del portfolio. Aquí
-        se concentra la parte más humana y externa del proyecto: quién está detrás de Kaelum,
-        cómo se puede seguir su evolución, dónde dejar feedback y qué vías existen para conectar
-        con el trabajo presentado en la web.
-      </p>
+    <div class="actions">
+      <a class="btn primary" href={`${base}contacto/opinion/`}>Dejar opinión</a>
+      <a class="btn" href={`${base}contacto/redes/`}>Ver redes</a>
+    </div>
+  </section>
 
-      <div class="actions">
-        <a class="btn primary" href={`${base}contacto/opinion/`}>Dejar opinión</a>
-        <a class="btn" href={`${base}contacto/redes/`}>Ver redes</a>
+  <section class="contact-grid">
+    <a class="contact-card opinion" href={`${base}contacto/opinion/`}>
+      <span class="contact-number">01</span>
+      <div class="contact-copy">
+        <p class="kicker">Feedback</p>
+        <h2>Tu opinión</h2>
+        <p>
+          Cuéntame qué te transmite la web, qué funciona y qué mejorarías.
+        </p>
+        <span class="contact-cta">Abrir apartado →</span>
       </div>
-    </div>
+    </a>
 
-    <aside class="hero-panel">
-      <p class="panel-kicker">Qué reúne este bloque</p>
-      <h2>Autor, feedback y presencia digital</h2>
-      <p>
-        Contacto no se plantea solo como una ficha de datos, sino como una sección que remata la
-        web con una lectura más completa del proyecto: autoría, conexión externa, participación y
-        posibilidades de seguimiento.
-      </p>
-
-      <ul class="panel-list">
-        {contactWays.map((item) => <li>{item}</li>)}
-      </ul>
-    </aside>
-  </section>
-
-  <section class="section split">
-    <article class="profile-card">
-      <p class="kicker">Sobre el proyecto</p>
-      <h2>Quién está detrás de Kaelum</h2>
-      <p>
-        Kaelum se presenta aquí como un juego de portfolio y documentación jugable centrado en
-        explicar el videojuego de forma clara, estructurada y visual. Esta parte puede funcionar
-        tanto como presentación del autor como del equipo responsable, según cómo quieras rematarla
-        más adelante.
-      </p>
-      <p class="spaced">
-        Aquí puedes incluir una presentación breve más personal o profesional: nombre, perfil,
-        rol principal en el proyecto, intereses o incluso una pequeña nota sobre el objetivo de la web.
-      </p>
-    </article>
-
-    <article class="profile-card accent">
-      <p class="kicker">Utilidad de esta sección</p>
-      <h2>No solo cerrar, también conectar</h2>
-      <p>
-        Esta parte ayuda a que la web no termine en seco. En vez de acabar simplemente con documentos
-        o devlogs, ofrece un espacio para seguir el proyecto, contactar contigo y recoger impresiones
-        de quien lo visita.
-      </p>
-      <div class="actions">
-        <a class="btn" href={`${base}contacto/opinion/`}>Ir a opinión</a>
-        <a class="btn primary" href={`${base}contacto/redes/`}>Ir a redes</a>
+    <a class="contact-card redes" href={`${base}contacto/redes/`}>
+      <span class="contact-number">02</span>
+      <div class="contact-copy">
+        <p class="kicker">Presencia digital</p>
+        <h2>Redes y contacto</h2>
+        <p>
+          Accede a perfiles, plataformas y vías para seguir el proyecto.
+        </p>
+        <span class="contact-cta">Abrir apartado →</span>
       </div>
-    </article>
+    </a>
   </section>
 
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Subapartados</p>
-      <h2>Qué puedes encontrar aquí</h2>
-      <p class="section-lead">
-        Contacto se divide en bloques sencillos para que la parte final de la web siga siendo clara y útil.
-      </p>
-    </header>
-
-    <div class="blocks-grid">
-      {blocks.map((item) => (
-        <a class="block-card" href={item.href}>
-          <div class="block-top">
-            <span class="block-number">{item.number}</span>
-            <span class="block-tag">{item.tag}</span>
-          </div>
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-          <span class="block-link">Abrir apartado</span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Por qué encaja aquí</p>
-      <h2>Una sección pequeña pero importante</h2>
-      <p class="section-lead">
-        Aunque no sea el bloque más extenso, Contacto ayuda a completar la web como portfolio real y no solo como contenedor de páginas.
-      </p>
-    </header>
-
-    <div class="value-grid">
-      {strengths.map((item) => (
-        <article class="value-card">
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section cta-section">
-    <div class="cta-card">
-      <p class="kicker">Recorrido completo</p>
-      <h2>Con esto quedan cerrados los bloques principales del sitio</h2>
-      <p>
-        Desde aquí ya tendrías consolidada la estructura general de la web: <strong>Inicio</strong>,
-        <strong> Juego</strong>, <strong>Media</strong>, <strong>Documentación</strong>,
-        <strong> Desarrollo</strong> y <strong>Contacto</strong>. Lo siguiente es rematar
-        subpáginas concretas para cubrir todos los puntos de la rúbrica y pulir la consistencia final.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={base}>Volver al inicio</a>
-      </div>
-    </div>
+  <section class="contact-footer-note">
+    <p class="muted">
+      Si has llegado hasta aquí, ya conoces bastante bien Kaelum. El siguiente paso es conectar.
+    </p>
   </section>
 
   <style>
-    .hero-contact{
-      display:grid;
-      grid-template-columns: 1.35fr .95fr;
-      gap:24px;
-      align-items:stretch;
+    .contact-hero{
+      text-align:center;
+      padding:28px 22px;
     }
 
-    .hero-copy,
-    .hero-panel,
-    .profile-card,
-    .block-card,
-    .value-card,
-    .cta-card{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:18px;
-      backdrop-filter: blur(8px);
+    .contact-hero .lead{
+      margin-inline:auto;
+      max-width:60ch;
     }
 
-    .hero-copy{
-      padding:28px;
-    }
-
-    .hero-panel{
-      padding:24px;
-      background:
-        linear-gradient(180deg, rgba(255, 111, 163, .12), rgba(255,255,255,.03));
-    }
-
-    .kicker,
-    .panel-kicker{
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.75;
-      margin:0 0 8px;
-      font-size:.82rem;
-    }
-
-    h1{
-      margin:0 0 12px;
-      font-size:clamp(2.6rem, 6vw, 4.2rem);
-      line-height:.95;
-    }
-
-    h2{
-      margin:0 0 10px;
-      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
-      line-height:1.05;
-    }
-
-    h3{
-      margin:0 0 10px;
-      font-size:1.12rem;
-    }
-
-    .lead,
-    .section-lead,
-    .hero-panel p,
-    .profile-card p,
-    .block-card p,
-    .value-card p,
-    .cta-card p{
-      line-height:1.6;
-      opacity:.94;
-      margin:0;
-      text-align:justify;
-    }
-
-    .spaced{
-      margin-top:14px;
-    }
-
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
+    .contact-grid{
       margin-top:18px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:inherit;
-      text-decoration:none;
-      transition:.18s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .btn.primary{
-      background:linear-gradient(180deg, rgba(255, 111, 163, .30), rgba(255, 111, 163, .14));
-      border-color:rgba(255, 165, 198, .34);
-      box-shadow:0 10px 24px rgba(120,20,68,.18);
-    }
-
-    .panel-list{
-      margin:16px 0 0;
-      padding-left:18px;
-      display:grid;
-      gap:10px;
-      line-height:1.5;
-    }
-
-    .section{
-      margin-top:28px;
-    }
-
-    .section-head{
-      margin-bottom:14px;
-    }
-
-    .split{
       display:grid;
       grid-template-columns:repeat(2, minmax(0,1fr));
       gap:14px;
     }
 
-    .profile-card,
-    .value-card,
-    .cta-card{
-      padding:22px;
-    }
-
-    .profile-card.accent,
-    .cta-card{
-      background:
-        linear-gradient(180deg, rgba(255, 111, 163, .14), rgba(255,255,255,.03));
-    }
-
-    .blocks-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .block-card{
-      padding:18px;
-      text-decoration:none;
-      color:inherit;
-      transition:.18s ease;
+    .contact-card{
       display:flex;
-      flex-direction:column;
-      gap:10px;
+      gap:16px;
+      align-items:flex-start;
+      text-decoration:none;
+      color:var(--text);
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:0 16px 40px rgba(0,0,0,.22);
+      transition:transform .14s ease, background .14s ease, border-color .14s ease;
     }
 
-    .block-card:hover{
+    .contact-card:hover{
       transform:translateY(-2px);
       background:rgba(255,255,255,.06);
+      border-color:rgba(255,255,255,.16);
     }
 
-    .block-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
+    .contact-card.opinion{
+      background:
+        linear-gradient(180deg, rgba(139,92,246,.12), rgba(255,255,255,.03));
     }
 
-    .block-number{
-      width:42px;
-      height:42px;
-      border-radius:12px;
+    .contact-card.redes{
+      background:
+        linear-gradient(180deg, rgba(34,211,238,.10), rgba(255,255,255,.03));
+    }
+
+    .contact-number{
+      width:44px;
+      height:44px;
+      flex:0 0 auto;
+      border-radius:14px;
       display:grid;
       place-items:center;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255, 111, 163, .16);
+      font-weight:900;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      color:var(--text);
     }
 
-    .block-tag{
-      border-radius:999px;
-      padding:6px 10px;
-      font-size:.8rem;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.05);
-      opacity:.9;
+    .contact-copy h2{
+      margin:2px 0 8px;
+      font-size:1.45rem;
     }
 
-    .block-link{
-      margin-top:auto;
-      opacity:.86;
-      font-size:.95rem;
+    .contact-copy p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.55;
     }
 
-    .value-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
+    .contact-cta{
+      display:inline-block;
+      margin-top:14px;
+      font-weight:800;
+      color:var(--text);
     }
 
-    @media (max-width: 980px){
-      .hero-contact,
-      .split,
-      .blocks-grid,
-      .value-grid{
+    .contact-footer-note{
+      margin-top:18px;
+      text-align:center;
+    }
+
+    @media (max-width: 860px){
+      .contact-grid{
         grid-template-columns:1fr;
       }
-    }
 
-    @media (max-width: 640px){
-      .hero-copy,
-      .hero-panel,
-      .profile-card,
-      .block-card,
-      .value-card,
-      .cta-card{
+      .contact-card{
         padding:18px;
-      }
-
-      h1{
-        font-size:2.35rem;
       }
     }
   </style>
@@ -531,8 +280,14 @@ const base = import.meta.env.BASE_URL;
 
       <p class="lead">
         Esta sección está pensada para recoger impresiones, sugerencias y valoraciones sobre
-        <strong> Kaelum</strong>. Más allá de enseñar el proyecto, también interesa saber cómo
+        <strong>Kaelum</strong>. Más allá de enseñar el proyecto, también interesa saber cómo
         se percibe desde fuera: qué funciona, qué llama la atención y qué podría mejorar.
+      </p>
+
+      <p class="muted hero-extra">
+        Como portfolio, esta web no solo busca enseñar un videojuego, sino también demostrar
+        su identidad, su estructura y el trabajo que hay detrás. Por eso el feedback aquí tiene valor real:
+        ayuda a detectar si la propuesta se entiende, si transmite fuerza visual y si deja claro qué hace especial a Kaelum.
       </p>
 
       <div class="actions">
@@ -541,7 +296,6 @@ const base = import.meta.env.BASE_URL;
         <a class="btn" href={`${base}contacto/redes/`}>Ver redes</a>
       </div>
     </div>
-
     <aside class="hero-panel">
       <p class="panel-kicker">Qué aporta este bloque</p>
       <h2>Una forma útil de recoger feedback real</h2>
@@ -553,8 +307,9 @@ const base = import.meta.env.BASE_URL;
 
       <ul class="panel-list">
         <li><strong>Valoración:</strong> impresión general del proyecto.</li>
-        <li><strong>Mejoras:</strong> puntos débiles o sugerencias.</li>
-        <li><strong>Utilidad:</strong> feedback para seguir refinando la web.</li>
+        <li><strong>Mejoras:</strong> puntos débiles o sugerencias concretas.</li>
+        <li><strong>Claridad:</strong> si la web explica bien el juego o no.</li>
+        <li><strong>Utilidad:</strong> feedback para seguir refinando la presentación.</li>
       </ul>
     </aside>
   </section>
@@ -568,301 +323,176 @@ const base = import.meta.env.BASE_URL;
         fuerza visual, interés del juego, estructura de la documentación o cualquier comentario que
         ayude a mejorar Kaelum como portfolio y como propuesta jugable.
       </p>
+
+      <ul class="list">
+        <li>Qué te transmite el concepto del videojuego.</li>
+        <li>Si la web se entiende con facilidad o se siente confusa.</li>
+        <li>Qué sección te ha parecido más fuerte o más floja.</li>
+        <li>Qué cambiarías para que el proyecto impacte más.</li>
+      </ul>
     </article>
 
-    <article class="info-card accent">
-      <p class="kicker">Importante</p>
-      <h2>Se puede conectar después a un sistema real</h2>
+    <article class="info-card emphasis">
+      <p class="kicker">Por qué importa</p>
+      <h2>Mirarlo desde fuera cambia mucho</h2>
       <p>
-        Aunque esta versión del formulario puede usarse ya como bloque funcional y evaluable dentro
-        de la web, más adelante se puede conectar fácilmente con una herramienta externa de recogida
-        de respuestas.
+        Cuando uno trabaja demasiado tiempo en su propio proyecto, deja de ver ciertos fallos de claridad,
+        ritmo o presentación. El feedback externo sirve precisamente para eso: detectar lo que desde dentro
+        ya cuesta notar.
+      </p>
+
+      <p class="muted">
+        En otras palabras: esta parte no está aquí de adorno. Es una herramienta para seguir puliendo el portfolio.
       </p>
     </article>
   </section>
 
-  <section class="section" id="formulario">
-    <header class="section-head">
-      <p class="kicker">Formulario</p>
-      <h2>Deja tu valoración</h2>
-      <p class="section-lead">
-        Puedes usar este formulario como base visual del feedback del proyecto y después conectarlo a un sistema real si lo necesitas.
+  <section class="grid" id="formulario">
+    <article class="card full">
+      <h2>Formulario de feedback</h2>
+
+      <form
+        action="https://formspree.io/f/mwvrwjry"
+        method="POST"
+        class="contact-form"
+      >
+        <label>
+          Nombre
+          <input type="text" name="name" required />
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" required />
+        </label>
+
+        <label>
+          ¿Qué te ha parecido el proyecto?
+          <textarea
+            name="message"
+            rows="7"
+            placeholder="Puedes comentar qué te transmite Kaelum, qué te parece la web, qué parte mejorarías o qué te ha llamado más la atención..."
+            required
+          ></textarea>
+        </label>
+
+        <button type="submit" class="btn primary">
+          Enviar opinión
+        </button>
+      </form>
+
+      <p class="small muted">
+        Este formulario recoge opiniones para mejorar la presentación del proyecto y su claridad general.
       </p>
-    </header>
-
-    <form class="feedback-form" action="mailto:tu_correo@ejemplo.com" method="post" enctype="text/plain">
-      <div class="form-grid">
-        <label class="field">
-          <span>Nombre</span>
-          <input type="text" name="nombre" placeholder="Tu nombre" />
-        </label>
-
-        <label class="field">
-          <span>Correo electrónico</span>
-          <input type="email" name="email" placeholder="tu_correo@ejemplo.com" />
-        </label>
-
-        <label class="field">
-          <span>Perfil</span>
-          <select name="perfil">
-            <option value="">Selecciona una opción</option>
-            <option>Profesor / evaluador</option>
-            <option>Jugador</option>
-            <option>Compañero / equipo</option>
-            <option>Profesional del sector</option>
-            <option>Otro</option>
-          </select>
-        </label>
-
-        <label class="field">
-          <span>Valoración general</span>
-          <select name="valoracion">
-            <option value="">Selecciona una puntuación</option>
-            <option>5 - Muy buena</option>
-            <option>4 - Buena</option>
-            <option>3 - Correcta</option>
-            <option>2 - Mejorable</option>
-            <option>1 - Floja</option>
-          </select>
-        </label>
-
-        <label class="field full">
-          <span>Qué es lo que más te ha gustado</span>
-          <textarea
-            name="gustado"
-            rows="4"
-            placeholder="Por ejemplo: la estructura, la parte visual, la claridad del proyecto, la idea del juego..."
-          ></textarea>
-        </label>
-
-        <label class="field full">
-          <span>Qué mejorarías</span>
-          <textarea
-            name="mejoraria"
-            rows="4"
-            placeholder="Aquí puedes dejar sugerencias, puntos débiles o elementos que reforzarías."
-          ></textarea>
-        </label>
-
-        <label class="field full">
-          <span>Comentario adicional</span>
-          <textarea
-            name="mensaje"
-            rows="5"
-            placeholder="Cualquier impresión extra sobre Kaelum o sobre la web."
-          ></textarea>
-        </label>
-      </div>
-
-      <div class="form-actions">
-        <button class="btn primary" type="submit">Enviar opinión</button>
-        <button class="btn" type="reset">Limpiar formulario</button>
-      </div>
-    </form>
-  </section>
-
-  <section class="section cta-section">
-    <div class="cta-card">
-      <p class="kicker">Siguiente paso</p>
-      <h2>Con esto, Contacto ya queda bastante más completo</h2>
-      <p>
-        Una vez cerradas <strong>Redes</strong> y <strong>Tu opinión</strong>, la sección de
-        Contacto ya cubre bastante bien la parte de presencia digital, feedback y cierre del
-        recorrido del portfolio.
-      </p>
-
-      <div class="actions">
-        <a class="btn primary" href={`${base}contacto/`}>Volver a Contacto</a>
-      </div>
-    </div>
+    </article>
   </section>
 
   <style>
     .hero-opinion{
       display:grid;
-      grid-template-columns:1.35fr .95fr;
-      gap:24px;
+      grid-template-columns:1.3fr .9fr;
+      gap:18px;
       align-items:stretch;
-    }
-
-    .hero-copy,
-    .hero-panel,
-    .info-card,
-    .feedback-form,
-    .cta-card{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:18px;
-      backdrop-filter:blur(8px);
+      padding:28px 24px;
     }
 
     .hero-copy{
-      padding:28px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      gap:12px;
+    }
+
+    .hero-extra{
+      margin:0;
+      line-height:1.65;
+      max-width:70ch;
     }
 
     .hero-panel{
-      padding:24px;
-      background:linear-gradient(180deg, rgba(120,210,150,.12), rgba(255,255,255,.03));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(139,92,246,.10), rgba(255,255,255,.03));
+      padding:20px;
+      box-shadow:0 16px 40px rgba(0,0,0,.22);
     }
 
-    .kicker,
     .panel-kicker{
-      letter-spacing:.08em;
+      margin:0 0 6px;
+      color:var(--muted2);
       text-transform:uppercase;
-      opacity:.75;
-      margin:0 0 8px;
-      font-size:.82rem;
+      letter-spacing:.08em;
+      font-size:.78rem;
+      font-weight:800;
     }
 
-    h1{
-      margin:0 0 12px;
-      font-size:clamp(2.6rem, 6vw, 4.2rem);
-      line-height:.95;
-    }
-
-    h2{
-      margin:0 0 10px;
-      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
-      line-height:1.05;
-    }
-
-    .lead,
-    .section-lead,
-    .hero-panel p,
-    .info-card p,
-    .cta-card p{
-      line-height:1.6;
-      opacity:.94;
-      margin:0;
-      text-align:justify;
+    .hero-panel h2{
+      margin-bottom:10px;
+      font-size:1.35rem;
     }
 
     .panel-list{
-      margin:16px 0 0;
+      margin:14px 0 0;
       padding-left:18px;
-      display:grid;
-      gap:10px;
+      color:var(--muted);
+    }
+
+    .panel-list li{
+      margin:8px 0;
       line-height:1.5;
     }
 
-    .actions,
-    .form-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
+    .section.split{
       margin-top:18px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:inherit;
-      text-decoration:none;
-      transition:.18s ease;
-      cursor:pointer;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .btn.primary{
-      background:linear-gradient(180deg, rgba(120,210,150,.28), rgba(120,210,150,.14));
-      border-color:rgba(160,232,182,.34);
-      box-shadow:0 10px 24px rgba(20,120,60,.18);
-    }
-
-    .section{
-      margin-top:28px;
-    }
-
-    .section-head{
-      margin-bottom:14px;
-    }
-
-    .split{
       display:grid;
       grid-template-columns:repeat(2, minmax(0,1fr));
       gap:14px;
     }
 
-    .info-card,
-    .cta-card,
-    .feedback-form{
-      padding:22px;
+    .info-card{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.03);
+      padding:20px;
+      box-shadow:0 16px 40px rgba(0,0,0,.18);
     }
 
-    .info-card.accent,
-    .cta-card{
-      background:linear-gradient(180deg, rgba(120,210,150,.12), rgba(255,255,255,.03));
+    .info-card.emphasis{
+      background:linear-gradient(180deg, rgba(34,211,238,.08), rgba(255,255,255,.03));
     }
 
-    .form-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .field{
+    .contact-form{
       display:flex;
       flex-direction:column;
-      gap:8px;
+      gap:16px;
+      margin-top:14px;
     }
 
-    .field.full{
-      grid-column:1 / -1;
+    .contact-form label{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      font-weight:700;
     }
 
-    .field span{
-      font-size:.95rem;
-      opacity:.9;
-    }
-
-    .field input,
-    .field select,
-    .field textarea{
-      width:100%;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.18);
-      color:inherit;
+    .contact-form input,
+    .contact-form textarea{
       padding:12px 14px;
-      font:inherit;
-      resize:vertical;
-      box-sizing:border-box;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.04);
+      color:var(--text);
     }
 
-    .field input::placeholder,
-    .field textarea::placeholder{
-      color:rgba(255,255,255,.45);
+    .contact-form textarea{
+      resize:vertical;
+      line-height:1.55;
     }
 
     @media (max-width: 980px){
       .hero-opinion,
-      .split,
-      .form-grid{
+      .section.split{
         grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 640px){
-      .hero-copy,
-      .hero-panel,
-      .info-card,
-      .feedback-form,
-      .cta-card{
-        padding:18px;
-      }
-
-      h1{
-        font-size:2.35rem;
       }
     }
   </style>
@@ -878,385 +508,139 @@ const base = import.meta.env.BASE_URL;
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
-const networks = [
+const socials = [
   {
     name: "GitHub",
-    handle: "Repositorio / portfolio técnico",
-    href: "https://github.com/",
-    short: "GH",
-    desc:
-      "Espacio ideal para alojar código, documentación técnica, estructura web y evolución del proyecto.",
-  },
-  {
-    name: "LinkedIn",
-    handle: "Perfil profesional",
-    href: "https://www.linkedin.com/",
-    short: "in",
-    desc:
-      "Canal enfocado a visibilidad profesional, portfolio, proyecto y presentación formal del trabajo.",
+    url: "https://github.com/vjimmes2003/kaelum",
+    desc: "Repositorio del proyecto y desarrollo.",
   },
   {
     name: "YouTube",
-    handle: "Vídeos y tráileres",
-    href: "https://www.youtube.com/",
-    short: "YT",
-    desc:
-      "Lugar recomendado para alojar el tráiler, devlogs en vídeo o material audiovisual del proyecto.",
+    url: "https://youtube.com/",
+    desc: "Tráileres y contenido audiovisual.",
   },
   {
     name: "Itch.io",
-    handle: "Página del juego",
-    href: "https://itch.io/",
-    short: "Itch",
-    desc:
-      "Muy útil si más adelante quieres mostrar builds, material promocional o una ficha pública del juego.",
+    url: "https://itch.io/",
+    desc: "Plataforma habitual para proyectos indie.",
   },
   {
-    name: "Correo",
-    handle: "Contacto directo",
-    href: "mailto:tu_correo@ejemplo.com",
-    short: "@",
-    desc:
-      "Vía directa para contacto académico, profesional o feedback más formal sobre el proyecto.",
-  },
-];
-
-const ideas = [
-  {
-    title: "Seguir la evolución",
-    desc:
-      "Las redes permiten que el proyecto no se quede encerrado en la web y tenga una continuidad fuera del portfolio.",
-  },
-  {
-    title: "Conectar con el autor",
-    desc:
-      "También funcionan como puente entre quien visita Kaelum y la persona o equipo que está detrás del trabajo.",
-  },
-  {
-    title: "Reforzar presencia digital",
-    desc:
-      "Ayudan a que la web se sienta más completa y más cercana a un portfolio real y no solo a una entrega cerrada.",
+    name: "LinkedIn",
+    url: "https://linkedin.com/",
+    desc: "Perfil profesional y contacto.",
   },
 ];
 ---
 
 <BaseLayout
-  title="Kaelum — Redes y presencia digital"
-  description="Redes y presencia digital del proyecto Kaelum: enlaces, plataformas y vías de seguimiento del portfolio."
+  title="Kaelum — Redes y contacto"
+  description="Redes sociales y presencia digital del proyecto Kaelum."
 >
-  <section class="hero hero-networks">
-    <div class="hero-copy">
-      <p class="kicker">Presencia digital</p>
-      <h1>Redes y presencia digital</h1>
+  <section class="hero contact-hero">
+    <p class="kicker">Contacto</p>
+    <h1>Redes y presencia digital</h1>
+    <p class="lead">
+      Si quieres seguir el desarrollo de Kaelum o contactar directamente, puedes
+      hacerlo a través de estos canales.
+    </p>
+    <div class="actions">
+      <a class="btn" href={`${base}contacto/opinion/`}>Dejar opinión</a>
+      <a class="btn primary" href={`${base}contacto/`} >Volver a contacto</a>
+    </div>
+  </section>
 
-      <p class="lead">
-        Esta sección reúne las principales vías externas desde las que se puede seguir el proyecto,
-        conocer mejor al autor o ampliar la presencia de <strong>Kaelum</strong> fuera de la propia web.
-        Sirve como punto de salida profesional, portfolio complementario y conexión directa.
-      </p>
+  <div class="grid">
+    <article class="card full">
+      <h2>Redes del proyecto</h2>
 
-      <div class="actions">
-        <a class="btn primary" href={`${base}contacto/`}>Volver a Contacto</a>
-        <a class="btn" href={`${base}contacto/opinion/`}>Ir a Tu opinión</a>
+      <div class="social-grid">
+        {
+          socials.map((s) => (
+            <a href={s.url} target="_blank" class="social-card">
+              <h3>{s.name}</h3>
+              <p class="muted">{s.desc}</p>
+            </a>
+          ))
+        }
       </div>
-    </div>
+    </article>
 
-    <aside class="hero-panel">
-      <p class="panel-kicker">Qué cubre este bloque</p>
-      <h2>Presencia más allá de la web</h2>
-      <p>
-        No todo el proyecto tiene por qué vivirse dentro de esta página. Las redes y plataformas
-        externas ayudan a dar continuidad al portfolio, reforzar la imagen profesional y facilitar
-        el seguimiento del trabajo presentado.
-      </p>
+    <article class="card">
+      <h2>Email</h2>
+      <p class="muted">Para contacto directo puedes escribir a:</p>
 
-      <ul class="panel-list">
-        <li><strong>Portfolio técnico:</strong> código y estructura.</li>
-        <li><strong>Perfil profesional:</strong> presentación del autor.</li>
-        <li><strong>Vídeo:</strong> tráiler y piezas audiovisuales.</li>
-        <li><strong>Contacto:</strong> vía directa y seguimiento.</li>
-      </ul>
-    </aside>
-  </section>
+      <a class="btn primary" href="mailto:victorhugojimenezmeseguer@gmail.com">
+        victorhugojimenezmeseguer@gmail.com
+      </a>
+    </article>
 
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Enlaces principales</p>
-      <h2>Dónde seguir o ampliar el proyecto</h2>
-      <p class="section-lead">
-        Aquí puedes colocar los enlaces reales del autor o del proyecto. La estructura ya queda preparada
-        para enseñar plataformas profesionales, técnicas y audiovisuales.
-      </p>
-    </header>
-
-    <div class="network-grid">
-      {networks.map((item) => (
-        <a class="network-card" href={item.href} target="_blank" rel="noreferrer">
-          <div class="network-top">
-            <span class="network-badge">{item.short}</span>
-            <div class="network-copy">
-              <h3>{item.name}</h3>
-              <p class="network-handle">{item.handle}</p>
-            </div>
-          </div>
-
-          <p>{item.desc}</p>
-          <span class="network-link">Abrir enlace</span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Por qué importa</p>
-      <h2>Una sección pequeña con bastante peso</h2>
-      <p class="section-lead">
-        Tener redes y enlaces bien planteados ayuda a que la web se sienta más completa y más cercana a un portfolio real.
-      </p>
-    </header>
-
-    <div class="ideas-grid">
-      {ideas.map((item) => (
-        <article class="idea-card">
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section split">
-    <article class="info-card">
-      <p class="kicker">Consejo práctico</p>
-      <h2>Deja aquí solo enlaces que de verdad aporten</h2>
-      <p>
-        No hace falta llenar esta sección con todas las redes posibles. Lo ideal es dejar solo
-        aquellas que refuercen el proyecto: repositorio, perfil profesional, vídeo y una vía clara
-        de contacto o seguimiento.
+    <article class="card">
+      <h2>Ubicación</h2>
+      <p class="muted">
+        El juego se desarrolla desde Jaén como parte de un portfolio
+        académico.
       </p>
     </article>
 
-    <article class="info-card accent">
-      <p class="kicker">Siguiente paso</p>
-      <h2>Después de redes, toca opinión</h2>
-      <p>
-        Una vez preparada la parte de presencia digital, el siguiente apartado lógico es
-        <strong> Tu opinión</strong>, para recoger feedback del proyecto y cubrir la parte de
-        formulario o interacción con quien visita la web.
-      </p>
+    <article class="card full">
+      <h2>Localización</h2>
 
-      <div class="actions">
-        <a class="btn primary" href={`${base}contacto/opinion/`}>Ir a Tu opinión</a>
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d94672.91281954884!2d-3.8649675513672306!3d37.776590999999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd6dd70ed2af04d9%3A0xc83edecb2ba4e0ed!2sIES%20Virgen%20del%20Carmen!5e1!3m2!1ses!2ses!4v1773795201510!5m2!1ses!2ses"
+          width="600"
+          height="450"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </article>
-  </section>
+  </div>
 
   <style>
-    .hero-networks{
-      display:grid;
-      grid-template-columns:1.35fr .95fr;
-      gap:24px;
-      align-items:stretch;
+    .contact-hero {
+      padding: 28px 24px;
     }
 
-    .hero-copy,
-    .hero-panel,
-    .network-card,
-    .idea-card,
-    .info-card{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:18px;
-      backdrop-filter:blur(8px);
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 14px;
     }
 
-    .hero-copy{
-      padding:28px;
+    .social-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s ease;
     }
 
-    .hero-panel{
-      padding:24px;
-      background:linear-gradient(180deg, rgba(80,140,255,.12), rgba(255,255,255,.03));
+    .social-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
     }
 
-    .kicker,
-    .panel-kicker{
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.75;
-      margin:0 0 8px;
-      font-size:.82rem;
+    .map-container {
+      margin-top: 12px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
     }
 
-    h1{
-      margin:0 0 12px;
-      font-size:clamp(2.6rem, 6vw, 4.2rem);
-      line-height:.95;
+    .map-container iframe {
+      width: 100%;
+      height: 380px;
+      border: 0;
     }
 
-    h2{
-      margin:0 0 10px;
-      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
-      line-height:1.05;
-    }
-
-    h3{
-      margin:0 0 6px;
-      font-size:1.06rem;
-    }
-
-    .lead,
-    .section-lead,
-    .hero-panel p,
-    .network-card p,
-    .idea-card p,
-    .info-card p{
-      line-height:1.6;
-      opacity:.94;
-      margin:0;
-      text-align:justify;
-    }
-
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:18px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:inherit;
-      text-decoration:none;
-      transition:.18s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .btn.primary{
-      background:linear-gradient(180deg, rgba(80,140,255,.28), rgba(80,140,255,.14));
-      border-color:rgba(128,176,255,.34);
-      box-shadow:0 10px 24px rgba(20,44,120,.18);
-    }
-
-    .panel-list{
-      margin:16px 0 0;
-      padding-left:18px;
-      display:grid;
-      gap:10px;
-      line-height:1.5;
-    }
-
-    .section{
-      margin-top:28px;
-    }
-
-    .section-head{
-      margin-bottom:14px;
-    }
-
-    .network-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .network-card{
-      padding:18px;
-      text-decoration:none;
-      color:inherit;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      transition:.18s ease;
-    }
-
-    .network-card:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.06);
-    }
-
-    .network-top{
-      display:flex;
-      gap:12px;
-      align-items:center;
-    }
-
-    .network-badge{
-      width:50px;
-      height:50px;
-      border-radius:14px;
-      display:grid;
-      place-items:center;
-      flex:0 0 auto;
-      font-weight:800;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(80,140,255,.16);
-    }
-
-    .network-handle{
-      opacity:.75;
-      font-size:.92rem;
-    }
-
-    .network-link{
-      margin-top:auto;
-      opacity:.86;
-      font-size:.95rem;
-    }
-
-    .ideas-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .idea-card,
-    .info-card{
-      padding:22px;
-    }
-
-    .split{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .info-card.accent{
-      background:linear-gradient(180deg, rgba(80,140,255,.12), rgba(255,255,255,.03));
-    }
-
-    @media (max-width: 980px){
-      .hero-networks,
-      .network-grid,
-      .ideas-grid,
-      .split{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 640px){
-      .hero-copy,
-      .hero-panel,
-      .network-card,
-      .idea-card,
-      .info-card{
-        padding:18px;
-      }
-
-      h1{
-        font-size:2.35rem;
+    @media (max-width: 800px) {
+      .social-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -2158,7 +1542,156 @@ const base = import.meta.env.BASE_URL;
 ---
 
 ```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
 
+const milestones = [
+  {
+    title: "Identidad del proyecto definida",
+    desc: "Kaelum ya no se plantea como idea difusa, sino como shooter con propuesta clara, tono y pilares reconocibles.",
+  },
+  {
+    title: "GDD estructurado",
+    desc: "La documentación principal organiza narrativa, sistemas, UI, sonido, mercado, monetización y planificación.",
+  },
+  {
+    title: "DAFO y CAME resueltos",
+    desc: "El proyecto no solo está descrito: también está analizado y defendido desde sus riesgos y oportunidades.",
+  },
+  {
+    title: "Web portfolio construida",
+    desc: "La presentación pasa a una estructura navegable con juego, media, documentación, desarrollo y contacto.",
+  },
+  {
+    title: "Devlog activo",
+    desc: "El avance del proyecto se comunica como evolución real y no solo como resultado final.",
+  },
+  {
+    title: "Cierre de apartados evaluables",
+    desc: "Presupuesto, métricas, equipo, roadmap e hitos refuerzan el portfolio de cara a la entrega.",
+  },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Hitos del proyecto"
+  description="Hitos principales del proyecto Kaelum: logros alcanzados, avances clave y puntos de consolidación del portfolio."
+>
+  <section class="hero milestones-hero">
+    <p class="kicker">Desarrollo</p>
+    <h1>Hitos del proyecto</h1>
+    <p class="lead">
+      Esta sección resume los <strong>puntos de avance más importantes</strong> de Kaelum.
+      No muestra microtareas, sino momentos clave que consolidan el proyecto como idea,
+      como documentación y como portfolio web.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}desarrollo/roadmap/`}>Ver roadmap</a>
+      <a class="btn" href={`${base}desarrollo/devlog/`}>Ver devlog</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card full">
+      <h2>Qué se considera un hito aquí</h2>
+      <p class="muted">
+        Un hito no es cualquier tarea terminada. Se considera hito todo aquello que cambia la
+        madurez del proyecto: cuando una parte deja de ser una idea suelta y pasa a convertirse
+        en una capa sólida del portfolio.
+      </p>
+    </article>
+
+    <article class="card full">
+      <h2>Línea de hitos principales</h2>
+
+      <div class="milestones-list">
+        {milestones.map((item, index) => (
+          <section class="milestone-item">
+            <div class="milestone-mark">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+            </div>
+            <div class="milestone-copy">
+              <h3>{item.title}</h3>
+              <p class="muted">{item.desc}</p>
+            </div>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Por qué importa mostrar hitos</h2>
+      <ul class="list">
+        <li>Demuestra evolución real del trabajo.</li>
+        <li>Hace visible el esfuerzo estructural, no solo el resultado bonito.</li>
+        <li>Ayuda a leer el proyecto como proceso y no como entrega improvisada.</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>Relación con la evaluación</h2>
+      <p class="muted">
+        Tener hitos visibles refuerza la parte de planificación, experiencia de usuario y lectura profesional
+        del portfolio, porque deja claro que el proyecto tiene progresión y seguimiento.
+      </p>
+    </article>
+
+    <article class="card full">
+      <h2>Siguiente capa de crecimiento</h2>
+      <p class="muted">
+        Una vez cerrados estos hitos base, el proyecto queda mejor preparado para una fase posterior
+        de mejora: más pulido visual, materiales promocionales, refinamiento de contacto y expansión del media kit.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/planificacion/`}>Ver planificación</a>
+        <a class="btn" href={`${base}desarrollo/`}>Volver a Desarrollo</a>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    .milestones-hero{
+      padding:28px 24px;
+    }
+
+    .milestones-list{
+      display:grid;
+      gap:14px;
+      margin-top:12px;
+    }
+
+    .milestone-item{
+      display:grid;
+      grid-template-columns:60px 1fr;
+      gap:14px;
+      align-items:start;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    .milestone-mark span{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      font-weight:900;
+    }
+
+    @media (max-width: 640px){
+      .milestone-item{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</BaseLayout>
 ```
 
 ---
@@ -2169,432 +1702,160 @@ const base = import.meta.env.BASE_URL;
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
-
-const blocks = [
-  {
-    number: "01",
-    title: "Devlog",
-    desc:
-      "Registro progresivo del desarrollo del juego, organizado por semanas para mostrar evolución, cambios de enfoque y trabajo realizado.",
-    href: `${base}desarrollo/devlog/`,
-    tag: "Seguimiento",
-  },
-  {
-    number: "02",
-    title: "Hitos",
-    desc:
-      "Calendario o lectura de momentos clave del juego: entregas, objetivos parciales, cierres importantes y fases destacadas.",
-    href: `${base}desarrollo/hitos/`,
-    tag: "Plan temporal",
-  },
-  {
-    number: "03",
-    title: "Roadmap",
-    desc:
-      "Visión general del recorrido del juego, sus prioridades y lo que falta por cerrar para rematar la web y el portfolio.",
-    href: `${base}desarrollo/roadmap/`,
-    tag: "Hoja de ruta",
-  },
-];
-
-const weeks = [
-  { title: "Semana 1", href: `${base}desarrollo/devlog/semana-1/` },
-  { title: "Semana 2", href: `${base}desarrollo/devlog/semana-2/` },
-  { title: "Semana 3", href: `${base}desarrollo/devlog/semana-3/` },
-  { title: "Semana 4", href: `${base}desarrollo/devlog/semana-4/` },
-  { title: "Semana 5", href: `${base}desarrollo/devlog/semana-5/` },
-  { title: "Semana 6", href: `${base}desarrollo/devlog/semana-6/` },
-];
-
-const valuePoints = [
-  {
-    title: "Hace visible el trabajo real",
-    desc:
-      "Permite ver que Kaelum no es una idea aislada, sino un juego que ha ido creciendo, corrigiéndose y organizándose con el tiempo.",
-  },
-  {
-    title: "Conecta planificación y ejecución",
-    desc:
-      "Sirve para enlazar la parte más formal de la documentación con la realidad del proceso y las decisiones tomadas.",
-  },
-  {
-    title: "Refuerza la evaluación",
-    desc:
-      "Ayuda a demostrar continuidad, seguimiento y trazabilidad del proyecto, algo muy útil de cara a defensa y revisión.",
-  },
-];
 ---
 
-<BaseLayout
-  title="Kaelum — Desarrollo"
-  description="Sección de desarrollo de Kaelum: devlog, hitos y roadmap para mostrar la evolución real del proyecto."
->
-  <section class="hero hero-dev">
-    <div class="hero-copy">
-      <p class="kicker">Proceso real</p>
-      <h1>Desarrollo</h1>
+<BaseLayout title="Desarrollo — Kaelum" description="Seguimiento y evolución real del proyecto Kaelum.">
+  <section class="hero desarrollo-hero">
+    <p class="kicker">Desarrollo</p>
+    <h1>El rastro del proceso</h1>
+    <p class="lead">
+      Kaelum no aparece terminado: se construye con pruebas, correcciones, decisiones y avances.
+      Aquí queda registrado ese recorrido para que el proyecto no se lea solo como resultado,
+      sino también como proceso.
+    </p>
+  </section>
 
-      <p class="lead">
-        Esta sección reúne la parte más ligada al <strong>seguimiento, evolución y
-        construcción real</strong> del juego. Aquí no solo se ve qué es Kaelum, sino
-        <strong>cómo ha ido creciendo</strong>, qué se ha trabajado en cada etapa y cómo
-        se ha organizado el recorrido hasta llegar al estado actual.
-      </p>
-
-      <div class="actions">
-        <a class="btn primary" href={`${base}desarrollo/devlog/`}>Abrir Devlog</a>
-        <a class="btn" href={`${base}desarrollo/hitos/`}>Ver Hitos</a>
-        <a class="btn" href={`${base}desarrollo/roadmap/`}>Consultar Roadmap</a>
+  <section class="hub-grid">
+    <a class="hub-card devlog" href={`${base}desarrollo/devlog/`}>
+      <span class="hub-number">01</span>
+      <div class="hub-copy">
+        <p class="kicker">Seguimiento semanal</p>
+        <h2>Devlog</h2>
+        <p>
+          Un registro del progreso real del proyecto, de las decisiones tomadas y de cómo ha ido
+          cambiando Kaelum a medida que se definía mejor.
+        </p>
+        <span class="hub-cta">Abrir apartado →</span>
       </div>
-    </div>
+    </a>
 
-    <aside class="hero-panel">
-      <p class="panel-kicker">Qué muestra este bloque</p>
-      <h2>La evolución del proyecto en el tiempo</h2>
-      <p>
-        Después de revisar el juego, la parte visual y la documentación formal, aquí aparece
-        la capa que demuestra que el proyecto tiene recorrido real: semanas de trabajo,
-        decisiones, hitos y objetivos que ayudan a entender el estado actual de Kaelum.
-      </p>
-
-      <ul class="panel-list">
-        <li><strong>Devlog:</strong> seguimiento por semanas.</li>
-        <li><strong>Hitos:</strong> momentos importantes del juego.</li>
-        <li><strong>Roadmap:</strong> lectura del camino hecho y lo que queda.</li>
-      </ul>
-    </aside>
-  </section>
-
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Bloques principales</p>
-      <h2>Cómo se organiza el desarrollo</h2>
-      <p class="section-lead">
-        Esta sección no está pensada como un archivo muerto, sino como una forma clara de
-        enseñar el progreso y darle contexto al trabajo realizado.
-      </p>
-    </header>
-
-    <div class="blocks-grid">
-      {blocks.map((item) => (
-        <a class="block-card" href={item.href}>
-          <div class="block-top">
-            <span class="block-number">{item.number}</span>
-            <span class="block-tag">{item.tag}</span>
-          </div>
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-          <span class="block-link">Abrir apartado</span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Acceso rápido</p>
-      <h2>Semanas ya publicadas</h2>
-      <p class="section-lead">
-        El devlog permite revisar el avance del juego de forma progresiva. Estas son las
-        semanas que ya forman parte del recorrido.
-      </p>
-    </header>
-
-    <div class="weeks-grid">
-      {weeks.map((week) => (
-        <a class="week-pill" href={week.href}>{week.title}</a>
-      ))}
-    </div>
-  </section>
-
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Por qué importa</p>
-      <h2>Una sección útil, no solo decorativa</h2>
-      <p class="section-lead">
-        Desarrollo refuerza la sensación de juego vivo y conecta muy bien con la defensa del trabajo.
-      </p>
-    </header>
-
-    <div class="value-grid">
-      {valuePoints.map((item) => (
-        <article class="value-card">
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section split">
-    <article class="info-card">
-      <p class="kicker">Orden recomendado</p>
-      <h2>Primero devlog, luego hitos y cierre con roadmap</h2>
-      <p>
-        La forma más natural de leer esta sección es empezar por el <strong>Devlog</strong>
-        para ver el recorrido semanal, después pasar por <strong>Hitos</strong> para localizar
-        los momentos clave y terminar en <strong>Roadmap</strong> para tener una visión más
-        global del camino hecho y del cierre pendiente.
-      </p>
-      <div class="actions">
-        <a class="btn" href={`${base}desarrollo/devlog/`}>Seguir ese orden</a>
+    <a class="hub-card roadmap" href={`${base}desarrollo/roadmap/`}>
+      <span class="hub-number">02</span>
+      <div class="hub-copy">
+        <p class="kicker">Visión global</p>
+        <h2>Roadmap</h2>
+        <p>
+          Una lectura por fases del desarrollo: qué se prioriza, qué viene después y cómo se ordena
+          el crecimiento del proyecto sin caer en caos o alcance irreal.
+        </p>
+        <span class="hub-cta">Abrir apartado →</span>
       </div>
-    </article>
+    </a>
 
-    <article class="info-card accent">
-      <p class="kicker">Último bloque del recorrido</p>
-      <h2>Después de Desarrollo, toca Contacto</h2>
-      <p>
-        Una vez visto el juego desde dentro, su presentación visual, su respaldo formal y
-        su evolución real, el cierre natural del recorrido es <strong>Contacto</strong>, donde
-        se concentra la parte del autor, redes, feedback y conexión externa.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}contacto/`}>Ir a Contacto</a>
+    <a class="hub-card hitos full" href={`${base}desarrollo/hitos/`}>
+      <span class="hub-number">03</span>
+      <div class="hub-copy">
+        <p class="kicker">Consolidación</p>
+        <h2>Hitos</h2>
+        <p>
+          Los momentos clave que han hecho que Kaelum deje de ser una idea suelta para convertirse
+          en una propuesta estructurada, documentada y presentable.
+        </p>
+        <span class="hub-cta">Abrir apartado →</span>
       </div>
-    </article>
+    </a>
+  </section>
+
+  <section class="dev-note">
+    <p class="muted">
+      Esta sección funciona como la parte más “viva” del portfolio: no enseña solo qué es Kaelum,
+      sino cómo se ha ido construyendo.
+    </p>
   </section>
 
   <style>
-    .hero-dev{
-      display:grid;
-      grid-template-columns: 1.35fr .95fr;
-      gap:24px;
-      align-items:stretch;
+    .desarrollo-hero{
+      padding:30px 24px;
     }
 
-    .hero-copy,
-    .hero-panel,
-    .block-card,
-    .value-card,
-    .info-card,
-    .week-pill{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:18px;
-      backdrop-filter: blur(8px);
-    }
-
-    .hero-copy{
-      padding:28px;
-    }
-
-    .hero-panel{
-      padding:24px;
-      background:
-        linear-gradient(180deg, rgba(90, 214, 176, .12), rgba(255,255,255,.03));
-    }
-
-    .kicker,
-    .panel-kicker{
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.75;
-      margin:0 0 8px;
-      font-size:.82rem;
-    }
-
-    h1{
-      margin:0 0 12px;
-      font-size:clamp(2.6rem, 6vw, 4.2rem);
-      line-height:.95;
-    }
-
-    h2{
-      margin:0 0 10px;
-      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
-      line-height:1.05;
-    }
-
-    h3{
-      margin:0 0 10px;
-      font-size:1.12rem;
-    }
-
-    .lead,
-    .section-lead,
-    .hero-panel p,
-    .block-card p,
-    .value-card p,
-    .info-card p{
-      line-height:1.6;
-      opacity:.94;
-      margin:0;
-      text-align:justify;
-    }
-
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
+    .hub-grid{
       margin-top:18px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:inherit;
-      text-decoration:none;
-      transition:.18s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .btn.primary{
-      background:linear-gradient(180deg, rgba(80, 205, 165, .30), rgba(80, 205, 165, .14));
-      border-color:rgba(126, 231, 198, .34);
-      box-shadow:0 10px 24px rgba(20,120,88,.18);
-    }
-
-    .panel-list{
-      margin:16px 0 0;
-      padding-left:18px;
-      display:grid;
-      gap:10px;
-      line-height:1.5;
-    }
-
-    .section{
-      margin-top:28px;
-    }
-
-    .section-head{
-      margin-bottom:14px;
-    }
-
-    .blocks-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .block-card{
-      padding:18px;
-      text-decoration:none;
-      color:inherit;
-      transition:.18s ease;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    .block-card:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.06);
-    }
-
-    .block-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-
-    .block-number{
-      width:42px;
-      height:42px;
-      border-radius:12px;
-      display:grid;
-      place-items:center;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(80, 205, 165, .16);
-    }
-
-    .block-tag{
-      border-radius:999px;
-      padding:6px 10px;
-      font-size:.8rem;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.05);
-      opacity:.9;
-    }
-
-    .block-link{
-      margin-top:auto;
-      opacity:.86;
-      font-size:.95rem;
-    }
-
-    .weeks-grid{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
-    }
-
-    .week-pill{
-      padding:12px 16px;
-      border-radius:999px;
-      text-decoration:none;
-      color:inherit;
-      transition:.18s ease;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:46px;
-    }
-
-    .week-pill:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .value-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .value-card,
-    .info-card{
-      padding:22px;
-    }
-
-    .split{
       display:grid;
       grid-template-columns:repeat(2, minmax(0,1fr));
       gap:14px;
     }
 
-    .info-card.accent{
-      background:
-        linear-gradient(180deg, rgba(80, 205, 165, .14), rgba(255,255,255,.03));
+    .hub-card{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      text-decoration:none;
+      color:var(--text);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:0 16px 40px rgba(0,0,0,.22);
+      transition:transform .14s ease, background .14s ease, border-color .14s ease;
     }
 
-    @media (max-width: 1080px){
-      .blocks-grid,
-      .value-grid{
+    .hub-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.16);
+    }
+
+    .hub-card.devlog{
+      background:linear-gradient(180deg, rgba(120,210,150,.10), rgba(255,255,255,.03));
+    }
+
+    .hub-card.roadmap{
+      background:linear-gradient(180deg, rgba(34,211,238,.10), rgba(255,255,255,.03));
+    }
+
+    .hub-card.hitos{
+      background:linear-gradient(180deg, rgba(139,92,246,.10), rgba(255,255,255,.03));
+    }
+
+    .hub-card.full{
+      grid-column:1 / -1;
+    }
+
+    .hub-number{
+      width:44px;
+      height:44px;
+      flex:0 0 auto;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      color:var(--text);
+    }
+
+    .hub-copy h2{
+      margin:2px 0 8px;
+      font-size:1.45rem;
+    }
+
+    .hub-copy p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.6;
+    }
+
+    .hub-cta{
+      display:inline-block;
+      margin-top:14px;
+      font-weight:800;
+      color:var(--text);
+    }
+
+    .dev-note{
+      margin-top:18px;
+      text-align:center;
+    }
+
+    @media (max-width: 860px){
+      .hub-grid{
         grid-template-columns:1fr;
       }
-    }
 
-    @media (max-width: 900px){
-      .hero-dev,
-      .split{
-        grid-template-columns:1fr;
+      .hub-card.full{
+        grid-column:auto;
       }
-    }
 
-    @media (max-width: 640px){
-      .hero-copy,
-      .hero-panel,
-      .block-card,
-      .value-card,
-      .info-card{
+      .hub-card{
         padding:18px;
-      }
-
-      h1{
-        font-size:2.35rem;
       }
     }
   </style>
@@ -2606,7 +1867,171 @@ const valuePoints = [
 ---
 
 ```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
 
+const roadmap = [
+  {
+    title: "Fase 1 · Concepto y base",
+    desc: "Cerrar dirección del proyecto, propuesta única, pilares del gameplay y estructura documental.",
+    status: "Base ya definida",
+  },
+  {
+    title: "Fase 2 · Núcleo jugable",
+    desc: "Validar armas, movimiento, habilidades y sensación general del core loop.",
+    status: "Prioridad principal",
+  },
+  {
+    title: "Fase 3 · Mundo y narrativa",
+    desc: "Integrar pr\u00f3logo, actos, sistema de karma, misiones y contexto del universo.",
+    status: "En consolidación",
+  },
+  {
+    title: "Fase 4 · Presentación pública",
+    desc: "Web, galer\u00eda, tráiler, devlog, documentaci\u00f3n y presencia digital.",
+    status: "En cierre",
+  },
+  {
+    title: "Fase 5 · Difusión y proyección",
+    desc: "Eventos, roadmap de lanzamiento, materiales promocionales y estrategia de visibilidad.",
+    status: "Siguiente capa",
+  },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Roadmap"
+  description="Roadmap del proyecto Kaelum: fases de desarrollo, prioridades y evolución general del portfolio."
+>
+  <section class="hero roadmap-hero">
+    <p class="kicker">Desarrollo</p>
+    <h1>Roadmap del proyecto</h1>
+    <p class="lead">
+      Este roadmap organiza Kaelum por <strong>fases lógicas de crecimiento</strong>. No se centra
+      en “añadir cosas porque sí”, sino en ordenar qué debe quedar sólido antes de pasar al siguiente nivel.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}desarrollo/hitos/`}>Ver hitos</a>
+      <a class="btn" href={`${base}desarrollo/devlog/`}>Abrir devlog</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card full">
+      <h2>Cómo leer este roadmap</h2>
+      <p class="muted">
+        El roadmap no es una promesa cerrada de fechas exactas, sino una estructura de prioridades.
+        Sirve para explicar en qué orden crece Kaelum y por qué unas capas dependen de otras.
+      </p>
+    </article>
+
+    <article class="card full">
+      <h2>Fases del proyecto</h2>
+
+      <div class="roadmap-list">
+        {roadmap.map((item, index) => (
+          <section class="roadmap-item">
+            <span class="roadmap-number">{String(index + 1).padStart(2, "0")}</span>
+            <div class="roadmap-copy">
+              <h3>{item.title}</h3>
+              <p class="muted">{item.desc}</p>
+              <span class="tag">{item.status}</span>
+            </div>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Prioridad actual</h2>
+      <p class="muted">
+        La prioridad sigue siendo cerrar lo que da solidez al proyecto:
+        documentación clara, web coherente, narrativa bien presentada y lectura profesional del portfolio.
+      </p>
+    </article>
+
+    <article class="card">
+      <h2>Qué no hace este roadmap</h2>
+      <ul class="list">
+        <li>No infla el alcance artificialmente.</li>
+        <li>No mezcla tareas base con mejoras secundarias.</li>
+        <li>No sacrifica claridad por parecer más grande.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Relación con el resto de la web</h2>
+      <div class="grid" style="margin-top:10px">
+        <div class="card" style="grid-column: span 4;">
+          <h3>Juego</h3>
+          <p class="muted">Define el contenido conceptual y jugable.</p>
+        </div>
+        <div class="card" style="grid-column: span 4;">
+          <h3>Documentación</h3>
+          <p class="muted">Justifica por qué el roadmap tiene ese orden.</p>
+        </div>
+        <div class="card" style="grid-column: span 4;">
+          <h3>Devlog</h3>
+          <p class="muted">Muestra cómo se mueve realmente el proyecto semana a semana.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full">
+      <h2>Conclusión</h2>
+      <p class="muted">
+        El roadmap de Kaelum organiza el proyecto desde una idea simple:
+        <strong>primero sostener, luego ampliar, después presentar y por último difundir</strong>.
+        Eso permite que la evolución del portfolio tenga sentido y no se vea como una suma caótica de apartados.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}desarrollo/hitos/`}>Ir a hitos</a>
+        <a class="btn" href={`${base}desarrollo/`}>Volver a Desarrollo</a>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    .roadmap-hero{
+      padding:28px 24px;
+    }
+
+    .roadmap-list{
+      display:grid;
+      gap:14px;
+      margin-top:12px;
+    }
+
+    .roadmap-item{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    .roadmap-number{
+      width:46px;
+      height:46px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      font-weight:900;
+    }
+
+    .roadmap-copy h3{
+      margin-bottom:8px;
+    }
+  </style>
+</BaseLayout>
 ```
 
 ---
@@ -2988,7 +2413,164 @@ const base = import.meta.env.BASE_URL;
 ---
 
 ```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
 
+const roles = [
+  {
+    role: "Dirección del proyecto",
+    desc: "Definición del concepto, alcance general, estructura web y coherencia de todo el portfolio.",
+  },
+  {
+    role: "Diseño de juego",
+    desc: "Pilares jugables, narrativa, UI, estructura del GDD, sistemas y decisiones de diseño.",
+  },
+  {
+    role: "Documentación y presentación",
+    desc: "Construcción del GDD, análisis DAFO/CAME, folleto, métricas y secciones de apoyo.",
+  },
+  {
+    role: "Presencia digital",
+    desc: "Web del proyecto, devlog, media, contacto y preparación de materiales de difusión.",
+  },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Equipo y visión"
+  description="Sobre el proyecto Kaelum: autor, roles asumidos, visión creativa y enfoque del portfolio."
+>
+  <section class="hero team-hero">
+    <p class="kicker">Documentación</p>
+    <h1>Equipo y visión del proyecto</h1>
+    <p class="lead">
+      Kaelum se presenta como un proyecto personal con estructura de portfolio profesional.
+      Esta sección explica <strong>quién lo impulsa, qué roles se están asumiendo</strong>
+      y cuál es la visión que sostiene todo el trabajo.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}sobre-mi/`}>Ver sobre mí</a>
+      <a class="btn" href={`${base}documentacion/gdd/`}>Abrir GDD</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card full">
+      <h2>Quién está detrás de Kaelum</h2>
+      <p class="muted">
+        Kaelum nace como un proyecto donde una sola persona asume varias funciones a la vez:
+        idea, diseño, documentación, estructura del portfolio y construcción de la identidad del juego.
+        Precisamente por eso, la web no solo enseña el resultado, sino también el razonamiento detrás.
+      </p>
+    </article>
+
+    <article class="card">
+      <h2>Rol principal</h2>
+      <p class="muted">
+        El papel central dentro del proyecto es el de <strong>director creativo y diseñador del juego</strong>,
+        con una implicación directa en la visión general, el tono, la narrativa y el planteamiento jugable.
+      </p>
+    </article>
+
+    <article class="card">
+      <h2>Enfoque de trabajo</h2>
+      <p class="muted">
+        La lógica del proyecto prioriza claridad, coherencia y control del alcance. La idea no es
+        prometer un juego imposible, sino construir una propuesta fuerte, argumentada y bien presentada.
+      </p>
+    </article>
+
+    <article class="card full">
+      <h2>Roles asumidos dentro del proyecto</h2>
+      <div class="roles-grid">
+        {roles.map((item, i) => (
+          <section class="role-card">
+            <span class="role-number">{String(i + 1).padStart(2, "0")}</span>
+            <div>
+              <h3>{item.role}</h3>
+              <p class="muted">{item.desc}</p>
+            </div>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Visión creativa</h2>
+      <ul class="list">
+        <li>Construir un shooter con identidad propia.</li>
+        <li>Evitar monetización abusiva y decisiones de diseño vacías.</li>
+        <li>Hacer que la presentación del proyecto sea tan sólida como su idea.</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>Qué diferencia este portfolio</h2>
+      <ul class="list">
+        <li>No se queda en una landing visual.</li>
+        <li>Integra documentación, análisis y evolución.</li>
+        <li>Permite evaluar el proyecto desde varias capas: diseño, narrativa, producción y difusión.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Por qué existe esta página</h2>
+      <p class="muted">
+        En la evaluación no basta con enseñar el juego: también importa explicar
+        <strong>quién toma las decisiones y desde qué visión se construye</strong>.
+        Esta sección hace visible esa parte y conecta el proyecto con una lectura más humana y profesional.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/presupuesto/`}>Ver presupuesto</a>
+        <a class="btn" href={`${base}documentacion/`}>Volver a Documentación</a>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    .team-hero{
+      padding:28px 24px;
+    }
+
+    .roles-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+      margin-top:12px;
+    }
+
+    .role-card{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    .role-number{
+      width:42px;
+      height:42px;
+      flex:0 0 auto;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      font-weight:900;
+    }
+
+    @media (max-width: 980px){
+      .roles-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</BaseLayout>
 ```
 
 ---
@@ -3330,7 +2912,7 @@ const logoUrl = `${base}images/NyxtaleStudios.svg`;
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL; // "/" en local, "/juego/" en GitHub Pages
-const pdfUrl = `${base}documentacion/GDD_KAELUM.pdf`;
+const pdfUrl = `${base}docs/GDD_KAELUM.pdf`;
 ---
 
 <BaseLayout title="Kaelum – GDD (PDF)" description="GDD completo de Kaelum en visor embebido.">
@@ -3377,446 +2959,194 @@ const pdfUrl = `${base}documentacion/GDD_KAELUM.pdf`;
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
-
-const documentacion = [
-  {
-    number: "01",
-    title: "GDD",
-    desc:
-      "Documento central del proyecto. Reúne la visión global de Kaelum desde la narrativa, el diseño, los sistemas y la propuesta general del videojuego.",
-    href: `${base}documentacion/gdd/`,
-    tag: "Base del proyecto",
-  },
-  {
-    number: "02",
-    title: "Folleto",
-    desc:
-      "Versión más resumida, visual y rápida de consultar para presentar el proyecto sin entrar todavía en tanto detalle.",
-    href: `${base}documentacion/folleto/`,
-    tag: "Resumen visual",
-  },
-  {
-    number: "03",
-    title: "Análisis",
-    desc:
-      "Apartado estratégico con DAFO, CAME y otras lecturas que ayudan a justificar decisiones, enfoque y posicionamiento del proyecto.",
-    href: `${base}documentacion/analisis/`,
-    tag: "Análisis",
-  },
-  {
-    number: "04",
-    title: "Presupuesto",
-    desc:
-      "Estimación de costes de producción y marketing, planteada como parte de la viabilidad y defensa formal del proyecto.",
-    href: `${base}documentacion/presupuesto/`,
-    tag: "Viabilidad",
-  },
-  {
-    number: "05",
-    title: "Planificación",
-    desc:
-      "Hitos, tiempos, roadmap y orden de trabajo del proyecto para mostrar cómo se organiza el desarrollo.",
-    href: `${base}documentacion/planificacion/`,
-    tag: "Organización",
-  },
-  {
-    number: "06",
-    title: "Métricas y diagramas",
-    desc:
-      "Gráficos, flujos, esquemas y elementos visuales que ayudan a sintetizar información técnica o estratégica.",
-    href: `${base}documentacion/metricas/`,
-    tag: "Apoyo visual",
-  },
-  {
-    number: "07",
-    title: "Equipo",
-    desc:
-      "Sección dedicada a quién está detrás del proyecto, roles, reparto de funciones y lectura más profesional del trabajo realizado.",
-    href: `${base}documentacion/equipo/`,
-    tag: "Roles",
-  },
-];
-
-const useCases = [
-  {
-    title: "Si vienes a evaluar la web",
-    desc:
-      "Empieza por GDD, sigue con Presupuesto y Planificación, y termina con Métricas. Así ves lo conceptual, lo viable y lo justificable.",
-  },
-  {
-    title: "Si quieres una lectura rápida",
-    desc:
-      "Lo mejor es entrar por Folleto y luego abrir solo los apartados que te interesen más.",
-  },
-  {
-    title: "Si buscas estrategia y defensa",
-    desc:
-      "Análisis y Métricas son los bloques más útiles para entender por qué se tomaron ciertas decisiones.",
-  },
-];
-
-const rubricItems = [
-  "Enlace o resumen del GDD",
-  "Presupuesto de producción y marketing",
-  "Gráficos, diagramas y métricas",
-  "Sección de equipo y roles",
-  "Apoyo formal a la evaluación del proyecto",
-];
 ---
 
-<BaseLayout
-  title="Kaelum — Documentación"
-  description="Bloque de documentación formal de Kaelum: GDD, folleto, análisis, presupuesto, planificación, métricas y equipo."
->
-  <section class="hero hero-documentacion">
-    <div class="hero-copy">
-      <p class="kicker">Respaldo formal</p>
-      <h1>Documentación</h1>
-
-      <p class="lead">
-        Esta sección concentra la parte más <strong>formal, justificable y evaluable</strong>
-        del proyecto. Aquí no solo se guarda información: se organiza el material que permite
-        entender, defender y revisar Kaelum desde una perspectiva más técnica, estratégica y
-        profesional.
-      </p>
-
-      <div class="actions">
-        <a class="btn primary" href={`${base}documentacion/gdd/`}>Abrir GDD</a>
-        <a class="btn" href={`${base}documentacion/folleto/`}>Ver Folleto</a>
-        <a class="btn" href={`${base}documentacion/planificacion/`}>Ir a Planificación</a>
-      </div>
-    </div>
-
-    <aside class="hero-panel">
-      <p class="panel-kicker">Qué aporta este bloque</p>
-      <h2>La parte que sostiene el proyecto por dentro</h2>
-      <p>
-        Después de entender el juego y su presentación visual, aquí aparece la capa que lo
-        respalda: documentos, análisis, planificación, métricas y estructura de defensa.
-        Es el apartado que más ayuda cuando alguien necesita revisar Kaelum con criterio y no
-        solo de forma superficial.
-      </p>
-
-      <div class="rubric-box">
-        <p class="rubric-title">Puntos de rúbrica que cubre especialmente</p>
-        <ul>
-          {rubricItems.map((item) => <li>{item}</li>)}
-        </ul>
-      </div>
-    </aside>
+<BaseLayout title="Documentación — Kaelum" description="Base estratégica y de diseño del proyecto Kaelum.">
+  <section class="hero docs-hero">
+    <p class="kicker">Documentación</p>
+    <h1>La estructura que sostiene Kaelum</h1>
+    <p class="lead">
+      Detrás de lo visual y de lo jugable hay una capa de diseño, análisis, planificación y justificación
+      que ordena el proyecto desde dentro. Esta sección reúne esa parte más técnica y estratégica.
+    </p>
   </section>
 
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Apartados principales</p>
-      <h2>Qué incluye Documentación</h2>
-      <p class="section-lead">
-        Esta sección está dividida para que cada tipo de lector encuentre rápido lo que busca,
-        sin tener que navegar entre materiales mezclados.
-      </p>
-    </header>
-
-    <div class="documentacion-grid">
-      {documentacion.map((item) => (
-        <a class="doc-card" href={item.href}>
-          <div class="doc-top">
-            <span class="doc-number">{item.number}</span>
-            <span class="doc-tag">{item.tag}</span>
-          </div>
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-          <span class="doc-link">Abrir apartado</span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Cómo consultar esta parte</p>
-      <h2>Distintas formas de entrar según lo que busques</h2>
-      <p class="section-lead">
-        No todo el mundo entra en Documentación con el mismo objetivo, así que esta parte también
-        está pensada para facilitar recorridos distintos.
-      </p>
-    </header>
-
-    <div class="use-grid">
-      {useCases.map((item) => (
-        <article class="use-card">
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section split">
-    <article class="info-card">
-      <p class="kicker">Orden recomendado</p>
-      <h2>Primero GDD, luego análisis y cierre con planificación</h2>
-      <p>
-        Si quieres seguir un orden lógico, lo mejor es empezar por el <strong>GDD</strong> como
-        documento base, continuar con <strong>Análisis</strong> para entender el enfoque y cerrar
-        con <strong>Presupuesto</strong>, <strong>Planificación</strong> y
-        <strong> Métricas</strong> para ver la parte más defendible y organizativa.
-      </p>
-      <div class="actions">
-        <a class="btn" href={`${base}documentacion/gdd/`}>Seguir ese orden</a>
+  <section class="hub-grid">
+    <a class="hub-card gdd" href={`${base}documentacion/gdd/`}>
+      <span class="hub-number">01</span>
+      <div class="hub-copy">
+        <p class="kicker">Documento central</p>
+        <h2>GDD</h2>
+        <p>La base donde Kaelum se define como videojuego: concepto, narrativa, sistemas, interfaz y estructura general.</p>
+        <span class="hub-cta">Abrir apartado →</span>
       </div>
-    </article>
+    </a>
 
-    <article class="info-card accent">
-      <p class="kicker">Continuidad del recorrido</p>
-      <h2>Después de Documentación, toca Desarrollo</h2>
-      <p>
-        Una vez revisada la base formal del proyecto, el siguiente paso natural es
-        <strong> Desarrollo</strong>, donde se ve la evolución real del trabajo, los devlogs,
-        los hitos y cómo Kaelum ha ido creciendo con el tiempo.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}desarrollo/`}>Ir a Desarrollo</a>
+    <a class="hub-card analisis" href={`${base}documentacion/analisis/`}>
+      <span class="hub-number">02</span>
+      <div class="hub-copy">
+        <p class="kicker">Lectura estratégica</p>
+        <h2>Análisis</h2>
+        <p>DAFO y CAME para entender fortalezas, riesgos, oportunidades y decisiones reales del proyecto.</p>
+        <span class="hub-cta">Abrir apartado →</span>
       </div>
-    </article>
+    </a>
+
+    <a class="hub-card planificacion" href={`${base}documentacion/planificacion/`}>
+      <span class="hub-number">03</span>
+      <div class="hub-copy">
+        <p class="kicker">Orden y tiempos</p>
+        <h2>Planificación</h2>
+        <p>Organización del trabajo, escenarios de desarrollo y lectura temporal del proyecto.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card metricas" href={`${base}documentacion/metricas/`}>
+      <span class="hub-number">04</span>
+      <div class="hub-copy">
+        <p class="kicker">Lectura visual</p>
+        <h2>Métricas</h2>
+        <p>Diagramas, reparto jugable y recursos para entender Kaelum de un vistazo más técnico.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card presupuesto" href={`${base}documentacion/presupuesto/`}>
+      <span class="hub-number">05</span>
+      <div class="hub-copy">
+        <p class="kicker">Viabilidad</p>
+        <h2>Presupuesto</h2>
+        <p>Escenarios de desarrollo, estructura de costes y relación entre producción y difusión.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card equipo" href={`${base}documentacion/equipo/`}>
+      <span class="hub-number">06</span>
+      <div class="hub-copy">
+        <p class="kicker">Autoría y enfoque</p>
+        <h2>Equipo y visión</h2>
+        <p>Quién impulsa el proyecto, qué roles se asumen y desde qué visión creativa se construye Kaelum.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card folleto full" href={`${base}documentacion/folleto/`}>
+      <span class="hub-number">07</span>
+      <div class="hub-copy">
+        <p class="kicker">Resumen visual</p>
+        <h2>Folleto</h2>
+        <p>Versión condensada y presentable del proyecto, pensada como apoyo rápido para lectura o impresión.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
   </section>
 
   <style>
-    .hero-documentacion{
-      display:grid;
-      grid-template-columns: 1.35fr .95fr;
-      gap:24px;
-      align-items:stretch;
+    .docs-hero{
+      padding:30px 24px;
     }
 
-    .hero-copy,
-    .hero-panel,
-    .doc-card,
-    .use-card,
-    .info-card{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:18px;
-      backdrop-filter: blur(8px);
-    }
-
-    .hero-copy{
-      padding:28px;
-    }
-
-    .hero-panel{
-      padding:24px;
-      background:
-        linear-gradient(180deg, rgba(255, 170, 90, .12), rgba(255,255,255,.03));
-    }
-
-    .kicker,
-    .panel-kicker{
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.75;
-      margin:0 0 8px;
-      font-size:.82rem;
-    }
-
-    h1{
-      margin:0 0 12px;
-      font-size:clamp(2.6rem, 6vw, 4.2rem);
-      line-height:.95;
-    }
-
-    h2{
-      margin:0 0 10px;
-      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
-      line-height:1.05;
-    }
-
-    h3{
-      margin:0 0 10px;
-      font-size:1.12rem;
-    }
-
-    .lead,
-    .section-lead,
-    .hero-panel p,
-    .doc-card p,
-    .use-card p,
-    .info-card p{
-      line-height:1.6;
-      opacity:.94;
-      margin:0;
-      text-align:justify;
-    }
-
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
+    .hub-grid{
       margin-top:18px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:inherit;
-      text-decoration:none;
-      transition:.18s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .btn.primary{
-      background:linear-gradient(180deg, rgba(255, 162, 72, .30), rgba(255, 162, 72, .14));
-      border-color:rgba(255, 191, 132, .34);
-      box-shadow:0 10px 24px rgba(120,60,20,.18);
-    }
-
-    .rubric-box{
-      margin-top:18px;
-      padding:16px;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-    }
-
-    .rubric-title{
-      margin:0 0 10px;
-      font-weight:600;
-      opacity:.95;
-    }
-
-    .rubric-box ul{
-      margin:0;
-      padding-left:18px;
-      display:grid;
-      gap:8px;
-      line-height:1.5;
-    }
-
-    .section{
-      margin-top:28px;
-    }
-
-    .section-head{
-      margin-bottom:14px;
-    }
-
-    .documentacion-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .doc-card{
-      padding:18px;
-      text-decoration:none;
-      color:inherit;
-      transition:.18s ease;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    .doc-card:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.06);
-    }
-
-    .doc-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-
-    .doc-number{
-      width:42px;
-      height:42px;
-      border-radius:12px;
-      display:grid;
-      place-items:center;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255, 162, 72, .16);
-    }
-
-    .doc-tag{
-      border-radius:999px;
-      padding:6px 10px;
-      font-size:.8rem;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.05);
-      opacity:.9;
-    }
-
-    .doc-link{
-      margin-top:auto;
-      opacity:.86;
-      font-size:.95rem;
-    }
-
-    .use-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .use-card,
-    .info-card{
-      padding:22px;
-    }
-
-    .split{
       display:grid;
       grid-template-columns:repeat(2, minmax(0,1fr));
       gap:14px;
     }
 
-    .info-card.accent{
-      background:
-        linear-gradient(180deg, rgba(255, 162, 72, .14), rgba(255,255,255,.03));
+    .hub-card{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      text-decoration:none;
+      color:var(--text);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:0 16px 40px rgba(0,0,0,.22);
+      transition:transform .14s ease, background .14s ease, border-color .14s ease;
     }
 
-    @media (max-width: 1080px){
-      .documentacion-grid{
-        grid-template-columns:repeat(2, minmax(0,1fr));
-      }
-
-      .use-grid{
-        grid-template-columns:1fr;
-      }
+    .hub-card:hover{
+      transform:translateY(-2px);
+      border-color:rgba(255,255,255,.16);
     }
 
-    @media (max-width: 900px){
-      .hero-documentacion,
-      .split{
-        grid-template-columns:1fr;
-      }
+    .hub-card.gdd{
+      background:linear-gradient(180deg, rgba(255,180,90,.10), rgba(255,255,255,.03));
     }
 
-    @media (max-width: 640px){
-      .documentacion-grid{
+    .hub-card.analisis{
+      background:linear-gradient(180deg, rgba(255,120,160,.08), rgba(255,255,255,.03));
+    }
+
+    .hub-card.planificacion{
+      background:linear-gradient(180deg, rgba(120,210,150,.10), rgba(255,255,255,.03));
+    }
+
+    .hub-card.metricas{
+      background:linear-gradient(180deg, rgba(34,211,238,.08), rgba(255,255,255,.03));
+    }
+
+    .hub-card.presupuesto{
+      background:linear-gradient(180deg, rgba(139,92,246,.08), rgba(255,255,255,.03));
+    }
+
+    .hub-card.equipo{
+      background:linear-gradient(180deg, rgba(90,160,255,.08), rgba(255,255,255,.03));
+    }
+
+    .hub-card.folleto{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    }
+
+    .hub-card.full{
+      grid-column:1 / -1;
+    }
+
+    .hub-number{
+      width:44px;
+      height:44px;
+      flex:0 0 auto;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      color:var(--text);
+    }
+
+    .hub-copy h2{
+      margin:2px 0 8px;
+      font-size:1.45rem;
+    }
+
+    .hub-copy p{
+      margin:0;
+      color:var(--muted);
+      line-height:1.55;
+    }
+
+    .hub-cta{
+      display:inline-block;
+      margin-top:14px;
+      font-weight:800;
+      color:var(--text);
+    }
+
+    @media (max-width: 860px){
+      .hub-grid{
         grid-template-columns:1fr;
       }
 
-      .hero-copy,
-      .hero-panel,
-      .doc-card,
-      .use-card,
-      .info-card{
+      .hub-card.full{
+        grid-column:auto;
+      }
+
+      .hub-card{
         padding:18px;
-      }
-
-      h1{
-        font-size:2.35rem;
       }
     }
   </style>
@@ -3828,7 +3158,275 @@ const rubricItems = [
 ---
 
 ```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
 
+const metrics = [
+  {
+    title: "Core jugable",
+    value: "Armas · movimiento · habilidades",
+    desc: "La métrica principal no es cantidad de contenido, sino estabilidad del núcleo.",
+  },
+  {
+    title: "Narrativa estructurada",
+    value: "Prólogo + 3 actos + 3 rutas finales",
+    desc: "La historia se organiza para que sea defendible y visible dentro del portfolio.",
+  },
+  {
+    title: "Documentación",
+    value: "GDD · DAFO · CAME · folleto",
+    desc: "Kaelum no solo se enseña: también se argumenta y se justifica.",
+  },
+  {
+    title: "Presencia web",
+    value: "Media · documentación · devlog · contacto",
+    desc: "La web está pensada como archivo navegable del proyecto, no solo como landing.",
+  },
+];
+
+const pillars = [
+  { label: "Armas", weight: "40%" },
+  { label: "Movimiento", weight: "30%" },
+  { label: "Habilidades", weight: "30%" },
+];
+
+const kpis = [
+  "Claridad del proyecto en menos de 10 segundos.",
+  "Comprensión rápida del mundo, del personaje y del tipo de juego.",
+  "Capacidad de encontrar documentación importante en pocos clics.",
+  "Percepción de coherencia visual entre juego, media y documentación.",
+];
+---
+
+<BaseLayout
+  title="Kaelum — Métricas y diagramas"
+  description="Esquemas, métricas y lectura estructural del proyecto Kaelum: pilares jugables, progreso del portfolio y KPIs orientativos."
+>
+  <section class="hero metrics-hero">
+    <p class="kicker">Documentación</p>
+    <h1>Métricas y diagramas</h1>
+    <p class="lead">
+      Esta sección traduce Kaelum a una lectura más técnica y visual: qué se prioriza,
+      cómo se reparte el diseño y qué indicadores ayudan a evaluar si el proyecto está
+      funcionando como portfolio y como propuesta de videojuego.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}documentacion/gdd/`}>Abrir GDD</a>
+      <a class="btn" href={`${base}desarrollo/roadmap/`}>Ver roadmap</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card full">
+      <h2>Lectura rápida del proyecto</h2>
+      <div class="metrics-grid">
+        {metrics.map((item) => (
+          <section class="metric-box">
+            <p class="metric-title">{item.title}</p>
+            <h3>{item.value}</h3>
+            <p class="muted">{item.desc}</p>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Reparto del gameplay</h2>
+      <p class="muted">
+        El diseño de Kaelum parte de una jerarquía clara para evitar que todo compita entre sí.
+      </p>
+
+      <div class="pillar-chart">
+        {pillars.map((item) => (
+          <div class="pillar-row">
+            <div class="pillar-head">
+              <span>{item.label}</span>
+              <strong>{item.weight}</strong>
+            </div>
+            <div class={`pillar-bar ${item.label.toLowerCase()}`}>
+              <span style={`width:${item.weight};`}></span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="small">
+        Esta distribución refuerza la idea de “shooter honesto”: el arma manda, pero el movimiento y las habilidades importan.
+      </p>
+    </article>
+
+    <article class="card">
+      <h2>Qué se mide realmente</h2>
+      <ul class="list">
+        <li><strong>Legibilidad:</strong> que se entienda el proyecto sin explicaciones eternas.</li>
+        <li><strong>Coherencia:</strong> que narrativa, estética y mecánicas no vayan cada una por su lado.</li>
+        <li><strong>Escalabilidad:</strong> que el proyecto pueda crecer sin romperse.</li>
+        <li><strong>Viabilidad:</strong> que el alcance esté controlado y defendido.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Diagrama de progreso del portfolio</h2>
+      <div class="phase-grid">
+        <section class="phase-card">
+          <span class="phase-number">01</span>
+          <h3>Concepto</h3>
+          <p class="muted">Idea, enfoque, USP, pilares jugables y tono del proyecto.</p>
+        </section>
+
+        <section class="phase-card">
+          <span class="phase-number">02</span>
+          <h3>Justificación</h3>
+          <p class="muted">Referentes, DAFO, CAME y decisiones de alcance.</p>
+        </section>
+
+        <section class="phase-card">
+          <span class="phase-number">03</span>
+          <h3>Diseño</h3>
+          <p class="muted">GDD, estructura narrativa, sistemas, UI y dirección artística.</p>
+        </section>
+
+        <section class="phase-card">
+          <span class="phase-number">04</span>
+          <h3>Presentación</h3>
+          <p class="muted">Web, media, devlog, contacto y materiales de difusión.</p>
+        </section>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>KPIs orientativos</h2>
+      <p class="muted">
+        Como criterio de evaluación interna, estos indicadores ayudan a medir si la web cumple su función.
+      </p>
+      <ul class="list">
+        {kpis.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>Por qué esta sección suma</h2>
+      <ul class="list">
+        <li>Aporta lectura técnica sin hacer la web fría.</li>
+        <li>Da soporte a la rúbrica de gráficos y métricas.</li>
+        <li>Convierte ideas del GDD en información más visual.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Conclusión</h2>
+      <p class="muted">
+        Las métricas de Kaelum no están pensadas como números vacíos, sino como
+        <strong>herramientas de lectura</strong>: ayudan a entender qué se prioriza,
+        qué estructura sostiene el proyecto y cómo se presenta de forma clara y defendible.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/presupuesto/`}>Ver presupuesto</a>
+        <a class="btn" href={`${base}documentacion/`}>Volver a Documentación</a>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    .metrics-hero{
+      padding:28px 24px;
+    }
+
+    .metrics-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+      margin-top:12px;
+    }
+
+    .metric-box,
+    .phase-card{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    .metric-title{
+      margin:0 0 6px;
+      color:var(--muted2);
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.78rem;
+    }
+
+    .pillar-chart{
+      display:grid;
+      gap:14px;
+      margin-top:14px;
+    }
+
+    .pillar-head{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:6px;
+      font-weight:800;
+    }
+
+    .pillar-bar{
+      width:100%;
+      height:14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      overflow:hidden;
+      border:1px solid var(--border);
+    }
+
+    .pillar-bar span{
+      display:block;
+      height:100%;
+      border-radius:999px;
+    }
+
+    .pillar-bar.armas span{
+      background:linear-gradient(90deg, rgba(139,92,246,.95), rgba(139,92,246,.55));
+    }
+
+    .pillar-bar.movimiento span{
+      background:linear-gradient(90deg, rgba(34,211,238,.95), rgba(34,211,238,.55));
+    }
+
+    .pillar-bar.habilidades span{
+      background:linear-gradient(90deg, rgba(120,210,150,.95), rgba(120,210,150,.55));
+    }
+
+    .phase-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:14px;
+      margin-top:12px;
+    }
+
+    .phase-number{
+      display:inline-grid;
+      place-items:center;
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      font-weight:900;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      margin-bottom:10px;
+    }
+
+    @media (max-width: 980px){
+      .metrics-grid,
+      .phase-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</BaseLayout>
 ```
 
 ---
@@ -3836,7 +3434,231 @@ const rubricItems = [
 ---
 
 ```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
 
+const scenarioA = [
+  {
+    phase: "Mes 1",
+    items: [
+      "Concepto general del videojuego.",
+      "Definición de pilares y objetivos.",
+      "Análisis DAFO / CAME / referentes.",
+      "Base documental inicial.",
+    ],
+  },
+  {
+    phase: "Mes 2",
+    items: [
+      "Desarrollo del núcleo jugable.",
+      "Sistema de armas, movimiento y habilidades.",
+      "Primer entorno o nivel de prueba.",
+      "Pruebas internas de sensaciones.",
+    ],
+  },
+  {
+    phase: "Mes 3",
+    items: [
+      "Integración narrativa contextual.",
+      "Corrección de errores y pulido.",
+      "Cierre de documentación.",
+      "Preparación de presentación académica.",
+    ],
+  },
+];
+
+const scenarioB = [
+  {
+    phase: "Meses 1–2",
+    title: "Preproducción",
+    items: ["GDD completo", "análisis de mercado", "alcance", "prototipos técnicos iniciales"],
+  },
+  {
+    phase: "Meses 3–4",
+    title: "Núcleo jugable",
+    items: ["armas", "movimiento", "habilidades", "primer equilibrio"],
+  },
+  {
+    phase: "Meses 5–6",
+    title: "Modo historia",
+    items: ["niveles narrativos", "ritmo", "integración de historia"],
+  },
+  {
+    phase: "Meses 7–8",
+    title: "Multijugador",
+    items: ["implementación", "selección de personajes", "pruebas de equilibrio"],
+  },
+  {
+    phase: "Meses 9–10",
+    title: "Pulido y pruebas",
+    items: ["optimización", "bugs", "pruebas de usuario", "ajustes finales"],
+  },
+  {
+    phase: "Meses 11–12",
+    title: "Publicación y difusión",
+    items: ["material promocional", "devlogs", "estrategia de lanzamiento"],
+  },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Planificación"
+  description="Planificación del proyecto Kaelum: organización temporal, escenarios de desarrollo y lectura de alcance."
+>
+  <section class="hero planning-hero">
+    <p class="kicker">Documentación</p>
+    <h1>Planificación del proyecto</h1>
+    <p class="lead">
+      La planificación de Kaelum está pensada para demostrar que el proyecto no solo tiene ideas,
+      sino también <strong>orden, fases y prioridades</strong>. Esta página resume el ritmo de trabajo
+      del escenario académico y del escenario ampliado.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}desarrollo/hitos/`}>Ver hitos</a>
+      <a class="btn" href={`${base}documentacion/presupuesto/`}>Ver presupuesto</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card full">
+      <h2>Qué busca esta planificación</h2>
+      <ul class="list">
+        <li>Evitar el caos y el crecimiento descontrolado del alcance.</li>
+        <li>Priorizar sistemas base antes de añadir capas de complejidad.</li>
+        <li>Separar con claridad lo académico de lo que sería una producción indie real.</li>
+        <li>Convertir el GDD en un proyecto defendible también en tiempos y fases.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Escenario A · Planificación reducida (3 meses)</h2>
+      <p class="muted">
+        Esta versión representa el enfoque académico: validar el concepto, cerrar el core y entregar
+        una base sólida del proyecto sin perderse en una producción imposible.
+      </p>
+
+      <div class="months-grid">
+        {scenarioA.map((month) => (
+          <section class="month-card">
+            <h3>{month.phase}</h3>
+            <ul class="list">
+              {month.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card full">
+      <h2>Escenario B · Planificación ampliada (12 meses)</h2>
+      <p class="muted">
+        Este escenario plantea una lectura más cercana a un desarrollo independiente real, donde la
+        identidad visual, la profundidad narrativa y la difusión tienen más peso.
+      </p>
+
+      <div class="timeline">
+        {scenarioB.map((item) => (
+          <section class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <p class="small">{item.phase}</p>
+              <h3>{item.title}</h3>
+              <ul class="list">
+                {item.items.map((sub) => <li>{sub}</li>)}
+              </ul>
+            </div>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Lógica de prioridades</h2>
+      <ul class="list">
+        <li><strong>Primero:</strong> que el juego se sostenga.</li>
+        <li><strong>Después:</strong> que tenga identidad fuerte.</li>
+        <li><strong>Luego:</strong> que se presente y se difunda mejor.</li>
+      </ul>
+      <p class="small">
+        Esta jerarquía evita dedicar tiempo a capas secundarias antes de cerrar la base.
+      </p>
+    </article>
+
+    <article class="card">
+      <h2>Qué evita esta planificación</h2>
+      <ul class="list">
+        <li>Scope creep.</li>
+        <li>Dependencia de contenido “bonito” sin base jugable.</li>
+        <li>Una entrega visualmente grande pero vacía por dentro.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Conclusión</h2>
+      <p class="muted">
+        La planificación de Kaelum traduce la ambición del proyecto a una estructura comprensible.
+        No se trata solo de decir “quiero hacer esto”, sino de demostrar
+        <strong>cuándo, en qué orden y con qué prioridad</strong>.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}desarrollo/roadmap/`}>Abrir roadmap</a>
+        <a class="btn" href={`${base}documentacion/`}>Volver a Documentación</a>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    .planning-hero{
+      padding:28px 24px;
+    }
+
+    .months-grid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+      margin-top:14px;
+    }
+
+    .month-card,
+    .timeline-content{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    .timeline{
+      display:grid;
+      gap:16px;
+      margin-top:14px;
+    }
+
+    .timeline-item{
+      display:grid;
+      grid-template-columns:20px 1fr;
+      gap:14px;
+      align-items:start;
+    }
+
+    .timeline-dot{
+      width:14px;
+      height:14px;
+      border-radius:999px;
+      margin-top:16px;
+      background:linear-gradient(135deg, rgba(139,92,246,.95), rgba(34,211,238,.75));
+      box-shadow:0 0 0 6px rgba(255,255,255,.04);
+    }
+
+    @media (max-width: 980px){
+      .months-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</BaseLayout>
 ```
 
 ---
@@ -3844,7 +3666,216 @@ const rubricItems = [
 ---
 
 ```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
 
+const reduced = [
+  { label: "Programación y diseño principal", value: "Base del desarrollo" },
+  { label: "Arte provisional / recursos reutilizados", value: "Coste reducido" },
+  { label: "Pruebas y ajustes internos", value: "Incluido en producción" },
+  { label: "Comunicación y presentación académica", value: "Difusión mínima" },
+];
+
+const expanded = [
+  { label: "Programador principal", value: "Desarrollo del core y sistemas" },
+  { label: "Artista interno o externo", value: "Identidad visual y assets" },
+  { label: "Animación / sonido externalizado", value: "Apoyo selectivo" },
+  { label: "Marketing y visibilidad", value: "Difusión, tráiler y presencia" },
+];
+
+const principles = [
+  "El proyecto se plantea con dos escenarios: uno académico reducido y otro indie ampliado.",
+  "No se busca dar una cifra cerrada falsa, sino justificar cómo se reparte el coste.",
+  "La prioridad económica está en sostener el núcleo jugable antes que inflar el contenido.",
+  "El marketing no es un extra opcional: se contempla como multiplicador del presupuesto base.",
+];
+---
+
+<BaseLayout
+  title="Kaelum — Presupuesto"
+  description="Resumen del presupuesto del proyecto Kaelum: escenarios de desarrollo, estructura de costes y lógica de viabilidad."
+>
+  <section class="hero budget-hero">
+    <p class="kicker">Documentación</p>
+    <h1>Presupuesto del proyecto</h1>
+    <p class="lead">
+      Kaelum no presenta un presupuesto cerrado como si ya fuera una producción comercial real,
+      sino una <strong>estimación estructurada</strong> para justificar el alcance, la viabilidad
+      y la relación entre desarrollo y difusión.
+    </p>
+
+    <div class="meta">
+      <span class="tag">Escenario A · 3 meses</span>
+      <span class="tag">Escenario B · 12 meses</span>
+      <span class="tag">Producción + marketing</span>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}documentacion/gdd/`}>Ver GDD</a>
+      <a class="btn" href={`${base}documentacion/planificacion/`}>Ver planificación</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card full">
+      <h2>Cómo se entiende este presupuesto</h2>
+      <p class="muted">
+        El objetivo no es aparentar una cifra exacta inventada, sino demostrar que el proyecto
+        tiene una lógica de producción. El presupuesto se usa aquí como herramienta de
+        <strong>decisión de alcance</strong>: qué entra, qué se prioriza y qué tendría sentido externalizar.
+      </p>
+
+      <ul class="list">
+        {principles.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>Escenario A · Desarrollo reducido</h2>
+      <p class="muted">
+        Enfoque académico de <strong>3 meses</strong>, orientado a validar el concepto,
+        el gunplay, el movimiento y una base funcional del modo historia.
+      </p>
+
+      <ul class="list">
+        {reduced.map((item) => (
+          <li><strong>{item.label}:</strong> {item.value}</li>
+        ))}
+      </ul>
+
+      <p class="small">
+        Este escenario prioriza demostrar que el proyecto se puede sostener con un alcance realista.
+      </p>
+    </article>
+
+    <article class="card">
+      <h2>Escenario B · Desarrollo ampliado</h2>
+      <p class="muted">
+        Versión independiente más cercana a una producción real de <strong>12 meses</strong>,
+        con identidad visual más definida, historia más profunda y opción multijugador mejor resuelta.
+      </p>
+
+      <ul class="list">
+        {expanded.map((item) => (
+          <li><strong>{item.label}:</strong> {item.value}</li>
+        ))}
+      </ul>
+
+      <p class="small">
+        Aquí el presupuesto se entiende como soporte para convertir la idea en un producto más completo.
+      </p>
+    </article>
+
+    <article class="card full">
+      <h2>Estructura general de costes</h2>
+
+      <div class="budget-split">
+        <section class="budget-block">
+          <h3>1. Costes de desarrollo</h3>
+          <p class="muted">
+            Incluyen programación, diseño del juego, herramientas, pruebas y todos los recursos
+            necesarios para construir el núcleo jugable.
+          </p>
+          <ul class="list">
+            <li>Programación del gameplay y estructura general.</li>
+            <li>Diseño de sistemas, equilibrio y documentación.</li>
+            <li>Herramientas, recursos y materiales artísticos.</li>
+          </ul>
+        </section>
+
+        <section class="budget-block">
+          <h3>2. Costes de producción externa</h3>
+          <p class="muted">
+            Se contemplan cuando compensa acelerar partes concretas del proyecto o elevar su calidad visual/sonora.
+          </p>
+          <ul class="list">
+            <li>Arte final o apoyo visual puntual.</li>
+            <li>Animaciones específicas.</li>
+            <li>Diseño sonoro o música.</li>
+          </ul>
+        </section>
+
+        <section class="budget-block">
+          <h3>3. Costes de marketing y difusión</h3>
+          <p class="muted">
+            Se consideran desde el principio porque un juego no solo tiene que existir: también tiene que
+            poder presentarse, explicarse y hacerse visible.
+          </p>
+          <ul class="list">
+            <li>Tráiler, piezas visuales y presencia digital.</li>
+            <li>Material promocional y press kit.</li>
+            <li>Comunicación, festivales y visibilidad.</li>
+          </ul>
+        </section>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Relación entre producción y marketing</h2>
+      <p class="muted">
+        En el GDD se plantea que la difusión puede llegar a requerir un esfuerzo aproximado de
+        <strong>x2 sobre el presupuesto base</strong> si se quisiera promocionar el proyecto de forma seria.
+      </p>
+      <p class="small">
+        Esto refuerza una idea importante: no basta con desarrollar, también hay que saber presentar.
+      </p>
+    </article>
+
+    <article class="card">
+      <h2>Qué demuestra esta página</h2>
+      <ul class="list">
+        <li>Que el alcance de Kaelum está pensado con cabeza.</li>
+        <li>Que hay conciencia de costes aunque el proyecto sea ficticio.</li>
+        <li>Que la parte de difusión no se deja fuera del análisis.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Conclusión</h2>
+      <p class="muted">
+        El presupuesto de Kaelum no pretende fingir una producción cerrada, sino mostrar que el
+        proyecto ha sido diseñado con una lógica viable. La lectura correcta no es “cuánto cuesta
+        exactamente”, sino <strong>qué prioriza, por qué y cómo escalaría</strong> si el desarrollo creciera.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/metricas/`}>Ver métricas</a>
+        <a class="btn" href={`${base}documentacion/`}>Volver a Documentación</a>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    .budget-hero{
+      padding: 28px 24px;
+    }
+
+    .budget-split{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:14px;
+      margin-top:14px;
+    }
+
+    .budget-block{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    .budget-block h3{
+      margin-bottom:8px;
+    }
+
+    @media (max-width: 980px){
+      .budget-split{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</BaseLayout>
 ```
 
 ---
@@ -3855,432 +3886,158 @@ const rubricItems = [
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
-
-const sections = [
-  {
-    kicker: "Núcleo jugable",
-    title: "Juego",
-    desc:
-      "La parte central del portfolio. Aquí se explica Kaelum como videojuego: historia, mundo, personajes, enemigos, mecánicas, flujo, interfaz y progreso narrativo.",
-    href: `${base}juego/`,
-    btn: "Entrar en Juego",
-    primary: true,
-  },
-  {
-    kicker: "Presentación visual",
-    title: "Media",
-    desc:
-      "Moodboard, galería, tráiler y material visual del proyecto. La forma más rápida de captar el tono, la identidad estética y la dirección artística.",
-    href: `${base}media/`,
-    btn: "Ver Media",
-  },
-  {
-    kicker: "Respaldo formal",
-    title: "Documentación",
-    desc:
-      "GDD, folleto, análisis, presupuesto, planificación, métricas y apartados evaluables. Todo lo que sostiene el proyecto desde una perspectiva técnica y defendible.",
-    href: `${base}documentacion/`,
-    btn: "Abrir Documentación",
-  },
-  {
-    kicker: "Proceso real",
-    title: "Desarrollo",
-    desc:
-      "Devlog, hitos y evolución del proyecto. Sirve para ver cómo ha crecido Kaelum, qué decisiones se han tomado y cómo se ha refinado el enfoque.",
-    href: `${base}desarrollo/`,
-    btn: "Ver Desarrollo",
-  },
-  {
-    kicker: "Autor y feedback",
-    title: "Contacto",
-    desc:
-      "Información del creador, vías de contacto, redes y espacio para opinión o feedback. El cierre natural del recorrido y el punto de conexión externa.",
-    href: `${base}contacto/`,
-    btn: "Ir a Contacto",
-  },
-];
-
-const highlights = [
-  "FPS con habilidades",
-  "Singleplayer narrativo",
-  "Multijugador independiente",
-  "PC",
-  "Unity",
-  "Portfolio + documentación",
-];
-
-const route = [
-  {
-    step: "01",
-    title: "Empieza por Juego",
-    desc: "Si quieres entender Kaelum de verdad, aquí está su base: propuesta, sistemas, mundo y recorrido del jugador.",
-    href: `${base}juego/`,
-  },
-  {
-    step: "02",
-    title: "Pasa por Media",
-    desc: "Después toca ver su tono visual: moodboard, capturas, tráiler y presencia estética del proyecto.",
-    href: `${base}media/`,
-  },
-  {
-    step: "03",
-    title: "Consulta la Documentación",
-    desc: "Si vienes a evaluar o revisar el proyecto a fondo, aquí tienes la parte más formal y justificable.",
-    href: `${base}documentacion/`,
-  },
-  {
-    step: "04",
-    title: "Cierra con Desarrollo y Contacto",
-    desc: "Devlog, hitos, evolución del trabajo y formas de seguir el proyecto o dejar feedback.",
-    href: `${base}desarrollo/`,
-  },
-];
 ---
 
-<BaseLayout
-  title="Kaelum — Inicio"
-  description="Web portfolio de Kaelum: juego, media, documentación, desarrollo y contacto en un recorrido claro y navegable."
->
-  <section class="hero hero-home">
-    <div class="hero-copy">
-      <p class="kicker">Portfolio · Videojuego · Documentación</p>
-      <h1>Kaelum</h1>
+<BaseLayout title="Kaelum — Portfolio del videojuego">
 
-      <p class="lead">
-        Kaelum es un juego de videojuego <strong>FPS con habilidades</strong> que combina
-        acción, identidad visual y una parte narrativa centrada en Kael. Esta web no funciona
-        solo como portada: está pensada como un <strong>dossier navegable</strong> para entender
-        el juego, su mundo, sus sistemas y la evolución real del proyecto.
-      </p>
+<section class="hero aura-hero">
 
-      <div class="tags" aria-label="Etiquetas principales">
-        {highlights.map((item) => <span class="tag">{item}</span>)}
-      </div>
+  <p class="kicker">PROYECTO</p>
+  <h1>Kaelum</h1>
 
-      <div class="actions">
-        <a class="btn primary" href={`${base}juego/`}>Ver el juego</a>
-        <a class="btn" href={`${base}media/`}>Ver media</a>
-        <a class="btn" href={`${base}documentacion/`}>Ir a documentación</a>
-      </div>
-    </div>
+  <p class="lead">
+    Un videojuego en construcción, una identidad visual propia y una web pensada para
+    explorar su mundo, sus sistemas y todo el trabajo que hay detrás.
+  </p>
 
-    <aside class="hero-panel">
-      <p class="panel-kicker">Qué vas a encontrar aquí</p>
-      <h2>Una web pensada para entender el proyecto sin perderse</h2>
-      <p>
-        El recorrido está reorganizado para separar claramente la parte del juego, la presentación
-        visual, la documentación formal, el desarrollo y el contacto.
-      </p>
+  <div class="actions">
+    <a class="btn primary" href={`${base}juego/`}>Entrar en el juego</a>
+    <a class="btn" href={`${base}media/`}>Ver su lado visual</a>
+  </div>
 
-      <ul class="panel-list">
-        <li><strong>Juego:</strong> núcleo del proyecto y GDD web navegable.</li>
-        <li><strong>Media:</strong> tono visual, galería y tráiler.</li>
-        <li><strong>Documentación:</strong> respaldo técnico, análisis y planificación.</li>
-        <li><strong>Desarrollo:</strong> devlog, hitos y evolución.</li>
-        <li><strong>Contacto:</strong> autor, redes y feedback.</li>
-      </ul>
-    </aside>
-  </section>
+</section>
 
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Mapa del sitio</p>
-      <h2>Bloques principales</h2>
-      <p class="section-lead">
-        Esta portada ya no actúa como un índice caótico, sino como una puerta de entrada clara.
-        Cada bloque responde a una pregunta distinta sobre Kaelum.
-      </p>
-    </header>
+<section class="grid aura-grid">
 
-    <div class="grid">
-      {sections.map((card) => (
-        <article class:list={["card", card.primary && "card-primary"]}>
-          <p class="mini-kicker">{card.kicker}</p>
-          <h3>{card.title}</h3>
-          <p>{card.desc}</p>
-          <div class="actions">
-            <a class:list={["btn", card.primary ? "primary" : ""]} href={card.href}>
-              {card.btn}
-            </a>
-          </div>
-        </article>
-      ))}
-    </div>
-  </section>
+  <a class="card aura-card" href={`${base}juego/`}>
+    <h2>Juego</h2>
+    <p class="muted">
+      Historia, mundo, personajes, enemigos y la base jugable de Kaelum.
+    </p>
+  </a>
 
-  <section class="section route-section">
-    <header class="section-head">
-      <p class="kicker">Ruta recomendada</p>
-      <h2>Por dónde empezar</h2>
-      <p class="section-lead">
-        Si alguien entra sin contexto, este es el recorrido más natural para entender el proyecto.
-      </p>
-    </header>
+  <a class="card aura-card" href={`${base}media/`}>
+    <h2>Media</h2>
+    <p class="muted">
+      Interfaz, imágenes, materiales visuales y piezas que dan forma al proyecto.
+    </p>
+  </a>
 
-    <div class="route-grid">
-      {route.map((item) => (
-        <a class="route-card" href={item.href}>
-          <span class="route-step">{item.step}</span>
-          <div class="route-copy">
-            <h3>{item.title}</h3>
-            <p>{item.desc}</p>
-          </div>
-        </a>
-      ))}
-    </div>
-  </section>
+  <a class="card aura-card" href={`${base}documentacion/`}>
+    <h2>Documentación</h2>
+    <p class="muted">
+      La parte estratégica: diseño, análisis, estructura y planificación.
+    </p>
+  </a>
 
-  <section class="section split">
-    <article class="info-card">
-      <p class="kicker">Estado actual</p>
-      <h2>Una base ya bastante sólida</h2>
-      <p>
-        La web ya tiene una parte importante construida: estructura general, dossier del juego,
-        devlog, documentación y varias páginas clave del proyecto. El trabajo ahora está en
-        ordenar mejor el recorrido, cubrir los huecos de la rúbrica y dejar todo más consistente.
-      </p>
-      <div class="actions">
-        <a class="btn" href={`${base}desarrollo/`}>Ver estado del desarrollo</a>
-      </div>
-    </article>
+  <a class="card aura-card" href={`${base}desarrollo/`}>
+    <h2>Desarrollo</h2>
+    <p class="muted">
+      El recorrido real del proyecto, sus avances y las decisiones tomadas por el camino.
+    </p>
+  </a>
 
-    <article class="info-card accent">
-      <p class="kicker">Siguiente gran objetivo</p>
-      <h2>Rematar la experiencia evaluable</h2>
-      <p>
-        Lo que más pesa ahora es terminar de encajar galería, tráiler, presupuesto, planificación,
-        métricas, contacto y feedback dentro de una estructura que se lea fácil y no obligue al
-        visitante a adivinar dónde está cada cosa.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}documentacion/`}>Revisar documentación</a>
-      </div>
-    </article>
-  </section>
+  <a class="card aura-card full" href={`${base}contacto/`}>
+    <h2>Contacto</h2>
+    <p class="muted">
+      Un punto final natural para seguir el proyecto, opinar o conectar.
+    </p>
+  </a>
 
-  <style>
-    .hero-home{
-      display:grid;
-      grid-template-columns: 1.4fr .95fr;
-      gap:24px;
-      align-items:stretch;
-    }
+</section>
 
-    .hero-copy,
-    .hero-panel,
-    .card,
-    .info-card,
-    .route-card{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:18px;
-      backdrop-filter: blur(8px);
-    }
 
-    .hero-copy{
-      padding:28px;
-    }
+<style>
+/* HERO AURA */
 
-    .hero-panel{
-      padding:24px;
-      background:
-        linear-gradient(180deg, rgba(140,92,255,.12), rgba(255,255,255,.03));
-    }
+.aura-hero{
+  position:relative;
+  overflow:hidden;
+}
 
-    .kicker,
-    .mini-kicker,
-    .panel-kicker{
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.75;
-      margin:0 0 8px;
-      font-size:.82rem;
-    }
+.aura-hero::before{
+  content:"";
+  position:absolute;
+  inset:-200px;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(139,92,246,.18), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(34,211,238,.12), transparent 45%),
+    radial-gradient(circle at 50% 120%, rgba(139,92,246,.14), transparent 50%);
+  filter:blur(40px);
+  opacity:.9;
+  pointer-events:none;
+}
 
-    h1{
-      margin:0 0 12px;
-      font-size:clamp(2.8rem, 7vw, 4.8rem);
-      line-height:.95;
-    }
+.aura-hero > *{
+  position:relative;
+  z-index:1;
+}
 
-    h2{
-      margin:0 0 10px;
-      font-size:clamp(1.6rem, 2.8vw, 2.2rem);
-      line-height:1.05;
-    }
 
-    h3{
-      margin:0 0 10px;
-      font-size:1.18rem;
-    }
+/* GRID AURA */
 
-    .lead,
-    .section-lead,
-    .card p,
-    .info-card p,
-    .route-copy p,
-    .hero-panel p{
-      line-height:1.6;
-      opacity:.94;
-      margin:0;
-      text-align:justify;
-    }
+.aura-grid{
+  position:relative;
+}
 
-    .tags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:18px;
-    }
+.aura-grid::before{
+  content:"";
+  position:absolute;
+  inset:-120px -80px;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(139,92,246,.08), transparent 55%),
+    radial-gradient(circle at 70% 60%, rgba(34,211,238,.06), transparent 60%);
+  filter:blur(50px);
+  pointer-events:none;
+  z-index:0;
+}
 
-    .tag{
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.05);
-      border-radius:999px;
-      padding:8px 12px;
-      font-size:.92rem;
-    }
+.aura-grid > *{
+  position:relative;
+  z-index:1;
+}
 
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:18px;
-    }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:inherit;
-      text-decoration:none;
-      transition:.18s ease;
-    }
+/* CARD AURA */
 
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
+.aura-card{
+  position:relative;
+  overflow:hidden;
+}
+.aura-grid::before{
+  background: radial-gradient(circle at 25% 20%, rgba(139, 92, 246, .18), transparent 40%), radial-gradient(circle at 80% 30%, rgba(34, 211, 238, .12), transparent 45%), radial-gradient(circle at 50% 120%, rgba(139, 92, 246, .14), transparent 50%);
+}
 
-    .btn.primary{
-      background:linear-gradient(180deg, rgba(146, 101, 255, .30), rgba(146, 101, 255, .16));
-      border-color:rgba(176, 141, 255, .34);
-      box-shadow:0 10px 24px rgba(64,20,120,.18);
-    }
+.aura-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(139,92,246,.15), transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(34,211,238,.10), transparent 55%);
 
-    .panel-list{
-      margin:16px 0 0;
-      padding-left:18px;
-      display:grid;
-      gap:10px;
-      line-height:1.5;
-    }
+  opacity:.0;
+  transition:opacity .35s ease;
+  pointer-events:none;
+}
 
-    .section{
-      margin-top:28px;
-    }
+.aura-card:hover::after{
+  opacity:.8;
+}
 
-    .section-head{
-      margin-bottom:14px;
-    }
+.aura-card:hover{
+  transform:translateY(-2px);
+  box-shadow:
+    0 8px 40px rgba(0,0,0,.35),
+    0 0 0 1px rgba(139,92,246,.18);
+}
+</style>
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .card{
-      padding:20px;
-    }
-
-    .card-primary{
-      background:
-        linear-gradient(180deg, rgba(120,80,255,.16), rgba(255,255,255,.04));
-      border-color:rgba(174, 137, 255, .22);
-    }
-
-    .route-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .route-card{
-      display:flex;
-      gap:14px;
-      padding:18px;
-      text-decoration:none;
-      color:inherit;
-      transition:.18s ease;
-    }
-
-    .route-card:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.06);
-    }
-
-    .route-step{
-      width:48px;
-      height:48px;
-      border-radius:14px;
-      display:grid;
-      place-items:center;
-      flex:0 0 auto;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(140,92,255,.16);
-    }
-
-    .split{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .info-card{
-      padding:22px;
-    }
-
-    .info-card.accent{
-      background:
-        linear-gradient(180deg, rgba(140,92,255,.14), rgba(255,255,255,.03));
-    }
-
-    @media (max-width: 980px){
-      .hero-home,
-      .grid,
-      .route-grid,
-      .split{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 640px){
-      .hero-copy,
-      .hero-panel,
-      .card,
-      .route-card,
-      .info-card{
-        padding:18px;
-      }
-
-      h1{
-        font-size:2.5rem;
-      }
-    }
-  </style>
 </BaseLayout>
 ```
 
 ---
-## FILE: src/pages/juego/cinematicas.astro
+## FILE: src/pages/juego/01historia.astro
 ---
 
 ```astro
@@ -4290,284 +4047,1945 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
-    title="Kaelum — Cinemáticas"
-    description="Escenas narrativas y cinemáticas completas de Kaelum: dirección visual, storyboard, carga emocional y diseño audiovisual."
+  title="Kaelum — Historia"
+  description="Historia y narrativa (Actos 1–3 + Misiones principales): enfoque narrativo, estructura de actos, misiones clave y decisiones."
 >
-    <section class="hero">
-        <header class="header">
-            <p class="kicker">GDD · Dirección Cinemática</p>
-            <h1>Cinemáticas</h1>
-            <p class="lead">
-                Las cinemáticas de <strong>Kaelum</strong> no sustituyen el gameplay.
-                Lo estructuran. Marcan puntos de no retorno narrativos y emocionales.
-                Todo lo que ocurre aquí redefine cómo el jugador entiende el mundo.
-            </p>
+  <section class="hero page-hero">
+    <header class="header">
+      <p class="kicker">GDD · Modo Historia</p>
+      <h1>Historia y narrativa</h1>
+      <p class="lead">
+        Kaelum cuenta su historia desde dentro: lo que vives, lo que eliges y lo
+        que el mundo decide creer sobre ti. No vienes a que te aplaudan. Vienes
+        a sobrevivir… y a decidir qué tipo de persona vas a ser cuando tengas
+        poder de verdad.
+      </p>
 
-            <div class="actions">
-                <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-                <a class="btn" href={`${base}juego/historia/`}
-                    >Ver Historia</a
-                >
-                <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-                <a class="btn" href={`${base}juego/personajes/`}
-                    >Ver Personajes</a
-                >
-                <a class="btn primary" href={`${base}juego/enemigos/`}
-                    >Ver Enemigos</a
-                >
-                <a class="btn" href={`${base}juego/progreso/`}
-                    >Ver Progreso</a
-                >
-                <a class="btn" href={`${base}juego/mecanicas/`}
-                    >Ver Mecánicas</a
-                >
-                <a class="btn" href={`${base}juego/flujo/`}
-                    >Ver Flujo de estados</a
-                >
-            </div>
-        </header>
+      <div class="actions hero-actions">
+        <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+        <a class="btn primary" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+        <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+        <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+        <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+      </div>
+    </header>
+  </section>
+  
+<section class="gdd-section" id="historia">
+  <article class="content-card">
+    <h2>Enfoque narrativo</h2>
+    <ul class="bullets">
+      <li>
+        La narrativa no corta el ritmo: se construye con exploración, diálogos,
+        misiones y consecuencias.
+      </li>
+      <li>
+        La información se revela poco a poco: primero el rechazo, luego la
+        verdad, y al final la decisión.
+      </li>
+      <li>
+        El conflicto no es solo contra monstruos: es social, moral y
+        estructural.
+      </li>
+    </ul>
+
+    <blockquote class="quote">
+      <p>
+        “Te trajeron para salvarlos… pero también puedes ser la razón de su
+        caída.”
+      </p>
+      <cite>Frase núcleo</cite>
+    </blockquote>
+  </article>
+
+  <article class="content-card">
+    <h2>Acto 1 — “No eres bienvenido”</h2>
+    <p>
+      El juego abre con <strong>El Eclipse</strong>: una calle normal, un evento
+      imposible y una ruptura de realidad. Despiertas en Kaelum convertido en <strong
+        >Kael</strong
+      >, y el primer aprendizaje no es el combate: es la sensación de ser
+      observado como una amenaza.
+    </p>
+
+    <div class="subcard">
+      <h3>El tabú del pasado (por qué el pueblo te teme)</h3>
+      <p>
+        Durante un ataque de anomalías, Kael desató por primera vez una magia
+        distinta, vinculada a la energía violeta de La Fisura. Detuvo a las
+        criaturas… pero esa energía rebotó e impactó en civiles. Algunos
+        murieron. Otros sobrevivieron rotos. Fue un accidente, pero el mundo lo
+        recuerda como prueba.
+      </p>
+    </div>
+
+    <div class="subcard">
+      <h3>Giro del Acto 1</h3>
+      <p>
+        Tras un evento con <strong>Liora</strong> —criaturas de una anomalía entrando
+        en la ciudad y yendo a por ella—, el mundo no responde con gratitud: aparecen
+        extremistas del pueblo llano y la situación escala a persecución. Da igual
+        tu intención: si te temen, te van a querer muerto.
+      </p>
+    </div>
+  </article>
+
+  <article class="content-card">
+    <h2>Acto 2 — “La verdad está bajo sus túnicas”</h2>
+    <p>
+      El Acto 2 deja de ir “sobre aguantar el rechazo” y pasa a ir sobre
+      entender el sistema. Ruinas, runas y pistas te llevan al núcleo: <strong
+        >el Orbe del Origen</strong
+      > y su relación con La Fisura.
+    </p>
+
+    <div class="subcard">
+      <h3>La Orden no es un villano plano</h3>
+      <p>
+        La Orden funciona: ha contenido amenazas, ha construido conocimiento y
+        ha dado herramientas al mundo. Pero el coste está oculto: estabilidad a
+        cambio de aceptar tragedias como “daño colateral”.
+      </p>
+    </div>
+
+    <div class="subcard">
+      <h3>Giro del Acto 2</h3>
+      <p>
+        Descubres que La Orden no solo conocía el Orbe: lo tenía y lo usaba
+        deliberadamente. Ese momento rompe el centro moral del juego: ya no
+        puedes seguir como si nada.
+      </p>
+    </div>
+  </article>
+
+  <article class="content-card">
+    <h2>Acto 3 — “Tu decisión pesa”</h2>
+    <p>
+      El cierre no va de ganar o perder: va de qué haces con lo que has
+      entendido. El final depende del
+      <strong>karma</strong>, de decisiones clave y de la elección final sobre
+      el Orbe.
+    </p>
+
+    <div class="subcard">
+      <h3>Golpe inevitable antes del clímax</h3>
+      <p>
+        Antes del final, <strong>Liora muere</strong> durante el avance a la batalla
+        final, en medio del caos —restos de La Orden y anomalías—. Es un recordatorio:
+        da igual lo que hayas intentado, hay cosas que la guerra no negocia.
+      </p>
+    </div>
+
+    <div class="grid3">
+      <div class="pill ending good">
+        <h3>Final bueno</h3>
+        <p>
+          Kael destruye el Orbe. Renuncia al dominio. No hay celebración: hay
+          alivio.
+        </p>
+      </div>
+      <div class="pill ending neutral">
+        <h3>Final neutral</h3>
+        <p>
+          Kael sella el Orbe. Estabilidad imperfecta. El peso se comparte, no se
+          elimina.
+        </p>
+      </div>
+      <div class="pill ending bad">
+        <h3>Final malo</h3>
+        <p>
+          Kael absorbe el Orbe. Abraza La Fisura. Se convierte en lo que el
+          mundo temía.
+        </p>
+      </div>
+    </div>
+  </article>
+
+  <article class="content-card">
+    <h2>Misiones principales</h2>
+    <p class="muted">
+      La estructura sigue un escalado claro: <strong
+        >Identidad → Verdad → Decisión</strong
+      >. Cada bloque desbloquea sistemas y eleva el conflicto sin perder el foco
+      del gunplay.
+    </p>
+
+    <div class="timeline">
+      <div class="tblock">
+        <h3>Acto 1 — Identidad</h3>
+        <ol>
+          <li>
+            <strong>Despertar en Kaelum</strong> — tutorial + primer rechazo.
+          </li>
+          <li>
+            <strong>La Ciudad no te quiere</strong> — primer hub + Liora + reputación
+            social.
+          </li>
+          <li><strong>El Taller Silencioso</strong> — Maeren + memoria 1.</li>
+          <li>
+            <strong>Grieta en el Bosque</strong> — decisión civiles vs eficacia.
+          </li>
+          <li>
+            <strong>El Poder de la Fisura</strong> — primer poder + persecución (fin
+            de acto).
+          </li>
+        </ol>
+      </div>
+
+      <div class="tblock">
+        <h3>Acto 2 — Verdad</h3>
+        <ol start="6">
+          <li><strong>Ruinas y Runas</strong> — vínculo Orbe-Fisura.</li>
+          <li><strong>La Orden observa</strong> — jerarquía + control.</li>
+          <li>
+            <strong>El Fugitivo</strong> — proteger o entregar (punto de no retorno).
+          </li>
+          <li>
+            <strong>Castillo de la Pieza</strong> — jefe + pieza para guardianes.
+          </li>
+          <li>
+            <strong>El Orbe del Origen</strong> — revelación: La Orden lo usaba.
+          </li>
+        </ol>
+      </div>
+
+      <div class="tblock">
+        <h3>Acto 3 — Decisión</h3>
+        <ol start="11">
+          <li>
+            <strong>Reunir a los Guardianes</strong> — aliados + preparación final.
+          </li>
+          <li>
+            <strong>Decisión y Final</strong> — 3 finales según karma + decisiones.
+          </li>
+        </ol>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section class="page-end">
+  <div class="actions hero-actions">
+        <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+        <a class="btn primary" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+        <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+        <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+        <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+      </div>
+</section>
+
+</BaseLayout>
+
+<style>
+  .page-hero {
+    padding: 30px 24px;
+  }
+
+  .header {
+    margin-bottom: 0;
+  }
+
+  .lead {
+    text-align: justify;
+    opacity: 0.92;
+    line-height: 1.6;
+    max-width: 78ch;
+  }
+
+  .hero-actions {
+    margin-top: 18px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px 20px;
+  }
+  .hero-actions a {
+    flex: 1 1 200px;
+  }
+
+  .family-nav {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .family-pill {
+    text-decoration: none;
+    color: var(--muted);
+    font-weight: 800;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid transparent;
+    transition: all 0.15s ease;
+  }
+
+  .family-pill:hover {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-1px);
+  }
+
+  .family-pill.active {
+    color: var(--text);
+    background: linear-gradient(
+      90deg,
+      rgba(139, 92, 246, 0.4),
+      rgba(34, 211, 238, 0.32)
+    );
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+
+  .gdd-section {
+    margin-top: 18px;
+    display: grid;
+    gap: 16px;
+  }
+
+  .content-card {
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    background: linear-gradient(
+      180deg,
+      rgba(139, 92, 246, 0.08),
+      rgba(255, 255, 255, 0.03)
+    );
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  }
+
+  .content-card > p {
+    text-align: justify;
+    color: var(--muted);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .subcard {
+    margin-top: 14px;
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(0, 0, 0, 0.18);
+  }
+
+  .subcard h3 {
+    margin: 0 0 8px;
+    font-size: 1.06rem;
+  }
+
+  .subcard p {
+    margin: 0;
+    text-align: justify;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .bullets {
+    margin: 12px 0 0;
+    padding-left: 22px;
+    color: var(--muted);
+  }
+
+  .bullets li {
+    margin: 8px 0;
+  }
+
+  .quote {
+    margin: 16px 0 0;
+    padding: 14px;
+    border-left: 4px solid rgba(170, 120, 255, 0.65);
+    background: rgba(170, 120, 255, 0.08);
+    border-radius: 12px;
+  }
+
+  .quote p {
+    margin: 0 0 6px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .quote cite {
+    opacity: 0.8;
+    font-style: normal;
+    font-size: 0.92rem;
+    color: var(--muted);
+  }
+
+  .grid3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 14px;
+  }
+
+  .pill {
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .pill h3 {
+    margin: 0 0 8px;
+  }
+
+  .pill p {
+    margin: 0;
+    opacity: 0.92;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  .ending.good {
+    background: linear-gradient(
+      180deg,
+      rgba(120, 210, 150, 0.12),
+      rgba(255, 255, 255, 0.03)
+    );
+  }
+
+  .ending.neutral {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 190, 90, 0.1),
+      rgba(255, 255, 255, 0.03)
+    );
+  }
+
+  .ending.bad {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 110, 170, 0.1),
+      rgba(255, 255, 255, 0.03)
+    );
+  }
+
+  .timeline {
+    margin-top: 14px;
+    display: grid;
+    gap: 12px;
+  }
+
+  .tblock {
+    padding: 14px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.14);
+  }
+
+  .tblock h3 {
+    margin: 0 0 10px;
+    font-size: 1.18rem;
+  }
+
+  .tblock ol {
+    margin: 0;
+    padding-left: 20px;
+    color: var(--muted);
+  }
+
+  .tblock li {
+    margin: 8px 0;
+    line-height: 1.5;
+  }
+
+  .page-end {
+    margin-top: 18px;
+  }
+
+  @media (max-width: 860px) {
+    .grid3 {
+      grid-template-columns: 1fr;
+    }
+
+    .content-card,
+    .subcard,
+    .pill,
+    .tblock {
+      padding: 18px;
+    }
+
+    .family-nav {
+      gap: 8px;
+    }
+  }
+</style>
+```
+
+---
+## FILE: src/pages/juego/02mundo.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Kaelum — Mundo"
+  description="Mundo y ambientación de Kaelum: zonas, reglas, facciones, La Fisura y lectura visual aplicada a gameplay."
+>
+  <section class="hero world-hero">
+    <p class="kicker">Juego</p>
+    <h1>Mundo</h1>
+    <p class="lead">
+      Kaelum no es un decorado: es un sistema que empuja al jugador a leer el
+      entorno, entender el rechazo social y tomar decisiones que dejan huella.
+      Medieval y rural en apariencia, pero con tecnología arcana y armas de
+      fuego lo bastante presentes como para que el mundo se sienta funcional.
+    </p>
+
+    <div class="actions hero-actions">
+      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+      <a class="btn primary" href={`${base}juego/03personajes/`}
+        >Ver Personajes</a
+      >
+      <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+      <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+      <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+    </div>
+  </section>
+
+  <div class="grid world-grid">
+    <section class="card full featured-card">
+      <div class="label">// IDENTIDAD</div>
+      <h2>Medieval funcional + tecnología arcana</h2>
+      <p class="muted">
+        La estética base es rural/medieval, pero el mundo está atravesado por
+        una lógica moderna: control, jerarquía, rutas, permisos y protocolos. Lo
+        que la gente no entiende lo llama maldición, pero lo que la Orden no
+        explica… lo administra.
+      </p>
+
+      <div class="chips">
+        <span class="chip">Arquitectura robusta</span>
+        <span class="chip">Rutas de control</span>
+        <span class="chip">Armas comunes</span>
+        <span class="chip">Energía rara</span>
+        <span class="chip">Miedo social</span>
+        <span class="chip">Bruma violeta</span>
+      </div>
+
+      <div class="callout">
+        <strong>Idea clave:</strong> Kaelum se entiende por contraste: lo cotidiano
+        busca calma, pero La Fisura y la Orden convierten esa calma en una estabilidad
+        vigilada.
+      </div>
     </section>
-    <section class="gdd-section">
-        <article class="card">
-            <h2>Estructura narrativa audiovisual</h2>
 
-            <ul class="bullets">
-                <li>Tercera persona limitada centrada en Kael.</li>
-                <li>Sin narrador omnisciente.</li>
-                <li>Lo que se muestra es lo que Kael vive o comprende.</li>
-                <li>
-                    Transiciones diseñadas para volver al gameplay sin ruptura
-                    artificial.
-                </li>
-            </ul>
+    <section class="card tone-card">
+      <div class="label">// LA FISURA</div>
+      <h2>Qué es para la gente</h2>
+      <p class="muted">
+        La mayoría no sabe qué es La Fisura. Lo que sí conoce: grietas que se
+        abren, anomalías que salen, y temporadas donde el bosque se vuelve
+        territorio hostil. La explicación popular es simple y peligrosa:
+        <strong>una maldición</strong>, el reflejo de que el mundo no está en
+        balance.
+      </p>
 
-            <div class="callout">
-                Las cinemáticas están vinculadas directamente a decisiones,
-                karma y reputación. No son decorativas. Son estructurales.
-            </div>
+      <ul class="list">
+        <li>
+          <strong>Señales:</strong> bruma violeta, distorsión sutil y cicatrices en
+          el terreno.
+        </li>
+        <li>
+          <strong>Consecuencia:</strong> aparición de anomalías en rutas y eventos
+          de grieta.
+        </li>
+        <li>
+          <strong>Lectura jugable:</strong> el jugador aprende a identificar zonas
+          enfermas sin HUD invasivo.
+        </li>
+      </ul>
+    </section>
+
+    <section class="card tone-card">
+      <div class="label">// SOCIEDAD</div>
+      <h2>Rechazo como sistema</h2>
+      <p class="muted">
+        Kael no es rechazado por un rumor cualquiera: el pueblo lo asocia con un
+        accidente real —magia violeta fuera de control durante un ataque— que
+        dejó civiles muertos y otros marcados. Aunque intente hacer el bien, el
+        mundo responde con miedo.
+      </p>
+
+      <ul class="list">
+        <li>
+          <strong>El miedo se contagia:</strong> primero miradas, luego rumores, luego
+          persecución.
+        </li>
+        <li>
+          <strong>El tabú se hereda:</strong> lo diferente se trata como amenaza.
+        </li>
+        <li>
+          <strong>El jugador lo vive:</strong> cambia la reacción de NPCs, el acceso
+          a rutas y el apoyo social.
+        </li>
+      </ul>
+    </section>
+
+    <section class="card full">
+      <div class="label">// ZONAS</div>
+      <h2>Mapa mental del mundo</h2>
+      <p class="muted">
+        El viaje se apoya en transiciones claras de tono y color:
+        <strong>cálido cotidiano</strong> →
+        <strong>violeta frío</strong> →
+        <strong>oscuridad</strong> →
+        <strong>rural apagado</strong>. No es solo cinemática: guía la
+        progresión por biomas y tensión.
+      </p>
+
+      <div class="zones-grid">
+        <article class="zone-card">
+          <h3>1) Casa de Kael</h3>
+          <p class="muted">
+            Inicio y choque de identidad. Espacio seguro narrativo por
+            intimidad, no por ausencia de peligro.
+          </p>
+          <ul class="list compact">
+            <li>Tutorial + lectura de entorno</li>
+            <li>Transición del mundo real a Kaelum</li>
+            <li>Primeras pistas de La Fisura</li>
+          </ul>
         </article>
 
-        <article class="card major">
-            <p class="kicker">PRÓLOGO</p>
-            <h2>El Eclipse</h2>
-            <p class="muted">
-                Introducción absoluta. Evento imposible. Ruptura de realidad.
-            </p>
-
-            <div class="subcard">
-                <h3>Objetivo narrativo</h3>
-                <ul>
-                    <li>El protagonista era normal.</li>
-                    <li>El eclipse es anómalo.</li>
-                    <li>Solo él reacciona.</li>
-                    <li>Despierta como Kael en Kaelum.</li>
-                </ul>
-            </div>
-
-            <div class="subcard">
-                <h3>Clave emocional</h3>
-                <blockquote>“¿Eso… siempre ha estado ahí?”</blockquote>
-                <p>Nadie responde. Nadie mira. Solo tú.</p>
-            </div>
-
-            <div class="subcard">
-                <h3>Dirección visual</h3>
-                <ul>
-                    <li>
-                        Transición cálido → púrpura → oscuridad → rural apagado.
-                    </li>
-                    <li>Glitches progresivos.</li>
-                    <li>Latido en negro total.</li>
-                </ul>
-            </div>
+        <article class="zone-card">
+          <h3>2) Vesperia</h3>
+          <p class="muted">
+            Núcleo social y político. Misiones, comercio, propaganda, jerarquía
+            visible y control de la Orden.
+          </p>
+          <ul class="list compact">
+            <li>Misiones principales y secundarias</li>
+            <li>Facciones, reputación y rumores</li>
+            <li>Control, permisos y vigilancia</li>
+          </ul>
         </article>
 
-        <article class="card">
-            <p class="kicker">FIN ACTO I</p>
-            <h2>La Persecución</h2>
-
-            <p class="muted">
-                El momento donde Kael deja de ser extraño para convertirse en
-                amenaza pública.
-            </p>
-
-            <div class="subcard">
-                <h3>Escenario</h3>
-                <ul>
-                    <li>Plaza central de Vesperia.</li>
-                    <li>Guardias movilizados.</li>
-                    <li>Multitud alterada.</li>
-                </ul>
-            </div>
-
-            <div class="subcard">
-                <h3>Carga emocional</h3>
-                <blockquote>
-                    “¡El monstruo!” “¡No dejéis que escape!”
-                </blockquote>
-                <p>No hay juicio. Solo miedo colectivo.</p>
-            </div>
+        <article class="zone-card">
+          <h3>3) Bosques exteriores</h3>
+          <p class="muted">
+            Zona intermedia recurrente. Camino de paso y termómetro de amenaza.
+          </p>
+          <ul class="list compact">
+            <li>Rutas, patrullas y eventos</li>
+            <li>Primeras grietas serias</li>
+            <li>Lectura clara del peligro</li>
+          </ul>
         </article>
 
-        <article class="card">
-            <p class="kicker">FIN ACTO II</p>
-            <h3>La Verdad del Orbe</h3>
-
-            <p class="muted">
-                La ruptura moral del juego. La Orden no combatía el caos. Lo
-                administraba.
-            </p>
-
-            <div class="subcard">
-                <h4>Revelación</h4>
-                <ul>
-                    <li>Registros sellados.</li>
-                    <li>Sacrificios aceptados como “coste”.</li>
-                    <li>Gran Maestro convencido de su postura.</li>
-                </ul>
-            </div>
-
-            <div class="subcard">
-                <blockquote>“El mundo necesita control.”</blockquote>
-                <p>No suena villano. Suena necesario.</p>
-            </div>
+        <article class="zone-card">
+          <h3>4) Ruinas antiguas</h3>
+          <p class="muted">
+            Altares, runas y llaves de progreso. El lore aquí se cuenta con
+            símbolos, mecánicas y memorias.
+          </p>
+          <ul class="list compact">
+            <li>Runas, llaves y gating</li>
+            <li>Lore breve y significativo</li>
+            <li>Piezas del sistema de Guardianes</li>
+          </ul>
         </article>
 
-        <article class="card major">
-            <p class="kicker">CLÍMAX</p>
-            <h3>El Orbe del Origen — Final Variable</h3>
-
-            <div class="grid3">
-                <div class="pill good">
-                    <h4>Final Bueno — La Luz No Es Gratis</h4>
-                    <p>
-                        Kael destruye el Orbe. Renuncia al poder. La Fisura
-                        retrocede.
-                    </p>
-                    <blockquote>“No necesita otro tirano.”</blockquote>
-                </div>
-
-                <div class="pill neutral">
-                    <h4>Final Neutral — Equilibrio Inestable</h4>
-                    <p>
-                        El Orbe se sella parcialmente. El ciclo no desaparece.
-                    </p>
-                    <blockquote>“Solo lo he frenado.”</blockquote>
-                </div>
-
-                <div class="pill bad">
-                    <h4>Final Malo — El Monstruo Que Eligieron</h4>
-                    <p>Kael absorbe el poder. El eclipse se completa.</p>
-                    <blockquote>“Queríais un monstruo.”</blockquote>
-                </div>
-            </div>
-
-            <div class="callout">
-                El final depende de karma acumulado + decisiones clave +
-                elección final. No es estético. Es estructural.
-            </div>
+        <article class="zone-card">
+          <h3>5) Cuevas</h3>
+          <p class="muted">
+            Atajos y secretos. Funcionan como tuberías del mundo: conectan zonas
+            y recompensan exploración.
+          </p>
+          <ul class="list compact">
+            <li>Atajos entre biomas</li>
+            <li>Loot, notas y coleccionables</li>
+            <li>Acceso alternativo y secretos</li>
+          </ul>
         </article>
-        <div class="actions">
-            <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-            <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-            <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-            <a class="btn" href={`${base}juego/personajes/`}
-                >Ver Personajes</a
-            >
-            <a class="btn primary" href={`${base}juego/enemigos/`}
-                >Ver Enemigos</a
-            >
-            <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
-            <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
-            <a class="btn" href={`${base}juego/flujo/`}
-                >Ver Flujo de estados</a
-            >
+
+        <article class="zone-card">
+          <h3>6) Nocturn</h3>
+          <p class="muted">
+            Identidad propia. El lugar donde el precio del conflicto se vuelve
+            humano.
+          </p>
+          <ul class="list compact">
+            <li>Misiones y microhistorias</li>
+            <li>Reacción fuerte al karma</li>
+            <li>Espacios de calma que se rompen rápido</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">// REGLAS</div>
+      <h2>Cómo debe leerse el mundo</h2>
+      <p class="muted">
+        Kaelum busca coherencia jugable antes que complejidad gratuita. El mundo
+        debe ser lo bastante claro como para entenderlo y lo bastante extraño
+        como para seguir tirando de ti.
+      </p>
+
+      <div class="mini-panel">
+        <h4>Principios</h4>
+        <ul class="list compact">
+          <li>La acción y la narrativa se refuerzan mutuamente</li>
+          <li>La ambientación guía sin sobreexplicar</li>
+          <li>El jugador aprende leyendo entorno, no solo menús</li>
+          <li>La extrañeza se administra en capas</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">// FUNCIÓN</div>
+      <h2>Qué debe sentir el jugador</h2>
+      <div class="feel-grid">
+        <div class="feel-box">
+          <h4>Curiosidad</h4>
+          <p>Que siempre haya algo que mirar más de cerca.</p>
         </div>
+        <div class="feel-box">
+          <h4>Tensión</h4>
+          <p>Que el entorno no sea neutral ni completamente seguro.</p>
+        </div>
+        <div class="feel-box">
+          <h4>Coherencia</h4>
+          <p>Que el universo tenga identidad y reglas claras.</p>
+        </div>
+        <div class="feel-box metric">
+          <h4>Lectura rápida</h4>
+          <p>Que cada zona se entienda visualmente en pocos segundos.</p>
+        </div>
+      </div>
     </section>
 
-    <style>
-        .header {
-            margin-bottom: 20px;
-        }
+    <section class="card full">
+      <div class="label">// FACCIONES</div>
+      <h2>Quién controla, quién sufre y quién resiste</h2>
+      <p class="muted">
+        El mundo también se entiende por quién lo gobierna, quién lo padece y
+        quién intenta sobrevivir dentro de él.
+      </p>
 
-        .kicker {
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            opacity: 0.7;
-            font-size: 0.85rem;
-        }
+      <div class="info-grid">
+        <div class="info-box">
+          <strong>La Orden</strong>
+          <p>
+            Poder, control, estabilidad y secretos. No es solo antagonismo:
+            también representa un sistema que funciona… hasta que descubres a
+            qué precio.
+          </p>
+        </div>
 
-        .lead {
-            margin-top: 6px;
-            line-height: 1.6;
-            opacity: 0.9;
-        }
+        <div class="info-box">
+          <strong>Pueblo llano y extremistas</strong>
+          <p>
+            El rechazo social no es abstracto. Se vuelve rostro, rumor, miedo y
+            violencia.
+          </p>
+        </div>
 
-        .card {
-            margin-top: 18px;
-            padding: 18px;
-            border-radius: 14px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.04);
-        }
+        <div class="info-box">
+          <strong>Guardianes y ruinas</strong>
+          <p>
+            Una capa más antigua del mundo, ligada al pasado profundo de Kaelum
+            y a las piezas que explican su estructura real.
+          </p>
+        </div>
 
-        .card.major {
-            border: 1px solid rgba(170, 120, 255, 0.25);
-            background: rgba(170, 120, 255, 0.08);
-        }
+        <div class="info-box">
+          <strong>Kael en medio</strong>
+          <p>
+            No entra como héroe reconocido, sino como una figura incómoda:
+            alguien que lleva poder, peligro y sospecha al mismo tiempo.
+          </p>
+        </div>
+      </div>
 
-        .subcard {
-            margin-top: 14px;
-            padding: 14px;
-            border-radius: 12px;
-            background: rgba(0, 0, 0, 0.2);
-        }
+      <div class="callout subtle">
+        Kaelum no necesita contarte constantemente qué está pasando. Su mundo
+        tiene que dejarte sentirlo.
+      </div>
+    </section>
+  </div>
 
-        .bullets {
-            padding-left: 20px;
-        }
+  <div class="actions hero-actions">
+      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+      <a class="btn primary" href={`${base}juego/03personajes/`}
+        >Ver Personajes</a
+      >
+      <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+      <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+      <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+    </div>
 
-        blockquote {
-            margin: 8px 0;
-            font-weight: 600;
-        }
+  <style>
+    .world-hero {
+      position: relative;
+      overflow: hidden;
+    }
 
-        .grid3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 14px;
-            margin-top: 14px;
-        }
+    .world-hero::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          900px 280px at 18% 0%,
+          rgba(34, 211, 238, 0.08),
+          transparent 65%
+        ),
+        radial-gradient(
+          760px 280px at 90% 12%,
+          rgba(139, 92, 246, 0.08),
+          transparent 60%
+        );
+      opacity: 0.9;
+    }
 
-        .pill {
-            padding: 14px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
+    .world-hero > * {
+      position: relative;
+      z-index: 1;
+    }
 
-        .pill.good {
-            background: rgba(100, 255, 170, 0.07);
-        }
-        .pill.neutral {
-            background: rgba(255, 220, 120, 0.07);
-        }
-        .pill.bad {
-            background: rgba(255, 90, 140, 0.07);
-        }
+    .hero-actions {
+      margin-top: 16px;
+    }
 
-        .callout {
-            margin-top: 18px;
-            padding: 14px;
-            border-radius: 12px;
-            border: 1px dashed rgba(255, 255, 255, 0.2);
-            opacity: 0.85;
-        }
-    </style>
+    .world-grid {
+      margin-top: 18px;
+    }
+
+    .featured-card {
+      border-color: rgba(34, 211, 238, 0.16);
+      background: linear-gradient(
+        180deg,
+        rgba(34, 211, 238, 0.08),
+        rgba(139, 92, 246, 0.04)
+      );
+    }
+
+    .tone-card {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .label {
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      margin-bottom: 8px;
+    }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    .zones-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .zone-card {
+      padding: 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .zone-card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .mini-panel {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .mini-panel h4,
+    .feel-box h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .feel-grid,
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .feel-box,
+    .info-box {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .feel-box p,
+    .info-box p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .info-box strong {
+      display: block;
+      margin-bottom: 6px;
+      color: rgba(255, 255, 255, 0.96);
+    }
+
+    .metric {
+      border-color: rgba(139, 92, 246, 0.22);
+      background: rgba(139, 92, 246, 0.08);
+    }
+
+    .callout {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.18);
+      color: var(--muted);
+    }
+
+    .callout.subtle {
+      border-style: solid;
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .list.compact {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .actions.bottom {
+      margin-top: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .zones-grid,
+      .feel-grid,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .page-hero {
+      padding: 30px 24px;
+    }
+
+    .header {
+      margin-bottom: 0;
+    }
+
+    .lead {
+      text-align: justify;
+      opacity: 0.92;
+      line-height: 1.6;
+      max-width: 78ch;
+    }
+
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
+    }
+    .hero-actions a {
+      flex: 1 1 200px;
+    }
+
+    .family-nav {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .family-pill {
+      text-decoration: none;
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+    }
+
+    .family-pill:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .family-pill.active {
+      color: var(--text);
+      background: linear-gradient(
+        90deg,
+        rgba(139, 92, 246, 0.4),
+        rgba(34, 211, 238, 0.32)
+      );
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .gdd-section {
+      margin-top: 18px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .content-card {
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      background: linear-gradient(
+        180deg,
+        rgba(139, 92, 246, 0.08),
+        rgba(255, 255, 255, 0.03)
+      );
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+    }
+
+    .content-card > p {
+      text-align: justify;
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .subcard {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.18);
+    }
+
+    .subcard h3 {
+      margin: 0 0 8px;
+      font-size: 1.06rem;
+    }
+
+    .subcard p {
+      margin: 0;
+      text-align: justify;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .bullets {
+      margin: 12px 0 0;
+      padding-left: 22px;
+      color: var(--muted);
+    }
+
+    .bullets li {
+      margin: 8px 0;
+    }
+
+    .quote {
+      margin: 16px 0 0;
+      padding: 14px;
+      border-left: 4px solid rgba(170, 120, 255, 0.65);
+      background: rgba(170, 120, 255, 0.08);
+      border-radius: 12px;
+    }
+
+    .quote p {
+      margin: 0 0 6px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .quote cite {
+      opacity: 0.8;
+      font-style: normal;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .pill h3 {
+      margin: 0 0 8px;
+    }
+
+    .pill p {
+      margin: 0;
+      opacity: 0.92;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .ending.good {
+      background: linear-gradient(
+        180deg,
+        rgba(120, 210, 150, 0.12),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+
+    .ending.neutral {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 190, 90, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+
+    .ending.bad {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 110, 170, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+
+    .timeline {
+      margin-top: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .tblock {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.14);
+    }
+
+    .tblock h3 {
+      margin: 0 0 10px;
+      font-size: 1.18rem;
+    }
+
+    .tblock ol {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .tblock li {
+      margin: 8px 0;
+      line-height: 1.5;
+    }
+
+    .page-end {
+      margin-top: 18px;
+    }
+
+    @media (max-width: 860px) {
+      .grid3 {
+        grid-template-columns: 1fr;
+      }
+
+      .content-card,
+      .subcard,
+      .pill,
+      .tblock {
+        padding: 18px;
+      }
+
+      .family-nav {
+        gap: 8px;
+      }
+    }
+  </style>
 </BaseLayout>
 ```
 
 ---
-## FILE: src/pages/juego/enemigos.astro
+## FILE: src/pages/juego/03personajes.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Kaelum — Personajes"
+  description="Personajes principales de Kaelum: Kael, Liora, Maeren y el Gran Maestro. Rol narrativo, motivaciones y presencia en gameplay."
+>
+  <section class="hero chars-hero" id="personajes">
+    <header class="header">
+      <p class="kicker">GDD · Modo Historia</p>
+      <h1>Personajes</h1>
+      <p class="lead">
+        En Kaelum, los personajes no están para “contar lore”: están para
+        empujarte a decisiones. Kael es el centro del conflicto, Liora es el
+        ancla humana, Maeren es la raíz, y el Gran Maestro es el sistema con
+        cara.
+      </p>
+
+      <div class="actions hero-actions">
+        <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+        <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+        <a class="btn primary" href={`${base}juego/04cinematicas/`}
+          >Ver Cinemáticas</a
+        >
+        <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+        <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+        <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+        <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+      </div>
+    </header>
+  </section>
+
+  <section class="card-container">
+    <article class="card featured-card">
+      <h2>Kael</h2>
+
+      <div class="pgrid">
+        <div class="portrait">
+          <img
+            src={`${base}assets/personajes/kael.webp`}
+            alt="Ilustración de Kael"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="pcontent">
+          <p class="muted">
+            Joven adulto (25–30). No busca ser héroe: busca demostrar que su
+            existencia no es un error. Su arco no va de “ser más fuerte”, va de
+            decidir qué tipo de persona es cuando el poder deja de ser teoría.
+          </p>
+
+          <div class="chips">
+            <span class="chip">Frases cortas</span>
+            <span class="chip">Ironía defensiva</span>
+            <span class="chip">Moral obstinada</span>
+            <span class="chip">Poder como riesgo</span>
+          </div>
+
+          <div class="grid2">
+            <div class="subcard">
+              <h4>Objetivo interno</h4>
+              <p>
+                Que el mundo deje de tratarlo como amenaza.
+                <br />Vivir sin tener que justificarse.
+              </p>
+            </div>
+            <div class="subcard">
+              <h4>Objetivo externo</h4>
+              <p>
+                Decidir el destino del Orbe del Origen y el futuro de La Fisura.
+              </p>
+            </div>
+          </div>
+
+          <div class="subcard">
+            <h4>Relación con el poder</h4>
+            <p>
+              Empieza con miedo y supervivencia. Evoluciona a desconfianza
+              lúcida. El final lo define: ayudar a todos, apartarse y delegar, o
+              abrazar la caída y volverse el monstruo que esperaban.
+            </p>
+          </div>
+
+          <blockquote class="quote">
+            <p>“No necesita otro tirano.”</p>
+            <cite>Kael</cite>
+          </blockquote>
+
+          <div class="subcard">
+            <h4>Arma icónica</h4>
+            <p>
+              Una espada heredada de Maeren. No es “la mejor” para un shooter…
+              por eso pesa más: la lleva como recordatorio de quién confió en él
+              cuando nadie lo hacía.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Liora</h2>
+
+      <div class="pgrid">
+        <div class="portrait">
+          <img
+            src={`${base}assets/personajes/liora.webp`}
+            alt="Ilustración de Liora"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="pcontent">
+          <p class="muted">
+            Liora es el punto raro del mundo: alguien que mira a Kael y ve
+            persona, no leyenda. No sabe la verdad del Orbe ni las cloacas
+            políticas del consejo. Su papel es humano: confianza, vínculo y
+            pérdida.
+          </p>
+
+          <div class="chips">
+            <span class="chip">Ancla emocional</span>
+            <span class="chip">Confianza difícil</span>
+            <span class="chip">Rechazo del mundo</span>
+            <span class="chip">Tragedia inevitable</span>
+          </div>
+
+          <div class="grid2">
+            <div class="subcard">
+              <h4>Qué es para Kael</h4>
+              <p>
+                La persona que lo llena. El “si existe alguien bueno aquí, quizá
+                todavía no está todo roto”.
+              </p>
+            </div>
+            <div class="subcard">
+              <h4>Función jugable</h4>
+              <p>
+                Apoya el peso de decisiones (ayudar / fallar / consecuencias), y
+                marca el coste real antes del clímax.
+              </p>
+            </div>
+          </div>
+
+          <div class="subcard">
+            <h4>Momento clave</h4>
+            <p>
+              Su muerte ocurre durante el avance hacia la batalla final, en
+              medio del caos (restos de La Orden y anomalías). No es “castigo al
+              jugador”: es una verdad del mundo. Hay cosas que la guerra no
+              negocia.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Maeren</h2>
+
+      <div class="pgrid">
+        <div class="portrait">
+          <img
+            src={`${base}assets/personajes/maeren.webp`}
+            alt="Ilustración de Maeren"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="pcontent">
+          <p class="muted">
+            Mentor y única figura real de confianza para Kael. La voz que le
+            enseñó a sostenerse cuando todo lo demás lo empujaba al barro. Muere
+            (o desaparece) 5 años antes de los eventos del juego. Su ausencia se
+            convierte en sistema: memorias, taller, legado.
+          </p>
+
+          <div class="chips">
+            <span class="chip">Mentor</span>
+            <span class="chip">Legado</span>
+            <span class="chip">Memorias</span>
+            <span class="chip">Herida abierta</span>
+          </div>
+
+          <div class="subcard">
+            <h4>Función narrativa</h4>
+            <p>
+              El Taller Silencioso y las Memorias no son “flashbacks bonitos”:
+              son piezas de comprensión. Te dan mecánicas, contexto y un espejo
+              moral: qué significa controlar el poder sin convertirte en excusa.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Gran Maestro</h2>
+
+      <div class="pgrid">
+        <div class="portrait">
+          <img
+            src={`${base}assets/personajes/gran-maestro.webp`}
+            alt="Ilustración del Gran Maestro"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="pcontent">
+          <p class="muted">
+            No es un villano de caricatura. Es una idea con mando: “estabilidad
+            a cualquier precio”. Representa el control como doctrina, y el Orbe
+            como herramienta. Si el mundo te teme, él lo usa.
+          </p>
+
+          <div class="chips">
+            <span class="chip">Control</span>
+            <span class="chip">Doctrina</span>
+            <span class="chip">Poder legitimado</span>
+            <span class="chip">Frialdad política</span>
+          </div>
+
+          <div class="subcard">
+            <h4>Función narrativa</h4>
+            <p>
+              Es la cara visible del sistema. No se presenta como monstruo, sino
+              como necesidad. Por eso inquieta más: lo terrible en él es que
+              puede sonar razonable.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+  <div class="actions hero-actions">
+    <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+    <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+    <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+    <a class="btn primary" href={`${base}juego/04cinematicas/`}
+      >Ver Cinemáticas</a
+    >
+    <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+    <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+    <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+    <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+    <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+  </div>
+  <style>
+    .chars-hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chars-hero::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          900px 280px at 14% 0%,
+          rgba(255, 110, 170, 0.1),
+          transparent 65%
+        ),
+        radial-gradient(
+          760px 280px at 88% 10%,
+          rgba(139, 92, 246, 0.08),
+          transparent 60%
+        );
+      opacity: 0.9;
+    }
+
+    .chars-hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      margin-top: 16px;
+    }
+
+    .card-container {
+      margin-top: 18px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .featured-card {
+      border-color: rgba(255, 110, 170, 0.18);
+      background: linear-gradient(
+        180deg,
+        rgba(255, 110, 170, 0.08),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+
+    .pgrid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 16px;
+      margin-top: 14px;
+      align-items: start;
+    }
+
+    .portrait {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.18);
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .pcontent {
+      display: grid;
+      gap: 12px;
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    .subcard {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .subcard h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .subcard p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .quote {
+      margin: 0;
+      padding: 14px;
+      border-left: 4px solid rgba(255, 110, 170, 0.4);
+      border-radius: 12px;
+      background: rgba(255, 110, 170, 0.08);
+    }
+
+    .quote p {
+      margin: 0 0 6px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .quote cite {
+      font-style: normal;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .bottom-actions {
+      margin-top: 2px;
+    }
+
+    @media (max-width: 920px) {
+      .pgrid {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait {
+        min-height: 260px;
+      }
+
+      .grid2 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
+    }
+    .hero-actions a {
+      flex: 1 1 200px;
+    }
+  </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/juego/04cinematicas.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout
+  title="Kaelum — Cinemáticas"
+  description="Escenas narrativas y cinemáticas completas de Kaelum: dirección visual, storyboard, carga emocional y diseño audiovisual."
+>
+  <section class="hero cine-hero">
+    <header class="header">
+      <p class="kicker">GDD · Dirección Cinemática</p>
+      <h1>Cinemáticas</h1>
+      <p class="lead">
+        Las cinemáticas de <strong>Kaelum</strong> no sustituyen el gameplay. Lo estructuran.
+        Marcan puntos de no retorno narrativos y emocionales. Todo lo que ocurre aquí
+        redefine cómo el jugador entiende el mundo.
+      </p>
+
+      <div class="actions hero-actions">
+        <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+        <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+        <a class="btn primary" href={`${base}juego/05enemigos/`}>Ver Enemigos</a
+        >
+        <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+        <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+        <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+      </div>
+    </header>
+  </section>
+
+  <section class="gdd-section">
+    <article class="card">
+      <h2>Estructura narrativa audiovisual</h2>
+
+      <ul class="bullets">
+        <li>Tercera persona limitada centrada en Kael.</li>
+        <li>Sin narrador omnisciente.</li>
+        <li>Lo que se muestra es lo que Kael vive o comprende.</li>
+        <li>
+          Transiciones diseñadas para volver al gameplay sin ruptura artificial.
+        </li>
+      </ul>
+
+      <div class="callout">
+        Las cinemáticas están vinculadas directamente a decisiones, karma y
+        reputación. No son decorativas. Son estructurales.
+      </div>
+    </article>
+
+    <article class="card major">
+      <p class="kicker">PRÓLOGO</p>
+      <h2>El Eclipse</h2>
+      <p class="muted">
+        Introducción absoluta. Evento imposible. Ruptura de realidad.
+      </p>
+
+      <div class="subcard">
+        <h3>Objetivo narrativo</h3>
+        <ul class="list">
+          <li>El protagonista era normal.</li>
+          <li>El eclipse es anómalo.</li>
+          <li>Solo él reacciona.</li>
+          <li>Despierta como Kael en Kaelum.</li>
+        </ul>
+      </div>
+
+      <div class="subcard">
+        <h3>Clave emocional</h3>
+        <blockquote>“¿Eso… siempre ha estado ahí?”</blockquote>
+        <p>Nadie responde. Nadie mira. Solo tú.</p>
+      </div>
+
+      <div class="subcard">
+        <h3>Dirección visual</h3>
+        <ul class="list">
+          <li>Transición cálido → púrpura → oscuridad → rural apagado.</li>
+          <li>Glitches progresivos.</li>
+          <li>Latido en negro total.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="card">
+      <p class="kicker">FIN ACTO I</p>
+      <h2>La Persecución</h2>
+
+      <p class="muted">
+        El momento donde Kael deja de ser extraño para convertirse en amenaza
+        pública.
+      </p>
+
+      <div class="subcard">
+        <h3>Escenario</h3>
+        <ul class="list">
+          <li>Plaza central de Vesperia.</li>
+          <li>Guardias movilizados.</li>
+          <li>Multitud alterada.</li>
+        </ul>
+      </div>
+
+      <div class="subcard">
+        <h3>Carga emocional</h3>
+        <blockquote>“¡El monstruo!” “¡No dejéis que escape!”</blockquote>
+        <p>No hay juicio. Solo miedo colectivo.</p>
+      </div>
+    </article>
+
+    <article class="card">
+      <p class="kicker">FIN ACTO II</p>
+      <h3>La Verdad del Orbe</h3>
+
+      <p class="muted">
+        La ruptura moral del juego. La Orden no combatía el caos. Lo
+        administraba.
+      </p>
+
+      <div class="subcard">
+        <h4>Revelación</h4>
+        <ul class="list">
+          <li>Registros sellados.</li>
+          <li>Sacrificios aceptados como “coste”.</li>
+          <li>Gran Maestro convencido de su postura.</li>
+        </ul>
+      </div>
+
+      <div class="subcard">
+        <blockquote>“El mundo necesita control.”</blockquote>
+        <p>No suena villano. Suena necesario.</p>
+      </div>
+    </article>
+
+    <article class="card major">
+      <p class="kicker">CLÍMAX</p>
+      <h3>El Orbe del Origen — Final Variable</h3>
+
+      <div class="grid3">
+        <div class="pill good">
+          <h4>Final Bueno — La Luz No Es Gratis</h4>
+          <p>Kael destruye el Orbe. Renuncia al poder. La Fisura retrocede.</p>
+          <blockquote>“No necesita otro tirano.”</blockquote>
+        </div>
+
+        <div class="pill neutral">
+          <h4>Final Neutral — Equilibrio Inestable</h4>
+          <p>El Orbe se sella parcialmente. El ciclo no desaparece.</p>
+          <blockquote>“Solo lo he frenado.”</blockquote>
+        </div>
+
+        <div class="pill bad">
+          <h4>Final Malo — El Monstruo Que Eligieron</h4>
+          <p>Kael absorbe el poder. El eclipse se completa.</p>
+          <blockquote>“Queríais un monstruo.”</blockquote>
+        </div>
+      </div>
+
+      <div class="callout">
+        El final depende de karma acumulado + decisiones clave + elección final.
+        No es estético. Es estructural.
+      </div>
+    </article>
+  </section>
+  <div class="actions hero-actions">
+    <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+    <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+    <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+    <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+    <a class="btn primary" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+    <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+    <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+    <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+    <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+  </div>
+  <style>
+    .cine-hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cine-hero::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          900px 280px at 16% 0%,
+          rgba(255, 110, 170, 0.08),
+          transparent 65%
+        ),
+        radial-gradient(
+          760px 280px at 88% 10%,
+          rgba(139, 92, 246, 0.08),
+          transparent 60%
+        );
+      opacity: 0.9;
+    }
+
+    .cine-hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      margin-top: 16px;
+    }
+
+    .gdd-section {
+      margin-top: 18px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .card.major {
+      border: 1px solid rgba(170, 120, 255, 0.25);
+      background: rgba(170, 120, 255, 0.08);
+    }
+
+    .subcard {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .bullets {
+      padding-left: 20px;
+    }
+
+    blockquote {
+      margin: 8px 0;
+      font-weight: 600;
+    }
+
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .pill {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .pill.good {
+      background: linear-gradient(
+        180deg,
+        rgba(120, 210, 150, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+
+    .pill.neutral {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 190, 90, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+
+    .pill.bad {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 110, 170, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+
+    .bottom-actions {
+      margin-top: 2px;
+    }
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
+    }
+    .hero-actions a {
+      flex: 1 1 200px;
+    }
+  </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/juego/05enemigos.astro
 ---
 
 ```astro
@@ -4582,8 +6000,14 @@ const roles = [
     desc: "Cuerpo a cuerpo y ejecución. Te persiguen, te acorralan y castigan cada duda.",
     points: [
       { k: "Te obliga a", v: "moverte, kitear, usar verticalidad y cobertura" },
-      { k: "Señal clara", v: "silueta agresiva + animación de carga + audio cercano" },
-      { k: "Counter", v: "control de espacio + burst + precisión bajo presión" },
+      {
+        k: "Señal clara",
+        v: "silueta agresiva + animación de carga + audio cercano",
+      },
+      {
+        k: "Counter",
+        v: "control de espacio + burst + precisión bajo presión",
+      },
     ],
   },
   {
@@ -4601,8 +6025,14 @@ const roles = [
     name: "Especialistas",
     desc: "Controlan escenario e información: humo, señuelos, CC, trampas activas, negación de visión.",
     points: [
-      { k: "Te obliga a", v: "leer señales, avanzar con calma y evitar túneles de muerte" },
-      { k: "Señal clara", v: "gadgets/rituales visibles + sonido de activación + zonas marcadas" },
+      {
+        k: "Te obliga a",
+        v: "leer señales, avanzar con calma y evitar túneles de muerte",
+      },
+      {
+        k: "Señal clara",
+        v: "gadgets/rituales visibles + sonido de activación + zonas marcadas",
+      },
       { k: "Counter", v: "paciencia + lectura + romper su set-up" },
     ],
   },
@@ -4611,9 +6041,18 @@ const roles = [
     name: "Guardianes",
     desc: "Defensa dura. No destacan por daño, destacan por negarte el avance y obligarte a ejecutar plan.",
     points: [
-      { k: "Te obliga a", v: "buscar ángulos, rodear, destruir núcleos y jugar con recursos" },
-      { k: "Señal clara", v: "postura firme + elementos anclados al terreno (barreras/tótems/torretas)" },
-      { k: "Counter", v: "flanqueo + explosivo/impacto + romper foco o punto débil" },
+      {
+        k: "Te obliga a",
+        v: "buscar ángulos, rodear, destruir núcleos y jugar con recursos",
+      },
+      {
+        k: "Señal clara",
+        v: "postura firme + elementos anclados al terreno (barreras/tótems/torretas)",
+      },
+      {
+        k: "Counter",
+        v: "flanqueo + explosivo/impacto + romper foco o punto débil",
+      },
     ],
   },
 ];
@@ -4667,7 +6106,8 @@ const enemies = [
     faction: "fisura",
     role: "soporte",
     name: "Asceta de Bruma",
-    fantasy: "Sostiene al grupo con pulsos: cura, refuerza o rescata anomalías.",
+    fantasy:
+      "Sostiene al grupo con pulsos: cura, refuerza o rescata anomalías.",
     lectura: "cántico + halo violeta suave + enlaces",
     peligro: "alarga combates, vuelve injusto el DPS race",
     counter: "focus + interrupción + presión constante",
@@ -4678,7 +6118,8 @@ const enemies = [
     faction: "fisura",
     role: "especialista",
     name: "Mimético de Umbral",
-    fantasy: "Engaña y controla: humo violeta, señuelos y CC breve. Te roba información.",
+    fantasy:
+      "Engaña y controla: humo violeta, señuelos y CC breve. Te roba información.",
     lectura: "distorsión del aire + “doble” falso + chasquido",
     peligro: "te descoloca y te mete en túnel de muerte",
     counter: "calma + lectura + no perseguir sombras",
@@ -4689,7 +6130,8 @@ const enemies = [
     faction: "fisura",
     role: "guardian",
     name: "Obelisco Latente",
-    fantasy: "Defensa viva: bloquea ruta, crea barrera y castiga acercarte sin plan.",
+    fantasy:
+      "Defensa viva: bloquea ruta, crea barrera y castiga acercarte sin plan.",
     lectura: "ancla al suelo + runas violetas + pulso periódico",
     peligro: "te frena y te obliga a exponerte",
     counter: "flanqueo + destruir núcleo/punto débil",
@@ -4702,7 +6144,8 @@ const enemies = [
     faction: "pueblo",
     role: "luchador",
     name: "Bravo del Umbral",
-    fantasy: "Cuerpo a cuerpo con arma improvisada. Te acorrala en espacios estrechos.",
+    fantasy:
+      "Cuerpo a cuerpo con arma improvisada. Te acorrala en espacios estrechos.",
     lectura: "grito + carga torpe + swings amplios",
     peligro: "knockback/stagger si te pilla mal posicionado",
     counter: "espacio + headshots + no encerrarte",
@@ -4713,7 +6156,8 @@ const enemies = [
     faction: "pueblo",
     role: "soporte",
     name: "Abanderado",
-    fantasy: "Coordina y “bufea” con gritos y señales: moral + empuje colectivo.",
+    fantasy:
+      "Coordina y “bufea” con gritos y señales: moral + empuje colectivo.",
     lectura: "silbato/bandera/brazalete naranja",
     peligro: "convierte una turba en amenaza real",
     counter: "focus temprano + cortar la cadena",
@@ -4735,7 +6179,8 @@ const enemies = [
     faction: "pueblo",
     role: "guardian",
     name: "Barricadero",
-    fantasy: "Defensa improvisada: escudo chatarra + trampas simples + bloqueo de calle.",
+    fantasy:
+      "Defensa improvisada: escudo chatarra + trampas simples + bloqueo de calle.",
     lectura: "placas metálicas + clavos + postura baja",
     peligro: "te frena y te expone a la turba",
     counter: "flanqueo + explosivo/impacto + punto débil",
@@ -4748,7 +6193,8 @@ const enemies = [
     faction: "orden",
     role: "luchador",
     name: "Verdugo Inquisitorial",
-    fantasy: "Cierra distancia con técnica: te persigue con disciplina y remata.",
+    fantasy:
+      "Cierra distancia con técnica: te persigue con disciplina y remata.",
     lectura: "pasos pesados + capa corta azul + arma de asta/filo",
     peligro: "castiga asomar sin pensar",
     counter: "distancia + burst + negar su entrada",
@@ -4759,7 +6205,8 @@ const enemies = [
     faction: "orden",
     role: "soporte",
     name: "Capellán de Sello",
-    fantasy: "Escudo/curación ritual. Mantiene la línea. Si vive, el frente no cae.",
+    fantasy:
+      "Escudo/curación ritual. Mantiene la línea. Si vive, el frente no cae.",
     lectura: "sello azul brillante + gesto de mano + cantos cortos",
     peligro: "resetea tu progreso de combate",
     counter: "focus + cortar canalización",
@@ -4770,7 +6217,8 @@ const enemies = [
     faction: "orden",
     role: "especialista",
     name: "Estratega de Campo",
-    fantasy: "Control de información y rutas: marcas, humo arcano, trampas de visión.",
+    fantasy:
+      "Control de información y rutas: marcas, humo arcano, trampas de visión.",
     lectura: "visor/monóculo + runas azules flotantes",
     peligro: "te obliga a pelear en su terreno",
     counter: "cambiar ritmo + romper gadgets",
@@ -4781,7 +6229,8 @@ const enemies = [
     faction: "orden",
     role: "guardian",
     name: "Bastión Juramentado",
-    fantasy: "Defensa formal: barrera arcana, escudo de torre, negación de ángulo.",
+    fantasy:
+      "Defensa formal: barrera arcana, escudo de torre, negación de ángulo.",
     lectura: "escudo grande + runas azules + postura inmóvil",
     peligro: "te bloquea rutas y te “ordena” el combate",
     counter: "flanqueo + romper foco/núcleo de barrera",
@@ -4794,7 +6243,8 @@ const enemies = [
     faction: "ruinas",
     role: "luchador",
     name: "Martillo de Ruina",
-    fantasy: "Golpes pesados en corto. Te obliga a respetar tiempos y distancias.",
+    fantasy:
+      "Golpes pesados en corto. Te obliga a respetar tiempos y distancias.",
     lectura: "crujido de piedra + levantamiento lento + golpe brutal",
     peligro: "stun/knock si comes el impacto",
     counter: "castigar recovery + mantener distancia",
@@ -4827,7 +6277,8 @@ const enemies = [
     faction: "ruinas",
     role: "guardian",
     name: "Muralla Viva",
-    fantasy: "Defensa pura: muro/torreta/escudo. Te bloquea hasta que rompes el núcleo.",
+    fantasy:
+      "Defensa pura: muro/torreta/escudo. Te bloquea hasta que rompes el núcleo.",
     lectura: "anclaje al terreno + núcleo expuesto parcial + foco ámbar",
     peligro: "te corta avance y te obliga a exponerte",
     counter: "flanqueo + romper núcleo/punto débil",
@@ -4837,52 +6288,52 @@ const enemies = [
 
 const bosses = [
   {
-    id:"b1",
-    faction:"fisura",
-    tag:"Castillo Noctiferum",
-    name:"Boss 01 — Heraldo Voraz",
-    desc:"Caza, salto y ejecución. El castillo se siente como una garganta.",
-    img:`${base}img/bosses/fisura_heraldo_voraz.png`,
+    id: "b1",
+    faction: "fisura",
+    tag: "Castillo Noctiferum",
+    name: "Boss 01 — Heraldo Voraz",
+    desc: "Caza, salto y ejecución. El castillo se siente como una garganta.",
+    img: `${base}img/bosses/fisura_heraldo_voraz.png`,
   },
   {
-    id:"b2",
-    faction:"fisura",
-    tag:"Castillo Umbrafortis",
-    name:"Boss 02 — Arconte de Bruma",
-    desc:"Soporte + fase de niebla. El combate es información y paciencia.",
-    img:`${base}img/bosses/fisura_arconte_bruma.png`,
+    id: "b2",
+    faction: "fisura",
+    tag: "Castillo Umbrafortis",
+    name: "Boss 02 — Arconte de Bruma",
+    desc: "Soporte + fase de niebla. El combate es información y paciencia.",
+    img: `${base}img/bosses/fisura_arconte_bruma.png`,
   },
   {
-    id:"b3",
-    faction:"fisura",
-    tag:"Castillo Tenebrium",
-    name:"Boss 03 — Obispo del Umbral",
-    desc:"Control del escenario + barreras vivas. Te obliga a romper el sistema.",
-    img:`${base}img/bosses/fisura_obispo_umbral.png`,
+    id: "b3",
+    faction: "fisura",
+    tag: "Castillo Tenebrium",
+    name: "Boss 03 — Obispo del Umbral",
+    desc: "Control del escenario + barreras vivas. Te obliga a romper el sistema.",
+    img: `${base}img/bosses/fisura_obispo_umbral.png`,
   },
   {
-    id:"b4",
-    faction:"pueblo",
-    tag:"Side quest",
-    name:"Boss — El Portantorchas",
-    desc:"Carisma de turba. Miedo en forma humana. Setpiece social.",
-    img:`${base}img/bosses/pueblo_portantorchas.png`,
+    id: "b4",
+    faction: "pueblo",
+    tag: "Side quest",
+    name: "Boss — El Portantorchas",
+    desc: "Carisma de turba. Miedo en forma humana. Setpiece social.",
+    img: `${base}img/bosses/pueblo_portantorchas.png`,
   },
   {
-    id:"b5",
-    faction:"orden",
-    tag:"Asalto al Orbe",
-    name:"Boss 01 — Inquisidor de Umbral",
-    desc:"Si no te infiltraste: castigo frontal. Defensa + disciplina.",
-    img:`${base}img/bosses/orden_inquisidor_umbral.png`,
+    id: "b5",
+    faction: "orden",
+    tag: "Asalto al Orbe",
+    name: "Boss 01 — Inquisidor de Umbral",
+    desc: "Si no te infiltraste: castigo frontal. Defensa + disciplina.",
+    img: `${base}img/bosses/orden_inquisidor_umbral.png`,
   },
   {
-    id:"b6",
-    faction:"orden",
-    tag:"Antes del final",
-    name:"Boss 02 — Custodio del Sello",
-    desc:"Prueba de control: muros, sellos, negación de ruta. Te obliga a pensar.",
-    img:`${base}img/bosses/orden_custodio_sello.png`,
+    id: "b6",
+    faction: "orden",
+    tag: "Antes del final",
+    name: "Boss 02 — Custodio del Sello",
+    desc: "Prueba de control: muros, sellos, negación de ruta. Te obliga a pensar.",
+    img: `${base}img/bosses/orden_custodio_sello.png`,
   },
 ];
 ---
@@ -4896,3602 +6347,617 @@ const bosses = [
       <p class="kicker">GDD · Combate</p>
       <h1>Enemigos</h1>
       <p class="lead">
-        En Kaelum, un enemigo no es una skin: es una decisión.
-        Cada tipo existe para forzarte a leer el escenario, reposicionarte y elegir cómo gastas recursos.
-        Menos cantidad. Más identidad. Más intención.
+        En Kaelum, un enemigo no es una skin: es una decisión. Cada tipo existe
+        para forzarte a leer el escenario, reposicionarte y elegir cómo gastas
+        recursos. Menos cantidad. Más identidad. Más intención.
       </p>
 
-      <div class="actions">
+      <div class="actions hero-actions">
         <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-        <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-        <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-        <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
-        <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
-        <a class="btn primary" href={`${base}juego/progreso/`}>Ver Progreso</a>
-        <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
-        <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
+        <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn primary" href={`${base}juego/06progreso/`}>Ver Progreso</a
+        >
+        <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+        <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+        <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
       </div>
-        <nav class="subnav" aria-label="Índice de enemigos">
-          <a class="chip" href="#roles">Roles</a>
-          <a class="chip chip-fisura" href="#fisura">La Fisura</a>
-          <a class="chip chip-pueblo" href="#pueblo">Extremistas</a>
-          <a class="chip chip-orden" href="#orden">La Orden</a>
-          <a class="chip chip-ruinas" href="#ruinas">Ruinas</a>
-          <a class="chip" href="#jefes">Bosses</a>
-        </nav>
+      <nav class="subnav" aria-label="Índice de enemigos">
+        <a class="chip" href="#roles">Roles</a>
+        <a class="chip chip-fisura" href="#fisura">La Fisura</a>
+        <a class="chip chip-pueblo" href="#pueblo">Extremistas</a>
+        <a class="chip chip-orden" href="#orden">La Orden</a>
+        <a class="chip chip-ruinas" href="#ruinas">Ruinas</a>
+        <a class="chip" href="#jefes">Bosses</a>
+      </nav>
     </header>
   </section>
 
   <section class="gdd-section">
-
     <article class="card full" id="roles">
       <div class="label">// ROLES</div>
       <h2>4 roles (lectura rápida, identidad clara)</h2>
       <p class="muted">
-        Inspiración estructural tipo “agentes” (para entenderlo rápido), pero llevado a Kaelum:
-        aquí los roles no son “clases bonitas”, son <strong>comportamientos</strong> que cambian cómo se juega el combate.
+        Inspiración estructural tipo “agentes” (para entenderlo rápido), pero
+        llevado a Kaelum: aquí los roles no son “clases bonitas”, son <strong
+          >comportamientos</strong
+        > que cambian cómo se juega el combate.
       </p>
 
       <div class="role-grid">
-        {roles.map((r) => (
-          <section class="role" data-role={r.id}>
-            <div class="role-top">
-              <span class="badge role">{r.id.toUpperCase()}</span>
-              <h3>{r.name}</h3>
-            </div>
-            <p class="muted">{r.desc}</p>
-            <ul class="list">
-              {r.points.map((p) => (
-                <li><strong>{p.k}:</strong> {p.v}</li>
-              ))}
-            </ul>
-          </section>
-        ))}
+        {
+          roles.map((r) => (
+            <section class="role" data-role={r.id}>
+              <div class="role-top">
+                <span class="badge role">{r.id.toUpperCase()}</span>
+                <h3>{r.name}</h3>
+              </div>
+              <p class="muted">{r.desc}</p>
+              <ul class="list">
+                {r.points.map((p) => (
+                  <li>
+                    <strong>{p.k}:</strong> {p.v}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))
+        }
       </div>
     </article>
 
-    {families.map((f) => (
-      <article
-        id={f.id}
-        class={`card full family faction--${f.id}`}
-        data-faction={f.id}
-      >
-        <div class="label">// FAMILIA</div>
-        <h2>{f.name} <span class="muted">({f.subtitle})</span></h2>
-        <p class="muted">{f.intro}</p>
+    {
+      families.map((f) => (
+        <article
+          id={f.id}
+          class={`card full family faction--${f.id}`}
+          data-faction={f.id}
+        >
+          <div class="label">// FAMILIA</div>
+          <h2>
+            {f.name} <span class="muted">({f.subtitle})</span>
+          </h2>
+          <p class="muted">{f.intro}</p>
 
-        <div class="enemy-flex">
-          {enemies.filter(e => e.faction === f.id).map((e) => (
-            <article class={`enemy faction--${e.faction}`} data-faction={e.faction} data-role={e.role}>
-              <header class="enemy-head">
-                <div class="badges">
-                  <span class="badge faction">{e.faction.toUpperCase()}</span>
-                  <span class="badge role">{e.role}</span>
-                </div>
-                <h3>{e.name}</h3>
-                <p class="muted">{e.fantasy}</p>
-              </header>
+          <div class="enemy-flex">
+            {enemies
+              .filter((e) => e.faction === f.id)
+              .map((e) => (
+                <article
+                  class={`enemy faction--${e.faction}`}
+                  data-faction={e.faction}
+                  data-role={e.role}
+                >
+                  <header class="enemy-head">
+                    <div class="badges">
+                      <span class="badge faction">
+                        {e.faction.toUpperCase()}
+                      </span>
+                      <span class="badge role">{e.role}</span>
+                    </div>
+                    <h3>{e.name}</h3>
+                    <p class="muted">{e.fantasy}</p>
+                  </header>
 
-              <div class="enemy-body">
-                <div class="enemy-media">
-                  <div class="ph" aria-hidden="true">
-                    <div class="ph-icon">✦</div>
-                    <div class="ph-text">Imagen pendiente</div>
+                  <div class="enemy-body">
+                    <div class="enemy-media">
+                      <div class="ph" aria-hidden="true">
+                        <div class="ph-icon">✦</div>
+                        <div class="ph-text">Imagen pendiente</div>
+                      </div>
+                      <img
+                        src={e.img}
+                        alt={e.name}
+                        loading="lazy"
+                        onload="this.parentElement.classList.add('has-img')"
+                        onerror="this.remove()"
+                      />
+                    </div>
+
+                    <div class="enemy-info">
+                      <ul class="list compact">
+                        <li>
+                          <strong>Lectura:</strong> {e.lectura}.
+                        </li>
+                        <li>
+                          <strong>Peligro:</strong> {e.peligro}.
+                        </li>
+                        <li>
+                          <strong>Counter:</strong> {e.counter}.
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                  <img
-                    src={e.img}
-                    alt={e.name}
-                    loading="lazy"
-                    onload="this.parentElement.classList.add('has-img')"
-                    onerror="this.remove()"
-                  />
-                </div>
-
-                <div class="enemy-info">
-                  <ul class="list compact">
-                    <li><strong>Lectura:</strong> {e.lectura}.</li>
-                    <li><strong>Peligro:</strong> {e.peligro}.</li>
-                    <li><strong>Counter:</strong> {e.counter}.</li>
-                  </ul>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-      </article>
-    ))}
+                </article>
+              ))}
+          </div>
+        </article>
+      ))
+    }
 
     <article class="card full" id="jefes">
       <div class="label">// BOSSES</div>
       <h2>Bosses (setpieces con propósito)</h2>
       <p class="muted">
-        Los bosses no son “más vida y ya”: son pruebas de lectura.
-        En Kaelum cada boss representa un argumento del mundo: Fisura (corrupción), Orden (control), Pueblo (odio organizado).
+        Los bosses no son “más vida y ya”: son pruebas de lectura. En Kaelum
+        cada boss representa un argumento del mundo: Fisura (corrupción), Orden
+        (control), Pueblo (odio organizado).
       </p>
 
       <div class="boss-flex">
-        {bosses.map((b) => (
-          <article class={`boss faction--${b.faction}`} data-faction={b.faction}>
-            <div class="boss-media">
-              <div class="ph" aria-hidden="true">
-                <div class="ph-icon">✦</div>
-                <div class="ph-text">Imagen pendiente</div>
+        {
+          bosses.map((b) => (
+            <article
+              class={`boss faction--${b.faction}`}
+              data-faction={b.faction}
+            >
+              <div class="boss-media">
+                <div class="ph" aria-hidden="true">
+                  <div class="ph-icon">✦</div>
+                  <div class="ph-text">Imagen pendiente</div>
+                </div>
+                <img
+                  src={b.img}
+                  alt={b.name}
+                  loading="lazy"
+                  onload="this.parentElement.classList.add('has-img')"
+                  onerror="this.remove()"
+                />
               </div>
-              <img
-                src={b.img}
-                alt={b.name}
-                loading="lazy"
-                onload="this.parentElement.classList.add('has-img')"
-                onerror="this.remove()"
-              />
-            </div>
 
-            <div class="boss-info">
-              <div class="badges">
-                <span class="badge faction">{b.faction.toUpperCase()}</span>
-                <span class="badge tag">{b.tag}</span>
+              <div class="boss-info">
+                <div class="badges">
+                  <span class="badge faction">{b.faction.toUpperCase()}</span>
+                  <span class="badge tag">{b.tag}</span>
+                </div>
+                <h3>{b.name}</h3>
+                <p class="muted">{b.desc}</p>
               </div>
-              <h3>{b.name}</h3>
-              <p class="muted">{b.desc}</p>
-            </div>
-          </article>
-        ))}
+            </article>
+          ))
+        }
       </div>
     </article>
 
-    <div class="actions bottom">
-        <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-        <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-        <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-        <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
-        <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
-        <a class="btn primary" href={`${base}juego/progreso/`}>Ver Progreso</a>
-        <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
-        <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
+    <div class="actions hero-actions">
+      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn primary" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+      <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+      <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
     </div>
-
   </section>
 
-<style>
-  /* ===== Base ===== */
-  .header{ margin-bottom:18px; }
-  .kicker{ letter-spacing:.06em; text-transform:uppercase; opacity:.7; font-size:.85rem; }
-  .lead{ margin-top:6px; line-height:1.6; opacity:.9; max-width:980px; }
-  .muted{ color:var(--muted); opacity:.95; }
-
-  .card{
-    margin-top:18px;
-    padding:18px;
-    border-radius:14px;
-    border:1px solid rgba(255,255,255,.10);
-    background:rgba(255,255,255,.04);
-  }
-  .card.full{ width:100%; }
-
-  .label{
-    font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
-    color:var(--muted2);
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    font-size:.72rem;
-    margin-bottom:8px;
-  }
-
-  .list{ padding-left:18px; }
-  .list.compact{ margin:0; padding-left:18px; }
-  .list li{ margin:6px 0; }
-
-  .callout{
-    margin-top:14px;
-    padding:12px 14px;
-    border-radius:12px;
-    border:1px dashed rgba(255,255,255,.18);
-    background:rgba(0,0,0,.18);
-    color:var(--muted);
-  }
-  .callout.subtle{
-    border-style:solid;
-    border-color:rgba(255,255,255,.08);
-    background:rgba(255,255,255,.03);
-  }
-
-  /* ===== Subnav chips ===== */
-  .subnav{
-    margin-top:14px;
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    justify-content:center;
-  }
-  .chip{
-    display:inline-flex;
-    align-items:center;
-    text-decoration:none;
-    color:rgba(255,255,255,.82);
-    border:1px solid rgba(255,255,255,.10);
-    background:rgba(0,0,0,.16);
-    padding:8px 12px;
-    border-radius:999px;
-    font-weight:900;
-    letter-spacing:.04em;
-    text-transform:uppercase;
-    font-size:.78rem;
-    transition:transform .12s ease, background .12s ease, border-color .12s ease;
-  }
-  .chip:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.18);
+  <style>
+    /* ===== Base ===== */
+    .header {
+      margin-bottom: 18px;
     }
-    .chip-fisura{ border-color: rgba(170,120,255,.28); background: rgba(170,120,255,.10); }
-    .chip-pueblo{ border-color: rgba(255,170,90,.28);  background: rgba(255,170,90,.10); }
-    .chip-orden { border-color: rgba(110,170,255,.28); background: rgba(110,170,255,.10); }
-    .chip-ruinas{ border-color: rgba(255,220,120,.28); background: rgba(255,220,120,.10); }
+    .kicker {
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      font-size: 0.85rem;
+    }
+    .lead {
+      margin-top: 6px;
+      line-height: 1.6;
+      opacity: 0.9;
+      max-width: 980px;
+    }
+    .muted {
+      color: var(--muted);
+      opacity: 0.95;
+    }
 
-  /* ===== Facciones (accent real) ===== */
-  .faction--fisura{ --accent:170,120,255; }
-  .faction--pueblo{ --accent:255,170,90; }
-  .faction--orden { --accent:110,170,255; }
-  .faction--ruinas{ --accent:255,220,120; }
+    .card {
+      margin-top: 18px;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .card.full {
+      width: 100%;
+    }
 
-  .family{
-    border:1px solid rgba(var(--accent), .20);
-    background:rgba(var(--accent), .06);
-    box-shadow:0 18px 60px rgba(var(--accent), .10);
-  }
-  .family .callout{
-    border-color:rgba(var(--accent), .22);
-    background:rgba(var(--accent), .07);
-  }
-  .family .callout.subtle{
-    border-color:rgba(var(--accent), .16);
-    background:rgba(0,0,0,.16);
-  }
+    .label {
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      margin-bottom: 8px;
+    }
 
-  /* ===== Roles ===== */
-  .role-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
-    gap:14px;
-    margin-top:14px;
-  }
-  .role{
-    padding:14px;
-    border-radius:12px;
-    border:1px solid rgba(255,255,255,.10);
-    background:rgba(255,255,255,.03);
-  }
-  .role-top{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:6px;
-  }
+    .list {
+      padding-left: 18px;
+    }
+    .list.compact {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .list li {
+      margin: 6px 0;
+    }
 
-  /* ===== Role colors ===== */
-  [data-role="luchador"]{ --role:255, 90, 140; }
-  [data-role="soporte"]{ --role:100,255,170; }
-  [data-role="especialista"]{ --role:170,120,255; }
-  [data-role="guardian"]{ --role:255,220,120; }
+    .callout {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.18);
+      color: var(--muted);
+    }
+    .callout.subtle {
+      border-style: solid;
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
 
-  /* ===== Badges ===== */
-  .badge{
-    display:inline-flex;
-    align-items:center;
-    padding:5px 10px;
-    border-radius:999px;
-    font-size:.78rem;
-    border:1px solid rgba(255,255,255,.10);
-    background:rgba(255,255,255,.03);
-    color:rgba(255,255,255,.85);
-    white-space:nowrap;
-  }
-  .badge.faction{
-    background:rgba(var(--accent), .10);
-    border-color:rgba(var(--accent), .22);
-  }
-  .badge.role{
-    background:rgba(var(--role), .10);
-    border-color:rgba(var(--role), .22);
-    text-transform:capitalize;
-  }
-  .badge.tag{
-    background:rgba(0,0,0,.18);
-    border-color:rgba(255,255,255,.10);
-    color:rgba(255,255,255,.78);
-  }
+    /* ===== Subnav chips ===== */
+    .subnav {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.16);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      transition:
+        transform 0.12s ease,
+        background 0.12s ease,
+        border-color 0.12s ease;
+    }
+    .chip:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+    .chip-fisura {
+      border-color: rgba(170, 120, 255, 0.28);
+      background: rgba(170, 120, 255, 0.1);
+    }
+    .chip-pueblo {
+      border-color: rgba(255, 170, 90, 0.28);
+      background: rgba(255, 170, 90, 0.1);
+    }
+    .chip-orden {
+      border-color: rgba(110, 170, 255, 0.28);
+      background: rgba(110, 170, 255, 0.1);
+    }
+    .chip-ruinas {
+      border-color: rgba(255, 220, 120, 0.28);
+      background: rgba(255, 220, 120, 0.1);
+    }
 
-  /* =========================================================
+    /* ===== Facciones (accent real) ===== */
+    .faction--fisura {
+      --accent: 170, 120, 255;
+    }
+    .faction--pueblo {
+      --accent: 255, 170, 90;
+    }
+    .faction--orden {
+      --accent: 110, 170, 255;
+    }
+    .faction--ruinas {
+      --accent: 255, 220, 120;
+    }
+
+    .family {
+      border: 1px solid rgba(var(--accent), 0.2);
+      background: rgba(var(--accent), 0.06);
+      box-shadow: 0 18px 60px rgba(var(--accent), 0.1);
+    }
+    .family .callout {
+      border-color: rgba(var(--accent), 0.22);
+      background: rgba(var(--accent), 0.07);
+    }
+    .family .callout.subtle {
+      border-color: rgba(var(--accent), 0.16);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    /* ===== Roles ===== */
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .role {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+    }
+    .role-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+
+    /* ===== Role colors ===== */
+    [data-role="luchador"] {
+      --role: 255, 90, 140;
+    }
+    [data-role="soporte"] {
+      --role: 100, 255, 170;
+    }
+    [data-role="especialista"] {
+      --role: 170, 120, 255;
+    }
+    [data-role="guardian"] {
+      --role: 255, 220, 120;
+    }
+
+    /* ===== Badges ===== */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(255, 255, 255, 0.85);
+      white-space: nowrap;
+    }
+    .badge.faction {
+      background: rgba(var(--accent), 0.1);
+      border-color: rgba(var(--accent), 0.22);
+    }
+    .badge.role {
+      background: rgba(var(--role), 0.1);
+      border-color: rgba(var(--role), 0.22);
+      text-transform: capitalize;
+    }
+    .badge.tag {
+      background: rgba(0, 0, 0, 0.18);
+      border-color: rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    /* =========================================================
      ENEMIES — FLEX WRAP + 2 POR FILA (desktop first)
      - enemy-grid: flex row wrap
      - enemy: flex 1 1 40%
      - enemy-body: COLUMN (imagen arriba, info abajo)
      ========================================================= */
-  .enemy-grid{
-    display:flex;
-    flex-direction:row;
-    flex-wrap:wrap;
-    gap:14px;
-    margin-top:14px;
-    align-items:stretch;
-    justify-content:stretch;
-  }
+    .enemy-grid {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 14px;
+      align-items: stretch;
+      justify-content: stretch;
+    }
 
-  .enemy{
-    flex:1 1 40%;
-    min-width:460px; /* si quieres más 2-por-fila, baja a 420 */
-    border-radius:14px;
-    border:1px solid rgba(var(--accent), .18);
-    background:rgba(0,0,0,.18);
-    padding:14px;
-    overflow:hidden;
-  }
+    .enemy {
+      flex: 1 1 40%;
+      min-width: 460px; /* si quieres más 2-por-fila, baja a 420 */
+      border-radius: 14px;
+      border: 1px solid rgba(var(--accent), 0.18);
+      background: rgba(0, 0, 0, 0.18);
+      padding: 14px;
+      overflow: hidden;
+    }
 
-  /* anti desbordes por si acaso */
-  .enemy, .boss{ overflow-wrap:anywhere; word-break:break-word; }
+    /* anti desbordes por si acaso */
+    .enemy,
+    .boss {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
 
-  .enemy-flex{
-    display:flex;
-    flex-direction:row;
-    flex-wrap: wrap;
-    gap:14px;
-    align-items:stretch;
-  }
+    .enemy-flex {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: stretch;
+    }
 
-  .enemy-head{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-    gap:6px;
-  }
-  .enemy-head .badges{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    justify-content:center;
-    margin-bottom:6px;
-  }
-  .enemy-head h3{ margin:4px 0 2px; line-height:1.15; }
+    .enemy-head {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 6px;
+    }
+    .enemy-head .badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 6px;
+    }
+    .enemy-head h3 {
+      margin: 4px 0 2px;
+      line-height: 1.15;
+    }
 
-  /* BODY en columna: media arriba, info abajo */
-  .enemy-body{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-    margin-top:12px;
-  }
+    /* BODY en columna: media arriba, info abajo */
+    .enemy-body {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 12px;
+    }
 
-  .enemy-media{
-    width:100%;
-    border-radius:12px;
-    border:1px solid rgba(var(--accent), .22);
-    background:rgba(255,255,255,.03);
-    padding:10px;
-    display:grid;
-    place-items:center;
-    min-height:220px;
-    position:relative;
-    overflow:hidden;
-  }
+    .enemy-media {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(var(--accent), 0.22);
+      background: rgba(255, 255, 255, 0.03);
+      padding: 10px;
+      display: grid;
+      place-items: center;
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
 
-  .enemy-media .ph{
-    display:grid;
-    place-items:center;
-    gap:6px;
-    text-align:center;
-    padding:14px 10px;
-    color:rgba(255,255,255,.75);
-    border-radius:10px;
-    border:1px dashed rgba(var(--accent), .26);
-    background:rgba(var(--accent), .08);
-    width:100%;
-    height:100%;
-    min-height:190px;
-  }
-  .enemy-media .ph-icon{ font-size:1.2rem; opacity:.9; }
-  .enemy-media .ph-text{
-    font-weight:900;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    font-size:.78rem;
-    opacity:.85;
-  }
-  .enemy-media.has-img .ph{ display:none; }
-  .enemy-media img{
-    width:100%;
-    height:auto;
-    max-height:300px;
-    object-fit:contain;
-    filter:drop-shadow(0 10px 22px rgba(0,0,0,.45));
-  }
+    .enemy-media .ph {
+      display: grid;
+      place-items: center;
+      gap: 6px;
+      text-align: center;
+      padding: 14px 10px;
+      color: rgba(255, 255, 255, 0.75);
+      border-radius: 10px;
+      border: 1px dashed rgba(var(--accent), 0.26);
+      background: rgba(var(--accent), 0.08);
+      width: 100%;
+      height: 100%;
+      min-height: 190px;
+    }
+    .enemy-media .ph-icon {
+      font-size: 1.2rem;
+      opacity: 0.9;
+    }
+    .enemy-media .ph-text {
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      opacity: 0.85;
+    }
+    .enemy-media.has-img .ph {
+      display: none;
+    }
+    .enemy-media img {
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45));
+    }
 
-  .enemy-info{ width:100%; }
-  .enemy-info .list.compact{ margin:0; }
+    .enemy-info {
+      width: 100%;
+    }
+    .enemy-info .list.compact {
+      margin: 0;
+    }
 
-  /* =========================================================
+    /* =========================================================
      BOSSES — FLEX WRAP + 2 POR FILA (desktop first)
      - boss-grid: flex wrap
      - boss: flex 1 1 40%
      - boss interno en columna para imagen/escenario arriba
      ========================================================= */
-  .boss-grid{
-    display:flex;
-    flex-direction:row;
-    flex-wrap:wrap;
-    gap:14px;
-    margin-top:14px;
-    align-items:stretch;
-    justify-content:stretch;
-  }
-
-  .boss{
-    flex:1 1 40%;
-    min-width:460px;
-    border-radius:14px;
-    border:1px solid rgba(var(--accent), .18);
-    background:rgba(var(--accent), .06);
-    padding:14px;
-    overflow:hidden;
-
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-  }
-  .boss-flex{
-    display:flex;
-    flex-direction:row;
-    flex-wrap: wrap;
-    gap:14px;
-    align-items:flex-start;
-  }
-  .boss .badges{
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-bottom:6px;
-  }
-  .boss h3{ margin:4px 0 2px; line-height:1.15; }
-
-  .boss-media{
-    width:100%;
-    border-radius:12px;
-    border:1px solid rgba(var(--accent), .22);
-    background:rgba(0,0,0,.18);
-    padding:10px;
-    display:grid;
-    place-items:center;
-    min-height:220px;
-    overflow:hidden;
-  }
-  .boss-media.has-img .ph{ display:none; }
-  .boss-media img{
-    width:100%;
-    height:auto;
-    max-height:320px;
-    object-fit:contain;
-    filter:drop-shadow(0 10px 22px rgba(0,0,0,.45));
-  }
-  .boss-info{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-    gap:6px;
-  }
-  .actions.bottom{ margin-top:18px; }
-</style>
-
-</BaseLayout>
-```
-
----
-## FILE: src/pages/juego/flujo.astro
----
-
-```astro
----
-import BaseLayout from "../../layouts/BaseLayout.astro";
-const base = import.meta.env.BASE_URL;
-
-const states = [
-  {
-    title: "Pantalla de inicio",
-    desc: "Primer contacto visual con el juego. Funciona como boot o splash screen antes de pasar al menú principal.",
-  },
-  {
-    title: "Menú principal",
-    desc: "Punto central de navegación. Desde aquí el jugador accede al modo historia, multijugador, opciones, créditos o salida.",
-  },
-  {
-    title: "Gameplay — Singleplayer",
-    desc: "Estado principal del modo historia. Aquí conviven exploración, combate, eventos narrativos, puzles y zonas seguras.",
-  },
-  {
-    title: "Gameplay — Multijugador",
-    desc: "Estado principal del competitivo. Incluye emparejamiento, selección de personajes, inicio de partida, rondas y resultados.",
-  },
-  {
-    title: "Menú de pausa",
-    desc: "Suspensión temporal del estado activo. En singleplayer es pausa real; en multijugador, pausa individual no global.",
-  },
-  {
-    title: "Game Over",
-    desc: "Se activa al morir en el modo historia. Incluye mensaje contextual, estadísticas y opciones de reintento o salida.",
-  },
-  {
-    title: "Victoria / Resultados",
-    desc: "Cierre de partida o finalización del juego. Recoge estadísticas, cinemática final o retorno al menú principal.",
-  },
-];
----
-
-<BaseLayout
-  title="Kaelum — Flujo de estados"
-  description="Flujo de estados del juego: inicio, menú, gameplay, pausa, game over, victoria y resultados."
->
-  <section class="hero">
-    <p class="kicker">Juego · Flujo</p>
-    <h1>Flujo de estados del juego</h1>
-    <p class="lead">
-      Esta sección resume cómo se organiza la experiencia del jugador desde que inicia el juego
-      hasta que termina una partida. El objetivo es que la navegación sea clara tanto en singleplayer como en multijugador.
-    </p>
-
-    <div class="actions">
-      <a class="btn primary" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
-      <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
-    </div>
-
-    <nav class="subnav" aria-label="Índice de la página">
-      <a class="chip" href="#estados">Estados</a>
-      <a class="chip" href="#single">Singleplayer</a>
-      <a class="chip" href="#multi">Multijugador</a>
-      <a class="chip" href="#pausa">Pausa</a>
-      <a class="chip" href="#diagrama">Diagrama</a>
-    </nav>
-  </section>
-
-  <section class="gdd-section">
-    <article class="card full" id="estados">
-      <div class="label">// ESTADOS PRINCIPALES</div>
-      <h2>Panorama general</h2>
-      <p class="muted">
-        Kaelum se estructura en una secuencia clara de pantallas y estados.
-        Esto permite separar navegación, juego activo y cierres de partida sin mezclar sistemas.
-      </p>
-
-      <div class="state-flex">
-        {states.map((s) => (
-          <div class="state-card">
-            <h3>{s.title}</h3>
-            <p class="muted">{s.desc}</p>
-          </div>
-        ))}
-      </div>
-    </article>
-
-    <article class="card full" id="single">
-      <div class="label">// SINGLEPLAYER</div>
-      <h2>Estado de gameplay — modo historia</h2>
-      <p class="muted">
-        En el singleplayer el gameplay combina exploración, combate, eventos narrativos, puzles y zonas seguras.
-        Desde este estado el jugador puede avanzar, pausar la partida o llegar a una condición de derrota o victoria.
-      </p>
-
-      <ul class="list">
-        <li><strong>Entrada:</strong> menú principal → iniciar partida.</li>
-        <li><strong>Sistemas activos:</strong> exploración, combate, narrativa contextual, puzles y progresión.</li>
-        <li><strong>Salidas:</strong> pausa, game over o estado de victoria.</li>
-      </ul>
-    </article>
-
-    <article class="card full" id="multi">
-      <div class="label">// MULTIJUGADOR</div>
-      <h2>Estado de gameplay — modo competitivo</h2>
-      <p class="muted">
-        En multijugador el flujo es más estructurado: emparejamiento, selección de personajes, inicio de partida,
-        desarrollo de ronda, final de ronda y resumen de resultados.
-      </p>
-
-      <ul class="list">
-        <li><strong>Fases internas:</strong> emparejamiento, selección, inicio, desarrollo, fin de ronda y resultados.</li>
-        <li><strong>Sistemas activos:</strong> combate, movimiento, habilidades, puntuación y HUD competitivo.</li>
-        <li><strong>Salidas:</strong> fin de partida, salida manual o pausa individual.</li>
-      </ul>
-    </article>
-
-    <article class="card full" id="pausa">
-      <div class="label">// MENÚ DE PAUSA</div>
-      <h2>Suspensión temporal del estado activo</h2>
-      <p class="muted">
-        El menú de pausa permite interrumpir temporalmente la experiencia sin romper la lógica general del juego.
-        En singleplayer actúa como pausa real. En multijugador funciona como pausa individual.
-      </p>
-
-      <div class="grid2">
-        <div class="mini-card">
-          <h3>Opciones</h3>
-          <ul class="list compact">
-            <li>Reanudar</li>
-            <li>Opciones rápidas</li>
-            <li>Reiniciar misión</li>
-            <li>Salir al menú principal</li>
-          </ul>
-        </div>
-
-        <div class="mini-card">
-          <h3>Transiciones</h3>
-          <ul class="list compact">
-            <li>Pausa → retorno al estado previo</li>
-            <li>Pausa → menú principal</li>
-          </ul>
-        </div>
-      </div>
-    </article>
-
-    <article class="card full">
-      <div class="label">// DERROTA Y VICTORIA</div>
-      <h2>Cierres de partida</h2>
-      <p class="muted">
-        El sistema diferencia entre derrota y victoria para reforzar la lectura del resultado.
-        En historia, el game over está planteado para fomentar aprendizaje. En competitivo, el cierre se centra en resultados y resumen.
-      </p>
-
-      <div class="grid2">
-        <div class="mini-card">
-          <h3>Game Over</h3>
-          <ul class="list compact">
-            <li>Condición: vida del jugador = 0 en modo historia.</li>
-            <li>Mensaje contextual y estadísticas.</li>
-            <li>Opciones: reintentar o salir.</li>
-          </ul>
-        </div>
-
-        <div class="mini-card">
-          <h3>Victoria / Resultados</h3>
-          <ul class="list compact">
-            <li>Finalización del modo historia o de una partida multijugador.</li>
-            <li>Cinemática final, estadísticas, créditos o resumen.</li>
-            <li>Retorno al menú principal.</li>
-          </ul>
-        </div>
-      </div>
-    </article>
-
-    <article class="card full" id="diagrama">
-      <div class="label">// DIAGRAMA</div>
-      <h2>Diagrama simple de transición de estados</h2>
-      <p class="muted">
-        Representación visual del flujo general del juego, diferenciando la rama de singleplayer y la de multijugador.
-      </p>
-
-      <div class="diagram-wrap">
-        <img
-          src={`${base}images/juego/diagrama_de_flujo.webp`}
-          alt="Diagrama de flujo de estados del juego Kaelum"
-          class="diagram"
-        />
-      </div>
-
-      <div class="callout subtle">
-        <strong>Ruta resumida:</strong> Pantalla de inicio → Menú principal → Singleplayer / Multijugador → Gameplay → Pausa / Game Over / Resultados / Victoria → Menú principal.
-      </div>
-    </article>
-
-    <div class="actions bottom">
-      <a class="btn primary" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
-      <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
-    </div>
-  </section>
-
-  <style>
-    .kicker{ letter-spacing:.06em; text-transform:uppercase; opacity:.7; font-size:.85rem; }
-    .lead{ margin-top:6px; line-height:1.6; opacity:.9; max-width:980px; }
-
-    .label{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      color: var(--muted2);
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      font-size: .72rem;
-      margin-bottom: 8px;
+    .boss-grid {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 14px;
+      align-items: stretch;
+      justify-content: stretch;
     }
 
-    .subnav{
-      margin-top:14px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:center;
+    .boss {
+      flex: 1 1 40%;
+      min-width: 460px;
+      border-radius: 14px;
+      border: 1px solid rgba(var(--accent), 0.18);
+      background: rgba(var(--accent), 0.06);
+      padding: 14px;
+      overflow: hidden;
+
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .boss-flex {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .boss .badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+    .boss h3 {
+      margin: 4px 0 2px;
+      line-height: 1.15;
     }
 
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      text-decoration:none;
-      color: rgba(255,255,255,.82);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.16);
-      padding: 8px 12px;
-      border-radius: 999px;
-      font-weight: 900;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      font-size: .78rem;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    .boss-media {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(var(--accent), 0.22);
+      background: rgba(0, 0, 0, 0.18);
+      padding: 10px;
+      display: grid;
+      place-items: center;
+      min-height: 220px;
+      overflow: hidden;
     }
-
-    .chip:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.18);
+    .boss-media.has-img .ph {
+      display: none;
     }
-
-    .state-flex, .grid2{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-top:14px;
-      align-items:stretch;
+    .boss-media img {
+      width: 100%;
+      height: auto;
+      max-height: 320px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.45));
     }
-
-    .state-card, .mini-card{
-      flex:1 1 280px;
-      padding:14px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.18);
-      min-width:260px;
+    .boss-info {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 6px;
     }
-
-    .list{ padding-left:18px; }
-    .list.compact{ margin:0; padding-left:18px; }
-    .list li{ margin:6px 0; }
-
-    .diagram-wrap{
-      margin-top:14px;
-      padding:14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-      overflow:hidden;
+    .actions.bottom {
+      margin-top: 18px;
     }
-
-    .diagram{
-      display:block;
-      width:100%;
-      height:auto;
-      border-radius:12px;
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
     }
-
-    .callout{
-      margin-top:14px;
-      padding:12px 14px;
-      border-radius:12px;
-      border:1px dashed rgba(255,255,255,.18);
-      background:rgba(0,0,0,.18);
-      color:var(--muted);
-    }
-
-    .callout.subtle{
-      border-style:solid;
-      border-color:rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
-    }
-
-    .actions.bottom{ margin-top:18px; }
-  </style>
-</BaseLayout>
-```
-
----
-## FILE: src/pages/juego/historia.astro
----
-
-```astro
----
-import BaseLayout from "../../layouts/BaseLayout.astro";
-const base = import.meta.env.BASE_URL;
----
-
-<BaseLayout
-  title="Kaelum — Historia"
-  description="Historia y narrativa (Actos 1–3 + Misiones principales): enfoque narrativo, estructura de actos, misiones clave y decisiones."
->
-
-<section class="hero">
-  <header class="header">
-    <p class="kicker">GDD · Modo Historia</p>
-    <h1>Historia y narrativa</h1>
-    <p class="lead">
-      Kaelum cuenta su historia desde dentro: lo que vives, lo que eliges y lo que el mundo decide creer sobre ti.
-      No vienes a que te aplaudan. Vienes a sobrevivir… y a decidir qué tipo de persona vas a ser cuando tengas poder de verdad.
-    </p>
-    <div class="actions">
-      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn primary" href={`${base}juego/mundo/`}>Ver Mundo</a>
-      <a class="btn " href={`${base}juego/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/cinematicas/`}>Ver cinemáticas</a>
-      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
-      <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
-      <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
-    </div>
-  </header>
-</section>
-<section class="gdd-section" id="historia">
-  <article class="card">
-    <h2>Enfoque narrativo</h2>
-    <ul class="bullets">
-      <li>La narrativa no corta el ritmo: se construye con exploración, diálogos, misiones y consecuencias.</li>
-      <li>La información se revela poco a poco: primero el rechazo, luego la verdad, y al final la decisión.</li>
-      <li>El conflicto no es solo contra monstruos: es social, moral y estructural.</li>
-    </ul>
-
-    <blockquote class="quote">
-      <p>“Te trajeron para salvarlos… pero también puedes ser la razón de su caída.”</p>
-      <cite>Frase núcleo</cite>
-    </blockquote>
-  </article>
-
-  <article class="card">
-    <h2>Acto 1 — “No eres bienvenido”</h2>
-    <p>
-      El juego abre con <strong>El Eclipse</strong>: una calle normal, un evento imposible y una ruptura de realidad.
-      Despiertas en Kaelum convertido en <strong>Kael</strong>, y el primer aprendizaje no es el combate: es la sensación de ser
-      observado como una amenaza.
-    </p>
-
-    <div class="subcard">
-      <h3>El tabú del pasado (por qué el pueblo te teme)</h3>
-      <p>
-        Durante un ataque de anomalías, Kael desató por primera vez una magia distinta, vinculada a la energía violeta de La Fisura.
-        Detuvo a las criaturas… pero esa energía rebotó e impactó en civiles. Algunos murieron. Otros sobrevivieron rotos.
-        Fue un accidente, pero el mundo lo recuerda como prueba.
-      </p>
-    </div>
-
-    <div class="subcard">
-      <h4>Giro del Acto 1 (punto de no retorno emocional)</h4>
-      <p>
-        Tras un evento con <strong>Liora</strong> (criaturas de una anomalía entrando en la ciudad y yendo a por ella),
-        el mundo no responde con gratitud: aparecen extremistas del pueblo llano y la situación escala a persecución.
-        Da igual tu intención: si te temen, te van a querer muerto.
-      </p>
-    </div>
-  </article>
-
-  <article class="card">
-    <h2>Acto 2 — “La verdad está bajo sus túnicas”</h2>
-    <p>
-      El Acto 2 deja de ir “sobre aguantar el rechazo” y pasa a ir sobre entender el sistema.
-      Ruinas, runas y pistas te llevan al núcleo: <strong>el Orbe del Origen</strong> y su relación con La Fisura.
-    </p>
-
-    <div class="subcard">
-      <h3>La Orden no es un villano plano</h3>
-      <p>
-        La Orden funciona: ha contenido amenazas, ha construido conocimiento y ha dado herramientas al mundo.
-        Pero el coste está oculto: estabilidad a cambio de aceptar tragedias como “daño colateral”.
-      </p>
-    </div>
-
-    <div class="subcard">
-      <h3>Giro del Acto 2 (plot twist principal)</h3>
-      <p>
-        Descubres que La Orden no solo conocía el Orbe: lo tenía y lo usaba deliberadamente.
-        Ese momento rompe el centro moral del juego: ya no puedes “seguir como si nada”.
-      </p>
-    </div>
-  </article>
-
-  <article class="card">
-    <h2>Acto 3 — “Tu decisión pesa”</h2>
-    <p>
-      El cierre no va de ganar o perder: va de qué haces con lo que has entendido.
-      El final depende del <strong>karma</strong>, de decisiones clave y de la elección final sobre el Orbe.
-    </p>
-
-    <div class="subcard">
-      <h3>Golpe inevitable antes del clímax</h3>
-      <p>
-        Antes del final, <strong>Liora muere</strong> durante el avance a la batalla final, en medio del caos (restos de La Orden y anomalías).
-        Es un recordatorio: da igual lo que hayas intentado, hay cosas que la guerra no negocia.
-      </p>
-    </div>
-
-    <div class="grid3">
-      <div class="pill">
-        <h3>Final bueno</h3>
-        <p>Kael destruye el Orbe. Renuncia al dominio. No hay celebración: hay alivio.</p>
-      </div>
-      <div class="pill">
-        <h3>Final neutral</h3>
-        <p>Kael sella el Orbe. Estabilidad imperfecta. El peso se comparte, no se elimina.</p>
-      </div>
-      <div class="pill">
-        <h3>Final malo</h3>
-        <p>Kael absorbe el Orbe. Abraza La Fisura. Se convierte en lo que el mundo temía.</p>
-      </div>
-    </div>
-  </article>
-
-  <article class="card">
-    <h2>Misiones principales (columna vertebral)</h2>
-    <p class="muted">
-      La estructura sigue un escalado claro: <strong>Identidad → Verdad → Decisión</strong>.
-      Cada bloque desbloquea sistemas y eleva el conflicto sin perder el foco del gunplay.
-    </p>
-
-    <div class="timeline">
-      <div class="tblock">
-        <h3>Acto 1 — Identidad</h3>
-        <ol>
-          <li><strong>Despertar en Kaelum</strong> — tutorial + primer rechazo.</li>
-          <li><strong>La Ciudad no te quiere</strong> — primer hub + Liora + reputación social.</li>
-          <li><strong>El Taller Silencioso</strong> — Maeren + memoria 1.</li>
-          <li><strong>Grieta en el Bosque</strong> — decisión civiles vs eficacia.</li>
-          <li><strong>El Poder de la Fisura</strong> — primer poder + persecución (fin de acto).</li>
-        </ol>
-      </div>
-
-      <div class="tblock">
-        <h3>Acto 2 — Verdad</h3>
-        <ol start="6">
-          <li><strong>Ruinas y Runas</strong> — vínculo Orbe-Fisura.</li>
-          <li><strong>La Orden observa</strong> — jerarquía + control.</li>
-          <li><strong>El Fugitivo</strong> — proteger o entregar (punto de no retorno).</li>
-          <li><strong>Castillo de la Pieza</strong> — jefe + pieza para guardianes.</li>
-          <li><strong>El Orbe del Origen</strong> — revelación: La Orden lo usaba.</li>
-        </ol>
-      </div>
-
-      <div class="tblock">
-        <h3>Acto 3 — Decisión</h3>
-        <ol start="11">
-          <li><strong>Reunir a los Guardianes</strong> — aliados + preparación final.</li>
-          <li><strong>Decisión y Final</strong> — 3 finales según karma + decisiones.</li>
-        </ol>
-      </div>
-    </div>
-  </article>
-  <div class="actions">
-      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn primary" href={`${base}juego/mundo/`}>Ver Mundo</a>
-      <a class="btn " href={`${base}juego/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/cinematicas/`}>Ver cinemáticas</a>
-      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
-      <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
-      <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
-    </div>
-</section>
-
-<style>
-  .header{ margin-bottom: 18px; }
-  .kicker{
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    opacity: .75;
-    margin: 0 0 6px;
-    font-size: .86rem;
-  }
-  h2{ margin: 0 0 10px; font-size: 2rem; }
-  .lead{ margin: 0 ; text-align:justify; opacity: .92; line-height: 1.55; }
-  .card{
-    margin-top: 16px;
-    padding: 16px 16px;
-    border: 1px solid rgba(255,255,255,.10);
-    border-radius: 14px;
-    background: rgba(255,255,255,.04);
-  }
-  .subcard{
-    margin-top: 12px;
-    padding: 12px 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(29, 11, 11, 0.1);
-    background: rgba(0,0,0,.18);
-  }
-  .subcard p{
-    text-align: justify;
-  }
-  .bullets{ margin: 10px 0 0; padding-left: 38px; }
-  .bullets li{ margin: 6px 0; }
-
-  .quote{
-    margin: 14px 0 0;
-    padding: 12px 12px;
-    border-left: 4px solid rgba(170,120,255,.65);
-    background: rgba(170,120,255,.08);
-    border-radius: 10px;
-  }
-  .quote p{ margin: 0 0 6px; font-weight: 600; }
-  .quote cite{ opacity: .8; font-style: normal; font-size: .92rem; }
-
-  .grid3{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin-top: 12px;
-  }
-  .pill{
-    padding: 12px 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.03);
-  }
-  .pill h3{ margin: 0 0 8px; }
-  .pill p{ margin: 0; opacity: .92; line-height: 1.45; }
-
-  .muted{ opacity: .82; }
-
-  .timeline{ margin-top: 12px; display: grid; gap: 12px; }
-  .tblock{
-    padding: 12px 12px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(0,0,0,.14);
-  }
-  .tblock h3{ margin: 0 0 10px; font-size: 1.4rem; }
-  .tblock ol{ margin: 0; padding-left: 18px; }
-  .tblock li{ margin: 6px 40px; line-height: 1.45; }
-
-  @media (max-width: 860px){
-    .grid3{ grid-template-columns: 1fr; }
-  }
-</style>
-
-</BaseLayout>
-```
-
----
-## FILE: src/pages/juego/index.astro
----
-
-```astro
----
-import BaseLayout from "../../layouts/BaseLayout.astro";
-const base = import.meta.env.BASE_URL;
-
-const pillars = [
-  {
-    title: "Narrativa y mundo",
-    desc:
-      "Kaelum combina conflicto, identidad y progresión narrativa dentro de un universo con tensión entre facciones, símbolos y fuerzas que condicionan al protagonista.",
-  },
-  {
-    title: "Combate y habilidades",
-    desc:
-      "La experiencia jugable gira alrededor del gunplay, el movimiento y el uso de habilidades que añaden control, utilidad, presión y profundidad al combate.",
-  },
-  {
-    title: "Progreso y decisión",
-    desc:
-      "El recorrido del jugador no es solo avanzar por niveles, sino atravesar actos, decisiones, rutas, consecuencias y una lectura del mundo que va cambiando.",
-  },
-  {
-    title: "Flujo e interfaz",
-    desc:
-      "La estructura de estados, pantallas y feedback visual forma parte del diseño jugable y ayuda a que la experiencia se entienda y se sienta coherente.",
-  },
-];
-
-const pages = [
-  {
-    number: "01",
-    title: "Historia",
-    desc:
-      "Premisa, conflicto, protagonista y dirección narrativa general del juego.",
-    href: `${base}juego/historia/`,
-    group: "Narrativa",
-  },
-  {
-    number: "02",
-    title: "Mundo",
-    desc:
-      "Ambientación, tono, reglas del universo y referencias que construyen la identidad de Kaelum.",
-    href: `${base}juego/mundo/`,
-    group: "Narrativa",
-  },
-  {
-    number: "03",
-    title: "Personajes",
-    desc:
-      "Protagonista, aliados y figuras relevantes explicadas desde su rol narrativo y jugable.",
-    href: `${base}juego/personajes/`,
-    group: "Narrativa",
-  },
-  {
-    number: "04",
-    title: "Enemigos",
-    desc:
-      "Roles de combate, facciones, color-code y fantasías de enfrentamiento del juego.",
-    href: `${base}juego/enemigos/`,
-    group: "Combate",
-  },
-  {
-    number: "05",
-    title: "Mecánicas",
-    desc:
-      "Core loop, inputs, sistemas principales, habilidades, progresión, interacción e inventario.",
-    href: `${base}juego/mecanicas/`,
-    group: "Combate",
-  },
-  {
-    number: "06",
-    title: "Progreso",
-    desc:
-      "Estructura narrativa del juego: prólogo, actos, rutas, decisiones y tipos de final.",
-    href: `${base}juego/progreso/`,
-    group: "Estructura",
-  },
-  {
-    number: "07",
-    title: "Flujo",
-    desc:
-      "Estados del juego, navegación, menús, victoria, derrota y lectura global de la experiencia.",
-    href: `${base}juego/flujo/`,
-    group: "Estructura",
-  },
-  {
-    number: "08",
-    title: "Cinemáticas",
-    desc:
-      "Momentos clave, función audiovisual y escenas que refuerzan el ritmo del proyecto.",
-    href: `${base}juego/cinematicas/`,
-    group: "Presentación",
-  },
-  {
-    number: "09",
-    title: "Interfaz",
-    desc:
-      "HUD, diario, pausa, victoria y otras pantallas como parte de la experiencia jugable.",
-    href: `${base}juego/interfaz/`,
-    group: "Presentación",
-  },
-];
-
-const pathFlow = [
-  "Historia",
-  "Mundo",
-  "Personajes",
-  "Enemigos",
-  "Mecánicas",
-  "Progreso",
-  "Flujo",
-  "Cinemáticas",
-  "Interfaz",
-];
----
-
-<BaseLayout
-  title="Kaelum — Juego"
-  description="Sección principal de Kaelum: narrativa, mundo, personajes, enemigos, mecánicas, progreso, flujo, cinemáticas e interfaz."
->
-  <section class="hero hero-game">
-    <div class="hero-copy">
-      <p class="kicker">Sección central</p>
-      <h1>Juego</h1>
-
-      <p class="lead">
-        Este bloque funciona como el <strong>núcleo principal del portfolio</strong>. Aquí
-        Kaelum se presenta como videojuego: qué propone, cómo se estructura, qué sistemas
-        lo sostienen y cómo se relacionan la narrativa, el combate, el progreso y la
-        interfaz dentro de una misma experiencia.
-      </p>
-
-      <div class="actions">
-        <a class="btn primary" href={`${base}juego/historia/`}>Empezar por Historia</a>
-        <a class="btn" href={`${base}juego/mecanicas/`}>Ir a Mecánicas</a>
-        <a class="btn" href={`${base}juego/interfaz/`}>Ver Interfaz</a>
-      </div>
-    </div>
-
-    <aside class="hero-panel">
-      <p class="panel-kicker">Qué explica esta sección</p>
-      <h2>Un GDD web más fácil de leer</h2>
-      <p>
-        En lugar de obligar al visitante a navegar por documentos largos o apartados sueltos,
-        esta parte reorganiza el proyecto como un recorrido claro: primero entiendes el mundo,
-        luego el conflicto, después el combate y finalmente cómo se articula todo en la
-        experiencia del jugador.
-      </p>
-
-      <div class="flow-pills">
-        {pathFlow.map((item) => <span>{item}</span>)}
-      </div>
-    </aside>
-  </section>
-
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Pilares del bloque</p>
-      <h2>Cómo se ordena Kaelum aquí dentro</h2>
-      <p class="section-lead">
-        Esta sección no está pensada como un simple listado de páginas, sino como un sistema
-        de lectura donde cada parte cumple una función concreta.
-      </p>
-    </header>
-
-    <div class="pillars-grid">
-      {pillars.map((pillar) => (
-        <article class="pillar-card">
-          <h3>{pillar.title}</h3>
-          <p>{pillar.desc}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Recorrido principal</p>
-      <h2>Subpáginas de Juego</h2>
-      <p class="section-lead">
-        Este es el orden recomendado para entender Kaelum sin saltar entre bloques desconectados.
-      </p>
-    </header>
-
-    <div class="pages-grid">
-      {pages.map((page) => (
-        <a class="page-card" href={page.href}>
-          <div class="page-top">
-            <span class="page-number">{page.number}</span>
-            <span class="page-group">{page.group}</span>
-          </div>
-          <h3>{page.title}</h3>
-          <p>{page.desc}</p>
-          <span class="page-link">Abrir apartado</span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="section split">
-    <article class="info-card">
-      <p class="kicker">Orden sugerido</p>
-      <h2>Primero contexto, luego sistemas</h2>
-      <p>
-        Lo más natural es arrancar por <strong>Historia</strong>, <strong>Mundo</strong> y
-        <strong> Personajes</strong> para entender la base del juego. Después tiene sentido
-        pasar a <strong>Enemigos</strong> y <strong>Mecánicas</strong>, y cerrar con
-        <strong> Progreso</strong>, <strong>Flujo</strong>, <strong>Cinemáticas</strong> e
-        <strong> Interfaz</strong>.
-      </p>
-      <div class="actions">
-        <a class="btn" href={`${base}juego/historia/`}>Seguir el orden recomendado</a>
-      </div>
-    </article>
-
-    <article class="info-card accent">
-      <p class="kicker">Lectura alternativa</p>
-      <h2>Si vienes por lo jugable</h2>
-      <p>
-        Si tu foco está más en sistemas y diseño, puedes entrar directamente por
-        <strong> Mecánicas</strong>, continuar con <strong>Enemigos</strong> y
-        <strong> Flujo</strong>, y luego revisar <strong>Interfaz</strong> para ver cómo se
-        traduce todo eso en pantalla y feedback al jugador.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}juego/mecanicas/`}>Entrar por mecánicas</a>
-      </div>
-    </article>
-  </section>
-
-  <section class="section cta-section">
-    <div class="cta-card">
-      <p class="kicker">Siguiente salto natural</p>
-      <h2>Después de Juego, lo que más sentido tiene es Media</h2>
-      <p>
-        Una vez entendido el proyecto como videojuego, la siguiente parada ideal es la sección
-        de <strong>Media</strong>, donde se concentra el tono visual, las capturas, el
-        moodboard y el material más directo para enseñar cómo se ve Kaelum.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}media/`}>Ir a Media</a>
-      </div>
-    </div>
-  </section>
-
-  <style>
-    .hero-game{
-      display:grid;
-      grid-template-columns: 1.35fr .95fr;
-      gap:24px;
-      align-items:stretch;
-    }
-
-    .hero-copy,
-    .hero-panel,
-    .pillar-card,
-    .page-card,
-    .info-card,
-    .cta-card{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:18px;
-      backdrop-filter: blur(8px);
-    }
-
-    .hero-copy{
-      padding:28px;
-    }
-
-    .hero-panel{
-      padding:24px;
-      background:
-        linear-gradient(180deg, rgba(103, 150, 255, .12), rgba(255,255,255,.03));
-    }
-
-    .kicker,
-    .panel-kicker{
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.75;
-      margin:0 0 8px;
-      font-size:.82rem;
-    }
-
-    h1{
-      margin:0 0 12px;
-      font-size:clamp(2.6rem, 6vw, 4.2rem);
-      line-height:.95;
-    }
-
-    h2{
-      margin:0 0 10px;
-      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
-      line-height:1.05;
-    }
-
-    h3{
-      margin:0 0 10px;
-      font-size:1.12rem;
-    }
-
-    .lead,
-    .section-lead,
-    .hero-panel p,
-    .pillar-card p,
-    .page-card p,
-    .info-card p,
-    .cta-card p{
-      line-height:1.6;
-      opacity:.94;
-      margin:0;
-      text-align:justify;
-    }
-
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:18px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:inherit;
-      text-decoration:none;
-      transition:.18s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .btn.primary{
-      background:linear-gradient(180deg, rgba(94, 139, 255, .28), rgba(94, 139, 255, .14));
-      border-color:rgba(136, 175, 255, .34);
-      box-shadow:0 10px 24px rgba(20,44,120,.18);
-    }
-
-    .flow-pills{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:18px;
-    }
-
-    .flow-pills span{
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(255,255,255,.05);
-      font-size:.92rem;
-    }
-
-    .section{
-      margin-top:28px;
-    }
-
-    .section-head{
-      margin-bottom:14px;
-    }
-
-    .pillars-grid{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .pillar-card{
-      padding:20px;
-    }
-
-    .pages-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .page-card{
-      padding:18px;
-      text-decoration:none;
-      color:inherit;
-      transition:.18s ease;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-    }
-
-    .page-card:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.06);
-    }
-
-    .page-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-
-    .page-number{
-      width:42px;
-      height:42px;
-      border-radius:12px;
-      display:grid;
-      place-items:center;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(94, 139, 255, .16);
-    }
-
-    .page-group{
-      border-radius:999px;
-      padding:6px 10px;
-      font-size:.8rem;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.05);
-      opacity:.9;
-    }
-
-    .page-link{
-      margin-top:auto;
-      opacity:.86;
-      font-size:.95rem;
-    }
-
-    .split{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .info-card,
-    .cta-card{
-      padding:22px;
-    }
-
-    .info-card.accent,
-    .cta-card{
-      background:
-        linear-gradient(180deg, rgba(94, 139, 255, .14), rgba(255,255,255,.03));
-    }
-
-    @media (max-width: 1080px){
-      .pages-grid{
-        grid-template-columns:repeat(2, minmax(0,1fr));
-      }
-    }
-
-    @media (max-width: 900px){
-      .hero-game,
-      .pillars-grid,
-      .split{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 640px){
-      .pages-grid{
-        grid-template-columns:1fr;
-      }
-
-      .hero-copy,
-      .hero-panel,
-      .pillar-card,
-      .page-card,
-      .info-card,
-      .cta-card{
-        padding:18px;
-      }
-
-      h1{
-        font-size:2.35rem;
-      }
+    .hero-actions a {
+      flex: 1 1 200px;
     }
   </style>
 </BaseLayout>
 ```
 
 ---
-## FILE: src/pages/juego/index_copy.astro
----
-
-```astro
----
-import BaseLayout from "../../layouts/BaseLayout.astro";
-const base = import.meta.env.BASE_URL;
-
-const dossier = [
-  {
-    label: "// BACKGROUND",
-    title: "Historia",
-    desc: "Premisa, conflicto, objetivo del protagonista y rumbo narrativo. Enfocado para que alguien ajeno al proyecto lo entienda rápido.",
-    href: `${base}proyecto/historia/`,
-  },
-  {
-    label: "// WORLD_BUILDING",
-    title: "Mundo",
-    desc: "Tono, ambientación, reglas del universo y referencias visuales. Lo justo para sostener el juego sin convertirlo en novela.",
-    href: `${base}proyecto/mundo/`,
-  },
-  {
-    label: "// CHARACTERS",
-    title: "Personajes",
-    desc: "Protagonista, aliados y secundarios. Ficha rápida: rol en historia, función en gameplay y lectura visual.",
-    href: `${base}proyecto/personajes/`,
-  },
-  {
-    label: "// ENEMIES",
-    title: "Enemigos",
-    desc: "Roles de combate + facciones por color. Diseñado para lectura rápida: qué es, qué hace y cómo se contrarresta.",
-    href: `${base}proyecto/enemigos/`,
-  },
-  {
-    label: "// SEQUENCES",
-    title: "Cinemáticas",
-    desc: "Versión resumida “publicable”: intención audiovisual, estructura y momentos clave. Profundiza sin comerse la página.",
-    href: `${base}proyecto/cinematicas/`,
-  },
-  {
-    label: "// PROGRESSION",
-    title: "Progreso",
-    desc: "Objetivos, ritmo y consecuencias. Cómo avanza el juego: prólogo, actos, rutas y cierres por decisiones.",
-    href: `${base}proyecto/progreso/`,
-  },
-  {
-    label: "// SYSTEMS",
-    title: "Mecánicas",
-    desc: "Armas, movimiento, habilidades, interacción y filosofía jugable. El bloque donde se explica cómo se juega Kaelum.",
-    href: `${base}proyecto/mecanicas/`,
-    featured: true,
-  },
-  {
-    label: "// FLOW",
-    title: "Flujo de estados",
-    desc: "Pantallas principales, menús, gameplay, pausa, game over y victoria. Incluye el diagrama general del flujo del juego.",
-    href: `${base}proyecto/flujo/`,
-    featured: true,
-  },
-];
----
-
-<BaseLayout
-  title="Kaelum — Juego"
-  description="Sección de juego: historia, mundo, personajes, enemigos, mecánicas, flujo de estados, cinemáticas y progreso."
->
-  <section class="hero hero-pro">
-    <p class="kicker">Juego</p>
-    <h1>Guion, mundo, sistemas y estructura</h1>
-    <p class="lead">
-      Esto se lee como un dossier: titulares claros, bloques visuales y decisiones defendibles.
-      En Kaelum nada está “por estar”: cada pieza existe porque <strong>empuja gameplay</strong>.
-    </p>
-
-    <div class="meta">
-      <span class="tag">Narrativa</span>
-      <span class="tag">Personajes</span>
-      <span class="tag">Enemigos</span>
-      <span class="tag">Mecánicas</span>
-      <span class="tag">Flujo</span>
-      <span class="tag">Cinemáticas</span>
-      <span class="tag">Progreso</span>
-    </div>
-
-    <div class="callout subtle" style="margin-top:12px">
-      <strong>Orden recomendado:</strong> Historia → Mundo → Personajes → Enemigos → Mecánicas → Flujo de estados → Cinemáticas → Progreso.
-    </div>
-
-    <div class="actions">
-      <a class="btn primary" href={`${base}proyecto/historia/`}>Historia</a>
-      <a class="btn" href={`${base}proyecto/mundo/`}>Mundo</a>
-      <a class="btn" href={`${base}proyecto/personajes/`}>Personajes</a>
-      <a class="btn" href={`${base}proyecto/enemigos/`}>Enemigos</a>
-      <a class="btn" href={`${base}proyecto/cinematicas/`}>Cinemáticas</a>
-      <a class="btn" href={`${base}proyecto/progreso/`}>Progreso</a>
-      <a class="btn" href={`${base}proyecto/mecanicas/`}>Mecánicas</a>
-      <a class="btn" href={`${base}proyecto/flujo/`}>Flujo</a>
-    </div>
-  </section>
-
-  <div class="grid">
-    {dossier.map((s) => (
-      <article class={`card ${s.featured ? "featured" : ""}`}>
-        <div class="label">{s.label}</div>
-        <h2>{s.title}</h2>
-        <p class="muted">{s.desc}</p>
-        <div class="actions">
-          <a class={s.featured ? "btn primary" : "btn"} href={s.href}>Abrir</a>
-        </div>
-      </article>
-    ))}
-
-    <article class="card full">
-      <h2>Por qué este formato</h2>
-      <p class="muted">
-        La idea es que alguien pueda entrar al proyecto sin perderse: primero entiende qué es Kaelum,
-        luego cómo funciona su mundo, después cómo se juega y, por último, cómo se estructura su progreso.
-        Todo queda separado por bloques, pero conectado como un único GDD navegable.
-      </p>
-      <div class="actions" style="margin-top:10px">
-        <a class="btn" href={`${base}juego/`}>Volver a Resumen</a>
-        <a class="btn" href={`${base}vision/`}>Ir a Visión</a>
-      </div>
-    </article>
-  </div>
-
-  <style>
-    .hero-pro{ position:relative; overflow:hidden; }
-    .hero-pro:after{
-      content:"";
-      position:absolute;
-      inset:-2px;
-      pointer-events:none;
-      background:
-        radial-gradient(900px 280px at 18% 0%, rgba(70,255,150,.10), transparent 65%),
-        radial-gradient(760px 280px at 90% 12%, rgba(120,160,255,.10), transparent 60%);
-      opacity:.9;
-    }
-    .hero-pro > *{ position:relative; z-index:1; }
-
-    .kicker{
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.75;
-      font-size:.82rem;
-      margin-bottom:6px;
-    }
-
-    .lead{
-      margin-top:8px;
-      line-height:1.6;
-      opacity:.92;
-      max-width:980px;
-    }
-
-    .meta{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:12px;
-      justify-content:flex-start;
-    }
-
-    .tag{
-      display:inline-flex;
-      align-items:center;
-      padding:7px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.16);
-      color: rgba(255,255,255,.82);
-      font-weight:900;
-      letter-spacing:.02em;
-      font-size:.86rem;
-    }
-
-    .label{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      color: var(--muted2);
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      font-size: .72rem;
-      margin-bottom: 8px;
-    }
-
-    .featured{
-      border-color: rgba(140,120,255,.28);
-      background: linear-gradient(180deg, rgba(140,120,255,.10), rgba(0,0,0,.18));
-      box-shadow: 0 18px 60px rgba(140,120,255,.10);
-    }
-
-    .grid .card h2{ margin-top:2px; }
-    .grid .card .actions{ margin-top:12px; }
-  </style>
-</BaseLayout>
-```
-
----
-## FILE: src/pages/juego/interfaz.astro
----
-
-```astro
-
-```
-
----
-## FILE: src/pages/juego/mecanicas.astro
----
-
-```astro
----
-import BaseLayout from "../../layouts/BaseLayout.astro";
-const base = import.meta.env.BASE_URL;
-
-const summary = {
-  total: 12,
-  principal: 3,
-  secondary: 4,
-  meta: 5,
-};
-
-const coreLoop = [
-  "Explorar",
-  "Combatir",
-  "Interactuar",
-  "Progresar",
-  "Decidir",
-];
-
-const mechanics = [
-  {
-    id: "movimiento",
-    name: "Movimiento del jugador",
-    category: "Principal",
-    status: "Avanzada",
-    short: "Desplazamiento base del jugador. Es la mecánica que sostiene la lectura del espacio, la cobertura y el posicionamiento.",
-    definition:
-      "Sistema de locomoción principal que permite desplazarse por el escenario con fluidez, reposicionarse y construir ventaja táctica a través del espacio.",
-    input: "W / A / S / D para desplazamiento. Shift para sprint si se habilita.",
-    process: [
-      "El jugador introduce dirección.",
-      "El controlador calcula velocidad y vector de movimiento.",
-      "Se aplican colisiones, fricción y límites del escenario.",
-      "El personaje cambia de estado visual según velocidad y contexto.",
-    ],
-    rules: [
-      "El movimiento debe ser responsivo y sin sensación de arrastre innecesario.",
-      "No se permite atravesar geometría sólida.",
-      "La velocidad puede verse afectada por habilidades, estados o terreno.",
-    ],
-    affected: "Jugador, navegación por escenario, lectura de coberturas, distancia frente a enemigos.",
-    states: "Idle → Walk → Run / Sprint → Stopped / Affected State.",
-    vfx: "Animaciones de locomoción, inclinación corporal, cambios de postura y lectura clara de desplazamiento.",
-    sfx: "Pasos diferenciados según superficie y ritmo de movimiento.",
-    haptic: "Vibración ligera y rítmica en superficies o impactos de movimiento relevantes.",
-    systems: "Se conecta con combate, salto, habilidades de movilidad, exploración y sistema de estados.",
-    scaling: "Puede tensionarse con escenarios más complejos, menos cobertura o enemigos que castigan mala colocación.",
-    metric: "La acción es exitosa si el jugador se reposiciona con control y sin fricción artificial.",
-  },
-  {
-    id: "salto",
-    name: "Salto del jugador",
-    category: "Principal",
-    status: "Avanzada",
-    short: "Acción de movilidad vertical usada para salvar desniveles, romper líneas de tiro y apoyar el posicionamiento.",
-    definition:
-      "Mecánica de elevación puntual que amplía el movimiento base y permite responder a obstáculos, rutas verticales y microreposicionamientos.",
-    input: "Barra espaciadora / botón de salto.",
-    process: [
-      "Se valida si el jugador está en suelo o en una condición que permita saltar.",
-      "Se aplica un impulso vertical.",
-      "El sistema mantiene el estado aéreo hasta detectar aterrizaje.",
-      "Al tocar suelo, vuelve al estado base.",
-    ],
-    rules: [
-      "No se puede encadenar indefinidamente salvo que el diseño defina dobles saltos o excepciones.",
-      "El salto no debe invalidar coberturas ni encuentros pensados para tierra.",
-      "Puede quedar condicionado por estados negativos o por zona.",
-    ],
-    affected: "Jugador, navegación vertical, rutas de exploración y ventanas de combate.",
-    states: "Grounded → Jump Start → Airborne → Landing.",
-    vfx: "Animación de impulso, caída y aterrizaje; posible pequeña sacudida al tocar suelo.",
-    sfx: "Sonido de impulso y aterrizaje según superficie.",
-    haptic: "Pulso corto al despegar y pulso algo más seco al aterrizar.",
-    systems: "Se cruza con movimiento, combate, puzles, exploración y habilidades de movilidad.",
-    scaling: "Gana valor en niveles con más verticalidad, rutas secretas o enemigos que fuerzan reposicionamiento.",
-    metric: "Éxito si el jugador usa el salto para alcanzar una posición o evitar una amenaza concreta sin romper claridad.",
-  },
-  {
-    id: "gunplay",
-    name: "Gunplay",
-    category: "Principal",
-    status: "Muy avanzada",
-    short: "Núcleo del combate. El disparo debe sentirse consistente, legible y justo.",
-    definition:
-      "Sistema de combate con armas de fuego basado en disparo directo, lectura clara del impacto y control de recursos como cargador, munición y tiempos de recarga.",
-    input: "Click izquierdo disparar · Click derecho apuntar · R recargar · 1/2/3 cambiar arma.",
-    process: [
-      "El jugador dispara desde cámara o ADS.",
-      "El sistema lanza un raycast directo.",
-      "Se calcula impacto, daño y feedback.",
-      "Se aplica retroceso progresivo controlable y dispersión base por arma.",
-      "El sistema gestiona cargador, reserva y cambio de estados.",
-    ],
-    rules: [
-      "No se puede disparar sin munición.",
-      "No existe auto-aim.",
-      "La recarga puede bloquear o ser parcialmente cancelable según arma.",
-      "Cambiar de arma puede interrumpir la recarga si así se define.",
-      "Si se falla, la causa debe ser identificable por el jugador.",
-    ],
-    affected: "Jugador, enemigos, HUD de munición, ritmo del combate y economía de recursos.",
-    states: "Hipfire → ADS → Firing → Reloading → Swapping → Empty.",
-    vfx: "Fogonazo, trazas o impacto legible, animación de arma, feedback de hit confirmado.",
-    sfx: "Disparo por tipo de arma, clic de cargador vacío, recarga y confirmación de impacto.",
-    haptic: "Vibración corta al disparar, más marcada en armas pesadas o al confirmar impacto fuerte.",
-    systems: "Se relaciona con habilidades, movimiento, enemigos, inventario y progresión de manejo.",
-    scaling: "Escala a través de variedad de armas, precisión exigida, presión enemiga y lectura de recursos.",
-    metric: "Éxito si el jugador entiende por qué acertó o falló y percibe el disparo como justo y consistente.",
-  },
-  {
-    id: "q",
-    name: "Habilidad básica (Q)",
-    category: "Secundaria",
-    status: "Definida",
-    short: "Uso frecuente y apoyo directo al combate. Refuerza decisiones inmediatas sin sustituir al arma.",
-    definition:
-      "Habilidad de ciclo corto pensada para apoyar el combate de forma constante con una identidad clara y una lectura rápida.",
-    input: "Q.",
-    process: [
-      "El sistema comprueba que la habilidad está lista.",
-      "Se activa su efecto principal.",
-      "Permanece activa el tiempo definido o hasta completar su función.",
-      "Entra en cooldown.",
-    ],
-    rules: [
-      "No sustituye al arma como eje del gameplay.",
-      "Debe tener lectura inmediata y uso intuitivo.",
-      "No puede convertirse en la opción dominante en todos los enfrentamientos.",
-    ],
-    affected: "Jugador, enemigos cercanos o zona inmediata según personaje.",
-    states: "Ready → Active → Cooldown.",
-    vfx: "Efecto rápido y claro, fácil de leer incluso en combate intenso.",
-    sfx: "Sonido breve de activación y confirmación del efecto.",
-    haptic: "Pulso corto de activación.",
-    systems: "Se combina con gunplay, movimiento, gestión de cooldown y lectura de personaje.",
-    scaling: "Su valor aumenta con dominio del jugador, pero no debería escalar hasta eclipsar otras herramientas.",
-    metric: "Éxito si genera una ventaja táctica clara y comprensible en un uso corto.",
-  },
-  {
-    id: "e",
-    name: "Habilidad de utilidad (E)",
-    category: "Secundaria",
-    status: "Definida",
-    short: "Herramienta de movilidad o supervivencia puntual: dash, escudo breve, escaneo o curación ligera.",
-    definition:
-      "Habilidad situacional diseñada para dar margen de maniobra, supervivencia o información sin trivializar errores.",
-    input: "E.",
-    process: [
-      "Se valida disponibilidad.",
-      "Se ejecuta el efecto de utilidad correspondiente.",
-      "El jugador obtiene movilidad, protección, información o pequeña recuperación.",
-      "La habilidad entra en cooldown.",
-    ],
-    rules: [
-      "No debe romper el ritmo del combate.",
-      "No debe trivializar errores graves de posicionamiento.",
-      "Su uso debe ser táctico, no automático.",
-    ],
-    affected: "Jugador, aliados o entorno inmediato según variante.",
-    states: "Ready → Utility Active → Cooldown.",
-    vfx: "Dash, pulso de escaneo, brillo de escudo o efecto de curación ligera según personaje.",
-    sfx: "Sonido específico por función: impulso, barrera, ping o restauración.",
-    haptic: "Pulso medio y corto para indicar que se ha activado una herramienta defensiva o de movilidad.",
-    systems: "Se cruza con movimiento, supervivencia, lectura de mapa y enfrentamientos.",
-    scaling: "Puede ajustarse en cooldown, duración o potencia según necesidades de balance.",
-    metric: "Éxito si salva, recoloca o informa sin borrar el error anterior ni romper la presión del juego.",
-  },
-  {
-    id: "x",
-    name: "Habilidad de control (X)",
-    category: "Secundaria",
-    status: "Definida",
-    short: "Control del espacio mediante trampas, zonas ralentizadoras o dispositivos de bloqueo.",
-    definition:
-      "Habilidad orientada a modificar el escenario jugable y condicionar el movimiento del rival.",
-    input: "X.",
-    process: [
-      "Se despliega o activa un objeto / zona de control.",
-      "El sistema registra el área o dispositivo en el escenario.",
-      "Aplica ralentización, bloqueo o castigo cuando se activa.",
-      "Permanece activa hasta agotar duración, usos o ser destruida.",
-    ],
-    rules: [
-      "Está limitada por número máximo desplegado.",
-      "Debe tener contra-juego claro.",
-      "No puede saturar el escenario hasta volverlo ilegible.",
-    ],
-    affected: "Enemigos, rutas, zonas del escenario y ritmo del combate.",
-    states: "Ready → Deployed / Active → Triggered / Expired → Cooldown.",
-    vfx: "Indicadores de zona, trampa o dispositivo visibles para lectura táctica.",
-    sfx: "Sonido de despliegue y activación diferenciable.",
-    haptic: "Pulso de colocación y pulso extra si la habilidad llega a activarse con éxito.",
-    systems: "Se conecta con posicionamiento, flow del mapa, enemigos y habilidades rivales.",
-    scaling: "Puede variar en cantidad máxima, duración o intensidad según balance y dificultad.",
-    metric: "Éxito si condiciona una ruta o fuerza una decisión enemiga reconocible.",
-  },
-  {
-    id: "z",
-    name: "Habilidad definitiva (Z)",
-    category: "Secundaria",
-    status: "Definida",
-    short: "Pico de poder situacional. Impacta mucho, pero no está disponible constantemente ni resuelve el juego sola.",
-    definition:
-      "Habilidad de alto impacto reservada para momentos clave, cargada por participación activa del jugador.",
-    input: "Z.",
-    process: [
-      "La definitiva se carga por daño infligido, objetivos completados o tiempo en combate.",
-      "Cuando está lista, el jugador puede activarla.",
-      "Se ejecuta un efecto de gran impacto con duración o ventana definida.",
-      "Tras su uso, vuelve a estado de carga.",
-    ],
-    rules: [
-      "No está disponible constantemente.",
-      "No elimina jefes automáticamente.",
-      "Puede interrumpirse si el jugador cae o es cortado en el momento adecuado.",
-    ],
-    affected: "Jugador, enemigos, ritmo del enfrentamiento y lectura del clímax.",
-    states: "Charging → Ready → Active → Expired → Charging.",
-    vfx: "Efecto dominante y distintivo, claramente leído como “momento de poder”.",
-    sfx: "Firma sonora propia y muy reconocible.",
-    haptic: "Vibración más intensa y sostenida para marcar el pico de poder.",
-    systems: "Se relaciona con objetivos, daño, flow del combate y momentos de clímax narrativo/jugable.",
-    scaling: "Escala por dificultad en frecuencia de uso, castigo por mal empleo o valor situacional.",
-    metric: "Éxito si altera significativamente un momento de combate sin anular la habilidad del jugador ni del rival.",
-  },
-  {
-    id: "interaccion",
-    name: "Sistema de interacción",
-    category: "Meta-sistema",
-    status: "Definida",
-    short: "Permite abrir puertas, hablar con NPC, recoger objetos y activar mecanismos.",
-    definition:
-      "Sistema universal de entrada al contenido interactivo del mundo mediante una tecla contextual.",
-    input: "F.",
-    process: [
-      "El sistema detecta objetos interactuables cercanos o bajo dirección de cámara.",
-      "Asigna prioridad por proximidad o foco.",
-      "Al pulsar, ejecuta la acción contextual correspondiente.",
-    ],
-    rules: [
-      "La prioridad se resuelve por proximidad o dirección de cámara.",
-      "Debe evitar conflictos entre varios interactuables simultáneos.",
-      "La interacción no puede bloquear progreso narrativo esencial.",
-    ],
-    affected: "Puertas, NPC, objetos, mecanismos, eventos de mundo.",
-    states: "No Target → Available → Interacting → Resolved.",
-    vfx: "Prompt contextual, resaltado sutil o icono de interacción.",
-    sfx: "Sonido breve de confirmación al iniciar la interacción.",
-    haptic: "Pulso ligero de confirmación contextual.",
-    systems: "Conecta mundo, narrativa, inventario, puzles y progresión.",
-    scaling: "Aumenta su valor conforme el mundo contiene más rutas, secretos y eventos.",
-    metric: "Éxito si el jugador entiende rápido con qué puede interactuar y qué ha activado.",
-  },
-  {
-    id: "inventario",
-    name: "Sistema de inventario",
-    category: "Meta-sistema",
-    status: "Definida",
-    short: "Capacidad limitada y separación por categorías: objetos clave, consumibles, materiales y munición.",
-    definition:
-      "Sistema de almacenamiento y consulta de recursos del jugador con separación funcional y límites de capacidad.",
-    input: "Apertura desde menú o tecla dedicada según diseño final.",
-    process: [
-      "El jugador abre el inventario.",
-      "El sistema organiza objetos por categoría.",
-      "Permite consultar, usar o gestionar recursos compatibles.",
-    ],
-    rules: [
-      "Capacidad limitada.",
-      "Separación entre objetos clave, consumibles, materiales y munición.",
-      "No permite soft-lock narrativo.",
-    ],
-    affected: "Recursos del jugador, progresión, misiones y economía interna.",
-    states: "Closed → Open → Selecting → Using / Managing → Closed.",
-    vfx: "Interfaz clara, iconografía limpia y separación visual por categorías.",
-    sfx: "Apertura/cierre de menú y uso de ítems cuando corresponda.",
-    haptic: "No prioritaria en esta fase; puede quedar como vibración suave en navegación por mando.",
-    systems: "Se cruza con interacción, progresión, armas, recursos y narrativa.",
-    scaling: "Puede complejizarse con más objetos, raridades o restricciones, pero sin perder legibilidad.",
-    metric: "Éxito si el jugador encuentra y usa recursos sin fricción innecesaria.",
-  },
-  {
-    id: "progresion",
-    name: "Sistema de progresión",
-    category: "Meta-sistema",
-    status: "Definida",
-    short: "La experiencia se obtiene por misiones, combate y eventos clave; al subir de nivel se desbloquean mejoras.",
-    definition:
-      "Sistema de avance persistente que recompensa la actividad del jugador sin sustituir su habilidad mecánica.",
-    input: "No depende de una tecla única; responde a logros, combate y eventos del juego.",
-    process: [
-      "El jugador obtiene experiencia por misiones, combate y eventos clave.",
-      "El sistema acumula progreso.",
-      "Al subir de nivel, desbloquea mejoras vinculadas a habilidades, manejo o resistencia.",
-    ],
-    rules: [
-      "No sustituye la habilidad mecánica.",
-      "Debe reforzar la sensación de avance sin romper el equilibrio.",
-      "Las mejoras tienen que complementar el dominio del jugador, no reemplazarlo.",
-    ],
-    affected: "Estadísticas del personaje, habilidades, resistencia a la Fisura y manejo.",
-    states: "XP Gain → Threshold Reached → Level Up → Upgrade Available.",
-    vfx: "Indicador de subida de nivel, desbloqueo y confirmación de mejora.",
-    sfx: "Sonido de progreso o ascenso de nivel.",
-    haptic: "Pulso breve al desbloquear una mejora significativa.",
-    systems: "Conecta combate, narrativa, karma, recursos y build del personaje.",
-    scaling: "Escala a través de umbrales de experiencia y tipos de mejora disponibles.",
-    metric: "Éxito si el jugador nota avance real sin sentir que el sistema “juega por él”.",
-  },
-  {
-    id: "karma",
-    name: "Sistema de karma",
-    category: "Meta-sistema",
-    status: "Definida",
-    short: "Las decisiones y la conducta modifican cómo te lee el mundo y condicionan rutas, reacciones y consecuencias.",
-    definition:
-      "Meta-sistema narrativo-jugable que registra la tendencia del jugador y altera la respuesta del mundo a sus acciones.",
-    input: "No se activa manualmente; se alimenta de elecciones, conducta y resolución de situaciones.",
-    process: [
-      "El jugador toma decisiones o ejecuta acciones con lectura moral/social.",
-      "El sistema actualiza su tendencia.",
-      "El mundo reacciona mediante acceso, trato, consecuencias o variaciones en rutas.",
-    ],
-    rules: [
-      "Debe tener impacto visible o al menos deducible.",
-      "No puede reducirse a “barra buena/barra mala” sin contexto.",
-      "Tiene que conectar con finales, relaciones y lectura pública del jugador.",
-    ],
-    affected: "Rutas, NPC, aliados, acceso a contenido, tono de ciertas consecuencias.",
-    states: "Neutral → Tendencia positiva / negativa → Umbrales de consecuencia.",
-    vfx: "Cambios contextuales en UI, mundo o lectura visual según implementación final.",
-    sfx: "No necesariamente un sonido directo; puede apoyarse en ambientación o leitmotivs contextuales.",
-    haptic: "No prioritaria como feedback directo; pesa más el feedback sistémico y narrativo.",
-    systems: "Se cruza con narrativa, progresión, interacción, finales y lectura del mundo.",
-    scaling: "Gana peso según avanza la partida y se alcanzan puntos de no retorno.",
-    metric: "Éxito si el jugador percibe que el mundo responde a su conducta de forma coherente.",
-  },
-  {
-    id: "viaje-rapido",
-    name: "Viaje rápido",
-    category: "Meta-sistema",
-    status: "Definida",
-    short: "Apoyo de ritmo para evitar desplazamientos vacíos una vez revelado el mapa o desbloqueadas zonas clave.",
-    definition:
-      "Sistema de desplazamiento abreviado entre puntos ya descubiertos para mantener el ritmo del juego.",
-    input: "Selección desde mapa, menú o punto de viaje habilitado.",
-    process: [
-      "El jugador accede al sistema de viaje.",
-      "Selecciona un punto disponible.",
-      "El juego valida desbloqueo y condiciones.",
-      "Se realiza la transición al destino.",
-    ],
-    rules: [
-      "Solo entre puntos ya descubiertos o desbloqueados.",
-      "Puede quedar limitado en ciertos momentos narrativos o de peligro.",
-      "No debe romper secuencias críticas del juego.",
-    ],
-    affected: "Posición del jugador, ritmo de exploración, backtracking y progresión.",
-    states: "Unavailable → Available → Selecting Destination → Transition → Arrived.",
-    vfx: "Mapa, selector de nodo y transición visual limpia.",
-    sfx: "Confirmación de viaje y transición.",
-    haptic: "N/A o vibración mínima; no es una mecánica donde el feedback háptico sea prioritario.",
-    systems: "Se relaciona con mundo, exploración, progresión y narrativa contextual.",
-    scaling: "Se vuelve más útil conforme el mapa crece y el jugador ya domina la geografía.",
-    metric: "Éxito si reduce desplazamientos muertos sin destruir la sensación de mundo conectado.",
-  },
-];
-
-const inputs = [
-  ["Click izquierdo", "Disparar", "Solo si hay munición disponible."],
-  ["Click derecho", "Apuntar / ADS", "Depende del arma y del estado actual."],
-  ["R", "Recargar", "Interrumpible según diseño del arma."],
-  ["1 / 2 / 3", "Cambiar arma", "Puede cancelar recarga si se define así."],
-  ["Q", "Habilidad básica", "Solo si está en estado Ready."],
-  ["E", "Habilidad de utilidad", "No debe trivializar errores."],
-  ["X", "Habilidad de control", "Limitada por número máximo desplegado."],
-  ["Z", "Definitiva", "Solo si la carga está completa."],
-  ["F", "Interactuar", "Prioridad por proximidad o dirección de cámara."],
-];
-
-const rewards = [
-  "Feedback visual y sonoro claro al impactar, activar habilidad o completar acción.",
-  "Progresión por experiencia obtenida en combate, misiones y eventos clave.",
-  "Desbloqueo de mejoras de habilidades, resistencia a la Fisura y manejo.",
-];
-
-const penalties = [
-  "Quedarse sin munición o tener que recargar en mal momento.",
-  "Cooldowns y ventanas de vulnerabilidad al usar habilidades mal.",
-  "Rutas peores, reacciones más duras o consecuencias sistémicas derivadas del karma.",
-];
-
-const ux = {
-  emotion: "Tensión, control y recompensa por lectura clara.",
-  why: "Las mecánicas buscan que el jugador entienda por qué ha acertado o fallado, y que cada herramienta tenga una función legible sin saturar el combate.",
-};
----
-
-<BaseLayout
-  title="Kaelum — Mecánicas"
-  description="Mecánicas de juego de Kaelum: armas, movimiento, habilidades y sistemas transversales."
->
-  <section class="hero">
-    <p class="kicker">Juego · Mecánicas</p>
-    <h1>Mecánicas de juego</h1>
-    <p class="lead">
-      Esta página reúne el bloque de mecánicas como un dossier técnico legible:
-      <strong>12 mecánicas y sistemas identificados</strong>, clasificados y desarrollados con la mayor profundidad posible
-      dentro de la documentación actual.
-    </p>
-
-    <div class="meta">
-      <span class="tag">{summary.total} mecánicas / sistemas</span>
-      <span class="tag">{summary.principal} principales</span>
-      <span class="tag">{summary.secondary} secundarias</span>
-      <span class="tag">{summary.meta} meta-sistemas</span>
-    </div>
-
-    <div class="actions">
-      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
-      <a class="btn primary" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
-    </div>
-
-    <nav class="subnav" aria-label="Índice de la página">
-      <a class="chip" href="#core">Core loop</a>
-      <a class="chip" href="#clasificacion">Clasificación</a>
-      <a class="chip" href="#inputs">Inputs</a>
-      <a class="chip" href="#fichas">Fichas técnicas</a>
-      <a class="chip" href="#recompensas">Recompensas</a>
-      <a class="chip" href="#ux">UX</a>
-    </nav>
-  </section>
-
-  <section class="gdd-section">
-    <article class="card full" id="core">
-      <div class="label">// CORE LOOP</div>
-      <h2>Bucle principal del juego</h2>
-      <p class="muted">
-        Kaelum se apoya en un ciclo claro: explorar, combatir, interactuar, progresar y decidir.
-        El arma sigue siendo el eje del gameplay, mientras que movimiento y habilidades refuerzan el ritmo sin sustituir la acción directa.
-      </p>
-
-      <div class="core-flex">
-        {coreLoop.map((step, i) => (
-          <div class="core-step">
-            <span class="core-n">{String(i + 1).padStart(2, "0")}</span>
-            <h3>{step}</h3>
-          </div>
-        ))}
-      </div>
-
-      <div class="callout subtle">
-        <strong>Idea central:</strong> Kaelum busca una experiencia “honesta”: si fallas, la causa debe ser identificable; si aciertas, el sistema debe devolverte una lectura clara del porqué.
-      </div>
-    </article>
-
-    <article class="card full" id="clasificacion">
-      <div class="label">// CLASIFICACIÓN</div>
-      <h2>Mapa completo de mecánicas</h2>
-      <p class="muted">
-        Para dejar el bloque lo más completo posible, las mecánicas se presentan agrupadas por función: <strong>principales</strong>, <strong>secundarias</strong> y <strong>meta-sistemas</strong>.
-      </p>
-
-      <div class="group-flex">
-        <div class="group-card">
-          <h3>Principales</h3>
-          <ul class="list compact">
-            <li>Movimiento del jugador</li>
-            <li>Salto del jugador</li>
-            <li>Gunplay</li>
-          </ul>
-        </div>
-
-        <div class="group-card">
-          <h3>Secundarias</h3>
-          <ul class="list compact">
-            <li>Habilidad básica (Q)</li>
-            <li>Habilidad de utilidad (E)</li>
-            <li>Habilidad de control (X)</li>
-            <li>Habilidad definitiva (Z)</li>
-          </ul>
-        </div>
-
-        <div class="group-card">
-          <h3>Meta-sistemas</h3>
-          <ul class="list compact">
-            <li>Sistema de interacción</li>
-            <li>Sistema de inventario</li>
-            <li>Sistema de progresión</li>
-            <li>Sistema de karma</li>
-            <li>Viaje rápido</li>
-          </ul>
-        </div>
-      </div>
-    </article>
-
-    <article class="card full" id="inputs">
-      <div class="label">// INPUTS Y REGLAS</div>
-      <h2>Tabla de acciones base</h2>
-
-      <div class="table-wrap">
-        <table class="mechanic-table">
-          <thead>
-            <tr>
-              <th>Acción</th>
-              <th>Comportamiento</th>
-              <th>Regla / Restricción</th>
-            </tr>
-          </thead>
-          <tbody>
-            {inputs.map((row) => (
-              <tr>
-                <td>{row[0]}</td>
-                <td>{row[1]}</td>
-                <td>{row[2]}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </article>
-
-    <article class="card full" id="fichas">
-      <div class="label">// FICHAS TÉCNICAS</div>
-      <h2>Desarrollo de las 12 mecánicas</h2>
-      <p class="muted">
-        Cada ficha sigue la lógica de la plantilla técnica: definición, input, proceso, límites, estados, feedback e interacción con sistemas.
-      </p>
-
-      <div class="mechanic-stack">
-        {mechanics.map((m, i) => (
-          <section class="mechanic-card" id={m.id} data-cat={m.category}>
-            <div class="mechanic-top">
-              <div>
-                <div class="mechanic-kicker">Mecánica {String(i + 1).padStart(2, "0")}</div>
-                <h3>{m.name}</h3>
-                <p class="muted summary">{m.short}</p>
-              </div>
-
-              <div class="badges">
-                <span class="badge cat">{m.category}</span>
-                <span class={`badge status ${m.status === "Muy avanzada" ? "advanced" : m.status === "Avanzada" ? "good" : "defined"}`}>
-                  {m.status}
-                </span>
-              </div>
-            </div>
-
-            <div class="mechanic-layout">
-              <div class="mechanic-main">
-                <div class="info-grid">
-                  <div class="info-box">
-                    <strong>Definición</strong>
-                    <p>{m.definition}</p>
-                  </div>
-                  <div class="info-box">
-                    <strong>Input</strong>
-                    <p>{m.input}</p>
-                  </div>
-                  <div class="info-box">
-                    <strong>Objetos afectados</strong>
-                    <p>{m.affected}</p>
-                  </div>
-                  <div class="info-box">
-                    <strong>Estados</strong>
-                    <p>{m.states}</p>
-                  </div>
-                </div>
-
-                <div class="process-block">
-                  <h4>Lógica / proceso</h4>
-                  <ol class="list numbered">
-                    {m.process.map((p) => <li>{p}</li>)}
-                  </ol>
-                </div>
-
-                <div class="rules-block">
-                  <h4>Reglas y límites</h4>
-                  <ul class="list compact">
-                    {m.rules.map((r) => <li>{r}</li>)}
-                  </ul>
-                </div>
-              </div>
-
-              <aside class="mechanic-side">
-                <div class="side-box">
-                  <h4>Feedback visual</h4>
-                  <p>{m.vfx}</p>
-                </div>
-
-                <div class="side-box">
-                  <h4>Feedback sonoro</h4>
-                  <p>{m.sfx}</p>
-                </div>
-
-                <div class="side-box">
-                  <h4>Háptica</h4>
-                  <p>{m.haptic}</p>
-                </div>
-
-                <div class="side-box">
-                  <h4>Interacción con sistemas</h4>
-                  <p>{m.systems}</p>
-                </div>
-
-                <div class="side-box">
-                  <h4>Escalabilidad</h4>
-                  <p>{m.scaling}</p>
-                </div>
-
-                <div class="side-box metric">
-                  <h4>Métrica de éxito</h4>
-                  <p>{m.metric}</p>
-                </div>
-              </aside>
-            </div>
-          </section>
-        ))}
-      </div>
-    </article>
-
-    <article class="card full" id="recompensas">
-      <div class="label">// RECOMPENSAS Y PENALIZACIONES</div>
-      <h2>Cómo responde el sistema al jugador</h2>
-
-      <div class="dual-flex">
-        <div class="mini-card">
-          <h3>Recompensas</h3>
-          <ul class="list compact">
-            {rewards.map((x) => <li>{x}</li>)}
-          </ul>
-        </div>
-
-        <div class="mini-card">
-          <h3>Penalizaciones</h3>
-          <ul class="list compact">
-            {penalties.map((x) => <li>{x}</li>)}
-          </ul>
-        </div>
-      </div>
-    </article>
-
-    <article class="card full" id="ux">
-      <div class="label">// EXPERIENCIA DEL JUGADOR</div>
-      <h2>Emoción objetivo</h2>
-      <p class="muted">
-        <strong>{ux.emotion}</strong>
-      </p>
-      <div class="callout">
-        <strong>Justificación:</strong> {ux.why}
-      </div>
-    </article>
-
-    <div class="actions bottom">
-      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
-      <a class="btn primary" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
-    </div>
-  </section>
-
-  <style>
-    .kicker{ letter-spacing:.06em; text-transform:uppercase; opacity:.7; font-size:.85rem; }
-.lead{ margin-top:6px; line-height:1.6; opacity:.9; max-width:980px; }
-
-.meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:12px;
-  justify-content:flex-start;
-}
-.tag{
-  display:inline-flex;
-  align-items:center;
-  padding:7px 12px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.10);
-  background: rgba(0,0,0,.16);
-  color: rgba(255,255,255,.82);
-  font-weight:900;
-  letter-spacing:.02em;
-  font-size:.86rem;
-}
-
-.label{
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-  color: var(--muted2);
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  font-size: .72rem;
-  margin-bottom: 8px;
-}
-
-.subnav{
-  margin-top:14px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-.chip{
-  display:inline-flex;
-  align-items:center;
-  text-decoration:none;
-  color: rgba(255,255,255,.82);
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(0,0,0,.16);
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-weight: 900;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  font-size: .78rem;
-  transition: transform .12s ease, background .12s ease, border-color .12s ease;
-}
-.chip:hover{
-  transform: translateY(-1px);
-  background: rgba(255,255,255,.06);
-  border-color: rgba(255,255,255,.18);
-}
-
-.core-flex, .group-flex, .dual-flex{
-  display:flex;
-  gap:14px;
-  flex-wrap:wrap;
-  margin-top:14px;
-  align-items:stretch;
-}
-
-.core-step, .group-card, .mini-card{
-  flex:1 1 260px;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(0,0,0,.18);
-  min-width:240px;
-}
-
-.core-n{
-  display:inline-flex;
-  margin-bottom:8px;
-  opacity:.55;
-  font-weight:1000;
-  letter-spacing:.18em;
-}
-
-.table-wrap{
-  margin-top:14px;
-  overflow:auto;
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:14px;
-  background:rgba(0,0,0,.18);
-}
-.mechanic-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:760px;
-}
-.mechanic-table th,
-.mechanic-table td{
-  padding:12px 14px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  text-align:left;
-  vertical-align:top;
-}
-.mechanic-table th{
-  background:rgba(255,255,255,.04);
-  font-weight:900;
-}
-
-.mechanic-stack{
-  display:flex;
-  flex-direction:column;
-  gap:18px;
-  margin-top:14px;
-}
-
-.mechanic-card{
-  position:relative;
-  overflow:hidden;
-  padding:18px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.10);
-  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.16));
-  box-shadow:0 10px 30px rgba(0,0,0,.18);
-}
-
-.mechanic-card::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0;
-  bottom:0;
-  width:4px;
-  background:rgba(120,160,255,.85);
-}
-
-.mechanic-card[data-cat="Secundaria"]::before{
-  background:rgba(170,120,255,.85);
-}
-
-.mechanic-card[data-cat="Meta-sistema"]::before{
-  background:rgba(255,220,120,.85);
-}
-
-.mechanic-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:16px;
-  flex-wrap:wrap;
-  margin-bottom:14px;
-  padding-bottom:14px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.mechanic-kicker{
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  font-size:.72rem;
-  color:var(--muted2);
-  margin-bottom:6px;
-}
-
-.mechanic-top h3{
-  margin:0;
-  line-height:1.1;
-}
-
-.summary{
-  margin-top:8px;
-  max-width:75ch;
-}
-
-.badges{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:.78rem;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.03);
-  color:rgba(255,255,255,.85);
-  white-space:nowrap;
-}
-
-.badge.cat{
-  background:rgba(120,160,255,.10);
-  border-color:rgba(120,160,255,.22);
-}
-
-.badge.status.good{
-  background:rgba(120,255,180,.10);
-  border-color:rgba(120,255,180,.22);
-}
-
-.badge.status.advanced{
-  background:rgba(170,120,255,.12);
-  border-color:rgba(170,120,255,.24);
-}
-
-.badge.status.defined{
-  background:rgba(255,220,120,.10);
-  border-color:rgba(255,220,120,.22);
-}
-
-.mechanic-layout{
-  display:flex;
-  gap:16px;
-  align-items:flex-start;
-}
-
-.mechanic-main{
-  flex:1 1 68%;
-  min-width:0;
-}
-
-.mechanic-side{
-  flex:0 0 30%;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  min-width:280px;
-}
-
-.info-grid{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-bottom:14px;
-}
-
-.info-box{
-  flex:1 1 calc(50% - 6px);
-  min-width:260px;
-  padding:12px 14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(0,0,0,.16);
-}
-
-.info-box strong{
-  display:block;
-  margin-bottom:6px;
-  color:rgba(255,255,255,.96);
-}
-
-.info-box p{
-  margin:0;
-  color:var(--muted);
-  line-height:1.55;
-}
-
-.process-block,
-.rules-block{
-  margin-top:12px;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(255,255,255,.03);
-}
-
-.process-block h4,
-.rules-block h4,
-.side-box h4{
-  margin:0 0 8px;
-  font-size:1rem;
-}
-
-.side-box{
-  padding:12px 14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(0,0,0,.16);
-}
-
-.side-box p{
-  margin:0;
-  color:var(--muted);
-  line-height:1.5;
-}
-
-.side-box.metric{
-  border-color:rgba(140,120,255,.22);
-  background:rgba(140,120,255,.08);
-}
-
-.list{ padding-left:18px; }
-.list.compact{ margin:0; padding-left:18px; }
-.list.numbered{ margin:0; padding-left:22px; }
-.list li{ margin:6px 0; }
-
-.callout{
-  margin-top:14px;
-  padding:12px 14px;
-  border-radius:12px;
-  border:1px dashed rgba(255,255,255,.18);
-  background:rgba(0,0,0,.18);
-  color:var(--muted);
-}
-.callout.subtle{
-  border-style:solid;
-  border-color:rgba(255,255,255,.08);
-  background:rgba(255,255,255,.03);
-}
-#astroactualizateporfa
-.actions.bottom{ margin-top:18px; }
-  </style>
-</BaseLayout>
-```
-
----
-## FILE: src/pages/juego/mundo.astro
----
-
-```astro
----
-import BaseLayout from "../../layouts/BaseLayout.astro";
-const base = import.meta.env.BASE_URL;
----
-
-<BaseLayout
-    title="Kaelum — Mundo"
-    description="Mundo y ambientación de Kaelum: zonas, reglas, facciones, La Fisura y lectura visual aplicada a gameplay."
->
-    <section class="hero">
-        <p class="kicker">Juego</p>
-        <h1>Mundo</h1>
-        <p class="lead">
-            Kaelum no es un decorado: es un sistema que empuja al jugador a leer
-            el entorno, entender el rechazo social y tomar decisiones que dejan
-            huella. Medieval y rural en apariencia, pero con tecnología arcana y
-            armas de fuego lo bastante presentes como para que el mundo se
-            sienta “funcional”.
-        </p>
-
-        <div class="actions">
-            <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-            <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-            <a class="btn primary" href={`${base}juego/personajes/`}>Ver Personajes</a>
-            <a class="btn" href={`${base}juego/cinematicas/`}>Ver cinemáticas</a>
-            <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-            <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
-            <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
-            <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
-        </div>
-    </section>
-
-    <div class="grid">
-        <section class="card full">
-            <div class="label">// IDENTIDAD</div>
-            <h2>Medieval funcional + tecnología arcana (la mezcla)</h2>
-            <p class="muted">
-                La estética base es rural/medieval, pero el mundo está
-                atravesado por una “lógica moderna”: control, jerarquía, rutas,
-                permisos, protocolos. Lo que la gente no entiende lo llama
-                maldición, pero lo que la Orden no explica… lo administra.
-            </p>
-
-            <div class="chips">
-                <span class="chip">Arquitectura robusta</span>
-                <span class="chip">Rutas de control</span>
-                <span class="chip">Armas comunes</span>
-                <span class="chip">Energía rara</span>
-                <span class="chip">Miedo social</span>
-                <span class="chip">Bruma violeta</span>
-            </div>
-
-            <div class="callout">
-                <strong>Idea clave:</strong> Kaelum se entiende por contraste: lo
-                cotidiano busca calma, pero La Fisura y la Orden convierten esa calma
-                en una “estabilidad vigilada”.
-            </div>
-        </section>
-
-        <section class="card">
-            <div class="label">// LA FISURA</div>
-            <h2>Qué es para la gente</h2>
-            <p class="muted">
-                La mayoría no sabe “qué es” La Fisura. Lo que sí conoce: grietas
-                que se abren, anomalías que salen, y temporadas donde el bosque
-                se vuelve territorio hostil. La explicación popular es simple y
-                peligrosa:
-                <strong>una maldición</strong>, “el reflejo de que el mundo no
-                está en balance”.
-            </p>
-
-            <ul class="list">
-                <li>
-                    <strong>Señales:</strong> bruma violeta, distorsión sutil, cicatrices
-                    en el terreno.
-                </li>
-                <li>
-                    <strong>Consecuencia:</strong> aparición de anomalías en rutas
-                    y eventos de grieta.
-                </li>
-                <li>
-                    <strong>Lectura jugable:</strong> el jugador aprende a identificar
-                    “zonas enfermas” sin HUD invasivo.
-                </li>
-            </ul>
-        </section>
-
-        <section class="card">
-            <div class="label">// SOCIEDAD</div>
-            <h2>Rechazo como sistema</h2>
-            <p class="muted">
-                Kael no es rechazado por un rumor cualquiera: el pueblo lo
-                asocia con un accidente real (magia violeta fuera de control
-                durante un ataque) que dejó civiles muertos y otros marcados.
-                Aunque intente hacer el bien, el mundo responde con miedo.
-            </p>
-            <ul class="list">
-                <li>
-                    <strong>El miedo se contagia:</strong> primero miradas, luego
-                    rumores, luego persecución.
-                </li>
-                <li>
-                    <strong>El tabú se hereda:</strong> lo “diferente” se trata como
-                    amenaza.
-                </li>
-                <li>
-                    <strong>El jugador lo vive:</strong> cambia la reacción de NPCs,
-                    acceso a rutas y apoyo social.
-                </li>
-            </ul>
-        </section>
-
-        <section class="card full">
-            <div class="label">// ZONAS</div>
-            <h2>Mapa mental del mundo (zonas y función jugable)</h2>
-            <p class="muted">
-                El viaje se apoya en transiciones claras de tono y color: <strong
-                    >cálido cotidiano</strong
-                > → <strong>violeta frío</strong> →
-                <strong>oscuridad</strong> → <strong>rural apagado</strong>. No
-                es solo cinemática: guía la progresión por biomas y tensión.
-            </p>
-
-            <div class="grid" style="margin-top:10px">
-                <div class="card" style="grid-column: span 6;">
-                    <h3>1) Casa de Kael</h3>
-                    <p class="muted">
-                        Inicio y choque de identidad. Espacio seguro narrativo
-                        (no por “peligro cero”, sino por intimidad). Sirve para
-                        tutorial, atmósfera y primer contacto con el rechazo.
-                    </p>
-                    <ul class="list">
-                        <li>Tutorial + lectura de entorno</li>
-                        <li>Transición del mundo “real” a Kaelum</li>
-                        <li>Primeras pistas de La Fisura a distancia</li>
-                    </ul>
-                </div>
-
-                <div class="card" style="grid-column: span 6;">
-                    <h3>2) Vesperia (ciudad principal / hub)</h3>
-                    <p class="muted">
-                        Núcleo social y político. Misiones, comercio, jerarquía
-                        visible, propaganda y “normalidad” forzada. Aquí vive
-                        Liora como ancla emocional y humana del mundo.
-                    </p>
-                    <ul class="list">
-                        <li>Misiones principales y secundarias</li>
-                        <li>Facciones, reputación, rumores</li>
-                        <li>
-                            Control de la Orden (guardias, símbolos, permisos)
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="card" style="grid-column: span 6;">
-                    <h3>3) Bosques exteriores</h3>
-                    <p class="muted">
-                        Zona intermedia recurrente. Camino de paso y termómetro
-                        de amenaza: patrullas, emboscadas, eventos aleatorios y
-                        grietas que “respiran”.
-                    </p>
-                    <ul class="list">
-                        <li>Rutas, patrullas, eventos</li>
-                        <li>Primeras grietas serias</li>
-                        <li>Lectura clara de peligro por ambiente</li>
-                    </ul>
-                </div>
-
-                <div class="card" style="grid-column: span 6;">
-                    <h3>4) Ruinas antiguas</h3>
-                    <p class="muted">
-                        Altares, runas y llaves de progreso. Aquí el lore se
-                        cuenta con símbolos, mecánicas y memorias, no con
-                        biblias eternas.
-                    </p>
-                    <ul class="list">
-                        <li>Runas / llaves / gating</li>
-                        <li>Lore breve y significativo</li>
-                        <li>Piezas del sistema de Guardianes</li>
-                    </ul>
-                </div>
-
-                <div class="card" style="grid-column: span 6;">
-                    <h3>5) Cuevas</h3>
-                    <p class="muted">
-                        Atajos y secretos. Funcionan como “tuberías”: conectan
-                        zonas y recompensan exploración con loot, lore y rutas
-                        alternativas.
-                    </p>
-                    <ul class="list">
-                        <li>Atajos entre biomas</li>
-                        <li>Loot / notas / coleccionables</li>
-                        <li>Secretos y acceso alternativo</li>
-                    </ul>
-                </div>
-
-                <div class="card" style="grid-column: span 6;">
-                    <h3>6) Nocturn (aldea secundaria)</h3>
-                    <p class="muted">
-                        Identidad propia. Es el lugar donde el “precio” se
-                        vuelve humano: misiones, trauma social, supersticiones y
-                        consecuencias de decisiones.
-                    </p>
-                    <ul class="list">
-                        <li>Misiones y microhistorias</li>
-                        <li>Reacción fuerte al karma</li>
-                        <li>Espacios de calma que se rompen rápido</li>
-                    </ul>
-                </div>
-
-                <div class="card" style="grid-column: span 12;">
-                    <h3>7) Castillos (3 fortalezas clave)</h3>
-                    <p class="muted">
-                        Escalones de dificultad. Zonas de prueba real: jefes,
-                        piezas clave y momentos de “subida” narrativa. Aquí el
-                        mundo deja claro que la amenaza no es solo monstruosa:
-                        también es estructural.
-                    </p>
-                    <ul class="list">
-                        <li>
-                            <strong>Noctiferum</strong> — noche como naturaleza (acto
-                            de presión y caza)
-                        </li>
-                        <li>
-                            <strong>Umbrafortis</strong> — fortaleza de sombra (control
-                            y bloqueo de rutas)
-                        </li>
-                        <li>
-                            <strong>Tenebrium</strong> — tiniebla estructural (clímax
-                            de peligro y pieza clave)
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="card full">
-            <div class="label">// TECNOLOGÍA Y ARMAS</div>
-            <h2>Armas de fuego comunes, energía rara</h2>
-            <p class="muted">
-                Las armas de fuego son parte del mundo: no son un “capricho
-                moderno”. Lo raro es la tecnología de energía: aparece como
-                ventaja, misterio o símbolo de estatus. La Orden y artesanos
-                forasteros fabrican y mantienen.
-            </p>
-
-            <div class="grid" style="margin-top:10px">
-                <div class="card" style="grid-column: span 6;">
-                    <h3>Lo común</h3>
-                    <ul class="list">
-                        <li>
-                            Armas de fuego presentes en rutas, guardias y
-                            mercado
-                        </li>
-                        <li>
-                            Mejoras y consumibles accesibles para progresión
-                        </li>
-                        <li>Economía sencilla y clara para el jugador</li>
-                    </ul>
-                </div>
-                <div class="card" style="grid-column: span 6;">
-                    <h3>Lo raro</h3>
-                    <ul class="list">
-                        <li>
-                            Armas/artefactos de energía con identidad visual
-                            propia
-                        </li>
-                        <li>Más únicas, más “de historia” que de spam</li>
-                        <li>
-                            Asociadas a jerarquía, pruebas o zonas restringidas
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <section class="card">
-            <div class="label">// REGLAS</div>
-            <h2>Reglas del mundo</h2>
-            <ul class="list">
-                <li>
-                    <strong>El poder se nota:</strong> guardias, checkpoints, símbolos,
-                    permisos, patrullas.
-                </li>
-                <li>
-                    <strong>La información es un recurso:</strong> rumores, carteles,
-                    notas cortas, coleccionables.
-                </li>
-                <li>
-                    <strong>El entorno enseña:</strong> La Fisura se lee por bruma,
-                    distorsión y cicatrices, no por tutoriales eternos.
-                </li>
-                <li>
-                    <strong>La calma es frágil:</strong> el mundo puede parecer estable…
-                    hasta que una grieta decide abrirse.
-                </li>
-            </ul>
-        </section>
-
-        <section class="card">
-            <div class="label">// LECTURA</div>
-            <h2>Lectura visual</h2>
-            <ul class="list">
-                <li>
-                    <strong>Claridad</strong> por encima de detalle: que el jugador
-                    entienda dónde está y qué amenaza hay.
-                </li>
-                <li>
-                    <strong>Landmarks</strong> para orientar (torres, puertas, símbolos
-                    de la Orden, altares en ruinas).
-                </li>
-                <li>
-                    <strong>Color</strong> como lenguaje: cálido = humano, violeta
-                    = infección, apagado = desgaste.
-                </li>
-            </ul>
-        </section>
-
-        <section class="card full">
-            <div class="label">// TRADUCCIÓN A GAMEPLAY</div>
-            <h2>Cómo se convierte en gameplay</h2>
-            <p class="muted">
-                El mundo se diseña para soportar el loop central: explorar →
-                enterarte → decidir → pagar consecuencias. Kael no avanza solo
-                por disparar mejor, sino por cómo se relaciona con el poder y
-                con el miedo de la gente.
-            </p>
-
-            <div class="grid" style="margin-top:10px">
-                <div class="card" style="grid-column: span 6;">
-                    <h3>Escenarios</h3>
-                    <ul class="list">
-                        <li>
-                            Zonas de control (puertas, inspecciones, rutas
-                            cortadas, guardias)
-                        </li>
-                        <li>
-                            Zonas de conflicto (líneas de visión, cobertura,
-                            emboscadas, persecuciones)
-                        </li>
-                        <li>
-                            Zonas de descubrimiento (ruinas, cuevas, altares,
-                            notas, memorias)
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="card" style="grid-column: span 6;">
-                    <h3>Recompensas</h3>
-                    <ul class="list">
-                        <li>
-                            Información útil (rutas, llaves, decisiones, acceso)
-                        </li>
-                        <li>
-                            Recursos (mejoras, consumibles, ventajas
-                            situacionales)
-                        </li>
-                        <li>
-                            Contexto (lore breve pero con intención y
-                            consecuencias)
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="actions">
-            <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-            <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-            <a class="btn primary" href={`${base}juego/personajes/`}>Ver Personajes</a>
-            <a class="btn" href={`${base}juego/cinematicas/`}>Ver cinemáticas</a>
-            <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-            <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
-            <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
-            <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
-        </div>
-        </section>
-    </div>
-
-    <style>
-        .label {
-            font-family:
-                ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-                "Liberation Mono", "Courier New", monospace;
-            color: var(--muted2);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            font-size: 0.72rem;
-            margin-bottom: 8px;
-        }
-        .chips {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-        .chip {
-            border: 1px solid var(--border);
-            background: rgba(255, 255, 255, 0.03);
-            color: var(--muted);
-            padding: 6px 10px;
-            border-radius: 999px;
-            font-size: 0.85rem;
-        }
-        .callout {
-            margin-top: 14px;
-            border: 1px dashed rgba(120, 255, 180, 0.35);
-            background: rgba(70, 255, 150, 0.07);
-            border-radius: var(--radius);
-            padding: 12px 14px;
-            color: var(--muted);
-        }
-    </style>
-</BaseLayout>
-```
-
----
-## FILE: src/pages/juego/personajes.astro
----
-
-```astro
----
-import BaseLayout from "../../layouts/BaseLayout.astro";
-const base = import.meta.env.BASE_URL;
----
-
-<BaseLayout
-    title="Kaelum — Personajes"
-    description="Personajes principales de Kaelum: Kael, Liora, Maeren y el Gran Maestro. Rol narrativo, motivaciones y presencia en gameplay."
->
-    <section class="hero" id="personajes">
-        <header class="header">
-            <p class="kicker">GDD · Modo Historia</p>
-            <h2>Personajes</h2>
-            <p class="lead">
-                En Kaelum, los personajes no están para “contar lore”: están
-                para empujarte a decisiones. Kael es el centro del conflicto,
-                Liora es el ancla humana, Maeren es la raíz, y el Gran Maestro
-                es el sistema con cara.
-            </p>
-
-            <div class="actions">
-                <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-                <a class="btn" href={`${base}juego/historia/`}
-                    >Ver Historia</a
-                >
-                <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-                <a class="btn primary" href={`${base}juego/cinematicas/`}
-                    >Ver cinemáticas</a
-                >
-                <a class="btn" href={`${base}juego/enemigos/`}
-                    >Ver Enemigos</a
-                >
-                <a class="btn" href={`${base}juego/progreso/`}
-                    >Ver Progreso</a
-                >
-                <a class="btn" href={`${base}juego/mecanicas/`}
-                    >Ver Mecánicas</a
-                >
-                <a class="btn" href={`${base}juego/flujo/`}
-                    >Ver Flujo de estados</a
-                >
-            </div>
-        </header>
-    </section>
-    <section class="card-container">
-        <article class="card">
-            <h3>Kael</h3>
-
-            <div class="pgrid">
-                <div class="portrait">
-                    <img
-                        src={`${base}assets/personajes/kael.webp`}
-                        alt="Ilustración de Kael"
-                        loading="lazy"
-                    />
-                </div>
-
-                <div class="pcontent">
-                    <p class="muted">
-                        Joven adulto (25–30). No busca ser héroe: busca
-                        demostrar que su existencia no es un error. Su arco no
-                        va de “ser más fuerte”, va de decidir qué tipo de
-                        persona es cuando el poder deja de ser teoría.
-                    </p>
-
-                    <div class="chips">
-                        <span class="chip">Frases cortas</span>
-                        <span class="chip">Ironía defensiva</span>
-                        <span class="chip">Moral obstinada</span>
-                        <span class="chip">Poder como riesgo</span>
-                    </div>
-
-                    <div class="grid2">
-                        <div class="subcard">
-                            <h4>Objetivo interno</h4>
-                            <p>
-                                Que el mundo deje de tratarlo como amenaza.
-                                <br />Vivir sin tener que justificarse.
-                            </p>
-                        </div>
-                        <div class="subcard">
-                            <h4>Objetivo externo</h4>
-                            <p>
-                                Decidir el destino del Orbe del Origen y el
-                                futuro de La Fisura.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="subcard">
-                        <h4>Relación con el poder</h4>
-                        <p>
-                            Empieza con miedo y supervivencia. Evoluciona a
-                            desconfianza lúcida. El final lo define: ayudar a
-                            todos, apartarse y delegar, o abrazar la caída y
-                            volverse el monstruo que esperaban.
-                        </p>
-                    </div>
-
-                    <blockquote class="quote">
-                        <p>“No necesita otro tirano.”</p>
-                        <cite>Kael</cite>
-                    </blockquote>
-
-                    <div class="subcard">
-                        <h4>Arma icónica</h4>
-                        <p>
-                            Una espada heredada de Maeren. No es “la mejor” para
-                            un shooter… por eso pesa más: la lleva como
-                            recordatorio de quién confió en él cuando nadie lo
-                            hacía.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </article>
-
-        <article class="card">
-            <h3>Liora</h3>
-
-            <div class="pgrid">
-                <div class="portrait">
-                    <img
-                        src={`${base}assets/personajes/liora.webp`}
-                        alt="Ilustración de Liora"
-                        loading="lazy"
-                    />
-                </div>
-
-                <div class="pcontent">
-                    <p class="muted">
-                        Liora es el punto raro del mundo: alguien que mira a
-                        Kael y ve persona, no leyenda. No sabe la verdad del
-                        Orbe ni las cloacas políticas del consejo. Su papel es
-                        humano: confianza, vínculo y pérdida.
-                    </p>
-
-                    <div class="chips">
-                        <span class="chip">Ancla emocional</span>
-                        <span class="chip">Confianza difícil</span>
-                        <span class="chip">Rechazo del mundo</span>
-                        <span class="chip">Tragedia inevitable</span>
-                    </div>
-
-                    <div class="grid2">
-                        <div class="subcard">
-                            <h4>Qué es para Kael</h4>
-                            <p>
-                                La persona que lo llena. El “si existe alguien
-                                bueno aquí, quizá todavía no está todo roto”.
-                            </p>
-                        </div>
-                        <div class="subcard">
-                            <h4>Función jugable</h4>
-                            <p>
-                                Apoya el peso de decisiones (ayudar / fallar /
-                                consecuencias), y marca el coste real antes del
-                                clímax.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="subcard">
-                        <h4>Momento clave</h4>
-                        <p>
-                            Su muerte ocurre durante el avance hacia la batalla
-                            final, en medio del caos (restos de La Orden y
-                            anomalías). No es “castigo al jugador”: es una
-                            verdad del mundo. Hay cosas que la guerra no
-                            negocia.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </article>
-
-        <article class="card">
-            <h3>Maeren</h3>
-
-            <div class="pgrid">
-                <div class="portrait">
-                    <img
-                        src={`${base}assets/personajes/maeren.webp`}
-                        alt="Ilustración de Maeren"
-                        loading="lazy"
-                    />
-                </div>
-
-                <div class="pcontent">
-                    <p class="muted">
-                        Mentor y única figura real de confianza para Kael. La
-                        voz que le enseñó a sostenerse cuando todo lo demás lo
-                        empujaba al barro. Muere (o desaparece) 5 años antes de
-                        los eventos del juego. Su ausencia se convierte en
-                        sistema: memorias, taller, legado.
-                    </p>
-
-                    <div class="chips">
-                        <span class="chip">Mentor</span>
-                        <span class="chip">Legado</span>
-                        <span class="chip">Memorias</span>
-                        <span class="chip">Herida abierta</span>
-                    </div>
-
-                    <div class="subcard">
-                        <h4>Función narrativa</h4>
-                        <p>
-                            El Taller Silencioso y las Memorias no son
-                            “flashbacks bonitos”: son piezas de comprensión. Te
-                            dan mecánicas, contexto y un espejo moral: qué
-                            significa controlar el poder sin convertirte en
-                            excusa.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </article>
-
-        <article class="card">
-            <h3>Gran Maestro</h3>
-
-            <div class="pgrid">
-                <div class="portrait">
-                    <img
-                        src={`${base}assets/personajes/gran-maestro.webp`}
-                        alt="Ilustración del Gran Maestro"
-                        loading="lazy"
-                    />
-                </div>
-
-                <div class="pcontent">
-                    <p class="muted">
-                        No es un villano de caricatura. Es una idea con mando:
-                        “estabilidad a cualquier precio”. Representa el control
-                        como doctrina, y el Orbe como herramienta. Si el mundo
-                        te teme, él lo usa.
-                    </p>
-
-                    <div class="chips">
-                        <span class="chip">Autoridad</span>
-                        <span class="chip">Control</span>
-                        <span class="chip">Consejo</span>
-                        <span class="chip">Orbe del Origen</span>
-                    </div>
-
-                    <div class="grid2">
-                        <div class="subcard">
-                            <h4>Lo que defiende</h4>
-                            <p>
-                                Orden, jerarquía, “paz” sostenida por
-                                sacrificios aceptados como daño colateral.
-                            </p>
-                        </div>
-                        <div class="subcard">
-                            <h4>Lo que provoca</h4>
-                            <p>
-                                Ruptura moral del Acto 2: cuando el jugador
-                                descubre que La Orden lo tenía… y lo usaba
-                                deliberadamente.
-                            </p>
-                        </div>
-                    </div>
-
-                    <blockquote class="quote">
-                        <p>“El mundo necesita control.”</p>
-                        <cite>Gran Maestro</cite>
-                    </blockquote>
-                </div>
-            </div>
-        </article>
-    </section>
-    <div class="actions">
-        <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-        <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-        <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-        <a class="btn primary" href={`${base}juego/cinematicas/`}
-            >Ver cinemáticas</a
-        >
-        <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-        <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
-    </div>
-</BaseLayout>
-
-<style>
-    .kicker {
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        opacity: 0.75;
-        margin: 0 0 6px;
-        font-size: 0.86rem;
-    }
-    h2 {
-        margin: 0 0 10px;
-        font-size: 2rem;
-    }
-    .lead {
-        margin: 0;
-        text-align: justify;
-        opacity: 0.92;
-        line-height: 1.55;
-    }
-    .card-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 5% 5%;
-    }
-    .card {
-        flex: 1 1 45%;
-        display: flex;
-        flex-direction: column;
-        margin-top: 16px;
-        padding: 16px 16px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 14px;
-        background: rgba(255, 255, 255, 0.04);
-    }
-
-    .pgrid {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .portrait {
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 14px;
-        background: rgba(0, 0, 0, 0.18);
-        padding: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 260px;
-        overflow: hidden;
-    }
-    .portrait img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-        filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45));
-    }
-
-    .pcontent p {
-        text-align: justify;
-    }
-    .muted {
-        opacity: 0.86;
-    }
-
-    .chips {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-top: 10px;
-    }
-    .chip {
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.03);
-        color: rgba(255, 255, 255, 0.82);
-        padding: 6px 10px;
-        border-radius: 999px;
-        font-size: 0.85rem;
-    }
-
-    .grid2 {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        margin-top: 12px;
-    }
-
-    .subcard {
-        margin-top: 12px;
-        padding: 12px 12px;
-        border-radius: 12px;
-        border: 1px solid rgba(29, 11, 11, 0.1);
-        background: rgba(0, 0, 0, 0.18);
-    }
-    .subcard h4 {
-        margin: 0 0 8px;
-    }
-    .subcard p {
-        margin: 0;
-        opacity: 0.92;
-        line-height: 1.5;
-    }
-
-    .quote {
-        margin: 14px 0 0;
-        padding: 12px 12px;
-        border-left: 4px solid rgba(170, 120, 255, 0.65);
-        background: rgba(170, 120, 255, 0.08);
-        border-radius: 10px;
-    }
-    .quote p {
-        margin: 0 0 6px;
-        font-weight: 600;
-    }
-    .quote cite {
-        opacity: 0.8;
-        font-style: normal;
-        font-size: 0.92rem;
-    }
-
-    @media (max-width: 860px) {
-        .pgrid {
-            grid-template-columns: 1fr;
-        }
-        .grid2 {
-            grid-template-columns: 1fr;
-        }
-        .portrait {
-            min-height: 220px;
-        }
-    }
-</style>
-```
-
----
-## FILE: src/pages/juego/progreso.astro
+## FILE: src/pages/juego/06progreso.astro
 ---
 
 ```astro
@@ -8582,9 +7048,8 @@ const endings = [
 
 <BaseLayout
   title="Kaelum — Progreso"
-  description="Progreso del juego (historia): prólogo, actos, giros y finales por decisiones."
->
-  <section class="hero">
+  description="Progreso del juego (historia): prólogo, actos, giros y finales por decisiones.">
+  <section class="hero progreso-hero">
     <p class="kicker">Juego</p>
     <h1>Progreso</h1>
     <p class="lead">
@@ -8594,20 +7059,22 @@ const endings = [
       hayas hecho.
     </p>
 
-    <div class="actions">
+    <div class="actions hero-actions">
       <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-      <a class="btn primary" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
-      <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
+      <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+      <a class="btn primary" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a
+      >
+      <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+      <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
     </div>
   </section>
 
-  <div class="grid">
-    <section class="card full">
+  <div class="grid progreso-grid">
+    <section class="card full featured-card">
       <div class="label">// PROGRESO PRINCIPAL</div>
       <h2>Estructura narrativa (Prólogo + 3 actos)</h2>
       <p class="muted">
@@ -8657,7 +7124,7 @@ const endings = [
       </p>
 
       <div class="grid" style="margin-top:10px">
-        <div class="card" style="grid-column: span 6;">
+        <div class="card inner-card" style="grid-column: span 6;">
           <h3>Lo que entiendes como jugador</h3>
           <ul class="list">
             <li>
@@ -8674,7 +7141,7 @@ const endings = [
           </ul>
         </div>
 
-        <div class="card" style="grid-column: span 6;">
+        <div class="card inner-card" style="grid-column: span 6;">
           <h3>Lo que se vuelve jugable</h3>
           <ul class="list">
             <li>
@@ -8756,118 +7223,2338 @@ const endings = [
       </p>
     </section>
   </div>
-  <div class="actions">
-      <a class="btn primary" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
+  <div class="actions hero-actions">
+    <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+    <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+    <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+    <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+    <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+    <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+    <a class="btn primary" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+    <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+    <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
   </div>
+
+  <style>
+    .progreso-hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progreso-hero::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          900px 280px at 12% 0%,
+          rgba(139, 92, 246, 0.1),
+          transparent 65%
+        ),
+        radial-gradient(
+          760px 280px at 88% 10%,
+          rgba(255, 190, 90, 0.1),
+          transparent 60%
+        );
+      opacity: 0.9;
+    }
+
+    .progreso-hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      margin-top: 16px;
+    }
+
+    .featured-card {
+      border-color: rgba(140, 120, 255, 0.22);
+      background: linear-gradient(
+        180deg,
+        rgba(140, 120, 255, 0.1),
+        rgba(0, 0, 0, 0.18)
+      );
+    }
+
+    .label {
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      margin-bottom: 8px;
+    }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.14);
+    }
+
+    .n {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+    }
+
+    .t {
+      font-size: 1.08rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .d {
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .inner-card {
+      background: rgba(0, 0, 0, 0.16);
+      box-shadow: none;
+    }
+
+    .endings {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .ending {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .ending:nth-child(1) {
+      background: linear-gradient(
+        180deg,
+        rgba(120, 210, 150, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+    .ending:nth-child(2) {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 190, 90, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+    .ending:nth-child(3) {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 110, 170, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+
+    @media (max-width: 920px) {
+      .endings {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .n {
+        width: 48px;
+        height: 48px;
+      }
+    }
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
+    }
+    .hero-actions a {
+      flex: 1 1 200px;
+    }
+  </style>
 </BaseLayout>
+```
 
-<style>
-  .label {
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-      "Courier New", monospace;
-    color: var(--muted2);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-size: 0.72rem;
-    margin-bottom: 8px;
-  }
+---
+## FILE: src/pages/juego/07mecanicas.astro
+---
 
-  .steps {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 12px;
-  }
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
 
-  .step {
-    display: flex;
-    gap: 14px;
-    border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: var(--radius);
-    padding: 14px 16px;
-    align-items: flex-start;
-  }
+const summary = {
+  total: 12,
+  principal: 3,
+  secondary: 4,
+  meta: 5,
+};
 
-  .left {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    min-width: 60px;
-    padding-top: 2px;
-  }
+const coreLoop = [
+  "Explorar",
+  "Combatir",
+  "Interactuar",
+  "Progresar",
+  "Decidir",
+];
 
-  .step .n {
-    font-weight: 1000;
-    letter-spacing: 0.18em;
-    opacity: 0.55;
-    font-size: 1rem;
-  }
+const mechanics = [
+  {
+    id: "movimiento",
+    name: "Movimiento del jugador",
+    category: "Principal",
+    status: "Avanzada",
+    short:
+      "Desplazamiento base del jugador. Es la mecánica que sostiene la lectura del espacio, la cobertura y el posicionamiento.",
+    definition:
+      "Sistema de locomoción principal que permite desplazarse por el escenario con fluidez, reposicionarse y construir ventaja táctica a través del espacio.",
+    input:
+      "W / A / S / D para desplazamiento. Shift para sprint si se habilita.",
+    process: [
+      "El jugador introduce dirección.",
+      "El controlador calcula velocidad y vector de movimiento.",
+      "Se aplican colisiones, fricción y límites del escenario.",
+      "El personaje cambia de estado visual según velocidad y contexto.",
+    ],
+    rules: [
+      "El movimiento debe ser responsivo y sin sensación de arrastre innecesario.",
+      "No se permite atravesar geometría sólida.",
+      "La velocidad puede verse afectada por habilidades, estados o terreno.",
+    ],
+    affected:
+      "Jugador, navegación por escenario, lectura de coberturas, distancia frente a enemigos.",
+    states: "Idle → Walk → Run / Sprint → Stopped / Affected State.",
+    vfx: "Animaciones de locomoción, inclinación corporal, cambios de postura y lectura clara de desplazamiento.",
+    sfx: "Pasos diferenciados según superficie y ritmo de movimiento.",
+    haptic:
+      "Vibración ligera y rítmica en superficies o impactos de movimiento relevantes.",
+    systems:
+      "Se conecta con combate, salto, habilidades de movilidad, exploración y sistema de estados.",
+    scaling:
+      "Puede tensionarse con escenarios más complejos, menos cobertura o enemigos que castigan mala colocación.",
+    metric:
+      "La acción es exitosa si el jugador se reposiciona con control y sin fricción artificial.",
+  },
+  {
+    id: "salto",
+    name: "Salto del jugador",
+    category: "Principal",
+    status: "Avanzada",
+    short:
+      "Acción de movilidad vertical usada para salvar desniveles, romper líneas de tiro y apoyar el posicionamiento.",
+    definition:
+      "Mecánica de elevación puntual que amplía el movimiento base y permite responder a obstáculos, rutas verticales y microreposicionamientos.",
+    input: "Barra espaciadora / botón de salto.",
+    process: [
+      "Se valida si el jugador está en suelo o en una condición que permita saltar.",
+      "Se aplica un impulso vertical.",
+      "El sistema mantiene el estado aéreo hasta detectar aterrizaje.",
+      "Al tocar suelo, vuelve al estado base.",
+    ],
+    rules: [
+      "No se puede encadenar indefinidamente salvo que el diseño defina dobles saltos o excepciones.",
+      "El salto no debe invalidar coberturas ni encuentros pensados para tierra.",
+      "Puede quedar condicionado por estados negativos o por zona.",
+    ],
+    affected:
+      "Jugador, navegación vertical, rutas de exploración y ventanas de combate.",
+    states: "Grounded → Jump Start → Airborne → Landing.",
+    vfx: "Animación de impulso, caída y aterrizaje; posible pequeña sacudida al tocar suelo.",
+    sfx: "Sonido de impulso y aterrizaje según superficie.",
+    haptic: "Pulso corto al despegar y pulso algo más seco al aterrizar.",
+    systems:
+      "Se cruza con movimiento, combate, puzles, exploración y habilidades de movilidad.",
+    scaling:
+      "Gana valor en niveles con más verticalidad, rutas secretas o enemigos que fuerzan reposicionamiento.",
+    metric:
+      "Éxito si el jugador usa el salto para alcanzar una posición o evitar una amenaza concreta sin romper claridad.",
+  },
+  {
+    id: "gunplay",
+    name: "Gunplay",
+    category: "Principal",
+    status: "Muy avanzada",
+    short:
+      "Núcleo del combate. El disparo debe sentirse consistente, legible y justo.",
+    definition:
+      "Sistema de combate con armas de fuego basado en disparo directo, lectura clara del impacto y control de recursos como cargador, munición y tiempos de recarga.",
+    input:
+      "Click izquierdo disparar · Click derecho apuntar · R recargar · 1/2/3 cambiar arma.",
+    process: [
+      "El jugador dispara desde cámara o ADS.",
+      "El sistema lanza un raycast directo.",
+      "Se calcula impacto, daño y feedback.",
+      "Se aplica retroceso progresivo controlable y dispersión base por arma.",
+      "El sistema gestiona cargador, reserva y cambio de estados.",
+    ],
+    rules: [
+      "No se puede disparar sin munición.",
+      "No existe auto-aim.",
+      "La recarga puede bloquear o ser parcialmente cancelable según arma.",
+      "Cambiar de arma puede interrumpir la recarga si así se define.",
+      "Si se falla, la causa debe ser identificable por el jugador.",
+    ],
+    affected:
+      "Jugador, enemigos, HUD de munición, ritmo del combate y economía de recursos.",
+    states: "Hipfire → ADS → Firing → Reloading → Swapping → Empty.",
+    vfx: "Fogonazo, trazas o impacto legible, animación de arma, feedback de hit confirmado.",
+    sfx: "Disparo por tipo de arma, clic de cargador vacío, recarga y confirmación de impacto.",
+    haptic:
+      "Vibración corta al disparar, más marcada en armas pesadas o al confirmar impacto fuerte.",
+    systems:
+      "Se relaciona con habilidades, movimiento, enemigos, inventario y progresión de manejo.",
+    scaling:
+      "Escala a través de variedad de armas, precisión exigida, presión enemiga y lectura de recursos.",
+    metric:
+      "Éxito si el jugador entiende por qué acertó o falló y percibe el disparo como justo y consistente.",
+  },
+  {
+    id: "q",
+    name: "Habilidad básica (Q)",
+    category: "Secundaria",
+    status: "Definida",
+    short:
+      "Uso frecuente y apoyo directo al combate. Refuerza decisiones inmediatas sin sustituir al arma.",
+    definition:
+      "Habilidad de ciclo corto pensada para apoyar el combate de forma constante con una identidad clara y una lectura rápida.",
+    input: "Q.",
+    process: [
+      "El sistema comprueba que la habilidad está lista.",
+      "Se activa su efecto principal.",
+      "Permanece activa el tiempo definido o hasta completar su función.",
+      "Entra en cooldown.",
+    ],
+    rules: [
+      "No sustituye al arma como eje del gameplay.",
+      "Debe tener lectura inmediata y uso intuitivo.",
+      "No puede convertirse en la opción dominante en todos los enfrentamientos.",
+    ],
+    affected: "Jugador, enemigos cercanos o zona inmediata según personaje.",
+    states: "Ready → Active → Cooldown.",
+    vfx: "Efecto rápido y claro, fácil de leer incluso en combate intenso.",
+    sfx: "Sonido breve de activación y confirmación del efecto.",
+    haptic: "Pulso corto de activación.",
+    systems:
+      "Se combina con gunplay, movimiento, gestión de cooldown y lectura de personaje.",
+    scaling:
+      "Su valor aumenta con dominio del jugador, pero no debería escalar hasta eclipsar otras herramientas.",
+    metric:
+      "Éxito si genera una ventaja táctica clara y comprensible en un uso corto.",
+  },
+  {
+    id: "e",
+    name: "Habilidad de utilidad (E)",
+    category: "Secundaria",
+    status: "Definida",
+    short:
+      "Herramienta de movilidad o supervivencia puntual: dash, escudo breve, escaneo o curación ligera.",
+    definition:
+      "Habilidad situacional diseñada para dar margen de maniobra, supervivencia o información sin trivializar errores.",
+    input: "E.",
+    process: [
+      "Se valida disponibilidad.",
+      "Se ejecuta el efecto de utilidad correspondiente.",
+      "El jugador obtiene movilidad, protección, información o pequeña recuperación.",
+      "La habilidad entra en cooldown.",
+    ],
+    rules: [
+      "No debe romper el ritmo del combate.",
+      "No debe trivializar errores graves de posicionamiento.",
+      "Su uso debe ser táctico, no automático.",
+    ],
+    affected: "Jugador, aliados o entorno inmediato según variante.",
+    states: "Ready → Utility Active → Cooldown.",
+    vfx: "Dash, pulso de escaneo, brillo de escudo o efecto de curación ligera según personaje.",
+    sfx: "Sonido específico por función: impulso, barrera, ping o restauración.",
+    haptic:
+      "Pulso medio y corto para indicar que se ha activado una herramienta defensiva o de movilidad.",
+    systems:
+      "Se cruza con movimiento, supervivencia, lectura de mapa y enfrentamientos.",
+    scaling:
+      "Puede ajustarse en cooldown, duración o potencia según necesidades de balance.",
+    metric:
+      "Éxito si salva, recoloca o informa sin borrar el error anterior ni romper la presión del juego.",
+  },
+  {
+    id: "x",
+    name: "Habilidad de control (X)",
+    category: "Secundaria",
+    status: "Definida",
+    short:
+      "Control del espacio mediante trampas, zonas ralentizadoras o dispositivos de bloqueo.",
+    definition:
+      "Habilidad orientada a modificar el escenario jugable y condicionar el movimiento del rival.",
+    input: "X.",
+    process: [
+      "Se despliega o activa un objeto / zona de control.",
+      "El sistema registra el área o dispositivo en el escenario.",
+      "Aplica ralentización, bloqueo o castigo cuando se activa.",
+      "Permanece activa hasta agotar duración, usos o ser destruida.",
+    ],
+    rules: [
+      "Está limitada por número máximo desplegado.",
+      "Debe tener contra-juego claro.",
+      "No puede saturar el escenario hasta volverlo ilegible.",
+    ],
+    affected: "Enemigos, rutas, zonas del escenario y ritmo del combate.",
+    states: "Ready → Deployed / Active → Triggered / Expired → Cooldown.",
+    vfx: "Indicadores de zona, trampa o dispositivo visibles para lectura táctica.",
+    sfx: "Sonido de despliegue y activación diferenciable.",
+    haptic:
+      "Pulso de colocación y pulso extra si la habilidad llega a activarse con éxito.",
+    systems:
+      "Se conecta con posicionamiento, flow del mapa, enemigos y habilidades rivales.",
+    scaling:
+      "Puede variar en cantidad máxima, duración o intensidad según balance y dificultad.",
+    metric:
+      "Éxito si condiciona una ruta o fuerza una decisión enemiga reconocible.",
+  },
+  {
+    id: "z",
+    name: "Habilidad definitiva (Z)",
+    category: "Secundaria",
+    status: "Definida",
+    short:
+      "Pico de poder situacional. Impacta mucho, pero no está disponible constantemente ni resuelve el juego sola.",
+    definition:
+      "Habilidad de alto impacto reservada para momentos clave, cargada por participación activa del jugador.",
+    input: "Z.",
+    process: [
+      "La definitiva se carga por daño infligido, objetivos completados o tiempo en combate.",
+      "Cuando está lista, el jugador puede activarla.",
+      "Se ejecuta un efecto de gran impacto con duración o ventana definida.",
+      "Tras su uso, vuelve a estado de carga.",
+    ],
+    rules: [
+      "No está disponible constantemente.",
+      "No elimina jefes automáticamente.",
+      "Puede interrumpirse si el jugador cae o es cortado en el momento adecuado.",
+    ],
+    affected:
+      "Jugador, enemigos, ritmo del enfrentamiento y lectura del clímax.",
+    states: "Charging → Ready → Active → Expired → Charging.",
+    vfx: "Efecto dominante y distintivo, claramente leído como “momento de poder”.",
+    sfx: "Firma sonora propia y muy reconocible.",
+    haptic: "Vibración más intensa y sostenida para marcar el pico de poder.",
+    systems:
+      "Se relaciona con objetivos, daño, flow del combate y momentos de clímax narrativo/jugable.",
+    scaling:
+      "Escala por dificultad en frecuencia de uso, castigo por mal empleo o valor situacional.",
+    metric:
+      "Éxito si altera significativamente un momento de combate sin anular la habilidad del jugador ni del rival.",
+  },
+  {
+    id: "interaccion",
+    name: "Sistema de interacción",
+    category: "Meta-sistema",
+    status: "Definida",
+    short:
+      "Permite abrir puertas, hablar con NPC, recoger objetos y activar mecanismos.",
+    definition:
+      "Sistema universal de entrada al contenido interactivo del mundo mediante una tecla contextual.",
+    input: "F.",
+    process: [
+      "El sistema detecta objetos interactuables cercanos o bajo dirección de cámara.",
+      "Asigna prioridad por proximidad o foco.",
+      "Al pulsar, ejecuta la acción contextual correspondiente.",
+    ],
+    rules: [
+      "La prioridad se resuelve por proximidad o dirección de cámara.",
+      "Debe evitar conflictos entre varios interactuables simultáneos.",
+      "La interacción no puede bloquear progreso narrativo esencial.",
+    ],
+    affected: "Puertas, NPC, objetos, mecanismos, eventos de mundo.",
+    states: "No Target → Available → Interacting → Resolved.",
+    vfx: "Prompt contextual, resaltado sutil o icono de interacción.",
+    sfx: "Sonido breve de confirmación al iniciar la interacción.",
+    haptic: "Pulso ligero de confirmación contextual.",
+    systems: "Conecta mundo, narrativa, inventario, puzles y progresión.",
+    scaling:
+      "Aumenta su valor conforme el mundo contiene más rutas, secretos y eventos.",
+    metric:
+      "Éxito si el jugador entiende rápido con qué puede interactuar y qué ha activado.",
+  },
+  {
+    id: "inventario",
+    name: "Sistema de inventario",
+    category: "Meta-sistema",
+    status: "Definida",
+    short:
+      "Capacidad limitada y separación por categorías: objetos clave, consumibles, materiales y munición.",
+    definition:
+      "Sistema de almacenamiento y consulta de recursos del jugador con separación funcional y límites de capacidad.",
+    input: "Apertura desde menú o tecla dedicada según diseño final.",
+    process: [
+      "El jugador abre el inventario.",
+      "El sistema organiza objetos por categoría.",
+      "Permite consultar, usar o gestionar recursos compatibles.",
+    ],
+    rules: [
+      "Capacidad limitada.",
+      "Separación entre objetos clave, consumibles, materiales y munición.",
+      "No permite soft-lock narrativo.",
+    ],
+    affected: "Recursos del jugador, progresión, misiones y economía interna.",
+    states: "Closed → Open → Selecting → Using / Managing → Closed.",
+    vfx: "Interfaz clara, iconografía limpia y separación visual por categorías.",
+    sfx: "Apertura/cierre de menú y uso de ítems cuando corresponda.",
+    haptic:
+      "No prioritaria en esta fase; puede quedar como vibración suave en navegación por mando.",
+    systems:
+      "Se cruza con interacción, progresión, armas, recursos y narrativa.",
+    scaling:
+      "Puede complejizarse con más objetos, raridades o restricciones, pero sin perder legibilidad.",
+    metric:
+      "Éxito si el jugador encuentra y usa recursos sin fricción innecesaria.",
+  },
+  {
+    id: "progresion",
+    name: "Sistema de progresión",
+    category: "Meta-sistema",
+    status: "Definida",
+    short:
+      "La experiencia se obtiene por misiones, combate y eventos clave; al subir de nivel se desbloquean mejoras.",
+    definition:
+      "Sistema de avance persistente que recompensa la actividad del jugador sin sustituir su habilidad mecánica.",
+    input:
+      "No depende de una tecla única; responde a logros, combate y eventos del juego.",
+    process: [
+      "El jugador obtiene experiencia por misiones, combate y eventos clave.",
+      "El sistema acumula progreso.",
+      "Al subir de nivel, desbloquea mejoras vinculadas a habilidades, manejo o resistencia.",
+    ],
+    rules: [
+      "No sustituye la habilidad mecánica.",
+      "Debe reforzar la sensación de avance sin romper el equilibrio.",
+      "Las mejoras tienen que complementar el dominio del jugador, no reemplazarlo.",
+    ],
+    affected:
+      "Estadísticas del personaje, habilidades, resistencia a la Fisura y manejo.",
+    states: "XP Gain → Threshold Reached → Level Up → Upgrade Available.",
+    vfx: "Indicador de subida de nivel, desbloqueo y confirmación de mejora.",
+    sfx: "Sonido de progreso o ascenso de nivel.",
+    haptic: "Pulso breve al desbloquear una mejora significativa.",
+    systems:
+      "Conecta combate, narrativa, karma, recursos y build del personaje.",
+    scaling:
+      "Escala a través de umbrales de experiencia y tipos de mejora disponibles.",
+    metric:
+      "Éxito si el jugador nota avance real sin sentir que el sistema “juega por él”.",
+  },
+  {
+    id: "karma",
+    name: "Sistema de karma",
+    category: "Meta-sistema",
+    status: "Definida",
+    short:
+      "Las decisiones y la conducta modifican cómo te lee el mundo y condicionan rutas, reacciones y consecuencias.",
+    definition:
+      "Meta-sistema narrativo-jugable que registra la tendencia del jugador y altera la respuesta del mundo a sus acciones.",
+    input:
+      "No se activa manualmente; se alimenta de elecciones, conducta y resolución de situaciones.",
+    process: [
+      "El jugador toma decisiones o ejecuta acciones con lectura moral/social.",
+      "El sistema actualiza su tendencia.",
+      "El mundo reacciona mediante acceso, trato, consecuencias o variaciones en rutas.",
+    ],
+    rules: [
+      "Debe tener impacto visible o al menos deducible.",
+      "No puede reducirse a “barra buena/barra mala” sin contexto.",
+      "Tiene que conectar con finales, relaciones y lectura pública del jugador.",
+    ],
+    affected:
+      "Rutas, NPC, aliados, acceso a contenido, tono de ciertas consecuencias.",
+    states:
+      "Neutral → Tendencia positiva / negativa → Umbrales de consecuencia.",
+    vfx: "Cambios contextuales en UI, mundo o lectura visual según implementación final.",
+    sfx: "No necesariamente un sonido directo; puede apoyarse en ambientación o leitmotivs contextuales.",
+    haptic:
+      "No prioritaria como feedback directo; pesa más el feedback sistémico y narrativo.",
+    systems:
+      "Se cruza con narrativa, progresión, interacción, finales y lectura del mundo.",
+    scaling:
+      "Gana peso según avanza la partida y se alcanzan puntos de no retorno.",
+    metric:
+      "Éxito si el jugador percibe que el mundo responde a su conducta de forma coherente.",
+  },
+  {
+    id: "viaje-rapido",
+    name: "Viaje rápido",
+    category: "Meta-sistema",
+    status: "Definida",
+    short:
+      "Apoyo de ritmo para evitar desplazamientos vacíos una vez revelado el mapa o desbloqueadas zonas clave.",
+    definition:
+      "Sistema de desplazamiento abreviado entre puntos ya descubiertos para mantener el ritmo del juego.",
+    input: "Selección desde mapa, menú o punto de viaje habilitado.",
+    process: [
+      "El jugador accede al sistema de viaje.",
+      "Selecciona un punto disponible.",
+      "El juego valida desbloqueo y condiciones.",
+      "Se realiza la transición al destino.",
+    ],
+    rules: [
+      "Solo entre puntos ya descubiertos o desbloqueados.",
+      "Puede quedar limitado en ciertos momentos narrativos o de peligro.",
+      "No debe romper secuencias críticas del juego.",
+    ],
+    affected:
+      "Posición del jugador, ritmo de exploración, backtracking y progresión.",
+    states:
+      "Unavailable → Available → Selecting Destination → Transition → Arrived.",
+    vfx: "Mapa, selector de nodo y transición visual limpia.",
+    sfx: "Confirmación de viaje y transición.",
+    haptic:
+      "N/A o vibración mínima; no es una mecánica donde el feedback háptico sea prioritario.",
+    systems:
+      "Se relaciona con mundo, exploración, progresión y narrativa contextual.",
+    scaling:
+      "Se vuelve más útil conforme el mapa crece y el jugador ya domina la geografía.",
+    metric:
+      "Éxito si reduce desplazamientos muertos sin destruir la sensación de mundo conectado.",
+  },
+];
 
-  .right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    min-width: 0;
-  }
+const inputs = [
+  ["Click izquierdo", "Disparar", "Solo si hay munición disponible."],
+  ["Click derecho", "Apuntar / ADS", "Depende del arma y del estado actual."],
+  ["R", "Recargar", "Interrumpible según diseño del arma."],
+  ["1 / 2 / 3", "Cambiar arma", "Puede cancelar recarga si se define así."],
+  ["Q", "Habilidad básica", "Solo si está en estado Ready."],
+  ["E", "Habilidad de utilidad", "No debe trivializar errores."],
+  ["X", "Habilidad de control", "Limitada por número máximo desplegado."],
+  ["Z", "Definitiva", "Solo si la carga está completa."],
+  ["F", "Interactuar", "Prioridad por proximidad o dirección de cámara."],
+];
 
-  .step .t {
-    font-weight: 900;
-    color: var(--muted2);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.92rem;
-    line-height: 1.15;
-  }
+const rewards = [
+  "Feedback visual y sonoro claro al impactar, activar habilidad o completar acción.",
+  "Progresión por experiencia obtenida en combate, misiones y eventos clave.",
+  "Desbloqueo de mejoras de habilidades, resistencia a la Fisura y manejo.",
+];
 
-  .d {
-    line-height: 1.55;
-  }
+const penalties = [
+  "Quedarse sin munición o tener que recargar en mal momento.",
+  "Cooldowns y ventanas de vulnerabilidad al usar habilidades mal.",
+  "Rutas peores, reacciones más duras o consecuencias sistémicas derivadas del karma.",
+];
 
-  .list.compact {
-    margin: 0;
-    padding-left: 18px;
-  }
+const ux = {
+  emotion: "Tensión, control y recompensa por lectura clara.",
+  why: "Las mecánicas buscan que el jugador entienda por qué ha acertado o fallado, y que cada herramienta tenga una función legible sin saturar el combate.",
+};
+---
 
-  .callout {
-    margin-top: 6px;
-    padding: 10px 12px;
-    border-radius: 12px;
-    border: 1px dashed rgba(255, 255, 255, 0.18);
-    background: rgba(0, 0, 0, 0.18);
-    color: var(--muted);
-  }
+<BaseLayout
+  title="Kaelum — Mecánicas"
+  description="Mecánicas de juego de Kaelum: armas, movimiento, habilidades y sistemas transversales."
+>
+  <section class="hero">
+    <p class="kicker">Juego · Mecánicas</p>
+    <h1>Mecánicas de juego</h1>
+    <p class="lead">
+      Esta página reúne el bloque de mecánicas como un dossier técnico legible:
+      <strong>12 mecánicas y sistemas identificados</strong>, clasificados y
+      desarrollados con la mayor profundidad posible dentro de la documentación
+      actual.
+    </p>
 
-  .callout.subtle {
-    border-style: solid;
-    border-color: rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.03);
-  }
+    <div class="meta">
+      <span class="tag">{summary.total} mecánicas / sistemas</span>
+      <span class="tag">{summary.principal} principales</span>
+      <span class="tag">{summary.secondary} secundarias</span>
+      <span class="tag">{summary.meta} meta-sistemas</span>
+    </div>
 
-  .endings {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 12px;
-    align-items: stretch;
-  }
+    <div class="actions hero-actions">
+      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+      <a class="btn primary" href={`${base}juego/08flujo/`}
+        >Ver Flujo de estados</a
+      >
+      <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+    </div>
 
-  .ending {
-    flex: 1 1 320px;
-    border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: var(--radius);
-    padding: 14px 16px;
-    min-width: 280px;
-  }
-</style>
+    <nav class="subnav" aria-label="Índice de la página">
+      <a class="chip" href="#core">Core loop</a>
+      <a class="chip" href="#clasificacion">Clasificación</a>
+      <a class="chip" href="#inputs">Inputs</a>
+      <a class="chip" href="#fichas">Fichas técnicas</a>
+      <a class="chip" href="#recompensas">Recompensas</a>
+      <a class="chip" href="#ux">UX</a>
+    </nav>
+  </section>
+
+  <section class="gdd-section">
+    <article class="card full" id="core">
+      <div class="label">// CORE LOOP</div>
+      <h2>Bucle principal del juego</h2>
+      <p class="muted">
+        Kaelum se apoya en un ciclo claro: explorar, combatir, interactuar,
+        progresar y decidir. El arma sigue siendo el eje del gameplay, mientras
+        que movimiento y habilidades refuerzan el ritmo sin sustituir la acción
+        directa.
+      </p>
+
+      <div class="core-flex">
+        {
+          coreLoop.map((step, i) => (
+            <div class="core-step">
+              <span class="core-n">{String(i + 1).padStart(2, "0")}</span>
+              <h3>{step}</h3>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="callout subtle">
+        <strong>Idea central:</strong> Kaelum busca una experiencia “honesta”: si
+        fallas, la causa debe ser identificable; si aciertas, el sistema debe devolverte
+        una lectura clara del porqué.
+      </div>
+    </article>
+
+    <article class="card full" id="clasificacion">
+      <div class="label">// CLASIFICACIÓN</div>
+      <h2>Mapa completo de mecánicas</h2>
+      <p class="muted">
+        Para dejar el bloque lo más completo posible, las mecánicas se presentan
+        agrupadas por función: <strong>principales</strong>, <strong
+          >secundarias</strong
+        > y <strong>meta-sistemas</strong>.
+      </p>
+
+      <div class="group-flex">
+        <div class="group-card">
+          <h3>Principales</h3>
+          <ul class="list compact">
+            <li>Movimiento del jugador</li>
+            <li>Salto del jugador</li>
+            <li>Gunplay</li>
+          </ul>
+        </div>
+
+        <div class="group-card">
+          <h3>Secundarias</h3>
+          <ul class="list compact">
+            <li>Habilidad básica (Q)</li>
+            <li>Habilidad de utilidad (E)</li>
+            <li>Habilidad de control (X)</li>
+            <li>Habilidad definitiva (Z)</li>
+          </ul>
+        </div>
+
+        <div class="group-card">
+          <h3>Meta-sistemas</h3>
+          <ul class="list compact">
+            <li>Sistema de interacción</li>
+            <li>Sistema de inventario</li>
+            <li>Sistema de progresión</li>
+            <li>Sistema de karma</li>
+            <li>Viaje rápido</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full" id="inputs">
+      <div class="label">// INPUTS Y REGLAS</div>
+      <h2>Tabla de acciones base</h2>
+
+      <div class="table-wrap">
+        <table class="mechanic-table">
+          <thead>
+            <tr>
+              <th>Acción</th>
+              <th>Comportamiento</th>
+              <th>Regla / Restricción</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              inputs.map((row) => (
+                <tr>
+                  <td>{row[0]}</td>
+                  <td>{row[1]}</td>
+                  <td>{row[2]}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="card full" id="fichas">
+      <div class="label">// FICHAS TÉCNICAS</div>
+      <h2>Desarrollo de las 12 mecánicas</h2>
+      <p class="muted">
+        Cada ficha sigue la lógica de la plantilla técnica: definición, input,
+        proceso, límites, estados, feedback e interacción con sistemas.
+      </p>
+
+      <div class="mechanic-stack">
+        {
+          mechanics.map((m, i) => (
+            <section class="mechanic-card" id={m.id} data-cat={m.category}>
+              <div class="mechanic-top">
+                <div>
+                  <div class="mechanic-kicker">
+                    Mecánica {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <h3>{m.name}</h3>
+                  <p class="muted summary">{m.short}</p>
+                </div>
+
+                <div class="badges">
+                  <span class="badge cat">{m.category}</span>
+                  <span
+                    class={`badge status ${m.status === "Muy avanzada" ? "advanced" : m.status === "Avanzada" ? "good" : "defined"}`}
+                  >
+                    {m.status}
+                  </span>
+                </div>
+              </div>
+
+              <div class="mechanic-layout">
+                <div class="mechanic-main">
+                  <div class="info-grid">
+                    <div class="info-box">
+                      <strong>Definición</strong>
+                      <p>{m.definition}</p>
+                    </div>
+                    <div class="info-box">
+                      <strong>Input</strong>
+                      <p>{m.input}</p>
+                    </div>
+                    <div class="info-box">
+                      <strong>Objetos afectados</strong>
+                      <p>{m.affected}</p>
+                    </div>
+                    <div class="info-box">
+                      <strong>Estados</strong>
+                      <p>{m.states}</p>
+                    </div>
+                  </div>
+
+                  <div class="process-block">
+                    <h4>Lógica / proceso</h4>
+                    <ol class="list numbered">
+                      {m.process.map((p) => (
+                        <li>{p}</li>
+                      ))}
+                    </ol>
+                  </div>
+
+                  <div class="rules-block">
+                    <h4>Reglas y límites</h4>
+                    <ul class="list compact">
+                      {m.rules.map((r) => (
+                        <li>{r}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                <aside class="mechanic-side">
+                  <div class="side-box">
+                    <h4>Feedback visual</h4>
+                    <p>{m.vfx}</p>
+                  </div>
+
+                  <div class="side-box">
+                    <h4>Feedback sonoro</h4>
+                    <p>{m.sfx}</p>
+                  </div>
+
+                  <div class="side-box">
+                    <h4>Háptica</h4>
+                    <p>{m.haptic}</p>
+                  </div>
+
+                  <div class="side-box">
+                    <h4>Interacción con sistemas</h4>
+                    <p>{m.systems}</p>
+                  </div>
+
+                  <div class="side-box">
+                    <h4>Escalabilidad</h4>
+                    <p>{m.scaling}</p>
+                  </div>
+
+                  <div class="side-box metric">
+                    <h4>Métrica de éxito</h4>
+                    <p>{m.metric}</p>
+                  </div>
+                </aside>
+              </div>
+            </section>
+          ))
+        }
+      </div>
+    </article>
+
+    <article class="card full" id="recompensas">
+      <div class="label">// RECOMPENSAS Y PENALIZACIONES</div>
+      <h2>Cómo responde el sistema al jugador</h2>
+
+      <div class="dual-flex">
+        <div class="mini-card">
+          <h3>Recompensas</h3>
+          <ul class="list compact">
+            {rewards.map((x) => <li>{x}</li>)}
+          </ul>
+        </div>
+
+        <div class="mini-card">
+          <h3>Penalizaciones</h3>
+          <ul class="list compact">
+            {penalties.map((x) => <li>{x}</li>)}
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full" id="ux">
+      <div class="label">// EXPERIENCIA DEL JUGADOR</div>
+      <h2>Emoción objetivo</h2>
+      <p class="muted">
+        <strong>{ux.emotion}</strong>
+      </p>
+      <div class="callout">
+        <strong>Justificación:</strong>
+        {ux.why}
+      </div>
+    </article>
+
+    <div class="actions hero-actions">
+      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+      <a class="btn primary" href={`${base}juego/08flujo/`}
+        >Ver Flujo de estados</a
+      >
+      <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+    </div>
+  </section>
+
+  <style>
+    .kicker {
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      font-size: 0.85rem;
+    }
+    .lead {
+      margin-top: 6px;
+      line-height: 1.6;
+      opacity: 0.9;
+      max-width: 980px;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+      justify-content: flex-start;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.16);
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      font-size: 0.86rem;
+    }
+
+    .label {
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      margin-bottom: 8px;
+    }
+
+    .subnav {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.16);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      transition:
+        transform 0.12s ease,
+        background 0.12s ease,
+        border-color 0.12s ease;
+    }
+    .chip:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .core-flex,
+    .group-flex,
+    .dual-flex {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      align-items: stretch;
+    }
+
+    .core-step,
+    .group-card,
+    .mini-card {
+      flex: 1 1 260px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.18);
+      min-width: 240px;
+    }
+
+    .core-n {
+      display: inline-flex;
+      margin-bottom: 8px;
+      opacity: 0.55;
+      font-weight: 1000;
+      letter-spacing: 0.18em;
+    }
+
+    .table-wrap {
+      margin-top: 14px;
+      overflow: auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.18);
+    }
+    .mechanic-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+    .mechanic-table th,
+    .mechanic-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: left;
+      vertical-align: top;
+    }
+    .mechanic-table th {
+      background: rgba(255, 255, 255, 0.04);
+      font-weight: 900;
+    }
+
+    .mechanic-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .mechanic-card {
+      position: relative;
+      overflow: hidden;
+      padding: 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.04),
+        rgba(0, 0, 0, 0.16)
+      );
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .mechanic-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: rgba(120, 160, 255, 0.85);
+    }
+
+    .mechanic-card[data-cat="Secundaria"]::before {
+      background: rgba(170, 120, 255, 0.85);
+    }
+
+    .mechanic-card[data-cat="Meta-sistema"]::before {
+      background: rgba(255, 220, 120, 0.85);
+    }
+
+    .mechanic-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mechanic-kicker {
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      color: var(--muted2);
+      margin-bottom: 6px;
+    }
+
+    .mechanic-top h3 {
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .summary {
+      margin-top: 8px;
+      max-width: 75ch;
+    }
+
+    .badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(255, 255, 255, 0.85);
+      white-space: nowrap;
+    }
+
+    .badge.cat {
+      background: rgba(120, 160, 255, 0.1);
+      border-color: rgba(120, 160, 255, 0.22);
+    }
+
+    .badge.status.good {
+      background: rgba(120, 255, 180, 0.1);
+      border-color: rgba(120, 255, 180, 0.22);
+    }
+
+    .badge.status.advanced {
+      background: rgba(170, 120, 255, 0.12);
+      border-color: rgba(170, 120, 255, 0.24);
+    }
+
+    .badge.status.defined {
+      background: rgba(255, 220, 120, 0.1);
+      border-color: rgba(255, 220, 120, 0.22);
+    }
+
+    .mechanic-layout {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .mechanic-main {
+      flex: 1 1 68%;
+      min-width: 0;
+    }
+
+    .mechanic-side {
+      flex: 0 0 30%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 280px;
+    }
+
+    .info-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .info-box {
+      flex: 1 1 calc(50% - 6px);
+      min-width: 260px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .info-box strong {
+      display: block;
+      margin-bottom: 6px;
+      color: rgba(255, 255, 255, 0.96);
+    }
+
+    .info-box p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .process-block,
+    .rules-block {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .process-block h4,
+    .rules-block h4,
+    .side-box h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .side-box {
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .side-box p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .side-box.metric {
+      border-color: rgba(140, 120, 255, 0.22);
+      background: rgba(140, 120, 255, 0.08);
+    }
+
+    .list {
+      padding-left: 18px;
+    }
+    .list.compact {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .list.numbered {
+      margin: 0;
+      padding-left: 22px;
+    }
+    .list li {
+      margin: 6px 0;
+    }
+
+    .callout {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.18);
+      color: var(--muted);
+    }
+    .callout.subtle {
+      border-style: solid;
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+    #astroactualizateporfa .actions.bottom {
+      margin-top: 18px;
+    }
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
+    }
+    .hero-actions a {
+      flex: 1 1 200px;
+    }
+    .gdd-section{
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+  margin-top:30px;
+}
+  </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/juego/08flujo.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const states = [
+  {
+    title: "Pantalla de inicio",
+    desc: "Primer contacto visual con el juego. Funciona como boot o splash screen antes de pasar al menú principal.",
+  },
+  {
+    title: "Menú principal",
+    desc: "Punto central de navegación. Desde aquí el jugador accede al modo historia, multijugador, opciones, créditos o salida.",
+  },
+  {
+    title: "Gameplay — Singleplayer",
+    desc: "Estado principal del modo historia. Aquí conviven exploración, combate, eventos narrativos, puzles y zonas seguras.",
+  },
+  {
+    title: "Gameplay — Multijugador",
+    desc: "Estado principal del competitivo. Incluye emparejamiento, selección de personajes, inicio de partida, rondas y resultados.",
+  },
+  {
+    title: "Menú de pausa",
+    desc: "Suspensión temporal del estado activo. En singleplayer es pausa real; en multijugador, pausa individual no global.",
+  },
+  {
+    title: "Game Over",
+    desc: "Se activa al morir en el modo historia. Incluye mensaje contextual, estadísticas y opciones de reintento o salida.",
+  },
+  {
+    title: "Victoria / Resultados",
+    desc: "Cierre de partida o finalización del juego. Recoge estadísticas, cinemática final o retorno al menú principal.",
+  },
+];
+
+const diagramUrl = `${base}images/juego/diagrama_de_flujo.webp`;
+---
+
+<BaseLayout
+  title="Kaelum — Flujo de estados"
+  description="Flujo de estados del juego: inicio, menú, gameplay, pausa, game over, victoria y resultados."
+>
+  <section class="hero flujo-hero">
+    <header class="header">
+      <p class="kicker">GDD · Estados y escenas</p>
+      <h1>Flujo de estados</h1>
+      <p class="lead">
+        El flujo de Kaelum define cómo se entra, se juega, se interrumpe y se
+        cierra cada experiencia. No es solo un esquema técnico: es la estructura
+        que mantiene coherencia entre interfaz, ritmo y navegación.
+      </p>
+
+      <div class="actions hero-actions">
+        <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+        <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+        <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+        <a class="btn primary" href={`${base}juego/09interfaz/`}>Ver Interfaz</a
+        >
+      </div>
+
+      <nav class="subnav" aria-label="Índice del flujo">
+        <a class="chip" href="#estados">Estados principales</a>
+        <a class="chip" href="#single">Singleplayer</a>
+        <a class="chip" href="#multi">Multijugador</a>
+        <a class="chip" href="#pausa">Pausa y cierre</a>
+        <a class="chip" href="#diagrama">Diagrama</a>
+      </nav>
+    </header>
+  </section>
+
+  <section class="gdd-section">
+    <article class="card full featured" id="estados">
+      <div class="label">// ESTADOS PRINCIPALES</div>
+      <h2>Panorama general</h2>
+      <p class="muted">
+        Kaelum se apoya en un conjunto de escenas claras para evitar saltos
+        extraños entre menús, modos de juego y cierre de partida. La idea no es
+        recargar la estructura, sino hacer que cada transición se entienda de
+        forma natural.
+      </p>
+
+      <div class="state-flex">
+        {
+          states.map((state, index) => (
+            <article class="state-card">
+              <div class="state-top">
+                <span class="state-number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3>{state.title}</h3>
+              </div>
+              <p class="muted">{state.desc}</p>
+            </article>
+          ))
+        }
+      </div>
+    </article>
+
+    <article class="card" id="single">
+      <div class="label">// SINGLEPLAYER</div>
+      <h2>Ruta del modo historia</h2>
+      <p class="muted">
+        El modo historia debe sentirse continuo: entrar, explorar, combatir,
+        pausar, perder o avanzar sin romper la inmersión.
+      </p>
+
+      <div class="grid2">
+        <div class="mini-card">
+          <h4>Entrada</h4>
+          <ul class="list compact">
+            <li>Pantalla de inicio</li>
+            <li>Menú principal</li>
+            <li>Continuar / nueva partida</li>
+          </ul>
+        </div>
+
+        <div class="mini-card">
+          <h4>Juego activo</h4>
+          <ul class="list compact">
+            <li>Exploración</li>
+            <li>Combate</li>
+            <li>Eventos narrativos</li>
+            <li>Puzles y zonas seguras</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" id="multi">
+      <div class="label">// MULTIJUGADOR</div>
+      <h2>Ruta del competitivo</h2>
+      <p class="muted">
+        Aquí el flujo debe ser más directo y rápido. Menos contemplación, más
+        claridad: selección, partida, resultados y retorno ágil.
+      </p>
+
+      <div class="grid2">
+        <div class="mini-card">
+          <h4>Antes de jugar</h4>
+          <ul class="list compact">
+            <li>Menú principal</li>
+            <li>Selección de modo</li>
+            <li>Selección de personaje</li>
+            <li>Emparejamiento / lobby</li>
+          </ul>
+        </div>
+
+        <div class="mini-card">
+          <h4>Durante la partida</h4>
+          <ul class="list compact">
+            <li>Rondas o partida activa</li>
+            <li>Pausa individual</li>
+            <li>Resultados finales</li>
+            <li>Retorno a menú</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full" id="pausa">
+      <div class="label">// PAUSA Y CIERRE</div>
+      <h2>Interrupción, derrota y victoria</h2>
+      <p class="muted">
+        El flujo no termina al salir del gameplay activo. Kaelum también tiene
+        que dejar claro cómo se gestiona la pausa, el reinicio tras fallar y la
+        devolución de resultados cuando terminas.
+      </p>
+
+      <div class="state-flex">
+        <div class="state-card">
+          <h3>Menú de pausa</h3>
+          <p class="muted">
+            Sirve para suspender momentáneamente la experiencia, revisar
+            opciones rápidas o salir. En historia es pausa real; en multijugador
+            no puede congelar la partida global.
+          </p>
+        </div>
+
+        <div class="state-card">
+          <h3>Game Over</h3>
+          <p class="muted">
+            Más que una simple pantalla de derrota, debe comunicar contexto,
+            permitir reintento y no romper el tono del proyecto.
+          </p>
+        </div>
+
+        <div class="state-card">
+          <h3>Victoria / Resultados</h3>
+          <p class="muted">
+            Recoge estadísticas, cierre narrativo o retorno lógico al menú. No
+            es solo un final: es una devolución al jugador de lo que acaba de
+            conseguir.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full" id="diagrama">
+      <div class="label">// DIAGRAMA</div>
+      <h2>Lectura visual del flujo</h2>
+      <p class="muted">
+        Este diagrama resume de forma rápida cómo se conectan escenas y estados
+        dentro del juego.
+      </p>
+
+      <div class="diagram-wrap">
+        <img
+          class="diagram"
+          src={diagramUrl}
+          alt="Diagrama de flujo de estados del juego Kaelum"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="callout subtle">
+        Todo este bloque busca una idea muy concreta: que el jugador nunca
+        sienta que el juego “salta raro” entre pantallas, sino que cada
+        transición tiene sentido dentro de la experiencia.
+      </div>
+    </article>
+
+    <div class="actions hero-actions">
+      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+      <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+      <a class="btn primary" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+    </div>
+  </section>
+
+  <style>
+    .flujo-hero {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+    .flujo-hero:after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          900px 280px at 18% 0%,
+          rgba(70, 255, 150, 0.1),
+          transparent 65%
+        ),
+        radial-gradient(
+          760px 280px at 90% 12%,
+          rgba(120, 160, 255, 0.1),
+          transparent 60%
+        );
+      opacity: 0.9;
+    }
+    .flujo-hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .kicker {
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      font-size: 0.85rem;
+    }
+    .lead {
+      margin-top: 6px;
+      line-height: 1.6;
+      opacity: 0.9;
+      max-width: 980px;
+    }
+
+    .label {
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      margin-bottom: 8px;
+    }
+
+    .subnav {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.16);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      transition:
+        transform 0.12s ease,
+        background 0.12s ease,
+        border-color 0.12s ease;
+    }
+
+    .chip:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .featured {
+      border-color: rgba(140, 120, 255, 0.28);
+      background: linear-gradient(
+        180deg,
+        rgba(140, 120, 255, 0.1),
+        rgba(0, 0, 0, 0.18)
+      );
+      box-shadow: 0 18px 60px rgba(140, 120, 255, 0.1);
+    }
+
+    .state-flex,
+    .grid2 {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      align-items: stretch;
+    }
+
+    .state-card,
+    .mini-card {
+      flex: 1 1 280px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.18);
+      min-width: 260px;
+    }
+
+    .state-top {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .state-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(94, 139, 255, 0.16);
+    }
+
+    .list {
+      padding-left: 18px;
+    }
+    .list.compact {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .list li {
+      margin: 6px 0;
+    }
+
+    .diagram-wrap {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      overflow: hidden;
+    }
+
+    .diagram {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .callout {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.18);
+      color: var(--muted);
+    }
+
+    .callout.subtle {
+      border-style: solid;
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .actions.bottom {
+      margin-top: 18px;
+    }
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
+    }
+    .hero-actions a {
+      flex: 1 1 200px;
+    }
+    .gdd-section {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-top: 30px;
+    }
+    .card {
+      padding: 22px;
+    }
+    .card.full {
+      padding: 28px;
+    }
+  </style>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/juego/09interfaz.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const uiScreens = [
+  {
+    title: "Pantalla de inicio",
+    file: `${base}images/ui/UI_PantallaDeInicio.webp`,
+    desc: "Primer impacto visual. Debe presentar tono, identidad y entrada al proyecto sin saturar.",
+  },
+  {
+    title: "Menú principal",
+    file: `${base}images/ui/UI_MenuPrincipal.webp`,
+    desc: "Centro de navegación. Tiene que ordenar opciones sin romper la atmósfera general de Kaelum.",
+  },
+  {
+    title: "HUD gameplay",
+    file: `${base}images/ui/UI_HUD-Gameplay.webp`,
+    desc: "La interfaz que acompaña al jugador durante la partida. Debe informar sin invadir.",
+  },
+  {
+    title: "Menú de pausa",
+    file: `${base}images/ui/UI_MenuPausa.webp`,
+    desc: "Interrupción funcional del juego. Útil, clara y coherente con el tono visual del resto.",
+  },
+  {
+    title: "Diario de viaje",
+    file: `${base}images/ui/UI_DiarioViaje.webp`,
+    desc: "Capa diegética o semidiegética para reforzar exploración, memoria y lectura del mundo.",
+  },
+  {
+    title: "Pantalla de victoria",
+    file: `${base}images/ui/UI_PantallaVictoria.webp`,
+    desc: "Cierre de misión o resultado positivo. Debe recompensar visualmente sin parecer otro juego.",
+  },
+  {
+    title: "Game Over",
+    file: `${base}images/ui/UI_GameOver.webp`,
+    desc: "Pantalla de derrota. Comunica fallo, tono y reintento sin cortar de forma torpe la experiencia.",
+  },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Interfaz"
+  description="Interfaz del proyecto Kaelum: pantallas, HUD y lectura visual de la experiencia."
+>
+  <section class="hero ui-hero">
+    <header class="header">
+      <p class="kicker">GDD · Interfaz</p>
+      <h1>Interfaz</h1>
+      <p class="lead">
+        La interfaz no es una capa aparte: es la forma en la que Kaelum le habla
+        al jugador. Ordena información, marca ritmo y acompaña la lectura del
+        mundo sin romper la inmersión.
+      </p>
+
+      <div class="actions hero-actions">
+        <a class="btn primary" href={`${base}juego/`}>Volver a Juego</a>
+        <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+        <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}juego/07mecanicas/`}
+          >Ver Mecánicas</a
+        >
+        <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+      </div>
+    </header>
+  </section>
+
+  <section class="gdd-section">
+    <article class="card full featured">
+      <div class="label">// FUNCIÓN</div>
+      <h2>Qué debe hacer la UI en Kaelum</h2>
+      <p class="muted">
+        La interfaz tiene tres trabajos: informar, guiar y reforzar identidad.
+        No debería sentirse como una capa genérica pegada encima, sino como una
+        extensión visual del juego.
+      </p>
+
+      <div class="ui-pillars">
+        <div class="pillar">
+          <h3>Claridad</h3>
+          <p class="muted">
+            Que el jugador entienda rápido estado, recursos y contexto.
+          </p>
+        </div>
+        <div class="pillar">
+          <h3>Coherencia</h3>
+          <p class="muted">
+            Que cada pantalla mantenga el mismo lenguaje visual del mundo.
+          </p>
+        </div>
+        <div class="pillar">
+          <h3>Ritmo</h3>
+          <p class="muted">
+            Que acompañe el flujo del juego en vez de frenarlo.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full">
+      <div class="label">// PANTALLAS</div>
+      <h2>Capas principales de interfaz</h2>
+
+      <div class="ui-grid">
+        {
+          uiScreens.map((screen, index) => (
+            <article class="ui-card">
+              <div class="ui-media">
+                <img src={screen.file} alt={screen.title} loading="lazy" />
+                <span class="ui-number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </div>
+
+              <div class="ui-copy">
+                <h3>{screen.title}</h3>
+                <p class="muted">{screen.desc}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </article>
+
+    <article class="card full">
+      <div class="label">// LECTURA VISUAL</div>
+      <h2>Cómo debe sentirse</h2>
+      <p class="muted">
+        La UI de Kaelum debería moverse entre dos ideas: sobriedad funcional y
+        presencia del mundo. No sobrecargar, no parecer vacía. Lo justo para
+        informar y seguir dentro de la atmósfera.
+      </p>
+
+      <div class="ui-notes">
+        <div class="note">
+          <h4>HUD</h4>
+          <p class="muted">
+            Información constante, limpia y legible durante el gameplay.
+          </p>
+        </div>
+        <div class="note">
+          <h4>Menús</h4>
+          <p class="muted">
+            Más espacio, más respiración y mejor jerarquía visual.
+          </p>
+        </div>
+        <div class="note">
+          <h4>Pantallas de cierre</h4>
+          <p class="muted">
+            Derrota o victoria deben transmitir tono, no solo resultado.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout subtle">
+        Esta página actúa como puente entre el GDD y la galería: no sustituye el
+        análisis visual, pero sí deja claro qué papel cumple cada pieza de
+        interfaz dentro del juego.
+      </div>
+    </article>
+  </section>
+  <div class="actions hero-actions">
+        <a class="btn primary" href={`${base}juego/`}>Volver a Juego</a>
+        <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+        <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}juego/07mecanicas/`}
+          >Ver Mecánicas</a
+        >
+        <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+      </div>
+  <div id="lightbox" class="lightbox">
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+  <style>
+    .ui-hero {
+      position: relative;
+      overflow: hidden;
+    }
+    .ui-hero:after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          900px 280px at 16% 0%,
+          rgba(34, 211, 238, 0.1),
+          transparent 65%
+        ),
+        radial-gradient(
+          760px 280px at 88% 10%,
+          rgba(139, 92, 246, 0.1),
+          transparent 60%
+        );
+      opacity: 0.9;
+    }
+    .ui-hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .kicker {
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      font-size: 0.85rem;
+    }
+    .lead {
+      margin-top: 6px;
+      line-height: 1.6;
+      opacity: 0.9;
+      max-width: 980px;
+    }
+
+    .label {
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      margin-bottom: 8px;
+    }
+
+    .featured {
+      border-color: rgba(34, 211, 238, 0.22);
+      background: linear-gradient(
+        180deg,
+        rgba(34, 211, 238, 0.1),
+        rgba(139, 92, 246, 0.05)
+      );
+      box-shadow: 0 18px 60px rgba(34, 211, 238, 0.08);
+    }
+
+    .ui-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .pillar,
+    .note {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .ui-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 22px;
+      margin-top: 20px;
+    }
+
+    .ui-card {
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      overflow: hidden;
+    }
+
+    .ui-media {
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: #000;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+    }
+
+    .ui-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+    }
+
+    .ui-number {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(12, 18, 36, 0.72);
+      backdrop-filter: blur(8px);
+    }
+
+    .ui-copy {
+      padding: 16px;
+    }
+
+    .ui-notes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .callout {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.18);
+      color: var(--muted);
+    }
+
+    .callout.subtle {
+      border-style: solid;
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
+    }
+    .hero-actions a {
+      flex: 1 1 200px;
+    }
+
+    @media (max-width: 980px) {
+      .ui-grid,
+      .ui-pillars,
+      .ui-notes {
+        grid-template-columns: 1fr;
+      }
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s;
+      z-index: 999;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 10px;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const images =
+        document.querySelectorAll<HTMLImageElement>(".ui-media img");
+
+      const lightbox = document.getElementById("lightbox");
+
+      const lightboxImg = document.getElementById(
+        "lightbox-img",
+      ) as HTMLImageElement;
+
+      if (!lightbox || !lightboxImg) {
+        console.warn(
+          "No se encontraron los elementos del lightbox en el HTML.",
+        );
+        return;
+      }
+
+      images.forEach((img) => {
+        img.addEventListener("click", () => {
+          lightbox.classList.add("open");
+
+          lightboxImg.src = img.src;
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("open");
+      });
+    });
+  </script>
+</BaseLayout>
+```
+
+---
+## FILE: src/pages/juego/index.astro
+---
+
+```astro
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Juego — Kaelum" description="Núcleo jugable del proyecto Kaelum.">
+  <section class="hero juego-hero">
+    <p class="kicker">Juego</p>
+    <h1>El corazón de Kaelum</h1>
+    <p class="lead">
+      Aquí el proyecto deja de ser solo concepto y empieza a sentirse como juego:
+      mundo, conflicto, personajes, combate y progreso.
+    </p>
+  </section>
+
+  <section class="hub-grid">
+    <a class="hub-card" href={`${base}juego/01historia/`}>
+      <span class="hub-number">01</span>
+      <div class="hub-copy">
+        <p class="kicker">Narrativa</p>
+        <h2>Historia</h2>
+        <p>El punto de partida, el conflicto y la dirección del viaje.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card" href={`${base}juego/02mundo/`}>
+      <span class="hub-number">02</span>
+      <div class="hub-copy">
+        <p class="kicker">Universo</p>
+        <h2>Mundo</h2>
+        <p>La atmósfera, las reglas y el tono que sostienen Kaelum.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card" href={`${base}juego/03personajes/`}>
+      <span class="hub-number">03</span>
+      <div class="hub-copy">
+        <p class="kicker">Figuras clave</p>
+        <h2>Personajes</h2>
+        <p>Quiénes mueven la historia y qué papel ocupan dentro del juego.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card" href={`${base}juego/04cinematicas/`}>
+      <span class="hub-number">04</span>
+      <div class="hub-copy">
+        <p class="kicker">Audiovisual</p>
+        <h2>Cinemáticas</h2>
+        <p>Momentos clave para reforzar el tono, el ritmo y la narrativa.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+    
+    <a class="hub-card" href={`${base}juego/05enemigos/`}>
+      <span class="hub-number">05</span>
+      <div class="hub-copy">
+        <p class="kicker">Amenazas</p>
+        <h2>Enemigos</h2>
+        <p>Facciones, roles y presión jugable desde una lectura visual y de combate.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card" href={`${base}juego/06progreso/`}>
+      <span class="hub-number">06</span>
+      <div class="hub-copy">
+        <p class="kicker">Recorrido</p>
+        <h2>Progreso</h2>
+        <p>Actos, rutas y forma en la que el viaje del jugador va creciendo.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card" href={`${base}juego/07mecanicas/`}>
+      <span class="hub-number">07</span>
+      <div class="hub-copy">
+        <p class="kicker">Sistemas</p>
+        <h2>Mecánicas</h2>
+        <p>Todo lo que convierte Kaelum en una experiencia jugable real.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card" href={`${base}juego/08flujo/`}>
+      <span class="hub-number">08</span>
+      <div class="hub-copy">
+        <p class="kicker">Estados</p>
+        <h2>Flujo</h2>
+        <p>Cómo se articula la experiencia entre menús, partida, pausa y resultados.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card full" href={`${base}juego/09interfaz/`}>
+      <span class="hub-number">09</span>
+      <div class="hub-copy">
+        <p class="kicker">UI</p>
+        <h2>Interfaz</h2>
+        <p>La capa visual que acompaña al jugador y traduce el sistema en pantalla.</p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+  </section>
+
+  <style>
+    .juego-hero{ padding:30px 24px; }
+
+    .hub-grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+    }
+
+    .hub-card{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      text-decoration:none;
+      color:var(--text);
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(139,92,246,.08), rgba(255,255,255,.03));
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:0 16px 40px rgba(0,0,0,.22);
+      transition:transform .14s ease, background .14s ease, border-color .14s ease;
+    }
+
+    .hub-card:hover{
+      transform:translateY(-2px);
+      background:linear-gradient(180deg, rgba(139,92,246,.14), rgba(255,255,255,.04));
+      border-color:rgba(255,255,255,.16);
+    }
+
+    .hub-card.full{ grid-column:1 / -1; }
+
+    .hub-number{
+      width:44px; height:44px; flex:0 0 auto;
+      border-radius:14px; display:grid; place-items:center;
+      font-weight:900; border:1px solid var(--border);
+      background:rgba(0,0,0,.18); color:var(--text);
+    }
+
+    .hub-copy h2{ margin:2px 0 8px; font-size:1.45rem; }
+    .hub-copy p{ margin:0; color:var(--muted); line-height:1.55; }
+    .hub-cta{ display:inline-block; margin-top:14px; font-weight:800; color:var(--text); }
+
+    @media (max-width: 860px){
+      .hub-grid{ grid-template-columns:1fr; }
+      .hub-card.full{ grid-column:auto; }
+      .hub-card{ padding:18px; }
+    }
+  </style>
+</BaseLayout>
 ```
 
 ---
@@ -9472,384 +10159,190 @@ const categories = [
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
-const sections = [
+const cards = [
   {
-    number: "01",
     title: "Moodboard",
-    desc:
-      "La base visual del proyecto: atmósfera, referencias, tono, materiales, colores e intención artística general de Kaelum.",
+    desc: "Referencias visuales, atmósfera y dirección artística que definen el tono del proyecto.",
     href: `${base}media/moodboard/`,
-    tag: "Dirección visual",
+    img: `${base}images/media/Moodboard_QR.png`,
+    alt: "Moodboard Kaelum",
+    tone: "violet"
   },
   {
-    number: "02",
     title: "Galería",
-    desc:
-      "Capturas, composiciones y material gráfico que ayudan a enseñar el proyecto de forma más directa y rápida.",
+    desc: "Colección de imágenes del proyecto: UI, branding, personajes y material visual del desarrollo.",
     href: `${base}media/galeria/`,
-    tag: "Screenshots",
+    img: `${base}images/ui/UI_MenuPrincipal.webp`,
+    alt: "Galería Kaelum",
+    tone: "cyan"
   },
   {
-    number: "03",
     title: "Tráiler",
-    desc:
-      "Pieza audiovisual para presentar Kaelum de manera breve, visual y más atractiva para evaluación o portfolio.",
+    desc: "Pieza audiovisual que resume la propuesta visual y narrativa del proyecto.",
     href: `${base}media/trailer/`,
-    tag: "Vídeo",
-  },
-];
-
-const values = [
-  {
-    title: "Tono antes que saturación",
-    desc:
-      "La parte visual no se plantea como un escaparate vacío, sino como una forma de transmitir identidad, atmósfera y coherencia con el juego.",
-  },
-  {
-    title: "Primera impresión clara",
-    desc:
-      "Media debe permitir que alguien entienda el estilo de Kaelum casi de un vistazo, incluso antes de entrar en documentación extensa.",
-  },
-  {
-    title: "Apoyo real a la rúbrica",
-    desc:
-      "Esta sección ayuda a cubrir screenshots, tráiler y elementos creativos extra sin mezclarlo con apartados narrativos o técnicos.",
-  },
+    img: `${base}images/ui/UI_PantallaDeInicio.webp`,
+    alt: "Tráiler Kaelum",
+    tone: "mix"
+  }
 ];
 ---
 
-<BaseLayout
-  title="Kaelum — Media"
-  description="Sección visual de Kaelum: moodboard, galería y tráiler para enseñar el tono, la identidad y la presencia del proyecto."
->
-  <section class="hero hero-media">
-    <div class="hero-copy">
-      <p class="kicker">Presentación visual</p>
-      <h1>Media</h1>
+<BaseLayout title="Kaelum — Media">
 
-      <p class="lead">
-        Esta sección reúne la parte más <strong>directa, visual y presentable</strong> del
-        proyecto. Su función no es explicar cómo funciona Kaelum por dentro, sino enseñar
-        <strong> cómo se ve</strong>, qué atmósfera transmite y qué identidad visual sostiene
-        la propuesta.
-      </p>
+  <section class="hero media-hero">
+    <p class="kicker">PROYECTO</p>
+    <h1>Media</h1>
 
-      <div class="actions">
-        <a class="btn primary" href={`${base}media/moodboard/`}>Ver Moodboard</a>
-        <a class="btn" href={`${base}media/galeria/`}>Abrir Galería</a>
-        <a class="btn" href={`${base}media/trailer/`}>Ver Tráiler</a>
-      </div>
-    </div>
-
-    <aside class="hero-panel">
-      <p class="panel-kicker">Qué entra aquí y qué no</p>
-      <h2>Escaparate visual del proyecto</h2>
-      <p>
-        Media se centra en la lectura estética y promocional de Kaelum: referencias,
-        capturas y vídeo. La explicación funcional del juego, sus sistemas y su interfaz
-        se mantiene en <strong>Juego</strong>, para no mezclar bloques que responden a
-        preguntas distintas.
-      </p>
-
-      <ul class="panel-list">
-        <li><strong>Sí:</strong> moodboard, screenshots, vídeo, presencia visual.</li>
-        <li><strong>No:</strong> mecánicas, flujo de estados, HUD como sistema, progreso narrativo.</li>
-      </ul>
-    </aside>
+    <p class="lead">
+      Esta sección reúne el material visual del proyecto: referencias, imágenes del
+      desarrollo y piezas audiovisuales que ayudan a entender el tono y la identidad de
+      Kaelum.
+    </p>
   </section>
 
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Bloques visuales</p>
-      <h2>Qué puedes ver aquí</h2>
-      <p class="section-lead">
-        Esta sección está pensada para enseñar Kaelum de forma más inmediata y atractiva,
-        sin obligar a entrar todavía en apartados largos o técnicos.
-      </p>
-    </header>
+  <section class="media-grid">
+    {cards.map((card) => (
+      <a class={`media-card ${card.tone}`} href={card.href}>
+        <div class="media-thumb">
+          <img src={card.img} alt={card.alt} loading="lazy" />
+        </div>
 
-    <div class="media-grid">
-      {sections.map((item) => (
-        <a class="media-card" href={item.href}>
-          <div class="media-top">
-            <span class="media-number">{item.number}</span>
-            <span class="media-tag">{item.tag}</span>
+        <div class="media-copy">
+          <p class="card-kicker">Apartado visual</p>
+          <h2>{card.title}</h2>
+          <p class="muted">{card.desc}</p>
+
+          <div class="media-bottom">
+            <span class="media-cta">Abrir apartado →</span>
           </div>
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-          <span class="media-link">Abrir apartado</span>
-        </a>
-      ))}
-    </div>
-  </section>
-
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Por qué existe esta sección</p>
-      <h2>Una parte visual con función real</h2>
-      <p class="section-lead">
-        Media no está aquí solo para adornar la web, sino para reforzar la comprensión y la presentación del proyecto.
-      </p>
-    </header>
-
-    <div class="values-grid">
-      {values.map((item) => (
-        <article class="value-card">
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-        </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section split">
-    <article class="info-card">
-      <p class="kicker">Orden recomendado</p>
-      <h2>Primero moodboard, después galería y tráiler</h2>
-      <p>
-        La lectura más natural dentro de esta sección es empezar por el
-        <strong> Moodboard</strong>, porque fija el tono y la intención visual. Después,
-        la <strong>Galería</strong> permite aterrizar esa dirección en imágenes más concretas,
-        y el <strong>Tráiler</strong> remata la presentación de una forma más dinámica.
-      </p>
-      <div class="actions">
-        <a class="btn" href={`${base}media/moodboard/`}>Seguir ese orden</a>
-      </div>
-    </article>
-
-    <article class="info-card accent">
-      <p class="kicker">Continuidad del recorrido</p>
-      <h2>Después de Media, toca Documentación</h2>
-      <p>
-        Una vez que el visitante ya tiene una idea clara de cómo se ve Kaelum, el siguiente
-        paso más lógico es pasar a <strong>Documentación</strong>, donde se encuentra el
-        respaldo formal del proyecto: GDD, análisis, planificación, presupuesto y métricas.
-      </p>
-      <div class="actions">
-        <a class="btn primary" href={`${base}documentacion/`}>Ir a Documentación</a>
-      </div>
-    </article>
+        </div>
+      </a>
+    ))}
   </section>
 
   <style>
-    .hero-media{
-      display:grid;
-      grid-template-columns: 1.35fr .95fr;
-      gap:24px;
-      align-items:stretch;
+    .media-hero{
+      position:relative;
+      overflow:hidden;
+      margin-bottom:24px;
     }
 
-    .hero-copy,
-    .hero-panel,
-    .media-card,
-    .value-card,
-    .info-card{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:18px;
-      backdrop-filter: blur(8px);
-    }
-
-    .hero-copy{
-      padding:28px;
-    }
-
-    .hero-panel{
-      padding:24px;
+    .media-hero::after{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      pointer-events:none;
       background:
-        linear-gradient(180deg, rgba(184, 120, 255, .13), rgba(255,255,255,.03));
+        radial-gradient(800px 260px at 18% 0%, rgba(139,92,246,.12), transparent 60%),
+        radial-gradient(700px 240px at 84% 10%, rgba(34,211,238,.10), transparent 60%);
+      opacity:.9;
     }
 
-    .kicker,
-    .panel-kicker{
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.75;
-      margin:0 0 8px;
-      font-size:.82rem;
-    }
-
-    h1{
-      margin:0 0 12px;
-      font-size:clamp(2.6rem, 6vw, 4.2rem);
-      line-height:.95;
-    }
-
-    h2{
-      margin:0 0 10px;
-      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
-      line-height:1.05;
-    }
-
-    h3{
-      margin:0 0 10px;
-      font-size:1.12rem;
-    }
-
-    .lead,
-    .section-lead,
-    .hero-panel p,
-    .media-card p,
-    .value-card p,
-    .info-card p{
-      line-height:1.6;
-      opacity:.94;
-      margin:0;
-      text-align:justify;
-    }
-
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:18px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:inherit;
-      text-decoration:none;
-      transition:.18s ease;
-    }
-
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
-
-    .btn.primary{
-      background:linear-gradient(180deg, rgba(174, 102, 255, .30), rgba(174, 102, 255, .14));
-      border-color:rgba(208, 156, 255, .34);
-      box-shadow:0 10px 24px rgba(88,20,120,.18);
-    }
-
-    .panel-list{
-      margin:16px 0 0;
-      padding-left:18px;
-      display:grid;
-      gap:10px;
-      line-height:1.5;
-    }
-
-    .section{
-      margin-top:28px;
-    }
-
-    .section-head{
-      margin-bottom:14px;
+    .media-hero > *{
+      position:relative;
+      z-index:1;
     }
 
     .media-grid{
       display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
+      grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+      gap:22px;
+      align-items:stretch;
     }
 
     .media-card{
-      padding:18px;
-      text-decoration:none;
-      color:inherit;
-      transition:.18s ease;
       display:flex;
       flex-direction:column;
-      gap:10px;
+      text-decoration:none;
+      color:inherit;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:16px;
+      overflow:hidden;
+      background:rgba(0,0,0,.18);
+      box-shadow:0 16px 40px rgba(0,0,0,.22);
+      transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+      min-height:100%;
     }
 
     .media-card:hover{
-      transform:translateY(-2px);
-      background:rgba(255,255,255,.06);
+      transform:translateY(-4px);
+      border-color:rgba(255,255,255,.16);
+      box-shadow:0 18px 50px rgba(0,0,0,.35);
+      background:rgba(255,255,255,.04);
     }
 
-    .media-top{
+    .media-card.violet{
+      background:linear-gradient(180deg, rgba(139,92,246,.10), rgba(0,0,0,.18));
+    }
+
+    .media-card.cyan{
+      background:linear-gradient(180deg, rgba(34,211,238,.10), rgba(0,0,0,.18));
+    }
+
+    .media-card.mix{
+      background:linear-gradient(180deg, rgba(255,110,170,.08), rgba(34,211,238,.06), rgba(0,0,0,.18));
+    }
+
+    .media-thumb{
+      aspect-ratio:16 / 9;
+      background:rgba(0,0,0,.28);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      overflow:hidden;
+    }
+
+    .media-thumb img{
+      display:block;
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      padding: 10px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.4));
+    }
+
+    .media-copy{
       display:flex;
-      align-items:center;
-      justify-content:space-between;
+      flex-direction:column;
       gap:10px;
+      padding:18px;
+      flex:1;
     }
 
-    .media-number{
-      width:42px;
-      height:42px;
-      border-radius:12px;
-      display:grid;
-      place-items:center;
-      font-weight:700;
-      border:1px solid rgba(255,255,255,.12);
-      background:rgba(174, 102, 255, .16);
+    .card-kicker{
+      margin:0;
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      opacity:.7;
     }
 
-    .media-tag{
-      border-radius:999px;
-      padding:6px 10px;
-      font-size:.8rem;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.05);
-      opacity:.9;
+    .media-copy h2{
+      margin:0;
+      font-size:1.6rem;
+      line-height:1.05;
     }
 
-    .media-link{
+    .media-copy p{
+      margin:0;
+      line-height:1.6;
+    }
+
+    .media-bottom{
       margin-top:auto;
-      opacity:.86;
-      font-size:.95rem;
+      padding-top:8px;
     }
 
-    .values-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
+    .media-cta{
+      font-weight:800;
+      color:var(--text);
     }
 
-    .value-card,
-    .info-card{
-      padding:22px;
-    }
-
-    .split{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
-
-    .info-card.accent{
-      background:
-        linear-gradient(180deg, rgba(174, 102, 255, .14), rgba(255,255,255,.03));
-    }
-
-    @media (max-width: 1020px){
-      .media-grid,
-      .values-grid{
+    @media (max-width: 700px){
+      .media-grid{
         grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 900px){
-      .hero-media,
-      .split{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 640px){
-      .hero-copy,
-      .hero-panel,
-      .media-card,
-      .value-card,
-      .info-card{
-        padding:18px;
-      }
-
-      h1{
-        font-size:2.35rem;
       }
     }
   </style>
+
 </BaseLayout>
 ```
 
@@ -9862,63 +10355,104 @@ const values = [
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
-//const imgUrl = `${base}images/media/moodboard.jpg`;
-const imgUrl = `${base}images/media/Moodboard_QR.png`;
-
+const moodboard = `${base}images/media/Moodboard_QR.png`;
 ---
 
-<BaseLayout
-  title="Kaelum — Moodboard"
-  description="Tono, arte, universo y promesa de Kaelum.">
+<BaseLayout title="Kaelum — Moodboard">
   <section class="hero">
     <p class="kicker">Visión</p>
     <h1>Moodboard</h1>
     <p class="lead">
-      Cada disparo cuenta. Cada decisión pesa.
-      Kaelum no busca ser complaciente: busca ser honesto.
+      Cada disparo cuenta. Cada decisión pesa. Kaelum no busca ser complaciente:
+      busca ser honesto.
     </p>
 
     <div class="actions noprint">
-      <a class="btn" href={`${base}media/`}>Volver a Visión</a>
-      <a class="btn primary" href={imgUrl} download>Descargar imagen</a>
+      <a class="btn" href={`${base}media/`}>Volver a Media</a>
+      <a class="btn primary" href={moodboard} download>Descargar imagen</a>
     </div>
   </section>
 
-  <section class="card full">
-    <img
-      src={imgUrl}
-      alt="Moodboard de Kaelum"
-      style="width:100%; border-radius: var(--radius);"
-      loading="eager"
-    />
+  <section class="moodboard-wrap">
+    <img src={moodboard} class="moodboard-img" />
   </section>
 
-  <div class="grid">
-    <div class="card">
-      <h3>Qué es Kaelum</h3>
-      <p class="muted">
-        Shooter en primera persona donde juegas tú, no el sistema.
-        Combate claro, decisiones reales y aprendizaje constante.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Por qué es diferente</h3>
-      <p class="muted">
-        Sin progreso artificial.
-        Sin héroes invencibles.
-        Si fallas, lo sabes. Si ganas, te lo has ganado.
-      </p>
-    </div>
-
-    <div class="card full">
-      <h3>Tono, arte y universo</h3>
-      <p class="muted">
-        El arte no satura: acompaña.
-        El mundo se descubre jugando, no mirando cinemáticas.
-      </p>
-    </div>
+  <div id="lightbox" class="lightbox">
+    <img id="lightbox-img" />
   </div>
+
+  <style>
+    .moodboard-wrap {
+      margin-top: 28px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: transparent;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .moodboard-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 16px;
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s;
+      z-index: 999;
+    }
+
+    .lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      border-radius: 12px;
+    }
+
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const images = document.querySelectorAll<HTMLImageElement>("img");
+
+      const lightbox = document.getElementById("lightbox");
+
+      const lightboxImg = document.getElementById(
+        "lightbox-img",
+      ) as HTMLImageElement;
+
+      if (!lightbox || !lightboxImg) {
+        console.warn(
+          "No se encontraron los elementos del lightbox en el HTML.",
+        );
+        return;
+      }
+
+      images.forEach((img) => {
+        img.addEventListener("click", () => {
+          lightbox.classList.add("open");
+
+          lightboxImg.src = img.src;
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("open");
+      });
+    });
+  </script>
 </BaseLayout>
 ```
 
@@ -9931,340 +10465,216 @@ const imgUrl = `${base}images/media/Moodboard_QR.png`;
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
-// Sustituye esta URL por la real cuando la tengas
-const trailerUrl = "https://www.youtube.com/embed/dQw4w9WgXcQ";
-
-const highlights = [
-  {
-    title: "Presentación del tono",
-    desc:
-      "El tráiler debe transmitir la identidad de Kaelum desde el primer momento: atmósfera, tensión, mundo y presencia del protagonista.",
-  },
-  {
-    title: "Lectura rápida del gameplay",
-    desc:
-      "Además de vender visualmente el proyecto, la pieza tiene que dejar entrever combate, exploración, interfaz y ritmo general del juego.",
-  },
-  {
-    title: "Función de portfolio",
-    desc:
-      "Este vídeo no solo promociona el juego: también ayuda a que cualquier evaluador o visitante entienda el proyecto en muy poco tiempo.",
-  },
-];
-
-const structure = [
-  "Apertura con identidad visual y tono general",
-  "Muestra breve del mundo y del protagonista",
-  "Momentos de gameplay y combate",
-  "Cierre con nombre, branding y llamada a la acción",
-];
+const trailerId = "78rj5zVb8pQ"; // cambia esto
+const youtubeUrl = `https://www.youtube.com/watch?v=${trailerId}`;
+const embedUrl = `https://www.youtube.com/embed/${trailerId}`;
 ---
 
 <BaseLayout
-  title="Kaelum — Tráiler"
-  description="Tráiler del proyecto Kaelum: pieza audiovisual para presentar el tono, el mundo y el gameplay del videojuego."
+  title="Kaelum — Trailer"
+  description="Trailer oficial del proyecto Kaelum. Una mirada al tono, el mundo y la experiencia del juego."
 >
-  <section class="hero hero-trailer">
-    <div class="hero-copy">
-      <p class="kicker">Pieza audiovisual</p>
-      <h1>Tráiler</h1>
 
-      <p class="lead">
-        Esta sección reúne la pieza de vídeo principal del proyecto. Su objetivo es enseñar
-        <strong> Kaelum de forma rápida, visual y atractiva</strong>, condensando en pocos segundos
-        la identidad del mundo, el tono del juego y una lectura general de la experiencia.
-      </p>
+<section class="hero hero-trailer">
 
-      <div class="actions">
-        <a class="btn primary" href="#video">Ver tráiler</a>
-        <a class="btn" href={`${base}media/galeria/`}>Ir a Galería</a>
-        <a class="btn" href={`${base}juego/`}>Ver Juego</a>
-      </div>
+  <div class="hero-copy">
+
+    <p class="kicker">Media · Video</p>
+    <h1>Trailer</h1>
+
+    <p class="lead">
+      Esta pieza audiovisual resume la atmósfera, el tono narrativo y la identidad
+      visual del proyecto <strong>Kaelum</strong>. Más que un simple vídeo, funciona
+      como una primera puerta de entrada al mundo del juego.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href={youtubeUrl} target="_blank">
+        Ver en YouTube
+      </a>
+
+      <a class="btn" href={`${base}media/`}>
+        Volver a Media
+      </a>
     </div>
 
-    <aside class="hero-panel">
-      <p class="panel-kicker">Qué aporta este bloque</p>
-      <h2>Una forma directa de enseñar el proyecto</h2>
-      <p>
-        Frente a páginas más largas o explicativas, el tráiler permite que cualquier persona
-        capte muy rápido la esencia visual y jugable de Kaelum. Funciona como resumen, carta
-        de presentación y apoyo a la evaluación del portfolio.
-      </p>
+  </div>
 
-      <ul class="panel-list">
-        <li><strong>Tono:</strong> atmósfera e identidad visual.</li>
-        <li><strong>Gameplay:</strong> lectura rápida del juego en movimiento.</li>
-        <li><strong>Presentación:</strong> pieza clara para portfolio y defensa.</li>
-      </ul>
-    </aside>
-  </section>
+  <aside class="hero-panel">
 
-  <section class="section" id="video">
-    <header class="section-head">
-      <p class="kicker">Vídeo embebido</p>
-      <h2>Visualización del tráiler</h2>
-      <p class="section-lead">
-        Aquí se incrusta la pieza audiovisual principal del proyecto. Cuando tengas la versión final,
-        solo tendrás que cambiar la URL del vídeo.
-      </p>
-    </header>
+    <p class="panel-kicker">Sobre este vídeo</p>
+    <h2>Presentación del proyecto</h2>
 
-    <div class="video-card">
-      <div class="video-shell">
-        <iframe
-          src={trailerUrl}
-          title="Tráiler de Kaelum"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-          loading="lazy"
-        ></iframe>
-      </div>
+    <p>
+      El tráiler presenta de forma condensada el estilo visual,
+      la ambientación y algunas ideas clave del universo de Kaelum.
+      Su objetivo es transmitir rápidamente qué tipo de experiencia
+      propone el juego.
+    </p>
 
-      <div class="video-actions">
-        <a class="btn primary" href={trailerUrl.replace("/embed/", "/watch?v=")} target="_blank" rel="noreferrer">
-          Abrir en YouTube
-        </a>
-        <a class="btn" href={`${base}media/`}>Volver a Media</a>
-      </div>
-    </div>
-  </section>
+    <ul class="panel-list">
+      <li><strong>Atmosfera:</strong> tono visual y ambientación.</li>
+      <li><strong>Identidad:</strong> estilo artístico del proyecto.</li>
+      <li><strong>Dirección:</strong> narrativa y ritmo.</li>
+      <li><strong>Presentación:</strong> introducción al universo Kaelum.</li>
+    </ul>
 
-  <section class="section">
-    <header class="section-head">
-      <p class="kicker">Qué debe enseñar</p>
-      <h2>Objetivos del tráiler</h2>
-      <p class="section-lead">
-        El vídeo no debería limitarse a ser bonito: tiene que enseñar lo justo y dejar clara la propuesta del juego.
-      </p>
-    </header>
+  </aside>
 
-    <div class="highlights-grid">
-      {highlights.map((item) => (
-        <article class="highlight-card">
-          <h3>{item.title}</h3>
-          <p>{item.desc}</p>
-        </article>
-      ))}
-    </div>
-  </section>
+</section>
 
-  <section class="section split">
-    <article class="info-card">
-      <p class="kicker">Estructura sugerida</p>
-      <h2>Cómo debería construirse la pieza</h2>
-      <ul class="structure-list">
-        {structure.map((item) => <li>{item}</li>)}
-      </ul>
-    </article>
 
-    <article class="info-card accent">
-      <p class="kicker">Continuidad del recorrido</p>
-      <h2>Después del tráiler, toca explorar la galería</h2>
-      <p>
-        Una vez vista la pieza audiovisual, lo más natural es pasar a la
-        <strong> Galería</strong>, donde se concentra el resto del material gráfico del proyecto:
-        UI, moodboard, branding, diagramas y arte ya incorporado.
-      </p>
+<section class="section section-video">
 
-      <div class="actions">
-        <a class="btn primary" href={`${base}media/galeria/`}>Ir a la Galería</a>
-      </div>
-    </article>
-  </section>
+  <header class="section-head">
+    <p class="kicker">Visualización</p>
+    <h2>Trailer del proyecto</h2>
+  </header>
 
-  <style>
-    .hero-trailer{
-      display:grid;
-      grid-template-columns:1.35fr .95fr;
-      gap:24px;
-      align-items:stretch;
-    }
+  <div class="video-container">
 
-    .hero-copy,
-    .hero-panel,
-    .video-card,
-    .highlight-card,
-    .info-card{
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      border-radius:18px;
-      backdrop-filter:blur(8px);
-    }
+    <iframe
+      src={embedUrl}
+      title="Trailer Kaelum"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy"
+    ></iframe>
 
-    .hero-copy{
-      padding:28px;
-    }
+  </div>
 
-    .hero-panel{
-      padding:24px;
-      background:linear-gradient(180deg, rgba(255,95,95,.12), rgba(255,255,255,.03));
-    }
+</section>
 
-    .kicker,
-    .panel-kicker{
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      opacity:.75;
-      margin:0 0 8px;
-      font-size:.82rem;
-    }
 
-    h1{
-      margin:0 0 12px;
-      font-size:clamp(2.6rem, 6vw, 4.2rem);
-      line-height:.95;
-    }
+<style>
 
-    h2{
-      margin:0 0 10px;
-      font-size:clamp(1.55rem, 2.8vw, 2.15rem);
-      line-height:1.05;
-    }
+.hero-trailer{
+display:grid;
+grid-template-columns:1.35fr .95fr;
+gap:24px;
+align-items:stretch;
+}
 
-    h3{
-      margin:0 0 10px;
-      font-size:1.12rem;
-    }
+.hero-copy,
+.hero-panel{
+border:1px solid rgba(255,255,255,.10);
+background:rgba(255,255,255,.04);
+border-radius:18px;
+padding:28px;
+backdrop-filter:blur(8px);
+}
 
-    .lead,
-    .section-lead,
-    .hero-panel p,
-    .highlight-card p,
-    .info-card p{
-      line-height:1.6;
-      opacity:.94;
-      margin:0;
-      text-align:justify;
-    }
+.hero-panel{
+background:linear-gradient(
+180deg,
+rgba(120,140,255,.12),
+rgba(255,255,255,.02)
+);
+}
 
-    .actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:18px;
-    }
+.kicker,
+.panel-kicker{
+letter-spacing:.08em;
+text-transform:uppercase;
+opacity:.7;
+font-size:.82rem;
+margin:0 0 8px;
+}
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:0 16px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(255,255,255,.04);
-      color:inherit;
-      text-decoration:none;
-      transition:.18s ease;
-    }
+h1{
+margin:0 0 12px;
+font-size:clamp(2.5rem,6vw,4rem);
+line-height:.95;
+}
 
-    .btn:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.08);
-    }
+h2{
+margin:0 0 10px;
+font-size:clamp(1.5rem,2.8vw,2.1rem);
+}
 
-    .btn.primary{
-      background:linear-gradient(180deg, rgba(255,95,95,.28), rgba(255,95,95,.14));
-      border-color:rgba(255,145,145,.34);
-      box-shadow:0 10px 24px rgba(120,20,20,.18);
-    }
+.lead{
+line-height:1.6;
+opacity:.95;
+max-width:720px;
+}
 
-    .panel-list{
-      margin:16px 0 0;
-      padding-left:18px;
-      display:grid;
-      gap:10px;
-      line-height:1.5;
-    }
+.panel-list{
+margin-top:16px;
+padding-left:18px;
+display:grid;
+gap:10px;
+}
 
-    .section{
-      margin-top:28px;
-    }
+.actions{
+margin-top:18px;
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
 
-    .section-head{
-      margin-bottom:14px;
-    }
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-height:42px;
+padding:0 16px;
+border-radius:999px;
+border:1px solid rgba(255,255,255,.14);
+background:rgba(255,255,255,.04);
+text-decoration:none;
+color:inherit;
+transition:.18s ease;
+}
 
-    .video-card{
-      padding:18px;
-    }
+.btn:hover{
+transform:translateY(-1px);
+background:rgba(255,255,255,.08);
+}
 
-    .video-shell{
-      position:relative;
-      width:100%;
-      padding-top:56.25%;
-      border-radius:14px;
-      overflow:hidden;
-      background:rgba(0,0,0,.22);
-      border:1px solid rgba(255,255,255,.08);
-    }
+.btn.primary{
+background:linear-gradient(
+180deg,
+rgba(174,102,255,.30),
+rgba(174,102,255,.14)
+);
+border-color:rgba(208,156,255,.34);
+box-shadow:0 10px 24px rgba(88,20,120,.18);
+}
 
-    .video-shell iframe{
-      position:absolute;
-      inset:0;
-      width:100%;
-      height:100%;
-      border:0;
-    }
+.section{
+margin-top:28px;
+}
 
-    .video-actions{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:14px;
-    }
+.section-head{
+margin-bottom:16px;
+}
 
-    .highlights-grid{
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0,1fr));
-      gap:14px;
-    }
+.video-container{
+position:relative;
+aspect-ratio:16/9;
+border-radius:18px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.10);
+background:rgba(0,0,0,.2);
+}
 
-    .highlight-card,
-    .info-card{
-      padding:22px;
-    }
+.video-container iframe{
+width:100%;
+height:100%;
+display:block;
+}
 
-    .split{
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0,1fr));
-      gap:14px;
-    }
+@media (max-width:900px){
 
-    .info-card.accent{
-      background:linear-gradient(180deg, rgba(255,95,95,.12), rgba(255,255,255,.03));
-    }
+.hero-trailer{
+grid-template-columns:1fr;
+}
 
-    .structure-list{
-      margin:0;
-      padding-left:18px;
-      display:grid;
-      gap:10px;
-      line-height:1.55;
-    }
+}
 
-    @media (max-width: 980px){
-      .hero-trailer,
-      .highlights-grid,
-      .split{
-        grid-template-columns:1fr;
-      }
-    }
+</style>
 
-    @media (max-width: 640px){
-      .hero-copy,
-      .hero-panel,
-      .video-card,
-      .highlight-card,
-      .info-card{
-        padding:18px;
-      }
-
-      h1{
-        font-size:2.35rem;
-      }
-    }
-  </style>
 </BaseLayout>
 ```
 

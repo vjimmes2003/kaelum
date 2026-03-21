@@ -7,7 +7,7 @@ const base = import.meta.env.BASE_URL;
   title="Kaelum — Cinemáticas"
   description="Escenas narrativas y cinemáticas completas de Kaelum: dirección visual, storyboard, carga emocional y diseño audiovisual."
 >
-  <section class="hero">
+  <section class="hero cine-hero">
     <header class="header">
       <p class="kicker">GDD · Dirección Cinemática</p>
       <h1>Cinemáticas</h1>
@@ -17,7 +17,7 @@ const base = import.meta.env.BASE_URL;
         redefine cómo el jugador entiende el mundo.
       </p>
 
-      <div class="actions">
+      <div class="actions hero-actions">
         <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
         <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
         <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
@@ -31,6 +31,7 @@ const base = import.meta.env.BASE_URL;
       </div>
     </header>
   </section>
+
   <section class="gdd-section">
     <article class="card">
       <h2>Estructura narrativa audiovisual</h2>
@@ -59,7 +60,7 @@ const base = import.meta.env.BASE_URL;
 
       <div class="subcard">
         <h3>Objetivo narrativo</h3>
-        <ul>
+        <ul class="list">
           <li>El protagonista era normal.</li>
           <li>El eclipse es anómalo.</li>
           <li>Solo él reacciona.</li>
@@ -75,7 +76,7 @@ const base = import.meta.env.BASE_URL;
 
       <div class="subcard">
         <h3>Dirección visual</h3>
-        <ul>
+        <ul class="list">
           <li>Transición cálido → púrpura → oscuridad → rural apagado.</li>
           <li>Glitches progresivos.</li>
           <li>Latido en negro total.</li>
@@ -94,7 +95,7 @@ const base = import.meta.env.BASE_URL;
 
       <div class="subcard">
         <h3>Escenario</h3>
-        <ul>
+        <ul class="list">
           <li>Plaza central de Vesperia.</li>
           <li>Guardias movilizados.</li>
           <li>Multitud alterada.</li>
@@ -119,7 +120,7 @@ const base = import.meta.env.BASE_URL;
 
       <div class="subcard">
         <h4>Revelación</h4>
-        <ul>
+        <ul class="list">
           <li>Registros sellados.</li>
           <li>Sacrificios aceptados como “coste”.</li>
           <li>Gran Maestro convencido de su postura.</li>
@@ -161,39 +162,59 @@ const base = import.meta.env.BASE_URL;
         No es estético. Es estructural.
       </div>
     </article>
-    <div class="actions">
-      <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
-      <a class="btn primary" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
-      <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
-      <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
-      <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
-    </div>
   </section>
-
+  <div class="actions hero-actions">
+    <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+    <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+    <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+    <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+    <a class="btn primary" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+    <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+    <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+    <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+    <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+  </div>
   <style>
-    .header {
-      margin-bottom: 20px;
+    .cine-hero {
+      position: relative;
+      overflow: hidden;
     }
 
-    .kicker {
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      opacity: 0.7;
-      font-size: 0.85rem;
-    }
-
-    .lead {
-      margin-top: 6px;
-      line-height: 1.6;
+    .cine-hero::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          900px 280px at 16% 0%,
+          rgba(255, 110, 170, 0.08),
+          transparent 65%
+        ),
+        radial-gradient(
+          760px 280px at 88% 10%,
+          rgba(139, 92, 246, 0.08),
+          transparent 60%
+        );
       opacity: 0.9;
     }
 
-    .card {
+    .cine-hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      margin-top: 16px;
+    }
+
+    .gdd-section {
       margin-top: 18px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .card {
       padding: 18px;
       border-radius: 14px;
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -210,6 +231,7 @@ const base = import.meta.env.BASE_URL;
       padding: 14px;
       border-radius: 12px;
       background: rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
 
     .bullets {
@@ -235,21 +257,40 @@ const base = import.meta.env.BASE_URL;
     }
 
     .pill.good {
-      background: rgba(100, 255, 170, 0.07);
-    }
-    .pill.neutral {
-      background: rgba(255, 220, 120, 0.07);
-    }
-    .pill.bad {
-      background: rgba(255, 90, 140, 0.07);
+      background: linear-gradient(
+        180deg,
+        rgba(120, 210, 150, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
     }
 
-    .callout {
+    .pill.neutral {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 190, 90, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+
+    .pill.bad {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 110, 170, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+
+    .bottom-actions {
+      margin-top: 2px;
+    }
+    .hero-actions {
       margin-top: 18px;
-      padding: 14px;
-      border-radius: 12px;
-      border: 1px dashed rgba(255, 255, 255, 0.2);
-      opacity: 0.85;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
+    }
+    .hero-actions a {
+      flex: 1 1 200px;
     }
   </style>
 </BaseLayout>

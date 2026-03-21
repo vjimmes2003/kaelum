@@ -4,431 +4,416 @@ const base = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout
-    title="Kaelum — Personajes"
-    description="Personajes principales de Kaelum: Kael, Liora, Maeren y el Gran Maestro. Rol narrativo, motivaciones y presencia en gameplay."
+  title="Kaelum — Personajes"
+  description="Personajes principales de Kaelum: Kael, Liora, Maeren y el Gran Maestro. Rol narrativo, motivaciones y presencia en gameplay."
 >
-    <section class="hero" id="personajes">
-        <header class="header">
-            <p class="kicker">GDD · Modo Historia</p>
-            <h2>Personajes</h2>
-            <p class="lead">
-                En Kaelum, los personajes no están para “contar lore”: están
-                para empujarte a decisiones. Kael es el centro del conflicto,
-                Liora es el ancla humana, Maeren es la raíz, y el Gran Maestro
-                es el sistema con cara.
+  <section class="hero chars-hero" id="personajes">
+    <header class="header">
+      <p class="kicker">GDD · Modo Historia</p>
+      <h1>Personajes</h1>
+      <p class="lead">
+        En Kaelum, los personajes no están para “contar lore”: están para
+        empujarte a decisiones. Kael es el centro del conflicto, Liora es el
+        ancla humana, Maeren es la raíz, y el Gran Maestro es el sistema con
+        cara.
+      </p>
+
+      <div class="actions hero-actions">
+        <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+        <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+        <a class="btn primary" href={`${base}juego/04cinematicas/`}
+          >Ver Cinemáticas</a
+        >
+        <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+        <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+        <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+        <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+      </div>
+    </header>
+  </section>
+
+  <section class="card-container">
+    <article class="card featured-card">
+      <h2>Kael</h2>
+
+      <div class="pgrid">
+        <div class="portrait">
+          <img
+            src={`${base}assets/personajes/kael.webp`}
+            alt="Ilustración de Kael"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="pcontent">
+          <p class="muted">
+            Joven adulto (25–30). No busca ser héroe: busca demostrar que su
+            existencia no es un error. Su arco no va de “ser más fuerte”, va de
+            decidir qué tipo de persona es cuando el poder deja de ser teoría.
+          </p>
+
+          <div class="chips">
+            <span class="chip">Frases cortas</span>
+            <span class="chip">Ironía defensiva</span>
+            <span class="chip">Moral obstinada</span>
+            <span class="chip">Poder como riesgo</span>
+          </div>
+
+          <div class="grid2">
+            <div class="subcard">
+              <h4>Objetivo interno</h4>
+              <p>
+                Que el mundo deje de tratarlo como amenaza.
+                <br />Vivir sin tener que justificarse.
+              </p>
+            </div>
+            <div class="subcard">
+              <h4>Objetivo externo</h4>
+              <p>
+                Decidir el destino del Orbe del Origen y el futuro de La Fisura.
+              </p>
+            </div>
+          </div>
+
+          <div class="subcard">
+            <h4>Relación con el poder</h4>
+            <p>
+              Empieza con miedo y supervivencia. Evoluciona a desconfianza
+              lúcida. El final lo define: ayudar a todos, apartarse y delegar, o
+              abrazar la caída y volverse el monstruo que esperaban.
             </p>
+          </div>
 
-            <div class="actions">
-                <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-                <a class="btn" href={`${base}juego/01historia/`}
-                    >Ver Historia</a
-                >
-                <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
-                <a class="btn primary" href={`${base}juego/04cinematicas/`}
-                    >Ver cinemáticas</a
-                >
-                <a class="btn" href={`${base}juego/05enemigos/`}
-                    >Ver Enemigos</a
-                >
-                <a class="btn" href={`${base}juego/06progreso/`}
-                    >Ver Progreso</a
-                >
-                <a class="btn" href={`${base}juego/07mecanicas/`}
-                    >Ver Mecánicas</a
-                >
-                <a class="btn" href={`${base}juego/08flujo/`}
-                    >Ver Flujo de estados</a
-                >
-                <a class="btn" href={`${base}juego/09interfaz/`}
-                    >Ver Interfaz</a
-                >
+          <blockquote class="quote">
+            <p>“No necesita otro tirano.”</p>
+            <cite>Kael</cite>
+          </blockquote>
+
+          <div class="subcard">
+            <h4>Arma icónica</h4>
+            <p>
+              Una espada heredada de Maeren. No es “la mejor” para un shooter…
+              por eso pesa más: la lleva como recordatorio de quién confió en él
+              cuando nadie lo hacía.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Liora</h2>
+
+      <div class="pgrid">
+        <div class="portrait">
+          <img
+            src={`${base}assets/personajes/liora.webp`}
+            alt="Ilustración de Liora"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="pcontent">
+          <p class="muted">
+            Liora es el punto raro del mundo: alguien que mira a Kael y ve
+            persona, no leyenda. No sabe la verdad del Orbe ni las cloacas
+            políticas del consejo. Su papel es humano: confianza, vínculo y
+            pérdida.
+          </p>
+
+          <div class="chips">
+            <span class="chip">Ancla emocional</span>
+            <span class="chip">Confianza difícil</span>
+            <span class="chip">Rechazo del mundo</span>
+            <span class="chip">Tragedia inevitable</span>
+          </div>
+
+          <div class="grid2">
+            <div class="subcard">
+              <h4>Qué es para Kael</h4>
+              <p>
+                La persona que lo llena. El “si existe alguien bueno aquí, quizá
+                todavía no está todo roto”.
+              </p>
             </div>
-        </header>
-    </section>
-    <section class="card-container">
-        <article class="card">
-            <h3>Kael</h3>
-
-            <div class="pgrid">
-                <div class="portrait">
-                    <img
-                        src={`${base}assets/personajes/kael.webp`}
-                        alt="Ilustración de Kael"
-                        loading="lazy"
-                    />
-                </div>
-
-                <div class="pcontent">
-                    <p class="muted">
-                        Joven adulto (25–30). No busca ser héroe: busca
-                        demostrar que su existencia no es un error. Su arco no
-                        va de “ser más fuerte”, va de decidir qué tipo de
-                        persona es cuando el poder deja de ser teoría.
-                    </p>
-
-                    <div class="chips">
-                        <span class="chip">Frases cortas</span>
-                        <span class="chip">Ironía defensiva</span>
-                        <span class="chip">Moral obstinada</span>
-                        <span class="chip">Poder como riesgo</span>
-                    </div>
-
-                    <div class="grid2">
-                        <div class="subcard">
-                            <h4>Objetivo interno</h4>
-                            <p>
-                                Que el mundo deje de tratarlo como amenaza.
-                                <br />Vivir sin tener que justificarse.
-                            </p>
-                        </div>
-                        <div class="subcard">
-                            <h4>Objetivo externo</h4>
-                            <p>
-                                Decidir el destino del Orbe del Origen y el
-                                futuro de La Fisura.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="subcard">
-                        <h4>Relación con el poder</h4>
-                        <p>
-                            Empieza con miedo y supervivencia. Evoluciona a
-                            desconfianza lúcida. El final lo define: ayudar a
-                            todos, apartarse y delegar, o abrazar la caída y
-                            volverse el monstruo que esperaban.
-                        </p>
-                    </div>
-
-                    <blockquote class="quote">
-                        <p>“No necesita otro tirano.”</p>
-                        <cite>Kael</cite>
-                    </blockquote>
-
-                    <div class="subcard">
-                        <h4>Arma icónica</h4>
-                        <p>
-                            Una espada heredada de Maeren. No es “la mejor” para
-                            un shooter… por eso pesa más: la lleva como
-                            recordatorio de quién confió en él cuando nadie lo
-                            hacía.
-                        </p>
-                    </div>
-                </div>
+            <div class="subcard">
+              <h4>Función jugable</h4>
+              <p>
+                Apoya el peso de decisiones (ayudar / fallar / consecuencias), y
+                marca el coste real antes del clímax.
+              </p>
             </div>
-        </article>
+          </div>
 
-        <article class="card">
-            <h3>Liora</h3>
+          <div class="subcard">
+            <h4>Momento clave</h4>
+            <p>
+              Su muerte ocurre durante el avance hacia la batalla final, en
+              medio del caos (restos de La Orden y anomalías). No es “castigo al
+              jugador”: es una verdad del mundo. Hay cosas que la guerra no
+              negocia.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
 
-            <div class="pgrid">
-                <div class="portrait">
-                    <img
-                        src={`${base}assets/personajes/liora.webp`}
-                        alt="Ilustración de Liora"
-                        loading="lazy"
-                    />
-                </div>
+    <article class="card">
+      <h2>Maeren</h2>
 
-                <div class="pcontent">
-                    <p class="muted">
-                        Liora es el punto raro del mundo: alguien que mira a
-                        Kael y ve persona, no leyenda. No sabe la verdad del
-                        Orbe ni las cloacas políticas del consejo. Su papel es
-                        humano: confianza, vínculo y pérdida.
-                    </p>
+      <div class="pgrid">
+        <div class="portrait">
+          <img
+            src={`${base}assets/personajes/maeren.webp`}
+            alt="Ilustración de Maeren"
+            loading="lazy"
+          />
+        </div>
 
-                    <div class="chips">
-                        <span class="chip">Ancla emocional</span>
-                        <span class="chip">Confianza difícil</span>
-                        <span class="chip">Rechazo del mundo</span>
-                        <span class="chip">Tragedia inevitable</span>
-                    </div>
+        <div class="pcontent">
+          <p class="muted">
+            Mentor y única figura real de confianza para Kael. La voz que le
+            enseñó a sostenerse cuando todo lo demás lo empujaba al barro. Muere
+            (o desaparece) 5 años antes de los eventos del juego. Su ausencia se
+            convierte en sistema: memorias, taller, legado.
+          </p>
 
-                    <div class="grid2">
-                        <div class="subcard">
-                            <h4>Qué es para Kael</h4>
-                            <p>
-                                La persona que lo llena. El “si existe alguien
-                                bueno aquí, quizá todavía no está todo roto”.
-                            </p>
-                        </div>
-                        <div class="subcard">
-                            <h4>Función jugable</h4>
-                            <p>
-                                Apoya el peso de decisiones (ayudar / fallar /
-                                consecuencias), y marca el coste real antes del
-                                clímax.
-                            </p>
-                        </div>
-                    </div>
+          <div class="chips">
+            <span class="chip">Mentor</span>
+            <span class="chip">Legado</span>
+            <span class="chip">Memorias</span>
+            <span class="chip">Herida abierta</span>
+          </div>
 
-                    <div class="subcard">
-                        <h4>Momento clave</h4>
-                        <p>
-                            Su muerte ocurre durante el avance hacia la batalla
-                            final, en medio del caos (restos de La Orden y
-                            anomalías). No es “castigo al jugador”: es una
-                            verdad del mundo. Hay cosas que la guerra no
-                            negocia.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </article>
+          <div class="subcard">
+            <h4>Función narrativa</h4>
+            <p>
+              El Taller Silencioso y las Memorias no son “flashbacks bonitos”:
+              son piezas de comprensión. Te dan mecánicas, contexto y un espejo
+              moral: qué significa controlar el poder sin convertirte en excusa.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
 
-        <article class="card">
-            <h3>Maeren</h3>
+    <article class="card">
+      <h2>Gran Maestro</h2>
 
-            <div class="pgrid">
-                <div class="portrait">
-                    <img
-                        src={`${base}assets/personajes/maeren.webp`}
-                        alt="Ilustración de Maeren"
-                        loading="lazy"
-                    />
-                </div>
+      <div class="pgrid">
+        <div class="portrait">
+          <img
+            src={`${base}assets/personajes/gran-maestro.webp`}
+            alt="Ilustración del Gran Maestro"
+            loading="lazy"
+          />
+        </div>
 
-                <div class="pcontent">
-                    <p class="muted">
-                        Mentor y única figura real de confianza para Kael. La
-                        voz que le enseñó a sostenerse cuando todo lo demás lo
-                        empujaba al barro. Muere (o desaparece) 5 años antes de
-                        los eventos del juego. Su ausencia se convierte en
-                        sistema: memorias, taller, legado.
-                    </p>
+        <div class="pcontent">
+          <p class="muted">
+            No es un villano de caricatura. Es una idea con mando: “estabilidad
+            a cualquier precio”. Representa el control como doctrina, y el Orbe
+            como herramienta. Si el mundo te teme, él lo usa.
+          </p>
 
-                    <div class="chips">
-                        <span class="chip">Mentor</span>
-                        <span class="chip">Legado</span>
-                        <span class="chip">Memorias</span>
-                        <span class="chip">Herida abierta</span>
-                    </div>
+          <div class="chips">
+            <span class="chip">Control</span>
+            <span class="chip">Doctrina</span>
+            <span class="chip">Poder legitimado</span>
+            <span class="chip">Frialdad política</span>
+          </div>
 
-                    <div class="subcard">
-                        <h4>Función narrativa</h4>
-                        <p>
-                            El Taller Silencioso y las Memorias no son
-                            “flashbacks bonitos”: son piezas de comprensión. Te
-                            dan mecánicas, contexto y un espejo moral: qué
-                            significa controlar el poder sin convertirte en
-                            excusa.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </article>
-
-        <article class="card">
-            <h3>Gran Maestro</h3>
-
-            <div class="pgrid">
-                <div class="portrait">
-                    <img
-                        src={`${base}assets/personajes/gran-maestro.webp`}
-                        alt="Ilustración del Gran Maestro"
-                        loading="lazy"
-                    />
-                </div>
-
-                <div class="pcontent">
-                    <p class="muted">
-                        No es un villano de caricatura. Es una idea con mando:
-                        “estabilidad a cualquier precio”. Representa el control
-                        como doctrina, y el Orbe como herramienta. Si el mundo
-                        te teme, él lo usa.
-                    </p>
-
-                    <div class="chips">
-                        <span class="chip">Autoridad</span>
-                        <span class="chip">Control</span>
-                        <span class="chip">Consejo</span>
-                        <span class="chip">Orbe del Origen</span>
-                    </div>
-
-                    <div class="grid2">
-                        <div class="subcard">
-                            <h4>Lo que defiende</h4>
-                            <p>
-                                Orden, jerarquía, “paz” sostenida por
-                                sacrificios aceptados como daño colateral.
-                            </p>
-                        </div>
-                        <div class="subcard">
-                            <h4>Lo que provoca</h4>
-                            <p>
-                                Ruptura moral del Acto 2: cuando el jugador
-                                descubre que La Orden lo tenía… y lo usaba
-                                deliberadamente.
-                            </p>
-                        </div>
-                    </div>
-
-                    <blockquote class="quote">
-                        <p>“El mundo necesita control.”</p>
-                        <cite>Gran Maestro</cite>
-                    </blockquote>
-                </div>
-            </div>
-        </article>
-    </section>
-    <div class="actions">
-<a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-                <a class="btn" href={`${base}juego/01historia/`}
-                    >Ver Historia</a
-                >
-                <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
-                <a class="btn primary" href={`${base}juego/04cinematicas/`}
-                    >Ver cinemáticas</a
-                >
-                <a class="btn" href={`${base}juego/05enemigos/`}
-                    >Ver Enemigos</a
-                >
-                <a class="btn" href={`${base}juego/06progreso/`}
-                    >Ver Progreso</a
-                >
-                <a class="btn" href={`${base}juego/07mecanicas/`}
-                    >Ver Mecánicas</a
-                >
-                <a class="btn" href={`${base}juego/08flujo/`}
-                    >Ver Flujo de estados</a
-                >
-                <a class="btn" href={`${base}juego/09interfaz/`}
-                    >Ver Interfaz</a
-                >
-    </div>
-</BaseLayout>
-
-<style>
-    .kicker {
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        opacity: 0.75;
-        margin: 0 0 6px;
-        font-size: 0.86rem;
+          <div class="subcard">
+            <h4>Función narrativa</h4>
+            <p>
+              Es la cara visible del sistema. No se presenta como monstruo, sino
+              como necesidad. Por eso inquieta más: lo terrible en él es que
+              puede sonar razonable.
+            </p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+  <div class="actions hero-actions">
+    <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+    <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+    <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+    <a class="btn primary" href={`${base}juego/04cinematicas/`}
+      >Ver Cinemáticas</a
+    >
+    <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+    <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+    <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+    <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+    <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
+  </div>
+  <style>
+    .chars-hero {
+      position: relative;
+      overflow: hidden;
     }
-    h2 {
-        margin: 0 0 10px;
-        font-size: 2rem;
+
+    .chars-hero::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          900px 280px at 14% 0%,
+          rgba(255, 110, 170, 0.1),
+          transparent 65%
+        ),
+        radial-gradient(
+          760px 280px at 88% 10%,
+          rgba(139, 92, 246, 0.08),
+          transparent 60%
+        );
+      opacity: 0.9;
     }
-    .lead {
-        margin: 0;
-        text-align: justify;
-        opacity: 0.92;
-        line-height: 1.55;
+
+    .chars-hero > * {
+      position: relative;
+      z-index: 1;
     }
+
+    .hero-actions {
+      margin-top: 16px;
+    }
+
     .card-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 5% 5%;
+      margin-top: 18px;
+      display: grid;
+      gap: 16px;
     }
-    .card {
-        flex: 1 1 45%;
-        display: flex;
-        flex-direction: column;
-        margin-top: 16px;
-        padding: 16px 16px;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 14px;
-        background: rgba(255, 255, 255, 0.04);
+
+    .featured-card {
+      border-color: rgba(255, 110, 170, 0.18);
+      background: linear-gradient(
+        180deg,
+        rgba(255, 110, 170, 0.08),
+        rgba(255, 255, 255, 0.03)
+      );
     }
 
     .pgrid {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 16px;
+      margin-top: 14px;
+      align-items: start;
     }
 
     .portrait {
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 14px;
-        background: rgba(0, 0, 0, 0.18);
-        padding: 10px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 260px;
-        overflow: hidden;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.18);
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
     .portrait img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-        filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.45));
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .pcontent p {
-        text-align: justify;
-    }
-    .muted {
-        opacity: 0.86;
-    }
-
-    .chips {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-top: 10px;
-    }
-    .chip {
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        background: rgba(255, 255, 255, 0.03);
-        color: rgba(255, 255, 255, 0.82);
-        padding: 6px 10px;
-        border-radius: 999px;
-        font-size: 0.85rem;
+    .pcontent {
+      display: grid;
+      gap: 12px;
     }
 
     .grid2 {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.85rem;
     }
 
     .subcard {
-        margin-top: 12px;
-        padding: 12px 12px;
-        border-radius: 12px;
-        border: 1px solid rgba(29, 11, 11, 0.1);
-        background: rgba(0, 0, 0, 0.18);
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.16);
     }
+
     .subcard h4 {
-        margin: 0 0 8px;
+      margin: 0 0 8px;
+      font-size: 1rem;
     }
+
     .subcard p {
-        margin: 0;
-        opacity: 0.92;
-        line-height: 1.5;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
     }
 
     .quote {
-        margin: 14px 0 0;
-        padding: 12px 12px;
-        border-left: 4px solid rgba(170, 120, 255, 0.65);
-        background: rgba(170, 120, 255, 0.08);
-        border-radius: 10px;
-    }
-    .quote p {
-        margin: 0 0 6px;
-        font-weight: 600;
-    }
-    .quote cite {
-        opacity: 0.8;
-        font-style: normal;
-        font-size: 0.92rem;
+      margin: 0;
+      padding: 14px;
+      border-left: 4px solid rgba(255, 110, 170, 0.4);
+      border-radius: 12px;
+      background: rgba(255, 110, 170, 0.08);
     }
 
-    @media (max-width: 860px) {
-        .pgrid {
-            grid-template-columns: 1fr;
-        }
-        .grid2 {
-            grid-template-columns: 1fr;
-        }
-        .portrait {
-            min-height: 220px;
-        }
+    .quote p {
+      margin: 0 0 6px;
+      font-weight: 700;
+      color: var(--text);
     }
-</style>
+
+    .quote cite {
+      font-style: normal;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .bottom-actions {
+      margin-top: 2px;
+    }
+
+    @media (max-width: 920px) {
+      .pgrid {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait {
+        min-height: 260px;
+      }
+
+      .grid2 {
+        grid-template-columns: 1fr;
+      }
+    }
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
+    }
+    .hero-actions a {
+      flex: 1 1 200px;
+    }
+  </style>
+</BaseLayout>

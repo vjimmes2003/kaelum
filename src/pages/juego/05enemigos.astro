@@ -361,15 +361,14 @@ const bosses = [
         recursos. Menos cantidad. Más identidad. Más intención.
       </p>
 
-      <div class="actions">
+      <div class="actions hero-actions">
         <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
         <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
         <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
         <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
-        <a class="btn primary" href={`${base}juego/04cinematicas/`}
-          >Ver Cinemáticas</a
+        <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn primary" href={`${base}juego/06progreso/`}>Ver Progreso</a
         >
-        <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
         <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
         <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
         <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
@@ -531,15 +530,13 @@ const bosses = [
       </div>
     </article>
 
-    <div class="actions bottom">
+    <div class="actions hero-actions">
       <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
       <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
       <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
       <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
-      <a class="btn primary" href={`${base}juego/04cinematicas/`}
-        >Ver Cinemáticas</a
-      >
-      <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+      <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn primary" href={`${base}juego/06progreso/`}>Ver Progreso</a>
       <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
       <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
       <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
@@ -954,6 +951,15 @@ const bosses = [
     }
     .actions.bottom {
       margin-top: 18px;
+    }
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
+    }
+    .hero-actions a {
+      flex: 1 1 200px;
     }
   </style>
 </BaseLayout>

@@ -2,305 +2,402 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 const base = import.meta.env.BASE_URL;
 
-const states = [
+const uiScreens = [
   {
     title: "Pantalla de inicio",
-    desc: "Primer contacto visual con el juego. Funciona como boot o splash screen antes de pasar al menú principal.",
+    file: `${base}images/ui/UI_PantallaDeInicio.webp`,
+    desc: "Primer impacto visual. Debe presentar tono, identidad y entrada al proyecto sin saturar.",
   },
   {
     title: "Menú principal",
-    desc: "Punto central de navegación. Desde aquí el jugador accede al modo historia, multijugador, opciones, créditos o salida.",
+    file: `${base}images/ui/UI_MenuPrincipal.webp`,
+    desc: "Centro de navegación. Tiene que ordenar opciones sin romper la atmósfera general de Kaelum.",
   },
   {
-    title: "Gameplay — Singleplayer",
-    desc: "Estado principal del modo historia. Aquí conviven exploración, combate, eventos narrativos, puzles y zonas seguras.",
-  },
-  {
-    title: "Gameplay — Multijugador",
-    desc: "Estado principal del competitivo. Incluye emparejamiento, selección de personajes, inicio de partida, rondas y resultados.",
+    title: "HUD gameplay",
+    file: `${base}images/ui/UI_HUD-Gameplay.webp`,
+    desc: "La interfaz que acompaña al jugador durante la partida. Debe informar sin invadir.",
   },
   {
     title: "Menú de pausa",
-    desc: "Suspensión temporal del estado activo. En singleplayer es pausa real; en multijugador, pausa individual no global.",
+    file: `${base}images/ui/UI_MenuPausa.webp`,
+    desc: "Interrupción funcional del juego. Útil, clara y coherente con el tono visual del resto.",
+  },
+  {
+    title: "Diario de viaje",
+    file: `${base}images/ui/UI_DiarioViaje.webp`,
+    desc: "Capa diegética o semidiegética para reforzar exploración, memoria y lectura del mundo.",
+  },
+  {
+    title: "Pantalla de victoria",
+    file: `${base}images/ui/UI_PantallaVictoria.webp`,
+    desc: "Cierre de misión o resultado positivo. Debe recompensar visualmente sin parecer otro juego.",
   },
   {
     title: "Game Over",
-    desc: "Se activa al morir en el modo historia. Incluye mensaje contextual, estadísticas y opciones de reintento o salida.",
-  },
-  {
-    title: "Victoria / Resultados",
-    desc: "Cierre de partida o finalización del juego. Recoge estadísticas, cinemática final o retorno al menú principal.",
+    file: `${base}images/ui/UI_GameOver.webp`,
+    desc: "Pantalla de derrota. Comunica fallo, tono y reintento sin cortar de forma torpe la experiencia.",
   },
 ];
 ---
 
 <BaseLayout
-  title="Kaelum — Flujo de estados"
-  description="Flujo de estados del juego: inicio, menú, gameplay, pausa, game over, victoria y resultados."
+  title="Kaelum — Interfaz"
+  description="Interfaz del proyecto Kaelum: pantallas, HUD y lectura visual de la experiencia."
 >
-  <section class="hero">
-    <p class="kicker">Juego · Flujo</p>
-    <h1>Flujo de estados del juego</h1>
-    <p class="lead">
-      Esta sección resume cómo se organiza la experiencia del jugador desde que inicia el juego
-      hasta que termina una partida. El objetivo es que la navegación sea clara tanto en singleplayer como en multijugador.
-    </p>
+  <section class="hero ui-hero">
+    <header class="header">
+      <p class="kicker">GDD · Interfaz</p>
+      <h1>Interfaz</h1>
+      <p class="lead">
+        La interfaz no es una capa aparte: es la forma en la que Kaelum le habla
+        al jugador. Ordena información, marca ritmo y acompaña la lectura del
+        mundo sin romper la inmersión.
+      </p>
 
-    <div class="actions">
-      <a class="btn primary" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
-      <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
-      <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo</a>
-    </div>
-
-    <nav class="subnav" aria-label="Índice de la página">
-      <a class="chip" href="#estados">Estados</a>
-      <a class="chip" href="#single">Singleplayer</a>
-      <a class="chip" href="#multi">Multijugador</a>
-      <a class="chip" href="#pausa">Pausa</a>
-      <a class="chip" href="#diagrama">Diagrama</a>
-    </nav>
+      <div class="actions hero-actions">
+        <a class="btn primary" href={`${base}juego/`}>Volver a Juego</a>
+        <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+        <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}juego/07mecanicas/`}
+          >Ver Mecánicas</a
+        >
+        <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+      </div>
+    </header>
   </section>
 
   <section class="gdd-section">
-    <article class="card full" id="estados">
-      <div class="label">// ESTADOS PRINCIPALES</div>
-      <h2>Panorama general</h2>
+    <article class="card full featured">
+      <div class="label">// FUNCIÓN</div>
+      <h2>Qué debe hacer la UI en Kaelum</h2>
       <p class="muted">
-        Kaelum se estructura en una secuencia clara de pantallas y estados.
-        Esto permite separar navegación, juego activo y cierres de partida sin mezclar sistemas.
+        La interfaz tiene tres trabajos: informar, guiar y reforzar identidad.
+        No debería sentirse como una capa genérica pegada encima, sino como una
+        extensión visual del juego.
       </p>
 
-      <div class="state-flex">
-        {states.map((s) => (
-          <div class="state-card">
-            <h3>{s.title}</h3>
-            <p class="muted">{s.desc}</p>
-          </div>
-        ))}
-      </div>
-    </article>
-
-    <article class="card full" id="single">
-      <div class="label">// SINGLEPLAYER</div>
-      <h2>Estado de gameplay — modo historia</h2>
-      <p class="muted">
-        En el singleplayer el gameplay combina exploración, combate, eventos narrativos, puzles y zonas seguras.
-        Desde este estado el jugador puede avanzar, pausar la partida o llegar a una condición de derrota o victoria.
-      </p>
-
-      <ul class="list">
-        <li><strong>Entrada:</strong> menú principal → iniciar partida.</li>
-        <li><strong>Sistemas activos:</strong> exploración, combate, narrativa contextual, puzles y progresión.</li>
-        <li><strong>Salidas:</strong> pausa, game over o estado de victoria.</li>
-      </ul>
-    </article>
-
-    <article class="card full" id="multi">
-      <div class="label">// MULTIJUGADOR</div>
-      <h2>Estado de gameplay — modo competitivo</h2>
-      <p class="muted">
-        En multijugador el flujo es más estructurado: emparejamiento, selección de personajes, inicio de partida,
-        desarrollo de ronda, final de ronda y resumen de resultados.
-      </p>
-
-      <ul class="list">
-        <li><strong>Fases internas:</strong> emparejamiento, selección, inicio, desarrollo, fin de ronda y resultados.</li>
-        <li><strong>Sistemas activos:</strong> combate, movimiento, habilidades, puntuación y HUD competitivo.</li>
-        <li><strong>Salidas:</strong> fin de partida, salida manual o pausa individual.</li>
-      </ul>
-    </article>
-
-    <article class="card full" id="pausa">
-      <div class="label">// MENÚ DE PAUSA</div>
-      <h2>Suspensión temporal del estado activo</h2>
-      <p class="muted">
-        El menú de pausa permite interrumpir temporalmente la experiencia sin romper la lógica general del juego.
-        En singleplayer actúa como pausa real. En multijugador funciona como pausa individual.
-      </p>
-
-      <div class="grid2">
-        <div class="mini-card">
-          <h3>Opciones</h3>
-          <ul class="list compact">
-            <li>Reanudar</li>
-            <li>Opciones rápidas</li>
-            <li>Reiniciar misión</li>
-            <li>Salir al menú principal</li>
-          </ul>
+      <div class="ui-pillars">
+        <div class="pillar">
+          <h3>Claridad</h3>
+          <p class="muted">
+            Que el jugador entienda rápido estado, recursos y contexto.
+          </p>
         </div>
-
-        <div class="mini-card">
-          <h3>Transiciones</h3>
-          <ul class="list compact">
-            <li>Pausa → retorno al estado previo</li>
-            <li>Pausa → menú principal</li>
-          </ul>
+        <div class="pillar">
+          <h3>Coherencia</h3>
+          <p class="muted">
+            Que cada pantalla mantenga el mismo lenguaje visual del mundo.
+          </p>
+        </div>
+        <div class="pillar">
+          <h3>Ritmo</h3>
+          <p class="muted">
+            Que acompañe el flujo del juego en vez de frenarlo.
+          </p>
         </div>
       </div>
     </article>
 
     <article class="card full">
-      <div class="label">// DERROTA Y VICTORIA</div>
-      <h2>Cierres de partida</h2>
-      <p class="muted">
-        El sistema diferencia entre derrota y victoria para reforzar la lectura del resultado.
-        En historia, el game over está planteado para fomentar aprendizaje. En competitivo, el cierre se centra en resultados y resumen.
-      </p>
+      <div class="label">// PANTALLAS</div>
+      <h2>Capas principales de interfaz</h2>
 
-      <div class="grid2">
-        <div class="mini-card">
-          <h3>Game Over</h3>
-          <ul class="list compact">
-            <li>Condición: vida del jugador = 0 en modo historia.</li>
-            <li>Mensaje contextual y estadísticas.</li>
-            <li>Opciones: reintentar o salir.</li>
-          </ul>
-        </div>
+      <div class="ui-grid">
+        {
+          uiScreens.map((screen, index) => (
+            <article class="ui-card">
+              <div class="ui-media">
+                <img src={screen.file} alt={screen.title} loading="lazy" />
+                <span class="ui-number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </div>
 
-        <div class="mini-card">
-          <h3>Victoria / Resultados</h3>
-          <ul class="list compact">
-            <li>Finalización del modo historia o de una partida multijugador.</li>
-            <li>Cinemática final, estadísticas, créditos o resumen.</li>
-            <li>Retorno al menú principal.</li>
-          </ul>
-        </div>
+              <div class="ui-copy">
+                <h3>{screen.title}</h3>
+                <p class="muted">{screen.desc}</p>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </article>
 
-    <article class="card full" id="diagrama">
-      <div class="label">// DIAGRAMA</div>
-      <h2>Diagrama simple de transición de estados</h2>
+    <article class="card full">
+      <div class="label">// LECTURA VISUAL</div>
+      <h2>Cómo debe sentirse</h2>
       <p class="muted">
-        Representación visual del flujo general del juego, diferenciando la rama de singleplayer y la de multijugador.
+        La UI de Kaelum debería moverse entre dos ideas: sobriedad funcional y
+        presencia del mundo. No sobrecargar, no parecer vacía. Lo justo para
+        informar y seguir dentro de la atmósfera.
       </p>
 
-      <div class="diagram-wrap">
-        <img
-          src={`${base}images/juego/diagrama_de_flujo.webp`}
-          alt="Diagrama de flujo de estados del juego Kaelum"
-          class="diagram"
-        />
+      <div class="ui-notes">
+        <div class="note">
+          <h4>HUD</h4>
+          <p class="muted">
+            Información constante, limpia y legible durante el gameplay.
+          </p>
+        </div>
+        <div class="note">
+          <h4>Menús</h4>
+          <p class="muted">
+            Más espacio, más respiración y mejor jerarquía visual.
+          </p>
+        </div>
+        <div class="note">
+          <h4>Pantallas de cierre</h4>
+          <p class="muted">
+            Derrota o victoria deben transmitir tono, no solo resultado.
+          </p>
+        </div>
       </div>
 
       <div class="callout subtle">
-        <strong>Ruta resumida:</strong> Pantalla de inicio → Menú principal → Singleplayer / Multijugador → Gameplay → Pausa / Game Over / Resultados / Victoria → Menú principal.
+        Esta página actúa como puente entre el GDD y la galería: no sustituye el
+        análisis visual, pero sí deja claro qué papel cumple cada pieza de
+        interfaz dentro del juego.
       </div>
     </article>
-
-    <div class="actions bottom">
-      <a class="btn primary" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
-      <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
-    </div>
   </section>
-
+  <div class="actions hero-actions">
+        <a class="btn primary" href={`${base}juego/`}>Volver a Juego</a>
+        <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+        <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}juego/07mecanicas/`}
+          >Ver Mecánicas</a
+        >
+        <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+      </div>
+  <div id="lightbox" class="lightbox">
+    <img id="lightbox-img" src="" alt="" />
+  </div>
   <style>
-    .kicker{ letter-spacing:.06em; text-transform:uppercase; opacity:.7; font-size:.85rem; }
-    .lead{ margin-top:6px; line-height:1.6; opacity:.9; max-width:980px; }
+    .ui-hero {
+      position: relative;
+      overflow: hidden;
+    }
+    .ui-hero:after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          900px 280px at 16% 0%,
+          rgba(34, 211, 238, 0.1),
+          transparent 65%
+        ),
+        radial-gradient(
+          760px 280px at 88% 10%,
+          rgba(139, 92, 246, 0.1),
+          transparent 60%
+        );
+      opacity: 0.9;
+    }
+    .ui-hero > * {
+      position: relative;
+      z-index: 1;
+    }
 
-    .label{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      color: var(--muted2);
-      letter-spacing: .12em;
+    .kicker {
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      font-size: .72rem;
+      opacity: 0.7;
+      font-size: 0.85rem;
+    }
+    .lead {
+      margin-top: 6px;
+      line-height: 1.6;
+      opacity: 0.9;
+      max-width: 980px;
+    }
+
+    .label {
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
       margin-bottom: 8px;
     }
 
-    .subnav{
-      margin-top:14px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:center;
+    .featured {
+      border-color: rgba(34, 211, 238, 0.22);
+      background: linear-gradient(
+        180deg,
+        rgba(34, 211, 238, 0.1),
+        rgba(139, 92, 246, 0.05)
+      );
+      box-shadow: 0 18px 60px rgba(34, 211, 238, 0.08);
     }
 
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      text-decoration:none;
-      color: rgba(255,255,255,.82);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.16);
-      padding: 8px 12px;
-      border-radius: 999px;
+    .ui-pillars {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .pillar,
+    .note {
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .ui-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 22px;
+      margin-top: 20px;
+    }
+
+    .ui-card {
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      overflow: hidden;
+    }
+
+    .ui-media {
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: #000;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+    }
+
+    .ui-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background: #000;
+    }
+
+    .ui-number {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
       font-weight: 900;
-      letter-spacing: .04em;
-      text-transform: uppercase;
-      font-size: .78rem;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(12, 18, 36, 0.72);
+      backdrop-filter: blur(8px);
     }
 
-    .chip:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.18);
+    .ui-copy {
+      padding: 16px;
     }
 
-    .state-flex, .grid2{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-top:14px;
-      align-items:stretch;
+    .ui-notes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
     }
 
-    .state-card, .mini-card{
-      flex:1 1 280px;
-      padding:14px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.18);
-      min-width:260px;
+    .callout {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.18);
+      color: var(--muted);
     }
 
-    .list{ padding-left:18px; }
-    .list.compact{ margin:0; padding-left:18px; }
-    .list li{ margin:6px 0; }
-
-    .diagram-wrap{
-      margin-top:14px;
-      padding:14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-      overflow:hidden;
+    .callout.subtle {
+      border-style: solid;
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
     }
 
-    .diagram{
-      display:block;
-      width:100%;
-      height:auto;
-      border-radius:12px;
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
+    }
+    .hero-actions a {
+      flex: 1 1 200px;
     }
 
-    .callout{
-      margin-top:14px;
-      padding:12px 14px;
-      border-radius:12px;
-      border:1px dashed rgba(255,255,255,.18);
-      background:rgba(0,0,0,.18);
-      color:var(--muted);
+    @media (max-width: 980px) {
+      .ui-grid,
+      .ui-pillars,
+      .ui-notes {
+        grid-template-columns: 1fr;
+      }
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s;
+      z-index: 999;
     }
 
-    .callout.subtle{
-      border-style:solid;
-      border-color:rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 10px;
     }
 
-    .actions.bottom{ margin-top:18px; }
+    .lightbox.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
   </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const images =
+        document.querySelectorAll<HTMLImageElement>(".ui-media img");
+
+      const lightbox = document.getElementById("lightbox");
+
+      const lightboxImg = document.getElementById(
+        "lightbox-img",
+      ) as HTMLImageElement;
+
+      if (!lightbox || !lightboxImg) {
+        console.warn(
+          "No se encontraron los elementos del lightbox en el HTML.",
+        );
+        return;
+      }
+
+      images.forEach((img) => {
+        img.addEventListener("click", () => {
+          lightbox.classList.add("open");
+
+          lightboxImg.src = img.src;
+        });
+      });
+
+      lightbox.addEventListener("click", () => {
+        lightbox.classList.remove("open");
+      });
+    });
+  </script>
 </BaseLayout>

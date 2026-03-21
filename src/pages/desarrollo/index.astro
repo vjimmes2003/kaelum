@@ -9,20 +9,57 @@ const base = import.meta.env.BASE_URL;
     <h1>El rastro del proceso</h1>
     <p class="lead">
       Kaelum no aparece terminado: se construye con pruebas, correcciones, decisiones y avances.
-      Aquí queda registrado ese recorrido.
+      Aquí queda registrado ese recorrido para que el proyecto no se lea solo como resultado,
+      sino también como proceso.
     </p>
   </section>
 
   <section class="hub-grid">
-    <a class="hub-card devlog full" href={`${base}desarrollo/devlog/`}>
+    <a class="hub-card devlog" href={`${base}desarrollo/devlog/`}>
       <span class="hub-number">01</span>
       <div class="hub-copy">
-        <p class="kicker">Seguimiento</p>
+        <p class="kicker">Seguimiento semanal</p>
         <h2>Devlog</h2>
-        <p>Un registro del progreso real del proyecto y de cómo ha ido tomando forma.</p>
+        <p>
+          Un registro del progreso real del proyecto, de las decisiones tomadas y de cómo ha ido
+          cambiando Kaelum a medida que se definía mejor.
+        </p>
         <span class="hub-cta">Abrir apartado →</span>
       </div>
     </a>
+
+    <a class="hub-card roadmap" href={`${base}desarrollo/roadmap/`}>
+      <span class="hub-number">02</span>
+      <div class="hub-copy">
+        <p class="kicker">Visión global</p>
+        <h2>Roadmap</h2>
+        <p>
+          Una lectura por fases del desarrollo: qué se prioriza, qué viene después y cómo se ordena
+          el crecimiento del proyecto sin caer en caos o alcance irreal.
+        </p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+
+    <a class="hub-card hitos full" href={`${base}desarrollo/hitos/`}>
+      <span class="hub-number">03</span>
+      <div class="hub-copy">
+        <p class="kicker">Consolidación</p>
+        <h2>Hitos</h2>
+        <p>
+          Los momentos clave que han hecho que Kaelum deje de ser una idea suelta para convertirse
+          en una propuesta estructurada, documentada y presentable.
+        </p>
+        <span class="hub-cta">Abrir apartado →</span>
+      </div>
+    </a>
+  </section>
+
+  <section class="dev-note">
+    <p class="muted">
+      Esta sección funciona como la parte más “viva” del portfolio: no enseña solo qué es Kaelum,
+      sino cómo se ha ido construyendo.
+    </p>
   </section>
 
   <style>
@@ -33,7 +70,7 @@ const base = import.meta.env.BASE_URL;
     .hub-grid{
       margin-top:18px;
       display:grid;
-      grid-template-columns:1fr;
+      grid-template-columns:repeat(2, minmax(0,1fr));
       gap:14px;
     }
 
@@ -48,13 +85,27 @@ const base = import.meta.env.BASE_URL;
       padding:20px;
       box-shadow:0 16px 40px rgba(0,0,0,.22);
       transition:transform .14s ease, background .14s ease, border-color .14s ease;
-      background:linear-gradient(180deg, rgba(120,210,150,.10), rgba(255,255,255,.03));
     }
 
     .hub-card:hover{
       transform:translateY(-2px);
       border-color:rgba(255,255,255,.16);
-      background:linear-gradient(180deg, rgba(120,210,150,.14), rgba(255,255,255,.04));
+    }
+
+    .hub-card.devlog{
+      background:linear-gradient(180deg, rgba(120,210,150,.10), rgba(255,255,255,.03));
+    }
+
+    .hub-card.roadmap{
+      background:linear-gradient(180deg, rgba(34,211,238,.10), rgba(255,255,255,.03));
+    }
+
+    .hub-card.hitos{
+      background:linear-gradient(180deg, rgba(139,92,246,.10), rgba(255,255,255,.03));
+    }
+
+    .hub-card.full{
+      grid-column:1 / -1;
     }
 
     .hub-number{
@@ -78,7 +129,7 @@ const base = import.meta.env.BASE_URL;
     .hub-copy p{
       margin:0;
       color:var(--muted);
-      line-height:1.55;
+      line-height:1.6;
     }
 
     .hub-cta{
@@ -88,7 +139,20 @@ const base = import.meta.env.BASE_URL;
       color:var(--text);
     }
 
+    .dev-note{
+      margin-top:18px;
+      text-align:center;
+    }
+
     @media (max-width: 860px){
+      .hub-grid{
+        grid-template-columns:1fr;
+      }
+
+      .hub-card.full{
+        grid-column:auto;
+      }
+
       .hub-card{
         padding:18px;
       }

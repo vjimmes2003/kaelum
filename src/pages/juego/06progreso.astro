@@ -85,9 +85,8 @@ const endings = [
 
 <BaseLayout
   title="Kaelum — Progreso"
-  description="Progreso del juego (historia): prólogo, actos, giros y finales por decisiones."
->
-  <section class="hero">
+  description="Progreso del juego (historia): prólogo, actos, giros y finales por decisiones.">
+  <section class="hero progreso-hero">
     <p class="kicker">Juego</p>
     <h1>Progreso</h1>
     <p class="lead">
@@ -97,23 +96,25 @@ const endings = [
       hayas hecho.
     </p>
 
-    <div class="actions">
+    <div class="actions hero-actions">
       <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-      <a class="btn primary" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
-      <a class="btn" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
+      <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+      <a class="btn primary" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a
+      >
+      <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+      <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
     </div>
   </section>
 
-  <div class="grid">
-    <section class="card full">
+  <div class="grid progreso-grid">
+    <section class="card full featured-card">
       <div class="label">// PROGRESO PRINCIPAL</div>
       <h2>Estructura narrativa (Prólogo + 3 actos)</h2>
-      <p class="muted"ME HE QUEDADO AQUI
+      <p class="muted">
         Escalado dramático claro: <strong>identidad → verdad → decisión</strong
         >. En Acto 1 aprendes lo que el mundo cree que eres. En Acto 2 descubres
         por qué funciona así. En Acto 3 decides qué haces con el Orbe… y qué
@@ -160,7 +161,7 @@ const endings = [
       </p>
 
       <div class="grid" style="margin-top:10px">
-        <div class="card" style="grid-column: span 6;">
+        <div class="card inner-card" style="grid-column: span 6;">
           <h3>Lo que entiendes como jugador</h3>
           <ul class="list">
             <li>
@@ -177,7 +178,7 @@ const endings = [
           </ul>
         </div>
 
-        <div class="card" style="grid-column: span 6;">
+        <div class="card inner-card" style="grid-column: span 6;">
           <h3>Lo que se vuelve jugable</h3>
           <ul class="list">
             <li>
@@ -259,115 +260,175 @@ const endings = [
       </p>
     </section>
   </div>
-  <div class="actions">
-      <a class="btn primary" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
+  <div class="actions hero-actions">
+    <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+    <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+    <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+    <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+    <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+    <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+    <a class="btn primary" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+    <a class="btn" href={`${base}juego/08flujo/`}>Ver Flujo de estados</a>
+    <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
   </div>
+
+  <style>
+    .progreso-hero {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progreso-hero::after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          900px 280px at 12% 0%,
+          rgba(139, 92, 246, 0.1),
+          transparent 65%
+        ),
+        radial-gradient(
+          760px 280px at 88% 10%,
+          rgba(255, 190, 90, 0.1),
+          transparent 60%
+        );
+      opacity: 0.9;
+    }
+
+    .progreso-hero > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-actions {
+      margin-top: 16px;
+    }
+
+    .featured-card {
+      border-color: rgba(140, 120, 255, 0.22);
+      background: linear-gradient(
+        180deg,
+        rgba(140, 120, 255, 0.1),
+        rgba(0, 0, 0, 0.18)
+      );
+    }
+
+    .label {
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      margin-bottom: 8px;
+    }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.14);
+    }
+
+    .n {
+      width: 56px;
+      height: 56px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--text);
+    }
+
+    .t {
+      font-size: 1.08rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .d {
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+
+    .inner-card {
+      background: rgba(0, 0, 0, 0.16);
+      box-shadow: none;
+    }
+
+    .endings {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .ending {
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .ending:nth-child(1) {
+      background: linear-gradient(
+        180deg,
+        rgba(120, 210, 150, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+    .ending:nth-child(2) {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 190, 90, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+    .ending:nth-child(3) {
+      background: linear-gradient(
+        180deg,
+        rgba(255, 110, 170, 0.1),
+        rgba(255, 255, 255, 0.03)
+      );
+    }
+
+    @media (max-width: 920px) {
+      .endings {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        grid-template-columns: 1fr;
+      }
+
+      .n {
+        width: 48px;
+        height: 48px;
+      }
+    }
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
+    }
+    .hero-actions a {
+      flex: 1 1 200px;
+    }
+  </style>
 </BaseLayout>
-
-<style>
-  .label {
-    font-family:
-      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-      "Courier New", monospace;
-    color: var(--muted2);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    font-size: 0.72rem;
-    margin-bottom: 8px;
-  }
-
-  .steps {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 12px;
-  }
-
-  .step {
-    display: flex;
-    gap: 14px;
-    border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: var(--radius);
-    padding: 14px 16px;
-    align-items: flex-start;
-  }
-
-  .left {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    min-width: 60px;
-    padding-top: 2px;
-  }
-
-  .step .n {
-    font-weight: 1000;
-    letter-spacing: 0.18em;
-    opacity: 0.55;
-    font-size: 1rem;
-  }
-
-  .right {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    min-width: 0;
-  }
-
-  .step .t {
-    font-weight: 900;
-    color: var(--muted2);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    font-size: 0.92rem;
-    line-height: 1.15;
-  }
-
-  .d {
-    line-height: 1.55;
-  }
-
-  .list.compact {
-    margin: 0;
-    padding-left: 18px;
-  }
-
-  .callout {
-    margin-top: 6px;
-    padding: 10px 12px;
-    border-radius: 12px;
-    border: 1px dashed rgba(255, 255, 255, 0.18);
-    background: rgba(0, 0, 0, 0.18);
-    color: var(--muted);
-  }
-
-  .callout.subtle {
-    border-style: solid;
-    border-color: rgba(255, 255, 255, 0.08);
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .endings {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 12px;
-    align-items: stretch;
-  }
-
-  .ending {
-    flex: 1 1 320px;
-    border: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: var(--radius);
-    padding: 14px 16px;
-    min-width: 280px;
-  }
-</style>

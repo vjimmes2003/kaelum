@@ -1,0 +1,150 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const milestones = [
+  {
+    title: "Identidad del proyecto definida",
+    desc: "Kaelum ya no se plantea como idea difusa, sino como shooter con propuesta clara, tono y pilares reconocibles.",
+  },
+  {
+    title: "GDD estructurado",
+    desc: "La documentación principal organiza narrativa, sistemas, UI, sonido, mercado, monetización y planificación.",
+  },
+  {
+    title: "DAFO y CAME resueltos",
+    desc: "El proyecto no solo está descrito: también está analizado y defendido desde sus riesgos y oportunidades.",
+  },
+  {
+    title: "Web portfolio construida",
+    desc: "La presentación pasa a una estructura navegable con juego, media, documentación, desarrollo y contacto.",
+  },
+  {
+    title: "Devlog activo",
+    desc: "El avance del proyecto se comunica como evolución real y no solo como resultado final.",
+  },
+  {
+    title: "Cierre de apartados evaluables",
+    desc: "Presupuesto, métricas, equipo, roadmap e hitos refuerzan el portfolio de cara a la entrega.",
+  },
+];
+---
+
+<BaseLayout
+  title="Kaelum — Hitos del proyecto"
+  description="Hitos principales del proyecto Kaelum: logros alcanzados, avances clave y puntos de consolidación del portfolio."
+>
+  <section class="hero milestones-hero">
+    <p class="kicker">Desarrollo</p>
+    <h1>Hitos del proyecto</h1>
+    <p class="lead">
+      Esta sección resume los <strong>puntos de avance más importantes</strong> de Kaelum.
+      No muestra microtareas, sino momentos clave que consolidan el proyecto como idea,
+      como documentación y como portfolio web.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}desarrollo/roadmap/`}>Ver roadmap</a>
+      <a class="btn" href={`${base}desarrollo/devlog/`}>Ver devlog</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card full">
+      <h2>Qué se considera un hito aquí</h2>
+      <p class="muted">
+        Un hito no es cualquier tarea terminada. Se considera hito todo aquello que cambia la
+        madurez del proyecto: cuando una parte deja de ser una idea suelta y pasa a convertirse
+        en una capa sólida del portfolio.
+      </p>
+    </article>
+
+    <article class="card full">
+      <h2>Línea de hitos principales</h2>
+
+      <div class="milestones-list">
+        {milestones.map((item, index) => (
+          <section class="milestone-item">
+            <div class="milestone-mark">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+            </div>
+            <div class="milestone-copy">
+              <h3>{item.title}</h3>
+              <p class="muted">{item.desc}</p>
+            </div>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Por qué importa mostrar hitos</h2>
+      <ul class="list">
+        <li>Demuestra evolución real del trabajo.</li>
+        <li>Hace visible el esfuerzo estructural, no solo el resultado bonito.</li>
+        <li>Ayuda a leer el proyecto como proceso y no como entrega improvisada.</li>
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>Relación con la evaluación</h2>
+      <p class="muted">
+        Tener hitos visibles refuerza la parte de planificación, experiencia de usuario y lectura profesional
+        del portfolio, porque deja claro que el proyecto tiene progresión y seguimiento.
+      </p>
+    </article>
+
+    <article class="card full">
+      <h2>Siguiente capa de crecimiento</h2>
+      <p class="muted">
+        Una vez cerrados estos hitos base, el proyecto queda mejor preparado para una fase posterior
+        de mejora: más pulido visual, materiales promocionales, refinamiento de contacto y expansión del media kit.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/planificacion/`}>Ver planificación</a>
+        <a class="btn" href={`${base}desarrollo/`}>Volver a Desarrollo</a>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    .milestones-hero{
+      padding:28px 24px;
+    }
+
+    .milestones-list{
+      display:grid;
+      gap:14px;
+      margin-top:12px;
+    }
+
+    .milestone-item{
+      display:grid;
+      grid-template-columns:60px 1fr;
+      gap:14px;
+      align-items:start;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    .milestone-mark span{
+      width:42px;
+      height:42px;
+      display:grid;
+      place-items:center;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      font-weight:900;
+    }
+
+    @media (max-width: 640px){
+      .milestone-item{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</BaseLayout>

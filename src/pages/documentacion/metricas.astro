@@ -1,0 +1,269 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+const base = import.meta.env.BASE_URL;
+
+const metrics = [
+  {
+    title: "Core jugable",
+    value: "Armas · movimiento · habilidades",
+    desc: "La métrica principal no es cantidad de contenido, sino estabilidad del núcleo.",
+  },
+  {
+    title: "Narrativa estructurada",
+    value: "Prólogo + 3 actos + 3 rutas finales",
+    desc: "La historia se organiza para que sea defendible y visible dentro del portfolio.",
+  },
+  {
+    title: "Documentación",
+    value: "GDD · DAFO · CAME · folleto",
+    desc: "Kaelum no solo se enseña: también se argumenta y se justifica.",
+  },
+  {
+    title: "Presencia web",
+    value: "Media · documentación · devlog · contacto",
+    desc: "La web está pensada como archivo navegable del proyecto, no solo como landing.",
+  },
+];
+
+const pillars = [
+  { label: "Armas", weight: "40%" },
+  { label: "Movimiento", weight: "30%" },
+  { label: "Habilidades", weight: "30%" },
+];
+
+const kpis = [
+  "Claridad del proyecto en menos de 10 segundos.",
+  "Comprensión rápida del mundo, del personaje y del tipo de juego.",
+  "Capacidad de encontrar documentación importante en pocos clics.",
+  "Percepción de coherencia visual entre juego, media y documentación.",
+];
+---
+
+<BaseLayout
+  title="Kaelum — Métricas y diagramas"
+  description="Esquemas, métricas y lectura estructural del proyecto Kaelum: pilares jugables, progreso del portfolio y KPIs orientativos."
+>
+  <section class="hero metrics-hero">
+    <p class="kicker">Documentación</p>
+    <h1>Métricas y diagramas</h1>
+    <p class="lead">
+      Esta sección traduce Kaelum a una lectura más técnica y visual: qué se prioriza,
+      cómo se reparte el diseño y qué indicadores ayudan a evaluar si el proyecto está
+      funcionando como portfolio y como propuesta de videojuego.
+    </p>
+
+    <div class="actions">
+      <a class="btn primary" href={`${base}documentacion/gdd/`}>Abrir GDD</a>
+      <a class="btn" href={`${base}desarrollo/roadmap/`}>Ver roadmap</a>
+    </div>
+  </section>
+
+  <div class="grid">
+    <article class="card full">
+      <h2>Lectura rápida del proyecto</h2>
+      <div class="metrics-grid">
+        {metrics.map((item) => (
+          <section class="metric-box">
+            <p class="metric-title">{item.title}</p>
+            <h3>{item.value}</h3>
+            <p class="muted">{item.desc}</p>
+          </section>
+        ))}
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>Reparto del gameplay</h2>
+      <p class="muted">
+        El diseño de Kaelum parte de una jerarquía clara para evitar que todo compita entre sí.
+      </p>
+
+      <div class="pillar-chart">
+        {pillars.map((item) => (
+          <div class="pillar-row">
+            <div class="pillar-head">
+              <span>{item.label}</span>
+              <strong>{item.weight}</strong>
+            </div>
+            <div class={`pillar-bar ${item.label.toLowerCase()}`}>
+              <span style={`width:${item.weight};`}></span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="small">
+        Esta distribución refuerza la idea de “shooter honesto”: el arma manda, pero el movimiento y las habilidades importan.
+      </p>
+    </article>
+
+    <article class="card">
+      <h2>Qué se mide realmente</h2>
+      <ul class="list">
+        <li><strong>Legibilidad:</strong> que se entienda el proyecto sin explicaciones eternas.</li>
+        <li><strong>Coherencia:</strong> que narrativa, estética y mecánicas no vayan cada una por su lado.</li>
+        <li><strong>Escalabilidad:</strong> que el proyecto pueda crecer sin romperse.</li>
+        <li><strong>Viabilidad:</strong> que el alcance esté controlado y defendido.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Diagrama de progreso del portfolio</h2>
+      <div class="phase-grid">
+        <section class="phase-card">
+          <span class="phase-number">01</span>
+          <h3>Concepto</h3>
+          <p class="muted">Idea, enfoque, USP, pilares jugables y tono del proyecto.</p>
+        </section>
+
+        <section class="phase-card">
+          <span class="phase-number">02</span>
+          <h3>Justificación</h3>
+          <p class="muted">Referentes, DAFO, CAME y decisiones de alcance.</p>
+        </section>
+
+        <section class="phase-card">
+          <span class="phase-number">03</span>
+          <h3>Diseño</h3>
+          <p class="muted">GDD, estructura narrativa, sistemas, UI y dirección artística.</p>
+        </section>
+
+        <section class="phase-card">
+          <span class="phase-number">04</span>
+          <h3>Presentación</h3>
+          <p class="muted">Web, media, devlog, contacto y materiales de difusión.</p>
+        </section>
+      </div>
+    </article>
+
+    <article class="card">
+      <h2>KPIs orientativos</h2>
+      <p class="muted">
+        Como criterio de evaluación interna, estos indicadores ayudan a medir si la web cumple su función.
+      </p>
+      <ul class="list">
+        {kpis.map((item) => <li>{item}</li>)}
+      </ul>
+    </article>
+
+    <article class="card">
+      <h2>Por qué esta sección suma</h2>
+      <ul class="list">
+        <li>Aporta lectura técnica sin hacer la web fría.</li>
+        <li>Da soporte a la rúbrica de gráficos y métricas.</li>
+        <li>Convierte ideas del GDD en información más visual.</li>
+      </ul>
+    </article>
+
+    <article class="card full">
+      <h2>Conclusión</h2>
+      <p class="muted">
+        Las métricas de Kaelum no están pensadas como números vacíos, sino como
+        <strong>herramientas de lectura</strong>: ayudan a entender qué se prioriza,
+        qué estructura sostiene el proyecto y cómo se presenta de forma clara y defendible.
+      </p>
+
+      <div class="actions">
+        <a class="btn primary" href={`${base}documentacion/presupuesto/`}>Ver presupuesto</a>
+        <a class="btn" href={`${base}documentacion/`}>Volver a Documentación</a>
+      </div>
+    </article>
+  </div>
+
+  <style>
+    .metrics-hero{
+      padding:28px 24px;
+    }
+
+    .metrics-grid{
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0,1fr));
+      gap:14px;
+      margin-top:12px;
+    }
+
+    .metric-box,
+    .phase-card{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.03);
+      border-radius:var(--radius);
+      padding:16px;
+    }
+
+    .metric-title{
+      margin:0 0 6px;
+      color:var(--muted2);
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.78rem;
+    }
+
+    .pillar-chart{
+      display:grid;
+      gap:14px;
+      margin-top:14px;
+    }
+
+    .pillar-head{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:6px;
+      font-weight:800;
+    }
+
+    .pillar-bar{
+      width:100%;
+      height:14px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      overflow:hidden;
+      border:1px solid var(--border);
+    }
+
+    .pillar-bar span{
+      display:block;
+      height:100%;
+      border-radius:999px;
+    }
+
+    .pillar-bar.armas span{
+      background:linear-gradient(90deg, rgba(139,92,246,.95), rgba(139,92,246,.55));
+    }
+
+    .pillar-bar.movimiento span{
+      background:linear-gradient(90deg, rgba(34,211,238,.95), rgba(34,211,238,.55));
+    }
+
+    .pillar-bar.habilidades span{
+      background:linear-gradient(90deg, rgba(120,210,150,.95), rgba(120,210,150,.55));
+    }
+
+    .phase-grid{
+      display:grid;
+      grid-template-columns:repeat(4, minmax(0,1fr));
+      gap:14px;
+      margin-top:12px;
+    }
+
+    .phase-number{
+      display:inline-grid;
+      place-items:center;
+      width:42px;
+      height:42px;
+      border-radius:12px;
+      font-weight:900;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.18);
+      margin-bottom:10px;
+    }
+
+    @media (max-width: 980px){
+      .metrics-grid,
+      .phase-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</BaseLayout>

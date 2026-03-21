@@ -1,0 +1,122 @@
+[
+  {
+    "id": "favicon",
+    "title": "Favicon",
+    "src": "/favicon.png",
+    "category": "branding",
+    "description": "Icono representativo del juego, utilizado en pestañas del navegador y marcadores.",
+    "order": 1
+  },
+  {
+    "id": "images-nyxtalestudios",
+    "title": "Nyxtale Studios",
+    "src": "/images/NyxtaleStudios.svg",
+    "category": "branding",
+    "description": "Logotipo de la empresa desarrolladora del juego.",
+    "order": 2
+  },
+  {
+    "id": "images-juego-diagrama-de-flujo",
+    "title": "Diagrama De Flujo",
+    "src": "/images/juego/diagrama_de_flujo.webp",
+    "category": "juego",
+    "description": "Diagrama que muestra el flujo de acciones en el juego.",
+    "order": 3
+  },
+  {
+    "id": "images-media-came",
+    "title": "CAME",
+    "src": "/images/media/came.png",
+    "category": "media",
+    "description": "Documento que presenta el análisis de la situación actual y las oportunidades y amenazas del juego.",
+    "order": 4
+  },
+  {
+    "id": "images-media-dafo",
+    "title": "DAFO",
+    "src": "/images/media/dafo.png",
+    "category": "media",
+    "description": "Documento que presenta el análisis de la situación actual y las oportunidades y amenazas del juego.",
+    "order": 5
+  },
+  {
+    "id": "images-media-moodboard-qr",
+    "title": "Moodboard QR",
+    "src": "/images/media/Moodboard_QR.png",
+    "category": "media",
+    "description": "Moodboard que presenta la estética y el tono del juego, accesible a través de un código QR.",
+    "order": 6
+  },
+  {
+    "id": "images-media-moodboard",
+    "title": "Moodboard",
+    "src": "/images/media/moodboard.jpg",
+    "category": "media",
+    "description": "Moodboard que presenta la estética y el tono del juego.",
+    "order": 7
+  },
+  {
+    "id": "assets-personajes-kael",
+    "title": "Kael",
+    "src": "/assets/personajes/kael.webp",
+    "category": "personajes",
+    "description": "Personaje principal del juego.",
+    "order": 8
+  },
+  {
+    "id": "images-ui-ui-diarioviaje",
+    "title": "UI Diario Viaje",
+    "src": "/images/ui/UI_DiarioViaje.webp",
+    "category": "ui",
+    "description": "Interfaz de usuario para el diario de viaje del jugador.",
+    "order": 9
+  },
+  {
+    "id": "images-ui-ui-gameover",
+    "title": "UI Game Over",
+    "src": "/images/ui/UI_GameOver.webp",
+    "category": "ui",
+    "description": "Interfaz de usuario para la pantalla de game over.",
+    "order": 10
+  },
+  {
+    "id": "images-ui-ui-hud-gameplay",
+    "title": "UI HUD Gameplay",
+    "src": "/images/ui/UI_HUD-Gameplay.webp",
+    "category": "ui",
+    "description": "Interfaz de usuario para el HUD durante el gameplay.",
+    "order": 11
+  },
+  {
+    "id": "images-ui-ui-menupausa",
+    "title": "UI Menu Pausa",
+    "src": "/images/ui/UI_MenuPausa.webp",
+    "category": "ui",
+    "description": "Interfaz de usuario para el menú de pausa.",
+    "order": 12
+  },
+  {
+    "id": "images-ui-ui-menuprincipal",
+    "title": "UI Menu Principal",
+    "src": "/images/ui/UI_MenuPrincipal.webp",
+    "category": "ui",
+    "description": "Interfaz de usuario para el menú principal.",
+    "order": 13
+  },
+  {
+    "id": "images-ui-ui-pantalladeinicio",
+    "title": "UI Pantalla De Inicio",
+    "src": "/images/ui/UI_PantallaDeInicio.webp",
+    "category": "ui",
+    "description": "Interfaz de usuario para la pantalla de inicio.",
+    "order": 14
+  },
+  {
+    "id": "images-ui-ui-pantallavictoria",
+    "title": "UI Pantalla Victoria",
+    "src": "/images/ui/UI_PantallaVictoria.webp",
+    "category": "ui",
+    "description": "Interfaz de usuario para la pantalla de victoria.",
+    "order": 15
+  }
+]

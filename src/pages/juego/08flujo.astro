@@ -32,21 +32,199 @@ const states = [
     desc: "Cierre de partida o finalización del juego. Recoge estadísticas, cinemática final o retorno al menú principal.",
   },
 ];
+
+const diagramUrl = `${base}images/juego/diagrama_de_flujo.webp`;
 ---
 
 <BaseLayout
   title="Kaelum — Flujo de estados"
   description="Flujo de estados del juego: inicio, menú, gameplay, pausa, game over, victoria y resultados."
 >
-  <section class="hero">
-    <p class="kicker">Juego · Flujo</p>
-    <h1>Flujo de estados del juego</h1>
-    <p class="lead">
-      Esta sección resume cómo se organiza la experiencia del jugador desde que inicia el juego
-      hasta que termina una partida. El objetivo es que la navegación sea clara tanto en singleplayer como en multijugador.
-    </p>
+  <section class="hero flujo-hero">
+    <header class="header">
+      <p class="kicker">GDD · Estados y escenas</p>
+      <h1>Flujo de estados</h1>
+      <p class="lead">
+        El flujo de Kaelum define cómo se entra, se juega, se interrumpe y se
+        cierra cada experiencia. No es solo un esquema técnico: es la estructura
+        que mantiene coherencia entre interfaz, ritmo y navegación.
+      </p>
 
-    <div class="actions">
+      <div class="actions hero-actions">
+        <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
+        <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+        <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+        <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+        <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+        <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+        <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+        <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
+        <a class="btn primary" href={`${base}juego/09interfaz/`}>Ver Interfaz</a
+        >
+      </div>
+
+      <nav class="subnav" aria-label="Índice del flujo">
+        <a class="chip" href="#estados">Estados principales</a>
+        <a class="chip" href="#single">Singleplayer</a>
+        <a class="chip" href="#multi">Multijugador</a>
+        <a class="chip" href="#pausa">Pausa y cierre</a>
+        <a class="chip" href="#diagrama">Diagrama</a>
+      </nav>
+    </header>
+  </section>
+
+  <section class="gdd-section">
+    <article class="card full featured" id="estados">
+      <div class="label">// ESTADOS PRINCIPALES</div>
+      <h2>Panorama general</h2>
+      <p class="muted">
+        Kaelum se apoya en un conjunto de escenas claras para evitar saltos
+        extraños entre menús, modos de juego y cierre de partida. La idea no es
+        recargar la estructura, sino hacer que cada transición se entienda de
+        forma natural.
+      </p>
+
+      <div class="state-flex">
+        {
+          states.map((state, index) => (
+            <article class="state-card">
+              <div class="state-top">
+                <span class="state-number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3>{state.title}</h3>
+              </div>
+              <p class="muted">{state.desc}</p>
+            </article>
+          ))
+        }
+      </div>
+    </article>
+
+    <article class="card" id="single">
+      <div class="label">// SINGLEPLAYER</div>
+      <h2>Ruta del modo historia</h2>
+      <p class="muted">
+        El modo historia debe sentirse continuo: entrar, explorar, combatir,
+        pausar, perder o avanzar sin romper la inmersión.
+      </p>
+
+      <div class="grid2">
+        <div class="mini-card">
+          <h4>Entrada</h4>
+          <ul class="list compact">
+            <li>Pantalla de inicio</li>
+            <li>Menú principal</li>
+            <li>Continuar / nueva partida</li>
+          </ul>
+        </div>
+
+        <div class="mini-card">
+          <h4>Juego activo</h4>
+          <ul class="list compact">
+            <li>Exploración</li>
+            <li>Combate</li>
+            <li>Eventos narrativos</li>
+            <li>Puzles y zonas seguras</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card" id="multi">
+      <div class="label">// MULTIJUGADOR</div>
+      <h2>Ruta del competitivo</h2>
+      <p class="muted">
+        Aquí el flujo debe ser más directo y rápido. Menos contemplación, más
+        claridad: selección, partida, resultados y retorno ágil.
+      </p>
+
+      <div class="grid2">
+        <div class="mini-card">
+          <h4>Antes de jugar</h4>
+          <ul class="list compact">
+            <li>Menú principal</li>
+            <li>Selección de modo</li>
+            <li>Selección de personaje</li>
+            <li>Emparejamiento / lobby</li>
+          </ul>
+        </div>
+
+        <div class="mini-card">
+          <h4>Durante la partida</h4>
+          <ul class="list compact">
+            <li>Rondas o partida activa</li>
+            <li>Pausa individual</li>
+            <li>Resultados finales</li>
+            <li>Retorno a menú</li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full" id="pausa">
+      <div class="label">// PAUSA Y CIERRE</div>
+      <h2>Interrupción, derrota y victoria</h2>
+      <p class="muted">
+        El flujo no termina al salir del gameplay activo. Kaelum también tiene
+        que dejar claro cómo se gestiona la pausa, el reinicio tras fallar y la
+        devolución de resultados cuando terminas.
+      </p>
+
+      <div class="state-flex">
+        <div class="state-card">
+          <h3>Menú de pausa</h3>
+          <p class="muted">
+            Sirve para suspender momentáneamente la experiencia, revisar
+            opciones rápidas o salir. En historia es pausa real; en multijugador
+            no puede congelar la partida global.
+          </p>
+        </div>
+
+        <div class="state-card">
+          <h3>Game Over</h3>
+          <p class="muted">
+            Más que una simple pantalla de derrota, debe comunicar contexto,
+            permitir reintento y no romper el tono del proyecto.
+          </p>
+        </div>
+
+        <div class="state-card">
+          <h3>Victoria / Resultados</h3>
+          <p class="muted">
+            Recoge estadísticas, cierre narrativo o retorno lógico al menú. No
+            es solo un final: es una devolución al jugador de lo que acaba de
+            conseguir.
+          </p>
+        </div>
+      </div>
+    </article>
+
+    <article class="card full" id="diagrama">
+      <div class="label">// DIAGRAMA</div>
+      <h2>Lectura visual del flujo</h2>
+      <p class="muted">
+        Este diagrama resume de forma rápida cómo se conectan escenas y estados
+        dentro del juego.
+      </p>
+
+      <div class="diagram-wrap">
+        <img
+          class="diagram"
+          src={diagramUrl}
+          alt="Diagrama de flujo de estados del juego Kaelum"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="callout subtle">
+        Todo este bloque busca una idea muy concreta: que el jugador nunca
+        sienta que el juego “salta raro” entre pantallas, sino que cada
+        transición tiene sentido dentro de la experiencia.
+      </div>
+    </article>
+
+    <div class="actions hero-actions">
       <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
       <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
       <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
@@ -57,250 +235,206 @@ const states = [
       <a class="btn" href={`${base}juego/07mecanicas/`}>Ver Mecánicas</a>
       <a class="btn primary" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
     </div>
-
-    <nav class="subnav" aria-label="Índice de la página">
-      <a class="chip" href="#estados">Estados</a>
-      <a class="chip" href="#single">Singleplayer</a>
-      <a class="chip" href="#multi">Multijugador</a>
-      <a class="chip" href="#pausa">Pausa</a>
-      <a class="chip" href="#diagrama">Diagrama</a>
-    </nav>
-  </section>
-
-  <section class="gdd-section">
-    <article class="card full" id="estados">
-      <div class="label">// ESTADOS PRINCIPALES</div>
-      <h2>Panorama general</h2>
-      <p class="muted">
-        Kaelum se estructura en una secuencia clara de pantallas y estados.
-        Esto permite separar navegación, juego activo y cierres de partida sin mezclar sistemas.
-      </p>
-
-      <div class="state-flex">
-        {states.map((s) => (
-          <div class="state-card">
-            <h3>{s.title}</h3>
-            <p class="muted">{s.desc}</p>
-          </div>
-        ))}
-      </div>
-    </article>
-
-    <article class="card full" id="single">
-      <div class="label">// SINGLEPLAYER</div>
-      <h2>Estado de gameplay — modo historia</h2>
-      <p class="muted">
-        En el singleplayer el gameplay combina exploración, combate, eventos narrativos, puzles y zonas seguras.
-        Desde este estado el jugador puede avanzar, pausar la partida o llegar a una condición de derrota o victoria.
-      </p>
-
-      <ul class="list">
-        <li><strong>Entrada:</strong> menú principal → iniciar partida.</li>
-        <li><strong>Sistemas activos:</strong> exploración, combate, narrativa contextual, puzles y progresión.</li>
-        <li><strong>Salidas:</strong> pausa, game over o estado de victoria.</li>
-      </ul>
-    </article>
-
-    <article class="card full" id="multi">
-      <div class="label">// MULTIJUGADOR</div>
-      <h2>Estado de gameplay — modo competitivo</h2>
-      <p class="muted">
-        En multijugador el flujo es más estructurado: emparejamiento, selección de personajes, inicio de partida,
-        desarrollo de ronda, final de ronda y resumen de resultados.
-      </p>
-
-      <ul class="list">
-        <li><strong>Fases internas:</strong> emparejamiento, selección, inicio, desarrollo, fin de ronda y resultados.</li>
-        <li><strong>Sistemas activos:</strong> combate, movimiento, habilidades, puntuación y HUD competitivo.</li>
-        <li><strong>Salidas:</strong> fin de partida, salida manual o pausa individual.</li>
-      </ul>
-    </article>
-
-    <article class="card full" id="pausa">
-      <div class="label">// MENÚ DE PAUSA</div>
-      <h2>Suspensión temporal del estado activo</h2>
-      <p class="muted">
-        El menú de pausa permite interrumpir temporalmente la experiencia sin romper la lógica general del juego.
-        En singleplayer actúa como pausa real. En multijugador funciona como pausa individual.
-      </p>
-
-      <div class="grid2">
-        <div class="mini-card">
-          <h3>Opciones</h3>
-          <ul class="list compact">
-            <li>Reanudar</li>
-            <li>Opciones rápidas</li>
-            <li>Reiniciar misión</li>
-            <li>Salir al menú principal</li>
-          </ul>
-        </div>
-
-        <div class="mini-card">
-          <h3>Transiciones</h3>
-          <ul class="list compact">
-            <li>Pausa → retorno al estado previo</li>
-            <li>Pausa → menú principal</li>
-          </ul>
-        </div>
-      </div>
-    </article>
-
-    <article class="card full">
-      <div class="label">// DERROTA Y VICTORIA</div>
-      <h2>Cierres de partida</h2>
-      <p class="muted">
-        El sistema diferencia entre derrota y victoria para reforzar la lectura del resultado.
-        En historia, el game over está planteado para fomentar aprendizaje. En competitivo, el cierre se centra en resultados y resumen.
-      </p>
-
-      <div class="grid2">
-        <div class="mini-card">
-          <h3>Game Over</h3>
-          <ul class="list compact">
-            <li>Condición: vida del jugador = 0 en modo historia.</li>
-            <li>Mensaje contextual y estadísticas.</li>
-            <li>Opciones: reintentar o salir.</li>
-          </ul>
-        </div>
-
-        <div class="mini-card">
-          <h3>Victoria / Resultados</h3>
-          <ul class="list compact">
-            <li>Finalización del modo historia o de una partida multijugador.</li>
-            <li>Cinemática final, estadísticas, créditos o resumen.</li>
-            <li>Retorno al menú principal.</li>
-          </ul>
-        </div>
-      </div>
-    </article>
-
-    <article class="card full" id="diagrama">
-      <div class="label">// DIAGRAMA</div>
-      <h2>Diagrama simple de transición de estados</h2>
-      <p class="muted">
-        Representación visual del flujo general del juego, diferenciando la rama de singleplayer y la de multijugador.
-      </p>
-
-      <div class="diagram-wrap">
-        <img
-          src={`${base}images/juego/diagrama_de_flujo.webp`}
-          alt="Diagrama de flujo de estados del juego Kaelum"
-          class="diagram"
-        />
-      </div>
-
-      <div class="callout subtle">
-        <strong>Ruta resumida:</strong> Pantalla de inicio → Menú principal → Singleplayer / Multijugador → Gameplay → Pausa / Game Over / Resultados / Victoria → Menú principal.
-      </div>
-    </article>
-
-    <div class="actions bottom">
-      <a class="btn primary" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
-      <a class="btn" href={`${base}juego/mecanicas/`}>Ver Mecánicas</a>
-    </div>
   </section>
 
   <style>
-    .kicker{ letter-spacing:.06em; text-transform:uppercase; opacity:.7; font-size:.85rem; }
-    .lead{ margin-top:6px; line-height:1.6; opacity:.9; max-width:980px; }
+    .flujo-hero {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+    .flujo-hero:after {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          900px 280px at 18% 0%,
+          rgba(70, 255, 150, 0.1),
+          transparent 65%
+        ),
+        radial-gradient(
+          760px 280px at 90% 12%,
+          rgba(120, 160, 255, 0.1),
+          transparent 60%
+        );
+      opacity: 0.9;
+    }
+    .flujo-hero > * {
+      position: relative;
+      z-index: 1;
+    }
 
-    .label{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      color: var(--muted2);
-      letter-spacing: .12em;
+    .kicker {
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      font-size: .72rem;
+      opacity: 0.7;
+      font-size: 0.85rem;
+    }
+    .lead {
+      margin-top: 6px;
+      line-height: 1.6;
+      opacity: 0.9;
+      max-width: 980px;
+    }
+
+    .label {
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
       margin-bottom: 8px;
     }
 
-    .subnav{
-      margin-top:14px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      justify-content:center;
+    .subnav {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .chip{
-      display:inline-flex;
-      align-items:center;
-      text-decoration:none;
-      color: rgba(255,255,255,.82);
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.16);
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.16);
       padding: 8px 12px;
       border-radius: 999px;
       font-weight: 900;
-      letter-spacing: .04em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      font-size: .78rem;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      font-size: 0.78rem;
+      transition:
+        transform 0.12s ease,
+        background 0.12s ease,
+        border-color 0.12s ease;
     }
 
-    .chip:hover{
+    .chip:hover {
       transform: translateY(-1px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.18);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.18);
     }
 
-    .state-flex, .grid2{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-top:14px;
-      align-items:stretch;
+    .featured {
+      border-color: rgba(140, 120, 255, 0.28);
+      background: linear-gradient(
+        180deg,
+        rgba(140, 120, 255, 0.1),
+        rgba(0, 0, 0, 0.18)
+      );
+      box-shadow: 0 18px 60px rgba(140, 120, 255, 0.1);
     }
 
-    .state-card, .mini-card{
-      flex:1 1 280px;
-      padding:14px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.18);
-      min-width:260px;
+    .state-flex,
+    .grid2 {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      align-items: stretch;
     }
 
-    .list{ padding-left:18px; }
-    .list.compact{ margin:0; padding-left:18px; }
-    .list li{ margin:6px 0; }
-
-    .diagram-wrap{
-      margin-top:14px;
-      padding:14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-      overflow:hidden;
+    .state-card,
+    .mini-card {
+      flex: 1 1 280px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.18);
+      min-width: 260px;
     }
 
-    .diagram{
-      display:block;
-      width:100%;
-      height:auto;
-      border-radius:12px;
+    .state-top {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 8px;
     }
 
-    .callout{
-      margin-top:14px;
-      padding:12px 14px;
-      border-radius:12px;
-      border:1px dashed rgba(255,255,255,.18);
-      background:rgba(0,0,0,.18);
-      color:var(--muted);
+    .state-number {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(94, 139, 255, 0.16);
     }
 
-    .callout.subtle{
-      border-style:solid;
-      border-color:rgba(255,255,255,.08);
-      background:rgba(255,255,255,.03);
+    .list {
+      padding-left: 18px;
+    }
+    .list.compact {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .list li {
+      margin: 6px 0;
     }
 
-    .actions.bottom{ margin-top:18px; }
+    .diagram-wrap {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      overflow: hidden;
+    }
+
+    .diagram {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+    }
+
+    .callout {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.18);
+      color: var(--muted);
+    }
+
+    .callout.subtle {
+      border-style: solid;
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .actions.bottom {
+      margin-top: 18px;
+    }
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 20px;
+    }
+    .hero-actions a {
+      flex: 1 1 200px;
+    }
+    .gdd-section {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      margin-top: 30px;
+    }
+    .card {
+      padding: 22px;
+    }
+    .card.full {
+      padding: 28px;
+    }
   </style>
 </BaseLayout>

@@ -23,10 +23,12 @@ const mechanics = [
     name: "Movimiento del jugador",
     category: "Principal",
     status: "Avanzada",
-    short: "Desplazamiento base del jugador. Es la mecánica que sostiene la lectura del espacio, la cobertura y el posicionamiento.",
+    short:
+      "Desplazamiento base del jugador. Es la mecánica que sostiene la lectura del espacio, la cobertura y el posicionamiento.",
     definition:
       "Sistema de locomoción principal que permite desplazarse por el escenario con fluidez, reposicionarse y construir ventaja táctica a través del espacio.",
-    input: "W / A / S / D para desplazamiento. Shift para sprint si se habilita.",
+    input:
+      "W / A / S / D para desplazamiento. Shift para sprint si se habilita.",
     process: [
       "El jugador introduce dirección.",
       "El controlador calcula velocidad y vector de movimiento.",
@@ -38,21 +40,27 @@ const mechanics = [
       "No se permite atravesar geometría sólida.",
       "La velocidad puede verse afectada por habilidades, estados o terreno.",
     ],
-    affected: "Jugador, navegación por escenario, lectura de coberturas, distancia frente a enemigos.",
+    affected:
+      "Jugador, navegación por escenario, lectura de coberturas, distancia frente a enemigos.",
     states: "Idle → Walk → Run / Sprint → Stopped / Affected State.",
     vfx: "Animaciones de locomoción, inclinación corporal, cambios de postura y lectura clara de desplazamiento.",
     sfx: "Pasos diferenciados según superficie y ritmo de movimiento.",
-    haptic: "Vibración ligera y rítmica en superficies o impactos de movimiento relevantes.",
-    systems: "Se conecta con combate, salto, habilidades de movilidad, exploración y sistema de estados.",
-    scaling: "Puede tensionarse con escenarios más complejos, menos cobertura o enemigos que castigan mala colocación.",
-    metric: "La acción es exitosa si el jugador se reposiciona con control y sin fricción artificial.",
+    haptic:
+      "Vibración ligera y rítmica en superficies o impactos de movimiento relevantes.",
+    systems:
+      "Se conecta con combate, salto, habilidades de movilidad, exploración y sistema de estados.",
+    scaling:
+      "Puede tensionarse con escenarios más complejos, menos cobertura o enemigos que castigan mala colocación.",
+    metric:
+      "La acción es exitosa si el jugador se reposiciona con control y sin fricción artificial.",
   },
   {
     id: "salto",
     name: "Salto del jugador",
     category: "Principal",
     status: "Avanzada",
-    short: "Acción de movilidad vertical usada para salvar desniveles, romper líneas de tiro y apoyar el posicionamiento.",
+    short:
+      "Acción de movilidad vertical usada para salvar desniveles, romper líneas de tiro y apoyar el posicionamiento.",
     definition:
       "Mecánica de elevación puntual que amplía el movimiento base y permite responder a obstáculos, rutas verticales y microreposicionamientos.",
     input: "Barra espaciadora / botón de salto.",
@@ -67,24 +75,30 @@ const mechanics = [
       "El salto no debe invalidar coberturas ni encuentros pensados para tierra.",
       "Puede quedar condicionado por estados negativos o por zona.",
     ],
-    affected: "Jugador, navegación vertical, rutas de exploración y ventanas de combate.",
+    affected:
+      "Jugador, navegación vertical, rutas de exploración y ventanas de combate.",
     states: "Grounded → Jump Start → Airborne → Landing.",
     vfx: "Animación de impulso, caída y aterrizaje; posible pequeña sacudida al tocar suelo.",
     sfx: "Sonido de impulso y aterrizaje según superficie.",
     haptic: "Pulso corto al despegar y pulso algo más seco al aterrizar.",
-    systems: "Se cruza con movimiento, combate, puzles, exploración y habilidades de movilidad.",
-    scaling: "Gana valor en niveles con más verticalidad, rutas secretas o enemigos que fuerzan reposicionamiento.",
-    metric: "Éxito si el jugador usa el salto para alcanzar una posición o evitar una amenaza concreta sin romper claridad.",
+    systems:
+      "Se cruza con movimiento, combate, puzles, exploración y habilidades de movilidad.",
+    scaling:
+      "Gana valor en niveles con más verticalidad, rutas secretas o enemigos que fuerzan reposicionamiento.",
+    metric:
+      "Éxito si el jugador usa el salto para alcanzar una posición o evitar una amenaza concreta sin romper claridad.",
   },
   {
     id: "gunplay",
     name: "Gunplay",
     category: "Principal",
     status: "Muy avanzada",
-    short: "Núcleo del combate. El disparo debe sentirse consistente, legible y justo.",
+    short:
+      "Núcleo del combate. El disparo debe sentirse consistente, legible y justo.",
     definition:
       "Sistema de combate con armas de fuego basado en disparo directo, lectura clara del impacto y control de recursos como cargador, munición y tiempos de recarga.",
-    input: "Click izquierdo disparar · Click derecho apuntar · R recargar · 1/2/3 cambiar arma.",
+    input:
+      "Click izquierdo disparar · Click derecho apuntar · R recargar · 1/2/3 cambiar arma.",
     process: [
       "El jugador dispara desde cámara o ADS.",
       "El sistema lanza un raycast directo.",
@@ -99,21 +113,27 @@ const mechanics = [
       "Cambiar de arma puede interrumpir la recarga si así se define.",
       "Si se falla, la causa debe ser identificable por el jugador.",
     ],
-    affected: "Jugador, enemigos, HUD de munición, ritmo del combate y economía de recursos.",
+    affected:
+      "Jugador, enemigos, HUD de munición, ritmo del combate y economía de recursos.",
     states: "Hipfire → ADS → Firing → Reloading → Swapping → Empty.",
     vfx: "Fogonazo, trazas o impacto legible, animación de arma, feedback de hit confirmado.",
     sfx: "Disparo por tipo de arma, clic de cargador vacío, recarga y confirmación de impacto.",
-    haptic: "Vibración corta al disparar, más marcada en armas pesadas o al confirmar impacto fuerte.",
-    systems: "Se relaciona con habilidades, movimiento, enemigos, inventario y progresión de manejo.",
-    scaling: "Escala a través de variedad de armas, precisión exigida, presión enemiga y lectura de recursos.",
-    metric: "Éxito si el jugador entiende por qué acertó o falló y percibe el disparo como justo y consistente.",
+    haptic:
+      "Vibración corta al disparar, más marcada en armas pesadas o al confirmar impacto fuerte.",
+    systems:
+      "Se relaciona con habilidades, movimiento, enemigos, inventario y progresión de manejo.",
+    scaling:
+      "Escala a través de variedad de armas, precisión exigida, presión enemiga y lectura de recursos.",
+    metric:
+      "Éxito si el jugador entiende por qué acertó o falló y percibe el disparo como justo y consistente.",
   },
   {
     id: "q",
     name: "Habilidad básica (Q)",
     category: "Secundaria",
     status: "Definida",
-    short: "Uso frecuente y apoyo directo al combate. Refuerza decisiones inmediatas sin sustituir al arma.",
+    short:
+      "Uso frecuente y apoyo directo al combate. Refuerza decisiones inmediatas sin sustituir al arma.",
     definition:
       "Habilidad de ciclo corto pensada para apoyar el combate de forma constante con una identidad clara y una lectura rápida.",
     input: "Q.",
@@ -133,16 +153,20 @@ const mechanics = [
     vfx: "Efecto rápido y claro, fácil de leer incluso en combate intenso.",
     sfx: "Sonido breve de activación y confirmación del efecto.",
     haptic: "Pulso corto de activación.",
-    systems: "Se combina con gunplay, movimiento, gestión de cooldown y lectura de personaje.",
-    scaling: "Su valor aumenta con dominio del jugador, pero no debería escalar hasta eclipsar otras herramientas.",
-    metric: "Éxito si genera una ventaja táctica clara y comprensible en un uso corto.",
+    systems:
+      "Se combina con gunplay, movimiento, gestión de cooldown y lectura de personaje.",
+    scaling:
+      "Su valor aumenta con dominio del jugador, pero no debería escalar hasta eclipsar otras herramientas.",
+    metric:
+      "Éxito si genera una ventaja táctica clara y comprensible en un uso corto.",
   },
   {
     id: "e",
     name: "Habilidad de utilidad (E)",
     category: "Secundaria",
     status: "Definida",
-    short: "Herramienta de movilidad o supervivencia puntual: dash, escudo breve, escaneo o curación ligera.",
+    short:
+      "Herramienta de movilidad o supervivencia puntual: dash, escudo breve, escaneo o curación ligera.",
     definition:
       "Habilidad situacional diseñada para dar margen de maniobra, supervivencia o información sin trivializar errores.",
     input: "E.",
@@ -161,17 +185,22 @@ const mechanics = [
     states: "Ready → Utility Active → Cooldown.",
     vfx: "Dash, pulso de escaneo, brillo de escudo o efecto de curación ligera según personaje.",
     sfx: "Sonido específico por función: impulso, barrera, ping o restauración.",
-    haptic: "Pulso medio y corto para indicar que se ha activado una herramienta defensiva o de movilidad.",
-    systems: "Se cruza con movimiento, supervivencia, lectura de mapa y enfrentamientos.",
-    scaling: "Puede ajustarse en cooldown, duración o potencia según necesidades de balance.",
-    metric: "Éxito si salva, recoloca o informa sin borrar el error anterior ni romper la presión del juego.",
+    haptic:
+      "Pulso medio y corto para indicar que se ha activado una herramienta defensiva o de movilidad.",
+    systems:
+      "Se cruza con movimiento, supervivencia, lectura de mapa y enfrentamientos.",
+    scaling:
+      "Puede ajustarse en cooldown, duración o potencia según necesidades de balance.",
+    metric:
+      "Éxito si salva, recoloca o informa sin borrar el error anterior ni romper la presión del juego.",
   },
   {
     id: "x",
     name: "Habilidad de control (X)",
     category: "Secundaria",
     status: "Definida",
-    short: "Control del espacio mediante trampas, zonas ralentizadoras o dispositivos de bloqueo.",
+    short:
+      "Control del espacio mediante trampas, zonas ralentizadoras o dispositivos de bloqueo.",
     definition:
       "Habilidad orientada a modificar el escenario jugable y condicionar el movimiento del rival.",
     input: "X.",
@@ -190,17 +219,22 @@ const mechanics = [
     states: "Ready → Deployed / Active → Triggered / Expired → Cooldown.",
     vfx: "Indicadores de zona, trampa o dispositivo visibles para lectura táctica.",
     sfx: "Sonido de despliegue y activación diferenciable.",
-    haptic: "Pulso de colocación y pulso extra si la habilidad llega a activarse con éxito.",
-    systems: "Se conecta con posicionamiento, flow del mapa, enemigos y habilidades rivales.",
-    scaling: "Puede variar en cantidad máxima, duración o intensidad según balance y dificultad.",
-    metric: "Éxito si condiciona una ruta o fuerza una decisión enemiga reconocible.",
+    haptic:
+      "Pulso de colocación y pulso extra si la habilidad llega a activarse con éxito.",
+    systems:
+      "Se conecta con posicionamiento, flow del mapa, enemigos y habilidades rivales.",
+    scaling:
+      "Puede variar en cantidad máxima, duración o intensidad según balance y dificultad.",
+    metric:
+      "Éxito si condiciona una ruta o fuerza una decisión enemiga reconocible.",
   },
   {
     id: "z",
     name: "Habilidad definitiva (Z)",
     category: "Secundaria",
     status: "Definida",
-    short: "Pico de poder situacional. Impacta mucho, pero no está disponible constantemente ni resuelve el juego sola.",
+    short:
+      "Pico de poder situacional. Impacta mucho, pero no está disponible constantemente ni resuelve el juego sola.",
     definition:
       "Habilidad de alto impacto reservada para momentos clave, cargada por participación activa del jugador.",
     input: "Z.",
@@ -215,21 +249,26 @@ const mechanics = [
       "No elimina jefes automáticamente.",
       "Puede interrumpirse si el jugador cae o es cortado en el momento adecuado.",
     ],
-    affected: "Jugador, enemigos, ritmo del enfrentamiento y lectura del clímax.",
+    affected:
+      "Jugador, enemigos, ritmo del enfrentamiento y lectura del clímax.",
     states: "Charging → Ready → Active → Expired → Charging.",
     vfx: "Efecto dominante y distintivo, claramente leído como “momento de poder”.",
     sfx: "Firma sonora propia y muy reconocible.",
     haptic: "Vibración más intensa y sostenida para marcar el pico de poder.",
-    systems: "Se relaciona con objetivos, daño, flow del combate y momentos de clímax narrativo/jugable.",
-    scaling: "Escala por dificultad en frecuencia de uso, castigo por mal empleo o valor situacional.",
-    metric: "Éxito si altera significativamente un momento de combate sin anular la habilidad del jugador ni del rival.",
+    systems:
+      "Se relaciona con objetivos, daño, flow del combate y momentos de clímax narrativo/jugable.",
+    scaling:
+      "Escala por dificultad en frecuencia de uso, castigo por mal empleo o valor situacional.",
+    metric:
+      "Éxito si altera significativamente un momento de combate sin anular la habilidad del jugador ni del rival.",
   },
   {
     id: "interaccion",
     name: "Sistema de interacción",
     category: "Meta-sistema",
     status: "Definida",
-    short: "Permite abrir puertas, hablar con NPC, recoger objetos y activar mecanismos.",
+    short:
+      "Permite abrir puertas, hablar con NPC, recoger objetos y activar mecanismos.",
     definition:
       "Sistema universal de entrada al contenido interactivo del mundo mediante una tecla contextual.",
     input: "F.",
@@ -249,15 +288,18 @@ const mechanics = [
     sfx: "Sonido breve de confirmación al iniciar la interacción.",
     haptic: "Pulso ligero de confirmación contextual.",
     systems: "Conecta mundo, narrativa, inventario, puzles y progresión.",
-    scaling: "Aumenta su valor conforme el mundo contiene más rutas, secretos y eventos.",
-    metric: "Éxito si el jugador entiende rápido con qué puede interactuar y qué ha activado.",
+    scaling:
+      "Aumenta su valor conforme el mundo contiene más rutas, secretos y eventos.",
+    metric:
+      "Éxito si el jugador entiende rápido con qué puede interactuar y qué ha activado.",
   },
   {
     id: "inventario",
     name: "Sistema de inventario",
     category: "Meta-sistema",
     status: "Definida",
-    short: "Capacidad limitada y separación por categorías: objetos clave, consumibles, materiales y munición.",
+    short:
+      "Capacidad limitada y separación por categorías: objetos clave, consumibles, materiales y munición.",
     definition:
       "Sistema de almacenamiento y consulta de recursos del jugador con separación funcional y límites de capacidad.",
     input: "Apertura desde menú o tecla dedicada según diseño final.",
@@ -275,20 +317,26 @@ const mechanics = [
     states: "Closed → Open → Selecting → Using / Managing → Closed.",
     vfx: "Interfaz clara, iconografía limpia y separación visual por categorías.",
     sfx: "Apertura/cierre de menú y uso de ítems cuando corresponda.",
-    haptic: "No prioritaria en esta fase; puede quedar como vibración suave en navegación por mando.",
-    systems: "Se cruza con interacción, progresión, armas, recursos y narrativa.",
-    scaling: "Puede complejizarse con más objetos, raridades o restricciones, pero sin perder legibilidad.",
-    metric: "Éxito si el jugador encuentra y usa recursos sin fricción innecesaria.",
+    haptic:
+      "No prioritaria en esta fase; puede quedar como vibración suave en navegación por mando.",
+    systems:
+      "Se cruza con interacción, progresión, armas, recursos y narrativa.",
+    scaling:
+      "Puede complejizarse con más objetos, raridades o restricciones, pero sin perder legibilidad.",
+    metric:
+      "Éxito si el jugador encuentra y usa recursos sin fricción innecesaria.",
   },
   {
     id: "progresion",
     name: "Sistema de progresión",
     category: "Meta-sistema",
     status: "Definida",
-    short: "La experiencia se obtiene por misiones, combate y eventos clave; al subir de nivel se desbloquean mejoras.",
+    short:
+      "La experiencia se obtiene por misiones, combate y eventos clave; al subir de nivel se desbloquean mejoras.",
     definition:
       "Sistema de avance persistente que recompensa la actividad del jugador sin sustituir su habilidad mecánica.",
-    input: "No depende de una tecla única; responde a logros, combate y eventos del juego.",
+    input:
+      "No depende de una tecla única; responde a logros, combate y eventos del juego.",
     process: [
       "El jugador obtiene experiencia por misiones, combate y eventos clave.",
       "El sistema acumula progreso.",
@@ -299,24 +347,30 @@ const mechanics = [
       "Debe reforzar la sensación de avance sin romper el equilibrio.",
       "Las mejoras tienen que complementar el dominio del jugador, no reemplazarlo.",
     ],
-    affected: "Estadísticas del personaje, habilidades, resistencia a la Fisura y manejo.",
+    affected:
+      "Estadísticas del personaje, habilidades, resistencia a la Fisura y manejo.",
     states: "XP Gain → Threshold Reached → Level Up → Upgrade Available.",
     vfx: "Indicador de subida de nivel, desbloqueo y confirmación de mejora.",
     sfx: "Sonido de progreso o ascenso de nivel.",
     haptic: "Pulso breve al desbloquear una mejora significativa.",
-    systems: "Conecta combate, narrativa, karma, recursos y build del personaje.",
-    scaling: "Escala a través de umbrales de experiencia y tipos de mejora disponibles.",
-    metric: "Éxito si el jugador nota avance real sin sentir que el sistema “juega por él”.",
+    systems:
+      "Conecta combate, narrativa, karma, recursos y build del personaje.",
+    scaling:
+      "Escala a través de umbrales de experiencia y tipos de mejora disponibles.",
+    metric:
+      "Éxito si el jugador nota avance real sin sentir que el sistema “juega por él”.",
   },
   {
     id: "karma",
     name: "Sistema de karma",
     category: "Meta-sistema",
     status: "Definida",
-    short: "Las decisiones y la conducta modifican cómo te lee el mundo y condicionan rutas, reacciones y consecuencias.",
+    short:
+      "Las decisiones y la conducta modifican cómo te lee el mundo y condicionan rutas, reacciones y consecuencias.",
     definition:
       "Meta-sistema narrativo-jugable que registra la tendencia del jugador y altera la respuesta del mundo a sus acciones.",
-    input: "No se activa manualmente; se alimenta de elecciones, conducta y resolución de situaciones.",
+    input:
+      "No se activa manualmente; se alimenta de elecciones, conducta y resolución de situaciones.",
     process: [
       "El jugador toma decisiones o ejecuta acciones con lectura moral/social.",
       "El sistema actualiza su tendencia.",
@@ -327,21 +381,28 @@ const mechanics = [
       "No puede reducirse a “barra buena/barra mala” sin contexto.",
       "Tiene que conectar con finales, relaciones y lectura pública del jugador.",
     ],
-    affected: "Rutas, NPC, aliados, acceso a contenido, tono de ciertas consecuencias.",
-    states: "Neutral → Tendencia positiva / negativa → Umbrales de consecuencia.",
+    affected:
+      "Rutas, NPC, aliados, acceso a contenido, tono de ciertas consecuencias.",
+    states:
+      "Neutral → Tendencia positiva / negativa → Umbrales de consecuencia.",
     vfx: "Cambios contextuales en UI, mundo o lectura visual según implementación final.",
     sfx: "No necesariamente un sonido directo; puede apoyarse en ambientación o leitmotivs contextuales.",
-    haptic: "No prioritaria como feedback directo; pesa más el feedback sistémico y narrativo.",
-    systems: "Se cruza con narrativa, progresión, interacción, finales y lectura del mundo.",
-    scaling: "Gana peso según avanza la partida y se alcanzan puntos de no retorno.",
-    metric: "Éxito si el jugador percibe que el mundo responde a su conducta de forma coherente.",
+    haptic:
+      "No prioritaria como feedback directo; pesa más el feedback sistémico y narrativo.",
+    systems:
+      "Se cruza con narrativa, progresión, interacción, finales y lectura del mundo.",
+    scaling:
+      "Gana peso según avanza la partida y se alcanzan puntos de no retorno.",
+    metric:
+      "Éxito si el jugador percibe que el mundo responde a su conducta de forma coherente.",
   },
   {
     id: "viaje-rapido",
     name: "Viaje rápido",
     category: "Meta-sistema",
     status: "Definida",
-    short: "Apoyo de ritmo para evitar desplazamientos vacíos una vez revelado el mapa o desbloqueadas zonas clave.",
+    short:
+      "Apoyo de ritmo para evitar desplazamientos vacíos una vez revelado el mapa o desbloqueadas zonas clave.",
     definition:
       "Sistema de desplazamiento abreviado entre puntos ya descubiertos para mantener el ritmo del juego.",
     input: "Selección desde mapa, menú o punto de viaje habilitado.",
@@ -356,14 +417,20 @@ const mechanics = [
       "Puede quedar limitado en ciertos momentos narrativos o de peligro.",
       "No debe romper secuencias críticas del juego.",
     ],
-    affected: "Posición del jugador, ritmo de exploración, backtracking y progresión.",
-    states: "Unavailable → Available → Selecting Destination → Transition → Arrived.",
+    affected:
+      "Posición del jugador, ritmo de exploración, backtracking y progresión.",
+    states:
+      "Unavailable → Available → Selecting Destination → Transition → Arrived.",
     vfx: "Mapa, selector de nodo y transición visual limpia.",
     sfx: "Confirmación de viaje y transición.",
-    haptic: "N/A o vibración mínima; no es una mecánica donde el feedback háptico sea prioritario.",
-    systems: "Se relaciona con mundo, exploración, progresión y narrativa contextual.",
-    scaling: "Se vuelve más útil conforme el mapa crece y el jugador ya domina la geografía.",
-    metric: "Éxito si reduce desplazamientos muertos sin destruir la sensación de mundo conectado.",
+    haptic:
+      "N/A o vibración mínima; no es una mecánica donde el feedback háptico sea prioritario.",
+    systems:
+      "Se relaciona con mundo, exploración, progresión y narrativa contextual.",
+    scaling:
+      "Se vuelve más útil conforme el mapa crece y el jugador ya domina la geografía.",
+    metric:
+      "Éxito si reduce desplazamientos muertos sin destruir la sensación de mundo conectado.",
   },
 ];
 
@@ -406,8 +473,9 @@ const ux = {
     <h1>Mecánicas de juego</h1>
     <p class="lead">
       Esta página reúne el bloque de mecánicas como un dossier técnico legible:
-      <strong>12 mecánicas y sistemas identificados</strong>, clasificados y desarrollados con la mayor profundidad posible
-      dentro de la documentación actual.
+      <strong>12 mecánicas y sistemas identificados</strong>, clasificados y
+      desarrollados con la mayor profundidad posible dentro de la documentación
+      actual.
     </p>
 
     <div class="meta">
@@ -417,15 +485,18 @@ const ux = {
       <span class="tag">{summary.meta} meta-sistemas</span>
     </div>
 
-    <div class="actions">
+    <div class="actions hero-actions">
       <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
-      <a class="btn primary" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
+      <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+      <a class="btn primary" href={`${base}juego/08flujo/`}
+        >Ver Flujo de estados</a
+      >
+      <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
     </div>
 
     <nav class="subnav" aria-label="Índice de la página">
@@ -443,21 +514,27 @@ const ux = {
       <div class="label">// CORE LOOP</div>
       <h2>Bucle principal del juego</h2>
       <p class="muted">
-        Kaelum se apoya en un ciclo claro: explorar, combatir, interactuar, progresar y decidir.
-        El arma sigue siendo el eje del gameplay, mientras que movimiento y habilidades refuerzan el ritmo sin sustituir la acción directa.
+        Kaelum se apoya en un ciclo claro: explorar, combatir, interactuar,
+        progresar y decidir. El arma sigue siendo el eje del gameplay, mientras
+        que movimiento y habilidades refuerzan el ritmo sin sustituir la acción
+        directa.
       </p>
 
       <div class="core-flex">
-        {coreLoop.map((step, i) => (
-          <div class="core-step">
-            <span class="core-n">{String(i + 1).padStart(2, "0")}</span>
-            <h3>{step}</h3>
-          </div>
-        ))}
+        {
+          coreLoop.map((step, i) => (
+            <div class="core-step">
+              <span class="core-n">{String(i + 1).padStart(2, "0")}</span>
+              <h3>{step}</h3>
+            </div>
+          ))
+        }
       </div>
 
       <div class="callout subtle">
-        <strong>Idea central:</strong> Kaelum busca una experiencia “honesta”: si fallas, la causa debe ser identificable; si aciertas, el sistema debe devolverte una lectura clara del porqué.
+        <strong>Idea central:</strong> Kaelum busca una experiencia “honesta”: si
+        fallas, la causa debe ser identificable; si aciertas, el sistema debe devolverte
+        una lectura clara del porqué.
       </div>
     </article>
 
@@ -465,7 +542,10 @@ const ux = {
       <div class="label">// CLASIFICACIÓN</div>
       <h2>Mapa completo de mecánicas</h2>
       <p class="muted">
-        Para dejar el bloque lo más completo posible, las mecánicas se presentan agrupadas por función: <strong>principales</strong>, <strong>secundarias</strong> y <strong>meta-sistemas</strong>.
+        Para dejar el bloque lo más completo posible, las mecánicas se presentan
+        agrupadas por función: <strong>principales</strong>, <strong
+          >secundarias</strong
+        > y <strong>meta-sistemas</strong>.
       </p>
 
       <div class="group-flex">
@@ -515,13 +595,15 @@ const ux = {
             </tr>
           </thead>
           <tbody>
-            {inputs.map((row) => (
-              <tr>
-                <td>{row[0]}</td>
-                <td>{row[1]}</td>
-                <td>{row[2]}</td>
-              </tr>
-            ))}
+            {
+              inputs.map((row) => (
+                <tr>
+                  <td>{row[0]}</td>
+                  <td>{row[1]}</td>
+                  <td>{row[2]}</td>
+                </tr>
+              ))
+            }
           </tbody>
         </table>
       </div>
@@ -531,97 +613,108 @@ const ux = {
       <div class="label">// FICHAS TÉCNICAS</div>
       <h2>Desarrollo de las 12 mecánicas</h2>
       <p class="muted">
-        Cada ficha sigue la lógica de la plantilla técnica: definición, input, proceso, límites, estados, feedback e interacción con sistemas.
+        Cada ficha sigue la lógica de la plantilla técnica: definición, input,
+        proceso, límites, estados, feedback e interacción con sistemas.
       </p>
 
       <div class="mechanic-stack">
-        {mechanics.map((m, i) => (
-          <section class="mechanic-card" id={m.id} data-cat={m.category}>
-            <div class="mechanic-top">
-              <div>
-                <div class="mechanic-kicker">Mecánica {String(i + 1).padStart(2, "0")}</div>
-                <h3>{m.name}</h3>
-                <p class="muted summary">{m.short}</p>
-              </div>
-
-              <div class="badges">
-                <span class="badge cat">{m.category}</span>
-                <span class={`badge status ${m.status === "Muy avanzada" ? "advanced" : m.status === "Avanzada" ? "good" : "defined"}`}>
-                  {m.status}
-                </span>
-              </div>
-            </div>
-
-            <div class="mechanic-layout">
-              <div class="mechanic-main">
-                <div class="info-grid">
-                  <div class="info-box">
-                    <strong>Definición</strong>
-                    <p>{m.definition}</p>
+        {
+          mechanics.map((m, i) => (
+            <section class="mechanic-card" id={m.id} data-cat={m.category}>
+              <div class="mechanic-top">
+                <div>
+                  <div class="mechanic-kicker">
+                    Mecánica {String(i + 1).padStart(2, "0")}
                   </div>
-                  <div class="info-box">
-                    <strong>Input</strong>
-                    <p>{m.input}</p>
-                  </div>
-                  <div class="info-box">
-                    <strong>Objetos afectados</strong>
-                    <p>{m.affected}</p>
-                  </div>
-                  <div class="info-box">
-                    <strong>Estados</strong>
-                    <p>{m.states}</p>
-                  </div>
+                  <h3>{m.name}</h3>
+                  <p class="muted summary">{m.short}</p>
                 </div>
 
-                <div class="process-block">
-                  <h4>Lógica / proceso</h4>
-                  <ol class="list numbered">
-                    {m.process.map((p) => <li>{p}</li>)}
-                  </ol>
-                </div>
-
-                <div class="rules-block">
-                  <h4>Reglas y límites</h4>
-                  <ul class="list compact">
-                    {m.rules.map((r) => <li>{r}</li>)}
-                  </ul>
+                <div class="badges">
+                  <span class="badge cat">{m.category}</span>
+                  <span
+                    class={`badge status ${m.status === "Muy avanzada" ? "advanced" : m.status === "Avanzada" ? "good" : "defined"}`}
+                  >
+                    {m.status}
+                  </span>
                 </div>
               </div>
 
-              <aside class="mechanic-side">
-                <div class="side-box">
-                  <h4>Feedback visual</h4>
-                  <p>{m.vfx}</p>
+              <div class="mechanic-layout">
+                <div class="mechanic-main">
+                  <div class="info-grid">
+                    <div class="info-box">
+                      <strong>Definición</strong>
+                      <p>{m.definition}</p>
+                    </div>
+                    <div class="info-box">
+                      <strong>Input</strong>
+                      <p>{m.input}</p>
+                    </div>
+                    <div class="info-box">
+                      <strong>Objetos afectados</strong>
+                      <p>{m.affected}</p>
+                    </div>
+                    <div class="info-box">
+                      <strong>Estados</strong>
+                      <p>{m.states}</p>
+                    </div>
+                  </div>
+
+                  <div class="process-block">
+                    <h4>Lógica / proceso</h4>
+                    <ol class="list numbered">
+                      {m.process.map((p) => (
+                        <li>{p}</li>
+                      ))}
+                    </ol>
+                  </div>
+
+                  <div class="rules-block">
+                    <h4>Reglas y límites</h4>
+                    <ul class="list compact">
+                      {m.rules.map((r) => (
+                        <li>{r}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
 
-                <div class="side-box">
-                  <h4>Feedback sonoro</h4>
-                  <p>{m.sfx}</p>
-                </div>
+                <aside class="mechanic-side">
+                  <div class="side-box">
+                    <h4>Feedback visual</h4>
+                    <p>{m.vfx}</p>
+                  </div>
 
-                <div class="side-box">
-                  <h4>Háptica</h4>
-                  <p>{m.haptic}</p>
-                </div>
+                  <div class="side-box">
+                    <h4>Feedback sonoro</h4>
+                    <p>{m.sfx}</p>
+                  </div>
 
-                <div class="side-box">
-                  <h4>Interacción con sistemas</h4>
-                  <p>{m.systems}</p>
-                </div>
+                  <div class="side-box">
+                    <h4>Háptica</h4>
+                    <p>{m.haptic}</p>
+                  </div>
 
-                <div class="side-box">
-                  <h4>Escalabilidad</h4>
-                  <p>{m.scaling}</p>
-                </div>
+                  <div class="side-box">
+                    <h4>Interacción con sistemas</h4>
+                    <p>{m.systems}</p>
+                  </div>
 
-                <div class="side-box metric">
-                  <h4>Métrica de éxito</h4>
-                  <p>{m.metric}</p>
-                </div>
-              </aside>
-            </div>
-          </section>
-        ))}
+                  <div class="side-box">
+                    <h4>Escalabilidad</h4>
+                    <p>{m.scaling}</p>
+                  </div>
+
+                  <div class="side-box metric">
+                    <h4>Métrica de éxito</h4>
+                    <p>{m.metric}</p>
+                  </div>
+                </aside>
+              </div>
+            </section>
+          ))
+        }
       </div>
     </article>
 
@@ -653,551 +746,387 @@ const ux = {
         <strong>{ux.emotion}</strong>
       </p>
       <div class="callout">
-        <strong>Justificación:</strong> {ux.why}
+        <strong>Justificación:</strong>
+        {ux.why}
       </div>
     </article>
 
-    <div class="actions bottom">
+    <div class="actions hero-actions">
       <a class="btn" href={`${base}juego/`}>Volver a Juego</a>
-      <a class="btn" href={`${base}juego/historia/`}>Ver Historia</a>
-      <a class="btn" href={`${base}juego/mundo/`}>Ver Mundo</a>
-      <a class="btn" href={`${base}juego/personajes/`}>Ver Personajes</a>
-      <a class="btn" href={`${base}juego/cinematicas/`}>Ver Cinemáticas</a>
-      <a class="btn" href={`${base}juego/enemigos/`}>Ver Enemigos</a>
-      <a class="btn" href={`${base}juego/progreso/`}>Ver Progreso</a>
-      <a class="btn primary" href={`${base}juego/flujo/`}>Ver Flujo de estados</a>
-      <a class="btn" href={`${base}juego/interfaz/`}>Ver Interfaz</a>
+      <a class="btn" href={`${base}juego/01historia/`}>Ver Historia</a>
+      <a class="btn" href={`${base}juego/02mundo/`}>Ver Mundo</a>
+      <a class="btn" href={`${base}juego/03personajes/`}>Ver Personajes</a>
+      <a class="btn" href={`${base}juego/04cinematicas/`}>Ver Cinemáticas</a>
+      <a class="btn" href={`${base}juego/05enemigos/`}>Ver Enemigos</a>
+      <a class="btn" href={`${base}juego/06progreso/`}>Ver Progreso</a>
+      <a class="btn primary" href={`${base}juego/08flujo/`}
+        >Ver Flujo de estados</a
+      >
+      <a class="btn" href={`${base}juego/09interfaz/`}>Ver Interfaz</a>
     </div>
   </section>
 
   <style>
-    .kicker{ letter-spacing:.06em; text-transform:uppercase; opacity:.7; font-size:.85rem; }
-.lead{ margin-top:6px; line-height:1.6; opacity:.9; max-width:980px; }
-
-.meta{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:12px;
-  justify-content:flex-start;
-}
-.tag{
-  display:inline-flex;
-  align-items:center;
-  padding:7px 12px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.10);
-  background: rgba(0,0,0,.16);
-  color: rgba(255,255,255,.82);
-  font-weight:900;
-  letter-spacing:.02em;
-  font-size:.86rem;
-}
-
-.label{
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-  color: var(--muted2);
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  font-size: .72rem;
-  margin-bottom: 8px;
-}
-
-.subnav{
-  margin-top:14px;
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-.chip{
-  display:inline-flex;
-  align-items:center;
-  text-decoration:none;
-  color: rgba(255,255,255,.82);
-  border: 1px solid rgba(255,255,255,.10);
-  background: rgba(0,0,0,.16);
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-weight: 900;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  font-size: .78rem;
-  transition: transform .12s ease, background .12s ease, border-color .12s ease;
-}
-.chip:hover{
-  transform: translateY(-1px);
-  background: rgba(255,255,255,.06);
-  border-color: rgba(255,255,255,.18);
-}
-
-.core-flex, .group-flex, .dual-flex{
-  display:flex;
-  gap:14px;
-  flex-wrap:wrap;
-  margin-top:14px;
-  align-items:stretch;
-}
-
-.core-step, .group-card, .mini-card{
-  flex:1 1 260px;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(0,0,0,.18);
-  min-width:240px;
-}
-
-.core-n{
-  display:inline-flex;
-  margin-bottom:8px;
-  opacity:.55;
-  font-weight:1000;
-  letter-spacing:.18em;
-}
-
-.table-wrap{
-  margin-top:14px;
-  overflow:auto;
-  border:1px solid rgba(255,255,255,.10);
-  border-radius:14px;
-  background:rgba(0,0,0,.18);
-}
-.mechanic-table{
-  width:100%;
-  border-collapse:collapse;
-  min-width:760px;
-}
-.mechanic-table th,
-.mechanic-table td{
-  padding:12px 14px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-  text-align:left;
-  vertical-align:top;
-}
-.mechanic-table th{
-  background:rgba(255,255,255,.04);
-  font-weight:900;
-}
-
-.mechanic-stack{
-  display:flex;
-  flex-direction:column;
-  gap:18px;
-  margin-top:14px;
-}
-
-.mechanic-card{
-  position:relative;
-  overflow:hidden;
-  padding:18px;
-  border-radius:16px;
-  border:1px solid rgba(255,255,255,.10);
-  background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(0,0,0,.16));
-  box-shadow:0 10px 30px rgba(0,0,0,.18);
-}
-
-.mechanic-card::before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:0;
-  bottom:0;
-  width:4px;
-  background:rgba(120,160,255,.85);
-}
-
-.mechanic-card[data-cat="Secundaria"]::before{
-  background:rgba(170,120,255,.85);
-}
-
-.mechanic-card[data-cat="Meta-sistema"]::before{
-  background:rgba(255,220,120,.85);
-}
-
-.mechanic-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:16px;
-  flex-wrap:wrap;
-  margin-bottom:14px;
-  padding-bottom:14px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-
-.mechanic-kicker{
-  letter-spacing:.12em;
-  text-transform:uppercase;
-  font-size:.72rem;
-  color:var(--muted2);
-  margin-bottom:6px;
-}
-
-.mechanic-top h3{
-  margin:0;
-  line-height:1.1;
-}
-
-.summary{
-  margin-top:8px;
-  max-width:75ch;
-}
-
-.badges{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  padding:6px 10px;
-  border-radius:999px;
-  font-size:.78rem;
-  border:1px solid rgba(255,255,255,.10);
-  background:rgba(255,255,255,.03);
-  color:rgba(255,255,255,.85);
-  white-space:nowrap;
-}
-
-.badge.cat{
-  background:rgba(120,160,255,.10);
-  border-color:rgba(120,160,255,.22);
-}
-
-.badge.status.good{
-  background:rgba(120,255,180,.10);
-  border-color:rgba(120,255,180,.22);
-}
-
-.badge.status.advanced{
-  background:rgba(170,120,255,.12);
-  border-color:rgba(170,120,255,.24);
-}
-
-.badge.status.defined{
-  background:rgba(255,220,120,.10);
-  border-color:rgba(255,220,120,.22);
-}
-
-.mechanic-layout{
-  display:flex;
-  gap:16px;
-  align-items:flex-start;
-}
-
-.mechanic-main{
-  flex:1 1 68%;
-  min-width:0;
-}
-
-.mechanic-side{
-  flex:0 0 30%;
-  display:flex;
-  flex-direction:column;
-  gap:12px;
-  min-width:280px;
-}
-
-.info-grid{
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-  margin-bottom:14px;
-}
-
-.info-box{
-  flex:1 1 calc(50% - 6px);
-  min-width:260px;
-  padding:12px 14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(0,0,0,.16);
-}
-
-.info-box strong{
-  display:block;
-  margin-bottom:6px;
-  color:rgba(255,255,255,.96);
-}
-
-.info-box p{
-  margin:0;
-  color:var(--muted);
-  line-height:1.55;
-}
-
-.process-block,
-.rules-block{
-  margin-top:12px;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(255,255,255,.03);
-}
-
-.process-block h4,
-.rules-block h4,
-.side-box h4{
-  margin:0 0 8px;
-  font-size:1rem;
-}
-
-.side-box{
-  padding:12px 14px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
-  background:rgba(0,0,0,.16);
-}
-
-.side-box p{
-  margin:0;
-  color:var(--muted);
-  line-height:1.5;
-}
-
-.side-box.metric{
-  border-color:rgba(140,120,255,.22);
-  background:rgba(140,120,255,.08);
-}
-
-.list{ padding-left:18px; }
-.list.compact{ margin:0; padding-left:18px; }
-.list.numbered{ margin:0; padding-left:22px; }
-.list li{ margin:6px 0; }
-
-.callout{
-  margin-top:14px;
-  padding:12px 14px;
-  border-radius:12px;
-  border:1px dashed rgba(255,255,255,.18);
-  background:rgba(0,0,0,.18);
-  color:var(--muted);
-}
-.callout.subtle{
-  border-style:solid;
-  border-color:rgba(255,255,255,.08);
-  background:rgba(255,255,255,.03);
-}
-#astroactualizateporfa
-.actions.bottom{ margin-top:18px; }
-.page-hero{
-      padding:30px 24px;
+    .kicker {
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      font-size: 0.85rem;
+    }
+    .lead {
+      margin-top: 6px;
+      line-height: 1.6;
+      opacity: 0.9;
+      max-width: 980px;
     }
 
-    .header{
-      margin-bottom:0;
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 12px;
+      justify-content: flex-start;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.16);
+      color: rgba(255, 255, 255, 0.82);
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      font-size: 0.86rem;
     }
 
-    .lead{
-      text-align:justify;
-      opacity:.92;
-      line-height:1.6;
-      max-width:78ch;
+    .label {
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      color: var(--muted2);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      margin-bottom: 8px;
     }
 
-    .hero-actions{
-      margin-top:18px;
+    .subnav {
+      margin-top: 14px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.16);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.78rem;
+      transition:
+        transform 0.12s ease,
+        background 0.12s ease,
+        border-color 0.12s ease;
+    }
+    .chip:hover {
+      transform: translateY(-1px);
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.18);
+    }
+
+    .core-flex,
+    .group-flex,
+    .dual-flex {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      align-items: stretch;
+    }
+
+    .core-step,
+    .group-card,
+    .mini-card {
+      flex: 1 1 260px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(0, 0, 0, 0.18);
+      min-width: 240px;
+    }
+
+    .core-n {
+      display: inline-flex;
+      margin-bottom: 8px;
+      opacity: 0.55;
+      font-weight: 1000;
+      letter-spacing: 0.18em;
+    }
+
+    .table-wrap {
+      margin-top: 14px;
+      overflow: auto;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.18);
+    }
+    .mechanic-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+    .mechanic-table th,
+    .mechanic-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      text-align: left;
+      vertical-align: top;
+    }
+    .mechanic-table th {
+      background: rgba(255, 255, 255, 0.04);
+      font-weight: 900;
+    }
+
+    .mechanic-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-top: 14px;
+    }
+
+    .mechanic-card {
+      position: relative;
+      overflow: hidden;
+      padding: 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.04),
+        rgba(0, 0, 0, 0.16)
+      );
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .mechanic-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: rgba(120, 160, 255, 0.85);
+    }
+
+    .mechanic-card[data-cat="Secundaria"]::before {
+      background: rgba(170, 120, 255, 0.85);
+    }
+
+    .mechanic-card[data-cat="Meta-sistema"]::before {
+      background: rgba(255, 220, 120, 0.85);
+    }
+
+    .mechanic-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mechanic-kicker {
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 0.72rem;
+      color: var(--muted2);
+      margin-bottom: 6px;
+    }
+
+    .mechanic-top h3 {
+      margin: 0;
+      line-height: 1.1;
+    }
+
+    .summary {
+      margin-top: 8px;
+      max-width: 75ch;
+    }
+
+    .badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+      color: rgba(255, 255, 255, 0.85);
+      white-space: nowrap;
+    }
+
+    .badge.cat {
+      background: rgba(120, 160, 255, 0.1);
+      border-color: rgba(120, 160, 255, 0.22);
+    }
+
+    .badge.status.good {
+      background: rgba(120, 255, 180, 0.1);
+      border-color: rgba(120, 255, 180, 0.22);
+    }
+
+    .badge.status.advanced {
+      background: rgba(170, 120, 255, 0.12);
+      border-color: rgba(170, 120, 255, 0.24);
+    }
+
+    .badge.status.defined {
+      background: rgba(255, 220, 120, 0.1);
+      border-color: rgba(255, 220, 120, 0.22);
+    }
+
+    .mechanic-layout {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .mechanic-main {
+      flex: 1 1 68%;
+      min-width: 0;
+    }
+
+    .mechanic-side {
+      flex: 0 0 30%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-width: 280px;
+    }
+
+    .info-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .info-box {
+      flex: 1 1 calc(50% - 6px);
+      min-width: 260px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .info-box strong {
+      display: block;
+      margin-bottom: 6px;
+      color: rgba(255, 255, 255, 0.96);
+    }
+
+    .info-box p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .process-block,
+    .rules-block {
+      margin-top: 12px;
+      padding: 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .process-block h4,
+    .rules-block h4,
+    .side-box h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .side-box {
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .side-box p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .side-box.metric {
+      border-color: rgba(140, 120, 255, 0.22);
+      background: rgba(140, 120, 255, 0.08);
+    }
+
+    .list {
+      padding-left: 18px;
+    }
+    .list.compact {
+      margin: 0;
+      padding-left: 18px;
+    }
+    .list.numbered {
+      margin: 0;
+      padding-left: 22px;
+    }
+    .list li {
+      margin: 6px 0;
+    }
+
+    .callout {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px dashed rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.18);
+      color: var(--muted);
+    }
+    .callout.subtle {
+      border-style: solid;
+      border-color: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.03);
+    }
+    #astroactualizateporfa .actions.bottom {
+      margin-top: 18px;
+    }
+    .hero-actions {
+      margin-top: 18px;
       display: flex;
       flex-wrap: wrap;
       gap: 5px 20px;
     }
-    .hero-actions a{
+    .hero-actions a {
       flex: 1 1 200px;
     }
-
-    .family-nav{
-      margin-top:18px;
-      padding-top:16px;
-      border-top:1px solid var(--border);
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
-    .family-pill{
-      text-decoration:none;
-      color:var(--muted);
-      font-weight:800;
-      font-size:.9rem;
-      padding:6px 12px;
-      border-radius:999px;
-      background:rgba(255,255,255,.03);
-      border:1px solid transparent;
-      transition:all .15s ease;
-    }
-    
-
-    .family-pill:hover{
-      color:var(--text);
-      background:rgba(255,255,255,.08);
-      transform:translateY(-1px);
-    }
-
-    .family-pill.active{
-      color:var(--text);
-      background:linear-gradient(90deg, rgba(139,92,246,.40), rgba(34,211,238,.32));
-      border-color:rgba(255,255,255,.14);
-    }
-
     .gdd-section{
-      margin-top:18px;
-      display:grid;
-      gap:16px;
-    }
-
-    .content-card{
-      padding:20px;
-      border:1px solid rgba(255,255,255,.10);
-      border-radius:16px;
-      background:linear-gradient(180deg, rgba(139,92,246,.08), rgba(255,255,255,.03));
-      box-shadow:0 16px 40px rgba(0,0,0,.22);
-    }
-
-    .content-card > p{
-      text-align:justify;
-      color:var(--muted);
-      margin:0;
-      line-height:1.6;
-    }
-
-    .subcard{
-      margin-top:14px;
-      padding:14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.08);
-      background:rgba(0,0,0,.18);
-    }
-
-    .subcard h3{
-      margin:0 0 8px;
-      font-size:1.06rem;
-    }
-
-    .subcard p{
-      margin:0;
-      text-align:justify;
-      color:var(--muted);
-      line-height:1.6;
-    }
-
-    .bullets{
-      margin:12px 0 0;
-      padding-left:22px;
-      color:var(--muted);
-    }
-
-    .bullets li{
-      margin:8px 0;
-    }
-
-    .quote{
-      margin:16px 0 0;
-      padding:14px;
-      border-left:4px solid rgba(170,120,255,.65);
-      background:rgba(170,120,255,.08);
-      border-radius:12px;
-    }
-
-    .quote p{
-      margin:0 0 6px;
-      font-weight:700;
-      color:var(--text);
-    }
-
-    .quote cite{
-      opacity:.8;
-      font-style:normal;
-      font-size:.92rem;
-      color:var(--muted);
-    }
-
-    .grid3{
-      display:grid;
-      grid-template-columns:repeat(3, 1fr);
-      gap:12px;
-      margin-top:14px;
-    }
-
-    .pill{
-      padding:14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.03);
-    }
-
-    .pill h3{
-      margin:0 0 8px;
-    }
-
-    .pill p{
-      margin:0;
-      opacity:.92;
-      line-height:1.5;
-      color:var(--muted);
-    }
-
-    .ending.good{
-      background:linear-gradient(180deg, rgba(120,210,150,.12), rgba(255,255,255,.03));
-    }
-
-    .ending.neutral{
-      background:linear-gradient(180deg, rgba(255,190,90,.10), rgba(255,255,255,.03));
-    }
-
-    .ending.bad{
-      background:linear-gradient(180deg, rgba(255,110,170,.10), rgba(255,255,255,.03));
-    }
-
-    .timeline{
-      margin-top:14px;
-      display:grid;
-      gap:12px;
-    }
-
-    .tblock{
-      padding:14px;
-      border-radius:14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(0,0,0,.14);
-    }
-
-    .tblock h3{
-      margin:0 0 10px;
-      font-size:1.18rem;
-    }
-
-    .tblock ol{
-      margin:0;
-      padding-left:20px;
-      color:var(--muted);
-    }
-
-    .tblock li{
-      margin:8px 0;
-      line-height:1.5;
-    }
-
-    .page-end{
-      margin-top:18px;
-    }
-
-    @media (max-width: 860px){
-      .grid3{
-        grid-template-columns:1fr;
-      }
-
-      .content-card,
-      .subcard,
-      .pill,
-      .tblock{
-        padding:18px;
-      }
-
-      .family-nav{
-        gap:8px;
-      }
-    }
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+  margin-top:30px;
+}
   </style>
 </BaseLayout>

@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "deploy": "npm run build && gh-pages -d dist -t -b gh-pages"
+    "deploy": "npm run build && gh-pages -d dist -t -b gh-pages",
+    "gallery": "node scripts/generate-gallery-manifest.mjs"
   },
   "dependencies": {
     "astro": "^5.16.9"
