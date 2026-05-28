@@ -10,7 +10,7 @@
     "gallery": "node scripts/generate-gallery-manifest.mjs"
   },
   "dependencies": {
-    "astro": "^5.16.9"
+    "astro": "^5.17.0"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0"
